@@ -34,7 +34,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'unicode'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Programming with Unicode'
@@ -172,13 +172,13 @@ htmlhelp_basename = 'ProgrammingwithUnicodedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 pdf_documents = [
-  ('unicode', 'unicode', u'Programming with Unicode Documentation',
+  ('index', 'index', u'Programming with Unicode Documentation',
    u'Victor Stinner', 'manual'),
 ]
 pdf_stylesheets = ['sphinx','kerning','a4']
 
 latex_documents = [
-  ('unicode', 'unicode.tex', u'Programming with Unicode Documentation',
+  ('index', 'index.tex', u'Programming with Unicode Documentation',
    u'Victor Stinner', 'manual'),
 ]
 

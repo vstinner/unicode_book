@@ -1,8 +1,3 @@
-.. section-numbering::
-
-.. todo:: :c:type:`char*` points to char, not char*
-.. todo:: add statistics about encodings popularity
-
 About this book
 ===============
 
