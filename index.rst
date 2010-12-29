@@ -6,8 +6,16 @@ Programming with Unicode
 .. todo:: add statistics about encodings popularity
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :numbered:
 
+   about.rst
+   nightmare.rst
+   encodings.rst
    unicode.rst
+   good_practices.rst
+   operating_systems.rst
+   programming_languages.rst
+   libraries.rst
+   see_also.rst
 
