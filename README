@@ -1,0 +1,12 @@
+About
+-----
+
+"Programming with Unicode" is a book written by Victor Stinner.
+
+Dependencies
+------------
+
+ * Sphinx: http://sphinx.pocoo.org/ -- sudo pip install sphinx
+ * (optional) LaTeX: sudo apt-get install texlive-latex-base
+ * (optional) rst2pdf
+
