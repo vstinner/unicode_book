@@ -1,25 +1,26 @@
 Operating systems
 =================
 
-Microsoft Windows
------------------
+.. _Windows:
+
+Windows
+-------
 
 .. index: Code page
-.. _ANSI code page:
-.. _OEM code page:
+.. _Code pages:
 
 Code pages
 ''''''''''
 
-An application has two encodings, called `code pages`_ (abbreviated "cp"): the
+An application has two encodings, called code pages (abbreviated "cp"): the
 ANSI code page (:c:macro:`CP_ACP`) used for the ANSI version of the Windows API to decode a byte
 string to a character string, and the OEM code page (:c:macro:`CP_OEMCP`), eg. used for the console.
-Example of a French setup: `cp1252`_ for ANSI and cp850 for OEM.
+Example of a French setup: :ref:`cp1252` for ANSI and cp850 for OEM.
 
 OEM code pages, or "IBM PC" code pages, have a number between 437 and 874 and
 come from MS-DOS. They contain graphical glyphs to create text interfaces (draw
 boxes). ANSI code pages have numbers between 874 and 1258. There are some
-special code pages like 65001 (Microsoft version of `UTF-8`_).
+special code pages like 65001 (Microsoft version of :ref:`UTF-8`).
 
 Get code pages.
 
@@ -49,17 +50,16 @@ Conversion.
 
    Encode a character string to the ANSI code page.
 
-.. _code pages:
-   http://en.wikipedia.org/wiki/Windows_code_page
+Read article `Wikipedia article <http://en.wikipedia.org/wiki/Windows_code_page>`_.
 
 
 ANSI and Unicode versions of each function
 ''''''''''''''''''''''''''''''''''''''''''
 
 Windows has two versions of each function of its API : the ANSI version using
-byte strings (function name ending with "A") and the `ANSI code page`_, and the wide character version
+byte strings (function name ending with "A") and the :ref:`ANSI code page <Code pages>`, and the wide character version
 (name ending with "W"). There are also functions without suffix using
-:c:type:`TCHAR*` strings: if the `C`_ define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
+:c:type:`TCHAR*` strings: if the :ref:`C` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
 :c:type:`wchar_t` and it use the Unicode functions; otherwise :c:type:`TCHAR` is char
 and it uses the ANSI functions. Example:
 
@@ -76,16 +76,16 @@ Encode and decode functions of ``<windows.h>``.
 .. c:function:: MultiByteToWideChar()
 
    Decode a byte string to a character string (similar to
-   :c:func:`mbstowcs`). It supports the `ANSI code page`_ and `OEM code page`_, UTF-7 and `UTF-8`_. By default,
+   :c:func:`mbstowcs`). It supports the :ref:`ANSI code page <Code pages>` and :ref:`OEM code page <Code pages>`, UTF-7 and :ref:`UTF-8`. By default,
    it ignores undecodable bytes. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to raise an
    error on an invalid byte sequence.
 
 .. c:function:: WideCharToMultiByte()
 
    Encode a character string to a byte string (similar to
-   :c:func:`wcstombs`). As :c:func:`MultiByteToWideChar`, it supports `ANSI code page`_ and the `OEM code page`_,
-   UTF-7 and `UTF-8`_. By default, if a character cannot be encoded, it is
-   replaced by a character with a similar glyph. For example, with `cp1252`_, Ł (U+0141) is replaced
+   :c:func:`wcstombs`). As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI code page <Code pages>` and the :ref:`OEM code page <Code pages>`,
+   UTF-7 and :ref:`UTF-8`. By default, if a character cannot be encoded, it is
+   replaced by a character with a similar glyph. For example, with :ref:`cp1252`, Ł (U+0141) is replaced
    by L (U+004C). Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to raise an error on
    unencodable character.
 
@@ -104,7 +104,7 @@ character POSIX-like API:
 
    Unicode version of :c:func:`fopen`.
 
-POSIX functions, like :c:func:`fopen()`, use the `ANSI code page`_ to encode/decode
+POSIX functions, like :c:func:`fopen()`, use the :ref:`ANSI code page <Code pages>` to encode/decode
 strings.
 
 
@@ -122,7 +122,7 @@ Console functions.
    Get the code page of the standard output (stdout and stderr) of the console.
 
 In a console (``cmd.exe``), ``chcp`` command can be used to display or to
-change the `OEM code page`_ (and console code page). Change the console code page is not a
+change the :ref:`OEM code page <Code pages>` (and console code page). Change the console code page is not a
 good idea because the ANSI API of the console still expect characters encoded
 to the previous console code page.
 
@@ -139,8 +139,8 @@ To improve the support of Unicode in a console:
 :c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the encoding of a
 file (especially of stdin, stdout and stderr):
 
- * :c:macro:`_O_U8TEXT`: `UTF-8`_ without `BOM`_
- * :c:macro:`_O_U16TEXT`: `UTF-16`_ without BOM
+ * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM`
+ * :c:macro:`_O_U16TEXT`: :ref:`UTF-16` without BOM
  * :c:macro:`_O_WTEXT`: UTF-16 with BOM
 
 See also `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?`_
@@ -167,10 +167,10 @@ specified: ``PRN`` (printer), ``LPT1``, ``LPT2`` or ``LPT3``.
 Mac OS X
 --------
 
-Mac OS X uses `UTF-8`_ for the filenames. If a filename is an invalid UTF-8 byte
+Mac OS X uses :ref:`UTF-8` for the filenames. If a filename is an invalid UTF-8 byte
 string, Mac OS raises an error. The filenames are decomposed using an
 (incompatible) variant of the Normal Form D: `Technical Q&A QA1173`_ (see
-`Normalization`_).
+:ref:`Normalization`).
 
 "For example, HFS Plus uses a variant of Normal Form D in which U+2000 through
 U+2FFF, U+F900 through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
@@ -196,7 +196,7 @@ Locale categories:
 
  * :c:macro:`LC_COLLATE`: compare and sort strings
  * :c:macro:`LC_CTYPE`: encode and decode characters, "C" locale usually means 7 bits
-   `ASCII`_ (not always, see below)
+   :ref:`ASCII` (not always, see below)
  * :c:macro:`LC_MESSAGES`: language of messages (gettext), "C" locale means English
  * :c:macro:`LC_MONETARY`: monetary formatting
  * :c:macro:`LC_NUMERIC`: number formatting (eg. thousands separator)
@@ -223,7 +223,7 @@ the "locale encoding".
 
 For the C locale, ``nl_langinfo(CODESET)`` returns ASCII, or an alias to this
 encoding (eg. "US-ASCII" or "646"). But on FreeBSD, Solaris and Mac OS X,
-codec functions (eg. :c:func:`mbstowcs`) use `ISO-8859-1`_ even if ``nl_langinfo(CODESET)``
+codec functions (eg. :c:func:`mbstowcs`) use :ref:`ISO-8859-1` even if ``nl_langinfo(CODESET)``
 announces ASCII encoding.
 
 ``<locale.h>`` functions.

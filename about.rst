@@ -4,7 +4,7 @@ About this book
 License
 -------
 
-This book is distributed under the `CC BY-NC-SA 3.0 license`_.
+This book is distributed under the `CC BY-NC-SA 3.0 license <http://creativecommons.org/licenses/by-nc-sa/3.0/>`_.
 
 Thanks to
 ---------
@@ -33,6 +33,3 @@ Notations used in this book
    * ``0x00``\ —\ ``0x7F`` is a range of 128 bytes (0 through 127)
    * U+0000—U+00FF is a range of 256 characters (0 through 255)
 
-
-.. _CC BY-NC-SA 3.0 license:
-   http://creativecommons.org/licenses/by-nc-sa/3.0/

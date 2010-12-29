@@ -44,10 +44,10 @@ Files:
 Filenames (filesystem):
 
  * Windows stores filenames as Unicode. It provides a bytes compatibily layer
-   using the `ANSI code page`_ for applications using bytes strings.
- * Mac OS X encodes filenames to `UTF-8`_ and normalize see to a variant of the
-   Normal Form D (see `Mac OS X`_).
+   using the :ref:`ANSI code page` for applications using bytes strings.
+ * Mac OS X encodes filenames to :ref:`UTF-8` and normalize see to a variant of the
+   Normal Form D (see :ref:`Mac OS X`).
  * Other OSes: use the locale encoding
 
-See also `How to guess the encoding of a document?`_ section.
+See also :ref:`How to guess the encoding of a document?` section.
 

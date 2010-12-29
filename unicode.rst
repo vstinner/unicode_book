@@ -9,8 +9,8 @@ What is Unicode?
 Basic Multilingual Plane (BMP), or "Plane 0": range U+0000—U+FFFF. non-BMP
 range: U+10000—U+10FFFF.
 
-UTF codec family: `UTF-8`_, `UTF-16-LE`_ and `UTF-16-BE`_, `UTF-32-LE`_ and
-`UTF-32-BE`_. There are some extra UTF encodings like UTF-7 and UTF-EBCDIC.
+UTF codec family: :ref:`UTF-8`, :ref:`UTF-16-LE` and :ref:`UTF-16-BE`, :ref:`UTF-32-LE` and
+:ref:`UTF-32-BE`. There are some extra UTF encodings like UTF-7 and UTF-EBCDIC.
 
 .. todo:: Explains how to display characters (left-to-right, right-to-left)
 
@@ -99,6 +99,8 @@ private use (Co) and surrogate (Cs) categories:
  * Other: 205 (0.2%)
  * Separator: 20 (0.0%)
 
+.. _Normalization:
+
 Normalization
 -------------
 
@@ -124,7 +126,7 @@ rendered (no font contain the requested character) or encoded to a specific
 encoding, Unicode proposes a replacment character sequence which looks like the
 character, but may have a different meaning. For example, ĳ (U+0133, Latin small
 ligature ij) is replaced by i (U+0069, Latin small letter I) j (U+006A, Latin
-small letter J), two characters. ĳ character cannot be encoded to `ISO-8859-1`_,
+small letter J), two characters. ĳ character cannot be encoded to :ref:`ISO-8859-1`,
 whereas ij characters can. Two extra normal forms use this compatibility layer:
 NFKD (decomposed) and NFKC (precomposed).
 

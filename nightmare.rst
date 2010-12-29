@@ -1,7 +1,7 @@
 Unicode nightmare
 =================
 
-`Unicode`_ is the nightmare of many developers (and users) for different, and
+:ref:`Unicode` is the nightmare of many developers (and users) for different, and
 sometimes good, reasons.
 
 In the 1980's, only few people read documents in languages other than English
@@ -26,18 +26,18 @@ include such algorithm.
 
 Unicode support by operating systems, programming languages and libraries
 varies a lot. In general, the support is weak or non-existent. Each operating
-system manages Unicode differently. For example, `Microsoft Windows`_ stores filenames as Unicode,
+system manages Unicode differently. For example, :ref:`Windows` stores filenames as Unicode,
 whereas UNIX and BSD operating systems use bytes.
 
 Mixing documents stored as bytes is possible, even if they use different
 encodings, but leads to mojibake. Because libraries and programs do also ignore
 encode and decode warnings or errors, write a single character with a diacritic
-(any non `ASCII`_ character) is sometimes enough to get an error.
+(any non :ref:`ASCII` character) is sometimes enough to get an error.
 
 Full Unicode support is complex because the Unicode charset is bigger than any
-other charset. For example, `ISO-8859-1`_ contains 256 codes including 191
+other charset. For example, :ref:`ISO-8859-1` contains 256 codes including 191
 characters, whereas Unicode (version 6.0) contains approximatively 245,000
-assigned codes (see `Statistics`_). The Unicode standard is larger than just a
+assigned codes (see :ref:`Statistics`). The Unicode standard is larger than just a
 charset: it explains also how to display characters (eg. left-to-right for
 English and right-to-left for persian), how to normalize a character string
 (eg. precomposed characters versus the decomposed form), etc.

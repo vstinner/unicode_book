@@ -12,9 +12,9 @@ Byte API (char)
 .. c:type:: char
 
     For historical reasons, :c:type:`char` is the C type for a character ("char" as
-    "character"). In pratical, it's only true for 7 and 8 bits encodings like `ASCII`_
-    or `ISO-8859-1`_. With multibyte encodings, a :c:type:`char` is only one byte. For example, the
-    character "é" (U+00E9) is encoded as two bytes (``0xC3 0xA9``) in `UTF-8`_.
+    "character"). In pratical, it's only true for 7 and 8 bits encodings like :ref:`ASCII`
+    or :ref:`ISO-8859-1`. With multibyte encodings, a :c:type:`char` is only one byte. For example, the
+    character "é" (U+00E9) is encoded as two bytes (``0xC3 0xA9``) in :ref:`UTF-8`.
 
     :c:type:`char` is a 8 bits byte, it may be signed depending on the operating system and
     the compiler. On Linux, gcc uses a signed type for Intel CPU. The GNU compiler
@@ -44,7 +44,7 @@ Byte string API (char*)
    functions like :c:func:`snprintf` to format a message.
 
    The length of a string is stored as a nul byte at the end of the string. This
-   is a problem with encodings using nul bytes (eg. `UTF-16`_ and `UTF-32`_): :c:func:`strlen()`
+   is a problem with encodings using nul bytes (eg. :ref:`UTF-16` and :ref:`UTF-32`): :c:func:`strlen()`
    cannot be used to get the length of the string, whereas most C functions
    suppose that :c:func:`strlen` gives the length of the string. To support such
    encodings, the length should be stored differently (eg. in another variable or
@@ -83,7 +83,7 @@ Character string API (wchar_t*)
    :c:type:`wchar_t*` is a character string. The standard library ``<wchar.h>`` contains
    character string functions like :c:func:`wcslen` or :c:func:`wprintf`, and constants
    like WCHAR_MAX. If :c:type:`wchar_t` is 16 bits long, non-BMP characters are encoded
-   to `UTF-16`_ using surrogate pairs (see `UTF-16 surrogate pairs`_).
+   to :ref:`UTF-16` using surrogate pairs (see :ref:`Surrogate pair`).
 
    A literal character strings is written between quotes with the ``L``
    prefix, eg. ``L"Hello World!\n"``. As character literals, it supports also control
@@ -143,7 +143,7 @@ C++
  * ``std::wostringstream``: character stream buffer; unicode version of
    ``std::ostringstream``.
 
-To initialize the locales (see `Locales`_), equivalent to ``setlocale(LC_ALL,
+To initialize the locales (see :ref:`Locales`), equivalent to ``setlocale(LC_ALL,
 "")``, use: ::
 
     #include <locale>
@@ -163,6 +163,8 @@ disable the automatic synchronization between C (``std*``) and C++
    wostringstream is not available.
 
 
+.. _Python:
+
 Python
 ------
 
@@ -170,14 +172,16 @@ Python supports Unicode since its version 2.0 released in october 2000. Byte
 and Unicode strings store their length, so it's possible to embed nul
 byte/character.
 
-Python can be compiled in two modes: narrow (`UTF-16`_) and wide (`UCS-4`_).
+Python can be compiled in two modes: narrow (:ref:`UTF-16`) and wide (:ref:`UCS-4`).
 ``sys.maxunicode`` constant is 0xFFFF in narrow mode, and 0x10FFFF in wide mode.
 Python is compiled in narrow mode on Windows, because :c:type:`wchar_t` is also 16 bits
 on Windows and so it is possible to use Python Unicode strings as :c:type:`wchar_t*`
 strings without any (expensive) conversion.
 
-See also the `Python Unicode HOWTO`_.
+See also the :ref:`Python Unicode HOWTO <http://docs.python.org/howto/unicode.html>`.
 
+
+.. _Python 2:
 
 Python 2
 ''''''''
@@ -192,7 +196,7 @@ be used directly in hexadecimal: ``\xHH`` (U+0000—U+00FF), ``\uHHHH``
 sign:\u20AC'``.
 
 In Python 2, ``str + unicode`` gives ``unicode``: the byte string is
-decoded from the default encoding (`ASCII`_). This coercion was a bad design idea
+decoded from the default encoding (:ref:`ASCII`). This coercion was a bad design idea
 because it was the source of a lot of confusion. At the same time, it was not
 possible to switch completly to Unicode in 2000: computers were slower and
 there were fewer Python core developers. It took 8 years to switch completly to
@@ -201,7 +205,7 @@ Unicode: Python 3 was relased in december 2008.
 Narrow mode of Python 2 has a partial support of non-BMP characters. unichr()
 function raise an error for code bigger than U+FFFF, whereas literal strings
 support non-BMP characters (eg. ``'\U00010000'``). Non-BMP characters are
-encoded as surrogate pairs (see `UTF-16 surrogate pairs`_). The disavantage is
+encoded as surrogate pairs (see :ref:`UTF-16 surrogate pairs`). The disavantage is
 that ``len(u'\U00010000')`` is 2, and ``u'\U00010000'[0]`` is ``u'\uDC80'``
 (lone surrogate character).
 
@@ -209,6 +213,8 @@ In Python 2, it is possible to change the default encoding, but it is a bad idea
 because it impacts all libraries which may suppose that the default encoding is
 ASCII.
 
+
+.. _Python 3:
 
 Python 3
 ''''''''
@@ -225,7 +231,7 @@ an integer in range 0—255: ``b'abc'[0]`` gives 97; whereas ``'abc'[0]`` gives
 
 Python 3 has a full support of non-BMP characters, in narrow and wide modes.
 But as Python 2, chr(0x10FFFF) creates a string of 2 characters (a UTF-16
-surrogate pair, see `UTF-16 surrogate pairs`_) in a narrow mode. ``chr()`` and
+surrogate pair, see :ref:`UTF-16 surrogate pairs`) in a narrow mode. ``chr()`` and
 ``ord()`` supports non-BMP characters in both modes.
 
 Python 3 uses U+DC80—U+DCFF character range to store undecodable bytes with the
@@ -239,19 +245,17 @@ Differences between Python 2 and Python 3
 '''''''''''''''''''''''''''''''''''''''''
 
 ``str + unicode`` gives ``unicode`` in Python 2 (the byte string is decoded
-from the default encoding, `ASCII`_) and it raises a ``TypeError`` in Python 3. In
+from the default encoding, :ref:`ASCII`) and it raises a ``TypeError`` in Python 3. In
 Python 3, comparing ``bytes`` and ``str`` emits a ``BytesWarning`` warning or
 raise a ``BytesWarning`` exception depending of the bytes warning flag (``-b``
 or ``-bb`` option passed to the Python program). In Python 2, the byte string
 is decoded to Unicode using the default encoding (ASCII) before being compared.
 
-`UTF-8`_ decoder of Python 2 accept surrogate characters, even if there are
+:ref:`UTF-8` decoder of Python 2 accept surrogate characters, even if there are
 invalid, to keep backward compatibility with Python 2.0. In Python 3, the
 decoder rejects surrogate characters.
 
 
-.. _Python Unicode HOWTO:
-   http://docs.python.org/howto/unicode.html
 .. _PEP 383:
    http://www.python.org/dev/peps/pep-0383/
 
@@ -262,9 +266,9 @@ Codecs
 Python has a ``codecs`` module providing text encodings. It supports a lot of
 encodings, some examples: ``ASCII``, ``ISO-8859-1``, ``UTF-8``, ``UTF-16-LE``,
 ``ShiftJIS``, ``Big5``, ``cp037``, ``cp950``, ``EUC_JP``, etc. ``UTF-8``,
-``UTF-16-LE``, ``UTF-16-BE``, ``UTF-32-LE`` and ``UTF-32-BE`` don't use `BOM`_,
-whereas ``UTF-8-SIG``, ``UTF-16`` and ``UTF-32`` use BOM. ``mbcs`` is the `ANSI
-code page`_ and so is only available on Windows.
+``UTF-16-LE``, ``UTF-16-BE``, ``UTF-32-LE`` and ``UTF-32-BE`` don't use :ref:`BOM`,
+whereas ``UTF-8-SIG``, ``UTF-16`` and ``UTF-32`` use BOM. ``mbcs`` is the :ref:`ANSI
+code page <Code pages>` and so is only available on Windows.
 
 Python provides also many error handlers used to specify how to handle
 undecodable bytes / unencodable characters:
@@ -285,7 +289,7 @@ Python 3 has two more error handlers:
    383`_ (*Non-decodable Bytes in System Character Interfaces*) for the
    details.
  * ``surrogatepass``, specific to ``UTF-8`` codec: allow encoding/decoding
-   surrogate characters in `UTF-8`_. It is required because UTF-8 decoder of
+   surrogate characters in :ref:`UTF-8`. It is required because UTF-8 decoder of
    Python 3 rejects surrogate characters.
 
 Examples with Python 3:
@@ -321,7 +325,7 @@ Modules
 
 ``codecs`` module:
 
- * ``BOM_UTF8``, ``BOM_UTF16_BE``, ``BOM_UTF32_LE``, ...: UTF `BOM`_ constants
+ * ``BOM_UTF8``, ``BOM_UTF16_BE``, ``BOM_UTF32_LE``, ...: UTF :ref:`BOM` constants
  * ``lookup(name)``: get a Python codec. ``lookup(name).name`` gets the Python
    normalized name of a codec, eg. ``codecs.lookup('ANSI_X3.4-1968').name``
    gives ``'ascii'``.
@@ -339,12 +343,12 @@ Modules
    a buffered file. Don't use it directly to open a text file: use ``open()``
    instead.
 
-``locale`` module (see `Locales`_):
+``locale`` module (see :ref:`Locales`):
 
  * ``getlocale(category)``: get the value of a locale category as the tuple
    (language code, encoding)
  * ``getpreferredencoding()``: get the locale encoding
- * ``LC_ALL``, ``LC_CTYPE``, ...: `locale categories`_
+ * ``LC_ALL``, ``LC_CTYPE``, ...: :ref:`locale categories`
  * ``setlocale(category, value)``: set the value of a locale category
 
 ``sys`` module:
@@ -389,14 +393,9 @@ Some multibyte functions:
 .. todo:: Howto get uri encoding
 
 PHP 6 was a project to improve Unicode support of Unicode. This project died at
-the beginning of 2010. Read `The Death of PHP 6/The Future of PHP 6`_ (May 25,
-2010 by Larry Ullman) and `Future of PHP6`_ (March 2010 by Johannes Schlüter)
+the beginning of 2010. Read `The Death of PHP 6/The Future of PHP 6 <http://blog.dmcinsights.com/2010/05/25/the-death-of-php-6the-future-of-php-6/>`_ (May 25,
+2010 by Larry Ullman) and `Future of PHP6 <http://schlueters.de/blog/archives/128-Future-of-PHP-6.html>`_ (March 2010 by Johannes Schlüter)
 for more information.
-
-.. _The Death of PHP 6/The Future of PHP 6:
-   http://blog.dmcinsights.com/2010/05/25/the-death-of-php-6the-future-of-php-6/
-.. _Future of PHP6:
-   http://schlueters.de/blog/archives/128-Future-of-PHP-6.html
 
 
 Perl
@@ -405,7 +404,7 @@ Perl
  * Perl 5.6 (2000): initial Unicode support, store strings as characters
  * Perl 5.8 (2002): regex supports Unicode
  * use "``use utf-8;``" pragma to specify that your Perl script is encoded in
-   `UTF-8`_
+   :ref:`UTF-8`
 
 Read perluniintro, perlunicode and perlunifaq manuals.
 
@@ -417,13 +416,13 @@ Java
 (U+0000—U+FFFF), whereas ``Character`` is a character able to store any Unicode
 character (U+0000—U+10FFFF). ``Character`` methods:
 
- * ``.getType(ch)``: get the Unicode category (see `Categories`_) of a
+ * ``.getType(ch)``: get the Unicode category (see :ref:`Categories`) of a
    character
  * ``.isWhitespace(ch)``: test if a character is a whitespace
    according to Java
  * ``.toUpperCase(ch)``: convert to uppercase
 
-``String`` is a character strings implemented using a ``char`` array, `UTF-16`_
+``String`` is a character strings implemented using a ``char`` array, :ref:`UTF-16`
 characters. ``String`` methods:
 
  * ``String(bytes, encoding)``: decode a byte string from the specified
@@ -433,11 +432,11 @@ characters. ``String`` methods:
    ``CharsetEncoder`` exception if a character cannot be encoded.
  * ``.length()``: length in UTF-16 characters.
 
-As `Python`_ compiled in narrow mode, non-BMP characters are stored as `UTF-16
-surrogate pairs`_ and the length of a string is the number of UTF-16
+As :ref:`Python` compiled in narrow mode, non-BMP characters are stored as :ref:`UTF-16
+surrogate pairs <Surrogate pair>` and the length of a string is the number of UTF-16
 characters, not the length in Unicode characters.
 
-Java uses a variant of `UTF-8`_ which encodes the nul character (U+0000) as the
+Java uses a variant of :ref:`UTF-8` which encodes the nul character (U+0000) as the
 overlong byte sequence ``0xC0 0x80``, instead of ``0x00``. This is be able to
-use `C`_ functions like :c:func:`strlen`. The Tcl language uses the same encoding.
+use :ref:`C` functions like :c:func:`strlen`. The Tcl language uses the same encoding.
 
