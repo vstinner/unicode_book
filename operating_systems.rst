@@ -50,7 +50,7 @@ Conversion.
 
    Encode a character string to the ANSI code page.
 
-Read article `Wikipedia article <http://en.wikipedia.org/wiki/Windows_code_page>`_.
+Read also the `Wikipedia article <http://en.wikipedia.org/wiki/Windows_code_page>`_.
 
 
 ANSI and Unicode versions of each function

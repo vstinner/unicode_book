@@ -49,5 +49,5 @@ Filenames (filesystem):
    Normal Form D (see :ref:`Mac OS X`).
  * Other OSes: use the locale encoding
 
-See also :ref:`How to guess the encoding of a document?` section.
+See also :ref:`Guess encoding` section.
 

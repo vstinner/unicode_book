@@ -427,10 +427,12 @@ There are much more charsets and encodings, but it is not useful to know them.
 The knowledge of a good conversion library, like iconv, is enough.
 
 
+.. _Guess encoding:
+
 How to guess the encoding of a document?
 ----------------------------------------
 
-Ony :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM` (UTF-7, UTF-8, :ref:`UTF-16`,
+Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM` (UTF-7, UTF-8, :ref:`UTF-16`,
 and :ref:`UTF-32`) have reliable algorithms to get the encoding of a
 document. For all other encodings, you have to trust heuristics based on
 statistics.
