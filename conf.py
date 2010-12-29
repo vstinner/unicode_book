@@ -172,7 +172,7 @@ htmlhelp_basename = 'ProgrammingwithUnicodedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 pdf_documents = [
-  ('index', 'index', u'Programming with Unicode Documentation',
+  ('index', 'programming_with_unicode', u'Programming with Unicode Documentation',
    u'Victor Stinner', 'manual'),
 ]
 pdf_stylesheets = ['sphinx','kerning','a4']
