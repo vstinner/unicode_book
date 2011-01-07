@@ -166,7 +166,7 @@ this table). See the ASCII table for U+0000—U+001F and U+007F control codes.
 cp1252
 ''''''
 
-Windows code page 1252, best known as cp1252, is a variant of :ref:`ISO-8859-1`. It is
+Windows :ref:`code page <Code pages>` 1252, best known as cp1252, is a variant of :ref:`ISO-8859-1`. It is
 the default encoding of all English and western europe Windows setups.
 It is used as a fallback by web browsers
 if the webpage doesn't provide any encoding information (not in HTML, nor in

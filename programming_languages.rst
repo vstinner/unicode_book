@@ -119,12 +119,12 @@ truncated string "Latin capital letter L with stroke: [" if ``0xC5 0x81``
 
 ``wprintf("%ls")`` replaces unencodable characters by "?" (U+003F). For example,
 the following example print "Latin capital letter L with stroke: [?]"
-with a newline if U+0141 (Ł) cannot be encoded to the locale encoding: ::
+if U+0141 (Ł) cannot be encoded to the locale encoding: ::
 
     wprintf(L"Latin capital letter L with stroke: [%s]\n", L"\u0141");
 
-So to avoid truncated strings because of non-ASCII characters, try to use only
-:c:func:`wprintf` with character string arguments.
+So to avoid truncated strings, try to use only :c:func:`wprintf` with character
+string arguments.
 
 .. note::
 
@@ -159,7 +159,7 @@ disable the automatic synchronization between C (``std*``) and C++
 
 .. note::
 
-   Use ``typedef basic_ostringstream<wchar_t> wostringstream`` if
+   Use ``typedef basic_ostringstream<wchar_t> wostringstream;`` if
    wostringstream is not available.
 
 

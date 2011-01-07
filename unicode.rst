@@ -7,8 +7,8 @@ Unicode
 Unicode is a character set. It is a superset of all the other character sets.
 In the version 6.0, Unicode has 1,114,112 code points (the last code point is
 U+10FFFF). Unicode 1.0 was limited to 65,536 code points (the last code point
-was U+FFFF), the range U+0000—U+FFFF called BMP (*Basic Multilingual Plane*). I
-call the range U+10000—U+10FFFF as non-BMP characters.
+was U+FFFF), the range U+0000—U+FFFF called **BMP** (*Basic Multilingual Plane*). I
+call the range U+10000—U+10FFFF as **non-BMP** characters.
 
 Categories
 ----------
