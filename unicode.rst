@@ -9,8 +9,8 @@ What is Unicode?
 Basic Multilingual Plane (BMP), or "Plane 0": range U+0000—U+FFFF. non-BMP
 range: U+10000—U+10FFFF.
 
-UTF codec family: :ref:`UTF-8`, :ref:`UTF-16-LE` and :ref:`UTF-16-BE`, :ref:`UTF-32-LE` and
-:ref:`UTF-32-BE`. There are some extra UTF encodings like UTF-7 and UTF-EBCDIC.
+UTF codec family: :ref:`UTF-8`, :ref:`UTF-16-LE <utf16>` and :ref:`UTF-16-BE <utf16>`, :ref:`UTF-32-LE <utf32>` and
+:ref:`UTF-32-BE <utf32>`. There are some extra UTF encodings like UTF-7 and UTF-EBCDIC.
 
 .. todo:: Explains how to display characters (left-to-right, right-to-left)
 

@@ -9,9 +9,9 @@ encoding describes how to encode characters (code points) to bytes and howto
 decode bytes to characters (code points). 7 and 8 bits charsets don't need any
 encoding: a code point is stored in a single byte (unsigned 8 bits number).
 Because of these charsets, many people confuse charsets and encodings.
-Bigger charsets need multibyte encodings like :ref:`UTF-8` or :ref:`GBK`. A multibyte
-encoding can encode all code points into byte sequences of the same size (eg. :ref:`UCS-2`), or byte
-sequence with a variable length (eg. :ref:`UTF-16`). UTF-8 uses a variable length: code points lower
+Bigger charsets need multibyte encodings like :ref:`UTF-8` or :ref:`GBK <gbk>`. A multibyte
+encoding can encode all code points into byte sequences of the same size (eg. :ref:`UCS-2 <ucs>`), or byte
+sequence with a variable length (eg. :ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower
 than 128 use a single byte, whereas higher code points take between 2 and 4 bytes.
 
 There are many encodings around the world. Before Unicode, each manufacturer
@@ -35,13 +35,13 @@ This book only present most popular encodings:
 
  * :ref:`ASCII`
  * :ref:`cp1252`
- * :ref:`GBK`
+ * :ref:`GBK <gbk>`
  * :ref:`ISO-8859-1`
  * :ref:`ISO-8859-15`
- * :ref:`JIS`
+ * :ref:`JIS <jis>`
  * :ref:`UTF-8`
- * :ref:`UTF-16`
- * :ref:`UTF-32`
+ * :ref:`UTF-16 <utf16>`
+ * :ref:`UTF-32 <utf32>`
 
 
 Historical charsets and encodings
@@ -67,7 +67,7 @@ ASCII
 ASCII encoding is supported by all applications. A document encoded in ASCII
 can be read decoded by any other encoding. This is explained by the fact that
 all 7 and 8 bits encodings are based on ASCII (to be compatible with ASCII,
-except :ref:`JIS X 0201` encoding: ``0x5C`` is decoded to the yen sign (U+00A5, ¥)
+except :ref:`JIS X 0201 <jis>` encoding: ``0x5C`` is decoded to the yen sign (U+00A5, ¥)
 instead of a backslash (U+005C, \\). ASCII is
 the smallest encoding, it only contains 128 codes including 95 printable
 characters (letters, digits, punctuation signs and some other various
@@ -235,7 +235,8 @@ are identicals, 8 are different:
 +------------+------------+-------------+------------+------------+-------------+
 
 
-.. _GBK:
+.. index:: GBK
+.. _gbk:
 
 GBK encoding family (Chinese)
 '''''''''''''''''''''''''''''
@@ -250,8 +251,8 @@ GBK is a family of Chinese charsets / multibyte encodings:
 To encode Chinese, there is also the Big5 encoding family and cp950.
 
 
-.. _JIS:
-.. _JIS X 0201:
+.. index:: JIS
+.. _jis:
 
 JIS encoding family (Japanese)
 ''''''''''''''''''''''''''''''
@@ -315,14 +316,9 @@ rejected.
 
 
 .. index:: UCS-2, UCS-4, UTF-16, UTF-16-LE, UTF-16-BE, UTF-32, UTF-32-LE, UTF-32-BE
-.. _UCS-2:
-.. _UCS-4:
-.. _UTF-16:
-.. _UTF-16-LE:
-.. _UTF-16-BE:
-.. _UTF-32:
-.. _UTF-32-LE:
-.. _UTF-32-BE:
+.. _ucs:
+.. _utf16:
+.. _utf32:
 
 UCS-2, UCS-4, UTF-16 and UTF-32
 '''''''''''''''''''''''''''''''
@@ -353,7 +349,7 @@ Windows 95 used UCS-2, whereas Windows 2000 uses UTF-16.
 Byte order marks (BOM)
 ''''''''''''''''''''''
 
-:ref:`UTF-16` and :ref:`UTF-32` use words bigger than 8 bits, and so hit endian issue. A
+:ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>` use words bigger than 8 bits, and so hit endian issue. A
 single word can be stored in the big endian (most significant bits first) or
 little endian (less significant bits first). BOM are short byte sequences to
 indicate the encoding and the endian. It's the U+FEFF code point encoded to
@@ -363,10 +359,10 @@ Unicode defines 6 different BOM:
 
  * ``0x2B 0x2F 0x76 0x38 0x2D`` (5 bytes): UTF-7 (endianless)
  * ``0xEF 0xBB 0xBF`` (3): :ref:`UTF-8` (endianless)
- * ``0xFF 0xFE`` (2): :ref:`UTF-16-LE` (LE: little endian)
- * ``0xFE 0xFF`` (2): :ref:`UTF-16-BE` (BE: big endian)
- * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE`
- * ``0x00 0x00 0xFE 0xFF`` (4): :ref:`UTF-32-BE`
+ * ``0xFF 0xFE`` (2): :ref:`UTF-16-LE <utf16>` (LE: little endian)
+ * ``0xFE 0xFF`` (2): :ref:`UTF-16-BE <utf16>` (BE: big endian)
+ * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE <utf32>`
+ * ``0x00 0x00 0xFE 0xFF`` (4): :ref:`UTF-32-BE <utf32>`
 
 UTF-16-LE and UTF-32-LE BOMs start with the same 2 bytes sequence.
 
@@ -385,7 +381,7 @@ UTF-8 BOM should not be used for better interoperability.
 UTF-16 surrogate pairs
 ''''''''''''''''''''''
 
-In :ref:`UTF-16`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD are stored as
+In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD are stored as
 a single 16 bits word. Non-BMP characters (range U+10000—U+10FFFF) are stored
 as "surrogate pairs", two 16 bits words: the first word is in the range
 U+D800—U+DBFF, and the second word is in the range U+DC00—U+DFFF.
@@ -432,8 +428,8 @@ The knowledge of a good conversion library, like iconv, is enough.
 How to guess the encoding of a document?
 ----------------------------------------
 
-Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM` (UTF-7, UTF-8, :ref:`UTF-16`,
-and :ref:`UTF-32`) have reliable algorithms to get the encoding of a
+Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM` (UTF-7, UTF-8, :ref:`UTF-16 <utf16>`,
+and :ref:`UTF-32 <utf32>`) have reliable algorithms to get the encoding of a
 document. For all other encodings, you have to trust heuristics based on
 statistics.
 
@@ -472,8 +468,8 @@ Check for BOM markers
 '''''''''''''''''''''
 
 If the string begins with a :ref:`BOM`, the encoding
-can be extracted from the BOM. But there is a problem with :ref:`UTF-16-BE` and
-:ref:`UTF-32-LE`: their BOMs start with the same 2 bytes sequence.
+can be extracted from the BOM. But there is a problem with :ref:`UTF-16-BE <utf16>` and
+:ref:`UTF-32-LE <utf32>`: their BOMs start with the same 2 bytes sequence.
 
 Example of a function written in :ref:`C` to check if a BOM is present: ::
 

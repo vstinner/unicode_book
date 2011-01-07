@@ -16,7 +16,7 @@ Interesting ``QString`` methods:
 
  * ``toAscii()``, ``fromAscii()``: encode to/decode from :ref:`ASCII`
  * ``toLatin1()``, ``fromLatin1()``: encode to/decode from :ref:`ISO-8859-1`
- * ``utf16()``, ``fromUtf16()``: encode to/decode to :ref:`UTF-16`
+ * ``utf16()``, ``fromUtf16()``: encode to/decode to :ref:`UTF-16 <utf16>`
  * ``normalized()``: normalize to NFC, NFD, NFKC or NFKD (see :ref:`Normalization`)
 
 Qt decodes string literals using the QLatin1String class. It is a thin wrapper
@@ -47,7 +47,7 @@ Filesystem
 
 ``QFile.encodeName()``:
 
- * Windows: encode to :ref:`UTF-16`
+ * Windows: encode to :ref:`UTF-16 <utf16>`
  * Mac OS X: normalize the name to the D form and then encode to :ref:`UTF-8`
  * Other (UNIX/BSD): encode to the local encoding (``QTextCodec.codecForLocale()``)
 

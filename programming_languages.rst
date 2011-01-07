@@ -44,7 +44,7 @@ Byte string API (char*)
    functions like :c:func:`snprintf` to format a message.
 
    The length of a string is stored as a nul byte at the end of the string. This
-   is a problem with encodings using nul bytes (eg. :ref:`UTF-16` and :ref:`UTF-32`): :c:func:`strlen()`
+   is a problem with encodings using nul bytes (eg. :ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>`): :c:func:`strlen()`
    cannot be used to get the length of the string, whereas most C functions
    suppose that :c:func:`strlen` gives the length of the string. To support such
    encodings, the length should be stored differently (eg. in another variable or
@@ -83,7 +83,7 @@ Character string API (wchar_t*)
    :c:type:`wchar_t*` is a character string. The standard library ``<wchar.h>`` contains
    character string functions like :c:func:`wcslen` or :c:func:`wprintf`, and constants
    like WCHAR_MAX. If :c:type:`wchar_t` is 16 bits long, non-BMP characters are encoded
-   to :ref:`UTF-16` using surrogate pairs (see :ref:`Surrogate pair`).
+   to :ref:`UTF-16 <utf16>` using surrogate pairs (see :ref:`Surrogate pair`).
 
    A literal character strings is written between quotes with the ``L``
    prefix, eg. ``L"Hello World!\n"``. As character literals, it supports also control
@@ -172,7 +172,7 @@ Python supports Unicode since its version 2.0 released in october 2000. Byte
 and Unicode strings store their length, so it's possible to embed nul
 byte/character.
 
-Python can be compiled in two modes: narrow (:ref:`UTF-16`) and wide (:ref:`UCS-4`).
+Python can be compiled in two modes: narrow (:ref:`UTF-16 <utf16>`) and wide (:ref:`UCS-4 <ucs>`).
 ``sys.maxunicode`` constant is 0xFFFF in narrow mode, and 0x10FFFF in wide mode.
 Python is compiled in narrow mode on Windows, because :c:type:`wchar_t` is also 16 bits
 on Windows and so it is possible to use Python Unicode strings as :c:type:`wchar_t*`
@@ -422,7 +422,7 @@ character (U+0000—U+10FFFF). ``Character`` methods:
    according to Java
  * ``.toUpperCase(ch)``: convert to uppercase
 
-``String`` is a character strings implemented using a ``char`` array, :ref:`UTF-16`
+``String`` is a character strings implemented using a ``char`` array, :ref:`UTF-16 <utf16>`
 characters. ``String`` methods:
 
  * ``String(bytes, encoding)``: decode a byte string from the specified

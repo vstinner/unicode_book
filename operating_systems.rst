@@ -140,7 +140,7 @@ To improve the support of Unicode in a console:
 file (especially of stdin, stdout and stderr):
 
  * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM`
- * :c:macro:`_O_U16TEXT`: :ref:`UTF-16` without BOM
+ * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
  * :c:macro:`_O_WTEXT`: UTF-16 with BOM
 
 See also `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?`_
