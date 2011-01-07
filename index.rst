@@ -3,6 +3,8 @@ Programming with Unicode
 ++++++++++++++++++++++++
 
 .. todo:: :c:type:`char*` points to char, not char*
+.. todo:: write an introduction for the C language
+.. todo:: define different levels of Unicode support in a program (ascii, BMP only, full Unicode range, bidi, ...)
 .. todo:: add statistics about encodings popularity
 
 .. toctree::

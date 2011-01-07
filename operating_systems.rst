@@ -59,7 +59,7 @@ ANSI and Unicode versions of each function
 Windows has two versions of each function of its API : the ANSI version using
 byte strings (function name ending with "A") and the :ref:`ANSI code page <Code pages>`, and the wide character version
 (name ending with "W"). There are also functions without suffix using
-:c:type:`TCHAR*` strings: if the :ref:`C` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
+:c:type:`TCHAR*` strings: if the :ref:`C <c>` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
 :c:type:`wchar_t` and it use the Unicode functions; otherwise :c:type:`TCHAR` is char
 and it uses the ANSI functions. Example:
 
@@ -139,7 +139,7 @@ To improve the support of Unicode in a console:
 :c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the encoding of a
 file (especially of stdin, stdout and stderr):
 
- * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM`
+ * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM <bom>`
  * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
  * :c:macro:`_O_WTEXT`: UTF-16 with BOM
 

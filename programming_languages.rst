@@ -1,7 +1,7 @@
 Programming languages
 =====================
 
-.. _C:
+.. _c:
 
 C language
 ----------
@@ -82,7 +82,7 @@ Character string API (wchar_t*)
 
    :c:type:`wchar_t*` is a character string. The standard library ``<wchar.h>`` contains
    character string functions like :c:func:`wcslen` or :c:func:`wprintf`, and constants
-   like WCHAR_MAX. If :c:type:`wchar_t` is 16 bits long, non-BMP characters are encoded
+   like WCHAR_MAX. If :c:type:`wchar_t` is 16 bits long, :ref:`non-BMP <bmp>` characters are encoded
    to :ref:`UTF-16 <utf16>` using surrogate pairs (see :ref:`Surrogate pair`).
 
    A literal character strings is written between quotes with the ``L``
@@ -202,7 +202,7 @@ possible to switch completly to Unicode in 2000: computers were slower and
 there were fewer Python core developers. It took 8 years to switch completly to
 Unicode: Python 3 was relased in december 2008.
 
-Narrow mode of Python 2 has a partial support of non-BMP characters. unichr()
+Narrow mode of Python 2 has a partial support of :ref:`non-BMP <bmp>` characters. unichr()
 function raise an error for code bigger than U+FFFF, whereas literal strings
 support non-BMP characters (eg. ``'\U00010000'``). Non-BMP characters are
 encoded as surrogate pairs (see :ref:`UTF-16 surrogate pairs`). The disavantage is
@@ -229,7 +229,7 @@ written ``u'abc'``. Code points can be used directly in hexadecimal: ``\xHH``
 an integer in range 0—255: ``b'abc'[0]`` gives 97; whereas ``'abc'[0]`` gives
 ``'a'``.
 
-Python 3 has a full support of non-BMP characters, in narrow and wide modes.
+Python 3 has a full support of :ref:`non-BMP <bmp>` characters, in narrow and wide modes.
 But as Python 2, chr(0x10FFFF) creates a string of 2 characters (a UTF-16
 surrogate pair, see :ref:`UTF-16 surrogate pairs`) in a narrow mode. ``chr()`` and
 ``ord()`` supports non-BMP characters in both modes.
@@ -266,7 +266,7 @@ Codecs
 Python has a ``codecs`` module providing text encodings. It supports a lot of
 encodings, some examples: ``ASCII``, ``ISO-8859-1``, ``UTF-8``, ``UTF-16-LE``,
 ``ShiftJIS``, ``Big5``, ``cp037``, ``cp950``, ``EUC_JP``, etc. ``UTF-8``,
-``UTF-16-LE``, ``UTF-16-BE``, ``UTF-32-LE`` and ``UTF-32-BE`` don't use :ref:`BOM`,
+``UTF-16-LE``, ``UTF-16-BE``, ``UTF-32-LE`` and ``UTF-32-BE`` don't use :ref:`BOM <bom>`,
 whereas ``UTF-8-SIG``, ``UTF-16`` and ``UTF-32`` use BOM. ``mbcs`` is the :ref:`ANSI
 code page <Code pages>` and so is only available on Windows.
 
@@ -325,7 +325,7 @@ Modules
 
 ``codecs`` module:
 
- * ``BOM_UTF8``, ``BOM_UTF16_BE``, ``BOM_UTF32_LE``, ...: UTF :ref:`BOM` constants
+ * ``BOM_UTF8``, ``BOM_UTF16_BE``, ``BOM_UTF32_LE``, ...: UTF :ref:`BOM <bom>` constants
  * ``lookup(name)``: get a Python codec. ``lookup(name).name`` gets the Python
    normalized name of a codec, eg. ``codecs.lookup('ANSI_X3.4-1968').name``
    gives ``'ascii'``.
@@ -412,7 +412,7 @@ Read perluniintro, perlunicode and perlunifaq manuals.
 Java
 ----
 
-``char`` is a character able to store Unicode BMP only characters
+``char`` is a character able to store Unicode :ref:`BMP <bmp>` only characters
 (U+0000—U+FFFF), whereas ``Character`` is a character able to store any Unicode
 character (U+0000—U+10FFFF). ``Character`` methods:
 
@@ -432,11 +432,11 @@ characters. ``String`` methods:
    ``CharsetEncoder`` exception if a character cannot be encoded.
  * ``.length()``: length in UTF-16 characters.
 
-As :ref:`Python` compiled in narrow mode, non-BMP characters are stored as :ref:`UTF-16
+As :ref:`Python` compiled in narrow mode, :ref:`non-BMP <bmp>` characters are stored as :ref:`UTF-16
 surrogate pairs <Surrogate pair>` and the length of a string is the number of UTF-16
 characters, not the length in Unicode characters.
 
 Java uses a variant of :ref:`UTF-8` which encodes the nul character (U+0000) as the
 overlong byte sequence ``0xC0 0x80``, instead of ``0x00``. This is be able to
-use :ref:`C` functions like :c:func:`strlen`. The Tcl language uses the same encoding.
+use :ref:`C <c>` functions like :c:func:`strlen`. The Tcl language uses the same encoding.
 

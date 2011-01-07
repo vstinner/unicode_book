@@ -1,18 +1,14 @@
-.. index:: Unicode
+.. index:: BMP, Unicode
+.. _bmp:
 
 Unicode
 =======
 
-What is Unicode?
-----------------
-
-Basic Multilingual Plane (BMP), or "Plane 0": range U+0000—U+FFFF. non-BMP
-range: U+10000—U+10FFFF.
-
-UTF codec family: :ref:`UTF-8`, :ref:`UTF-16-LE <utf16>` and :ref:`UTF-16-BE <utf16>`, :ref:`UTF-32-LE <utf32>` and
-:ref:`UTF-32-BE <utf32>`. There are some extra UTF encodings like UTF-7 and UTF-EBCDIC.
-
-.. todo:: Explains how to display characters (left-to-right, right-to-left)
+Unicode is a character set. It is a superset of all the other character sets.
+In the version 6.0, Unicode has 1,114,112 code points (the last code point is
+U+10FFFF). Unicode 1.0 was limited to 65,536 code points (the last code point
+was U+FFFF), the range U+0000—U+FFFF called BMP (*Basic Multilingual Plane*). I
+call the range U+10000—U+10FFFF as non-BMP characters.
 
 Categories
 ----------

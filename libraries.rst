@@ -65,10 +65,10 @@ Classes: ``QFile``, ``QFileInfo``, ``QAbstractFileEngineHandler``, ``QFSFileEngi
 Gtk+ and glib libraries
 -----------------------
 
-:ref:`Gtk+` is a :ref:`C` toolkit to create graphic interfaces, based on the glib library.
+:ref:`Gtk+` is a :ref:`C <c>` toolkit to create graphic interfaces, based on the glib library.
 Both projects are distributed under the `GNU LGPL license`_ (version 2.1). The
 glib library uses the :ref:`UTF-8` encoding as internal encoding to store character
-strings using :c:type:`gchar*` :ref:`C` type. There is also :c:type:`gunichar` C type to store a
+strings using :c:type:`gchar*` :ref:`C <c>` type. There is also :c:type:`gunichar` C type to store a
 single code point able to store any Unicode 6.0 character (U+0000—U+10FFFF).
 
 Functions:
@@ -100,7 +100,7 @@ ICU library
 -----------
 
 `International Components for Unicode` (ICU) is a mature, widely used set of
-:ref:`C`/:ref:`C++` and :ref:`Java` libraries providing Unicode and Globalization support for
+:ref:`C <c>`/:ref:`C++` and :ref:`Java` libraries providing Unicode and Globalization support for
 software applications. ICU is a open source library distributed under the `MIT
 license`_.
 

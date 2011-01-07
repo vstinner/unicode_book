@@ -303,7 +303,7 @@ not matter). The problem with UTF-8, if you compare it to ASCII or ISO-8859-1,
 is that it is a multibyte encoding: you cannot access a character by its
 character index directly, you have to compute the byte index. If getting a character by
 its index is a common operation in your program, use a real character type
-like :c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C` bytes
+like :c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C <c>` bytes
 functions are compatible with UTF-8 encoded strings (eg. :c:func:`strcat` or :c:func:`printf`), whereas they fail with UTF-16
 and UTF-32 encoded strings because these encodings encode small codes with nul bytes.
 
@@ -325,7 +325,7 @@ UCS-2, UCS-4, UTF-16 and UTF-32
 
 UCS-2 and UCS-4 encodings encode each code point to exaclty one word of, respectivelly,
 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0 code points, whereas
-UCS-2 is limited to BMP characters (U+0000—U+FFFF). These encodings are
+UCS-2 is limited to :ref:`BMP <bmp>` characters. These encodings are
 practical because the length in words is the number of characters.
 
 UTF-16 and UTF-32 encodings use, respectivelly, 16 and 32 bits words. UTF-16
@@ -344,7 +344,7 @@ Windows 95 used UCS-2, whereas Windows 2000 uses UTF-16.
 
 
 .. index:: BOM
-.. _BOM:
+.. _bom:
 
 Byte order marks (BOM)
 ''''''''''''''''''''''
@@ -364,7 +364,7 @@ Unicode defines 6 different BOM:
  * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE <utf32>`
  * ``0x00 0x00 0xFE 0xFF`` (4): :ref:`UTF-32-BE <utf32>`
 
-UTF-16-LE and UTF-32-LE BOMs start with the same 2 bytes sequence.
+UTF-32-LE BOMs starts with UTF-16-LE BOM.
 
 "UTF-16" and "UTF-32" encoding names are imprecise: depending of the context, format or
 protocol, it means UTF-16 and UTF-32 with BOM markers, or UTF-16 and UTF-32 in
@@ -381,12 +381,16 @@ UTF-8 BOM should not be used for better interoperability.
 UTF-16 surrogate pairs
 ''''''''''''''''''''''
 
-In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD are stored as
-a single 16 bits word. Non-BMP characters (range U+10000—U+10FFFF) are stored
-as "surrogate pairs", two 16 bits words: the first word is in the range
-U+D800—U+DBFF, and the second word is in the range U+DC00—U+DFFF.
+In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD
+are stored as a single 16 bits word. :ref:`Non-BMP <bmp>` characters (range
+U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits words: the first
+word in the range U+D800—U+DBFF and the second word in the range U+DC00—U+DFFF.
 
-Example in :ref:`C` to encode/decode a non-BMP character to/from UTF-16 (using
+.. note::
+
+   An UTF-8 encoder should not encode surrogate characters (U+D800—U+DFFF).
+
+Example in :ref:`C <c>` to encode/decode a non-BMP character to/from UTF-16 (using
 surrogate pairs): ::
 
     void
@@ -428,19 +432,19 @@ The knowledge of a good conversion library, like iconv, is enough.
 How to guess the encoding of a document?
 ----------------------------------------
 
-Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM` (UTF-7, UTF-8, :ref:`UTF-16 <utf16>`,
-and :ref:`UTF-32 <utf32>`) have reliable algorithms to get the encoding of a
-document. For all other encodings, you have to trust heuristics based on
-statistics.
+Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM <bom>` (UTF-7 with
+BOM, UTF-8 with BOM, :ref:`UTF-16 <utf16>`, and :ref:`UTF-32 <utf32>`) have
+reliable algorithms to get the encoding of a document. For all other encodings,
+you have to trust heuristics based on statistics.
 
 
 Is ASCII?
 '''''''''
 
-Check if a document is encoded to :ref:`ASCII` is simple: check that the bit 7 of each
-byte is unset (``0b0xxxxxxx``).
+Check if a document is encoded to :ref:`ASCII` is simple: test if the bit 7 of
+each byte is unset (``0b0xxxxxxx``).
 
-Example in :ref:`C`: ::
+Example in :ref:`C <c>`: ::
 
     int isASCII(const char *data, size_t size)
     {
@@ -467,11 +471,11 @@ In :ref:`Python`, the ASCII decoder can be used: ::
 Check for BOM markers
 '''''''''''''''''''''
 
-If the string begins with a :ref:`BOM`, the encoding
-can be extracted from the BOM. But there is a problem with :ref:`UTF-16-BE <utf16>` and
-:ref:`UTF-32-LE <utf32>`: their BOMs start with the same 2 bytes sequence.
+If the string begins with a :ref:`BOM <bom>`, the encoding can be extracted
+from the BOM. But there is a problem with :ref:`UTF-16-BE <utf16>` and
+:ref:`UTF-32-LE <utf32>`: UTF-32-LE BOM starts with the UTF-16-LE BOM.
 
-Example of a function written in :ref:`C` to check if a BOM is present: ::
+Example of a function written in :ref:`C <c>` to check if a BOM is present: ::
 
     #include <string.h>   /* memcmp() */
 
@@ -504,8 +508,7 @@ Example of a function written in :ref:`C` to check if a BOM is present: ::
 
 For the UTF-16-LE/UTF-32-LE BOM conflict: this function returns ``"UTF-32-LE"``
 if the string begins with ``"\xFF\xFE\x00\x00"``, even if this string can be
-decoded from UTF-16-LE. Modify the function by adding other checks if you would
-like a better heuristic to decide between these two encodings.
+decoded from UTF-16-LE.
 
 Example in :ref:`Python` getting the BOMs from the codecs library: ::
 
@@ -533,7 +536,7 @@ Is UTF-8?
 reliable algorithm to check if a function is encoded to UTF-8.
 
 
-Example of a strict :ref:`C` function to check if a string is encoded to UTF-8. It
+Example of a strict :ref:`C <c>` function to check if a string is encoded to UTF-8. It
 rejects overlong sequences (eg.  ``0xC0 0x80``) and surrogate characters (eg.
 ``0xED 0xB2 0x80``, U+DC80). ::
 
@@ -549,7 +552,7 @@ rejects overlong sequences (eg.  ``0xC0 0x80``) and surrogate characters (eg.
         while (str != end) {
             byte = *str;
             if (byte <= 0x7F) {
-                /* 1 byte character (ASCII): U+0000..U+007F */
+                /* 1 byte sequence: U+0000..U+007F */
                 str += 1;
                 continue;
             }
@@ -618,7 +621,7 @@ In :ref:`Python`, the UTF-8 decoder can be used: ::
             return True
 
 In :ref:`Python 2`, this function is more tolerant than the C function, because the
-UTF-8 decoder of Python 2 accepts surrogate characters. For example,
+UTF-8 decoder of Python 2 accepts surrogate characters (U+D800—U+DFFF). For example,
 ``isUTF8(b'\xED\xB2\x80')`` returns ``True``. With :ref:`Python 3`, the Python function is
 equivalent to the C function. If you would like to reject surrogate characters
 in Python 2, use the following strict function: ::
@@ -639,7 +642,7 @@ Libraries
 '''''''''
 
  * chardet_: :ref:`Python` version of the "chardet" algorithm implemented in Mozilla
- * UTRAC_: command line program (written in :ref:`C`) to recognize the encoding of
+ * UTRAC_: command line program (written in :ref:`C <c>`) to recognize the encoding of
    an input file and its end-of-line type
  * charguess_: Ruby library to guess the charset of a document
 
