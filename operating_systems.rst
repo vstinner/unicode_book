@@ -220,8 +220,9 @@ as the default language, use C locale means that programs speak English.
 
 .. _locale encoding:
 
-Locale codec
-''''''''''''
+Locale encoding
+'''''''''''''''
+
 For Unicode, the most important locale category is ``LC_CTYPE``: it is used to set
 the "locale encoding".
 

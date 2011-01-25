@@ -66,8 +66,8 @@ Classes: ``QFile``, ``QFileInfo``, ``QAbstractFileEngineHandler``, ``QFSFileEngi
 
 .. _glib:
 
-glib library
-------------
+Gtk+ and glib libraries
+-----------------------
 
 :ref:`Gtk+` is a :ref:`C <c>` toolkit to create graphic interfaces, based on the glib library.
 Both projects are distributed under the `GNU LGPL license`_ (version 2.1). The

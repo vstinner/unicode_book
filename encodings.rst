@@ -323,19 +323,32 @@ rejected.
 UCS-2, UCS-4, UTF-16 and UTF-32
 '''''''''''''''''''''''''''''''
 
-UCS-2 and UCS-4 encodings encode each code point to exaclty one word of, respectivelly,
-16 and 32 bits. UCS-4 is able to encode all Unicode 6.0 code points, whereas
-UCS-2 is limited to :ref:`BMP <bmp>` characters. These encodings are
-practical because the length in words is the number of characters.
+UCS-2 and UCS-4 encodings encode each code point to exactly one word of,
+respectivelly, 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0 code
+points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
+encodings are practical because the length in words is the number of
+characters.
 
 UTF-16 and UTF-32 encodings use, respectivelly, 16 and 32 bits words. UTF-16
 encodes code points bigger than U+FFFF using two words (see :ref:`Surrogate
-pair`). UCS-2 can be decoded by UTF-16. UTF-32 is also supposed to use two
-words for big code points, but in practical, it only requires one word to store
+pair`). UCS-2 can be decoded from UTF-16. UTF-32 is also supposed to use more than one
+word for big code points, but in practical, it only requires one word to store
 all code points of Unicode 6.0. That's why UTF-32 and UCS-4 are the same
 encoding.
 
-Windows 95 used UCS-2, whereas Windows 2000 uses UTF-16.
++----------+-----------+-----------------+
+| Encoding | Word size | Unicode support |
++==========+===========+=================+
+| UCS-2    |  16 bits  | BMP only        |
++----------+-----------+-----------------+
+| UTF-16   |  16 bits  | Full            |
++----------+-----------+-----------------+
+| UCS-4    |  32 bits  | Full            |
++----------+-----------+-----------------+
+| UTF-32   |  32 bits  | Full            |
++----------+-----------+-----------------+
+
+Windows 95 uses UCS-2, whereas Windows 2000 uses UTF-16.
 
 .. note::
 
@@ -418,6 +431,36 @@ surrogate pairs): ::
 
 A lone surrogate character is invalid in UTF-16, surrogate characters are
 always written as pairs.
+
+
+Encodings performances
+----------------------
+
+Complexity of getting the n-th character in a string, and of
+getting the length in character of a string:
+
+ * O(1) for 7 and 8 bit encodings (ASCII, ISO-8859, ...), UCS-2 and UCS-4
+ * O(n) for variable length encodings (eg. the UTF family)
+
+.. todo:: Perf of the codec
+
+
+Examples
+--------
+
++------------+-------------------------+-------------------------+
+| Encoding   |       é (U+00E9)        |       € (U+20AC)        |
++============+=========================+=========================+
+| ASCII      | (not encodable)         | (not encodable)         |
++------------+-------------------------+-------------------------+
+| ISO-8859-1 | ``0xE9``                | (not encodable)         |
++------------+-------------------------+-------------------------+
+| UTF-8      | ``0xC3 0xA9``           | ``0xE2 0x82 0xAC``      |
++------------+-------------------------+-------------------------+
+| UTF-16-LE  | ``0xE9 0x00``           | ``0xAC 0x20``           |
++------------+-------------------------+-------------------------+
+| UTF-32-BE  | ``0x00 0x00 0x00 0xE9`` | ``0x00 0x00 0x20 0xAC`` |
++------------+-------------------------+-------------------------+
 
 
 Other charsets and encodings

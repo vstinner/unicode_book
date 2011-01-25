@@ -4,16 +4,17 @@ Good practices
 Rules
 -----
 
-To limit/avoid issues with Unicode, try to follow the following rules:
+To limit or avoid issues with Unicode, try to follow these rules:
 
- * decode all bytes data (eg. keyboard strokes, files, data received from the network,
-   ...) as early as possible
- * encode back Unicode to bytes as late as possible (eg. write text to a file,
-   log a message, send data to the network, ...)
+ * decode all bytes data as early as possible: keyboard strokes, files, data
+   received from the network, ...
+ * encode back Unicode to bytes as late as possible: write text to a file,
+   log a message, send data to the network, ...
  * always store and manipulate text as character strings
- * if you have to encode text and you can choose the encoding, prefer UTF-8
-   because it is able to encode all Unicode 6.0 characters and it is a good
-   compromise in size.
+ * if you have to encode text and you can choose the encoding: prefer the :ref:`UTF-8` encoding.
+   It is able to encode all Unicode 6.0 characters (including :ref:`non-BMP
+   characters <bmp>`), has no endian issue, and is well support by most
+   programs.
 
 Unicode support levels
 ----------------------
@@ -57,14 +58,21 @@ Don't expect to reach directly the level 2: it requires a lot of work. Your
 project may be fully Unicode compliant for a specific task (eg. filenames), but
 only have a basic Unicode support for the other parts of the project.
 
-Basic tests to estimate the level of a program:
 
- * Write a non-ASCII character (eg. é, U+00E9) in all input fields: if the
-   program fails with an error, you are at level 0.
- * Write a character not-encodable to the locale (eg. Ł, U+0141): if the
-   program fails with an error, you are probably at level 1.
- * Write text mixing languages in different directions and using characters
-   with diacritics, especially in Persian. For example, XXX.
+Test the Unicode support of a program
+-------------------------------------
+
+Tests to evaluate the Unicode support of a program:
+
+ * Write non-ASCII characters (eg. é, U+00E9) in all input fields: if the
+   program fails with an error, it has no Unicode support.
+ * Write characters not encodable to the :ref:`locale encoding <locale
+   encoding>` (eg. Ł, U+0141) in all input fields: if the program fails with an
+   error, it has probably a basic Unicode program.
+ * To test if a program is fully Unicode compliant, write text mixing different
+   languages in different directions and characters with diacritics, especially
+   in Persian characters. Try also :ref:`decomposed characters
+   <normalization>`, for example: {e, U+0301} (decomposed form of é, U+00E9).
 
 See also the Wikipedia article to `test the Unicode support of your web
 browser`_.
