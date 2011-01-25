@@ -6,6 +6,26 @@ Programming languages
 C language
 ----------
 
+The C language is a low level language, close to the CPU. It has a builtin
+Unicode string type (:c:type:`wchar_t*`), but only few libraries support
+Unicode. It is usually used as the first "layer" between the kernel and
+applications, higher level libraries and other programming languages. This
+first layer uses the same type than the kernel: except :ref:`Windows`, all
+kernels use byte strings. The C standard library is a first layer for system
+calls (eg.  open a file).
+
+There are higher level libraries, like :ref:`glib <glib>` or :ref:`Qt <qt>`,
+offering a Unicode API, even if the underlying kernel use byte strings. Such
+libraries use a codec to encode data for the kernel and to decode data from the
+kernel. The codec is usually the current :ref:`locale encoding <locale
+encoding>`.
+
+Because there is no Unicode standard library, most third-party libraries chose
+the simple solution: use byte strings. For example, the OpenSSL library, an
+open source cryptography toolkit, expects filenames as byte strings. On
+Windows, you have to encode Unicode filenames to the current :ref:`ANSI code
+page <codepage>`, which is a small subset of the Unicode charset.
+
 Byte API (char)
 '''''''''''''''
 
@@ -132,6 +152,8 @@ string arguments.
    format, don't use it.
 
 
+.. _cpp:
+
 C++
 ---
 
@@ -181,7 +203,7 @@ strings without any (expensive) conversion.
 See also the :ref:`Python Unicode HOWTO <http://docs.python.org/howto/unicode.html>`.
 
 
-.. _Python 2:
+.. _python2:
 
 Python 2
 ''''''''
@@ -214,7 +236,7 @@ because it impacts all libraries which may suppose that the default encoding is
 ASCII.
 
 
-.. _Python 3:
+.. _python3:
 
 Python 3
 ''''''''
@@ -366,6 +388,7 @@ Modules
  * ``normalize(string)``: normalize a string to the NFC, NFD, NFKC or NFKD form
 
 
+.. _php:
 
 PHP
 ---
@@ -409,6 +432,8 @@ Perl
 Read perluniintro, perlunicode and perlunifaq manuals.
 
 
+.. _java:
+
 Java
 ----
 
@@ -440,3 +465,8 @@ Java uses a variant of :ref:`UTF-8` which encodes the nul character (U+0000) as 
 overlong byte sequence ``0xC0 0x80``, instead of ``0x00``. This is be able to
 use :ref:`C <c>` functions like :c:func:`strlen`. The Tcl language uses the same encoding.
 
+
+Go and D
+--------
+
+The Go and D languages use UTF-8 as internal encoding to store Unicode strings.

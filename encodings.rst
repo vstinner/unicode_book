@@ -620,9 +620,9 @@ In :ref:`Python`, the UTF-8 decoder can be used: ::
         else:
             return True
 
-In :ref:`Python 2`, this function is more tolerant than the C function, because the
+In :ref:`Python 2 <python2>`, this function is more tolerant than the C function, because the
 UTF-8 decoder of Python 2 accepts surrogate characters (U+D800—U+DFFF). For example,
-``isUTF8(b'\xED\xB2\x80')`` returns ``True``. With :ref:`Python 3`, the Python function is
+``isUTF8(b'\xED\xB2\x80')`` returns ``True``. With :ref:`Python 3 <python3>`, the Python function is
 equivalent to the C function. If you would like to reject surrogate characters
 in Python 2, use the following strict function: ::
 

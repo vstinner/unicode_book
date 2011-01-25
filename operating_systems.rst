@@ -7,7 +7,7 @@ Windows
 -------
 
 .. index: Code page
-.. _Code pages:
+.. _codepage:
 
 Code pages
 ''''''''''
@@ -163,6 +163,7 @@ Windows inherits from MS-DOS. MS-DOS has also code pages. Commands:
 ``CON`` stands for the console device, but another device name can be
 specified: ``PRN`` (printer), ``LPT1``, ``LPT2`` or ``LPT3``.
 
+.. _osx:
 
 Mac OS X
 --------
@@ -177,6 +178,8 @@ U+2FFF, U+F900 through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
 
 .. _Technical Q&A QA1173:
    http://developer.apple.com/mac/library/qa/qa2001/qa1173.html
+
+.. todo:: Document %3A pattern for undecodable filename
 
 
 .. _Locales:
@@ -215,16 +218,17 @@ The "C" locale is a special locale. It is also known as "POSIX". It is used if
 ``LC_ALL``, ``LC_xxx`` and ``LANG`` environment variables are not set. As English is used
 as the default language, use C locale means that programs speak English.
 
+.. _locale encoding:
+
 Locale codec
 ''''''''''''
-
 For Unicode, the most important locale category is ``LC_CTYPE``: it is used to set
 the "locale encoding".
 
-For the C locale, ``nl_langinfo(CODESET)`` returns ASCII, or an alias to this
-encoding (eg. "US-ASCII" or "646"). But on FreeBSD, Solaris and Mac OS X,
-codec functions (eg. :c:func:`mbstowcs`) use :ref:`ISO-8859-1` even if ``nl_langinfo(CODESET)``
-announces ASCII encoding.
+For the C locale, ``nl_langinfo(CODESET)`` returns :ref:`ASCII`, or an alias to
+this encoding (eg. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
+OS X <osx>`, codec functions (eg. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`
+even if ``nl_langinfo(CODESET)`` announces ASCII encoding.
 
 ``<locale.h>`` functions.
 
@@ -260,4 +264,7 @@ announces ASCII encoding.
 
    "mbs" means "multibyte string" (byte string) and "wcs" means "wide character
    string".
+
+On Windows, the "locale encoding" are the :ref:`ANSI and OEM code pages
+<codepage>`.
 

@@ -1,6 +1,9 @@
 Libraries
 =========
 
+.. _qt:
+
+
 Qt library
 ----------
 
@@ -61,9 +64,10 @@ Qt has two implementations of its ``QFSFileEngine``:
 
 Classes: ``QFile``, ``QFileInfo``, ``QAbstractFileEngineHandler``, ``QFSFileEngine``.
 
+.. _glib:
 
-Gtk+ and glib libraries
------------------------
+glib library
+------------
 
 :ref:`Gtk+` is a :ref:`C <c>` toolkit to create graphic interfaces, based on the glib library.
 Both projects are distributed under the `GNU LGPL license`_ (version 2.1). The
@@ -96,13 +100,15 @@ Functions:
 .. _Gtk+: http://www.gtk.org/
 
 
+.. _icu:
+
 ICU library
 -----------
 
 `International Components for Unicode` (ICU) is a mature, widely used set of
-:ref:`C <c>`/:ref:`C++` and :ref:`Java` libraries providing Unicode and Globalization support for
-software applications. ICU is a open source library distributed under the `MIT
-license`_.
+:ref:`C <c>`/:ref:`C++ <cpp>` and :ref:`Java <java>` libraries providing
+Unicode and Globalization support for software applications. ICU is a open
+source library distributed under the `MIT license`_.
 
 .. todo:: complete this section
 
