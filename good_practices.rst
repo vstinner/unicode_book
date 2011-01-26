@@ -78,7 +78,7 @@ See also the Wikipedia article to `test the Unicode support of your web
 browser`_.
 
 .. _test the Unicode support of your web browser:
-   http://fr.wikipedia.org/wiki/Wikipedia:Aide_Unicode
+   http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test
 
 
 Get the encoding of your inputs

@@ -403,6 +403,8 @@ word in the range U+D800—U+DBFF and the second word in the range U+DC00—U+DF
 
    An UTF-8 encoder should not encode surrogate characters (U+D800—U+DFFF).
 
+.. highlight:: c
+
 Example in :ref:`C <c>` to encode/decode a non-BMP character to/from UTF-16 (using
 surrogate pairs): ::
 
@@ -487,6 +489,8 @@ Is ASCII?
 Check if a document is encoded to :ref:`ASCII` is simple: test if the bit 7 of
 each byte is unset (``0b0xxxxxxx``).
 
+.. highlight:: c
+
 Example in :ref:`C <c>`: ::
 
     int isASCII(const char *data, size_t size)
@@ -499,6 +503,8 @@ Example in :ref:`C <c>`: ::
         }
         return 1;
     }
+
+.. highlight:: python
 
 In :ref:`Python`, the ASCII decoder can be used: ::
 
@@ -517,6 +523,8 @@ Check for BOM markers
 If the string begins with a :ref:`BOM <bom>`, the encoding can be extracted
 from the BOM. But there is a problem with :ref:`UTF-16-BE <utf16>` and
 :ref:`UTF-32-LE <utf32>`: UTF-32-LE BOM starts with the UTF-16-LE BOM.
+
+.. highlight:: c
 
 Example of a function written in :ref:`C <c>` to check if a BOM is present: ::
 
@@ -553,6 +561,8 @@ For the UTF-16-LE/UTF-32-LE BOM conflict: this function returns ``"UTF-32-LE"``
 if the string begins with ``"\xFF\xFE\x00\x00"``, even if this string can be
 decoded from UTF-16-LE.
 
+.. highlight:: python
+
 Example in :ref:`Python` getting the BOMs from the codecs library: ::
 
     from codecs import BOM_UTF8, BOM_UTF16_BE, BOM_UTF16_LE, BOM_UTF32_BE, BOM_UTF32_LE
@@ -578,6 +588,7 @@ Is UTF-8?
 :ref:`UTF-8` encoding adds markers to each bytes and so it's possible to write a
 reliable algorithm to check if a function is encoded to UTF-8.
 
+.. highlight:: c
 
 Example of a strict :ref:`C <c>` function to check if a string is encoded to UTF-8. It
 rejects overlong sequences (eg.  ``0xC0 0x80``) and surrogate characters (eg.
@@ -652,6 +663,8 @@ rejects overlong sequences (eg.  ``0xC0 0x80``) and surrogate characters (eg.
         }
         return 1;
     }
+
+.. highlight:: python
 
 In :ref:`Python`, the UTF-8 decoder can be used: ::
 
