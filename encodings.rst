@@ -237,6 +237,7 @@ are identicals, 8 are different:
 
 .. index:: GBK
 .. _gbk:
+.. _big5:
 
 GBK encoding family (Chinese)
 '''''''''''''''''''''''''''''
