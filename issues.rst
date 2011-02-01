@@ -8,7 +8,7 @@ Mojibake
 
 When a :ref:`byte strings <byte string>` is decoded from the wrong encoding
 (see :ref:`Guess encoding`), or when two byte strings encoded to different
-encodings are concatenated, a program will display mojibake.
+encodings are concatenated, a program will display **mojibake**.
 
 The classical example is a latin string (with diacritics) encoded to UTF-8 but
 decoded from ISO-8859-1. It displays Ã© (U+00C3, U+00A9) for the é (U+00E9)
@@ -39,7 +39,7 @@ Non-strict UTF-8 decoder
 
 An UTF-8 decoder have to reject invalid byte sequences for security reasons:
 ``0xC0 0x80`` byte sequence must raise an error (and not be decoded as U+0000).
-If the decoder accepts invalid byte sequence, an attacker can use it to skip
+If the decoder accepts invalid byte sequence, an attacker can use it to workaround
 security checks (eg. reject string containing nul bytes, ``0x00``). Surrogates
 characters are also invalid in UTF-8: characters in U+D800—U+DFFF have to be
 rejected.
