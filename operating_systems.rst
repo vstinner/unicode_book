@@ -182,7 +182,7 @@ U+2FFF, U+F900 through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
 .. todo:: Document %3A pattern for undecodable filename
 
 
-.. _Locales:
+.. _locales:
 
 Locales (UNIX and BSD)
 ----------------------

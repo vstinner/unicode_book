@@ -4,8 +4,6 @@ Programming with Unicode
 
 .. todo:: :c:type:`char*` points to char, not char*
 .. todo:: add statistics about encodings popularity
-.. todo:: explain what is a byte string
-.. todo:: explain what is a Unicode string
 
 .. toctree::
    :maxdepth: 2

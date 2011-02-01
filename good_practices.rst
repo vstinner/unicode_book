@@ -1,6 +1,49 @@
 Good practices
 ==============
 
+.. _byte string:
+
+Definition of a byte string
+---------------------------
+
+A "byte string" is a string encoded to an encoding. It is usually implemented
+as an array of 8 bits unsigned integers (e.g. :c:type:`char*` in :ref:`C <c>`). The
+character range supported by a byte string depends on its encoding. For
+example, an :ref:`ASCII <ascii>` (byte) string can only store characters in
+U+0000—U+007F (128 code points).
+
+Concatenate two byte strings leads to mojibake if the strings use different
+encodings. Unicode strings don't have this issue.
+
+A :ref:`UTF-8 <utf8>` encoded byte string is a particular case, because this
+encoding is able to encode all Unicode characters. An UTF-8 encoded string can
+be seen as an Unicode string, but it is called "byte string" in this book to
+avoid the confusion with "native" Unicode string. The main difference between
+an UTF-8 byte string and a Unicode string is the complexity of getting the nth
+character: O(n) for the byte string and O(1) for the Unicode string. There is
+one exception: if the Unicode string is implemented using UTF-16: it has also a
+complexity of O(n).
+
+.. _character string:
+
+Definition of a character string
+------------------------------
+
+A "character string", or "Unicode string", is a string where each character can
+be, depending on the implementation, any Unicode character or :ref:`BMP-only
+<bmp>` characters. There are 3 different implementations:
+
+ * array of 32 bits unsigned integers, :ref:`UCS-4 <ucs>`: full Unicode
+   range
+ * array of 16 bits unsigned integers, :ref:`UCS-2 <ucs>`: BMP only
+ * array of 16 bits unsigned integers with :ref:`surrogate pairs
+   <surrogates>`, :ref:`UTF-16 <utf16>`: full Unicode range
+
+The later has the disavantage of having a complexity of O(n) on some
+operations like getting the nth character, whereas UCS-2 and UCS-4 strings
+have a complexity of O(1).
+
+
 Rules
 -----
 

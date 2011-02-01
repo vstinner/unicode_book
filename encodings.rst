@@ -284,6 +284,7 @@ Unicode encodings
 -----------------
 
 .. index:: UTF-8
+.. _utf8:
 .. _UTF-8:
 
 UTF-8
@@ -389,7 +390,7 @@ UTF-8 BOM should not be used for better interoperability.
 
 
 .. index:: Surrogate pair
-.. _Surrogate pair:
+.. _surrogates:
 
 UTF-16 surrogate pairs
 ''''''''''''''''''''''
