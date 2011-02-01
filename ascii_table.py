@@ -37,7 +37,7 @@ for ligne in LIGNES:
             ch = NAMES[ord(ch)]
         elif ord(ch) < 32 or ord(ch) in (127, 0xAd) or (0x80 <= ord(ch) <= 0x9F):
             ch = '---'
-        elif ch in '*+-`':
+        elif ch in '*+-`|':
             ch = '\\' + ch
         stdout.write("| %s " % ch.center(3).encode('utf-8'))
     stdout.write("|\n")

@@ -55,7 +55,7 @@ geograpically close (eg. ISO-8859-1 is intented for Western Europe).
 
 It was difficult to exchange documents of different languages, because if a
 document was encoded to an encoding different than the user encoding, it leaded
-to mojibake.
+to :ref:`mojibake <mojibake>`.
 
 
 .. index:: ASCII
@@ -284,6 +284,7 @@ Unicode encodings
 -----------------
 
 .. index:: UTF-8
+.. _utf8:
 .. _UTF-8:
 
 UTF-8
@@ -307,12 +308,7 @@ like :c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C <c>` byt
 functions are compatible with UTF-8 encoded strings (eg. :c:func:`strcat` or :c:func:`printf`), whereas they fail with UTF-16
 and UTF-32 encoded strings because these encodings encode small codes with nul bytes.
 
-An UTF-8 decoder have to reject invalid byte sequences for security reasons:
-``0xC0 0x80`` byte sequence must raise an error (and not be decoded as U+0000).
-If the decoder accepts invalid byte sequence, an attacker can use it to skip
-security checks (eg. reject string containing nul bytes, ``0x00``). Surrogates
-characters are also invalid in UTF-8: characters in U+D800—U+DFFF have to be
-rejected.
+See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 
 
 .. index:: UCS-2, UCS-4, UTF-16, UTF-16-LE, UTF-16-BE, UTF-32, UTF-32-LE, UTF-32-BE
@@ -389,7 +385,7 @@ UTF-8 BOM should not be used for better interoperability.
 
 
 .. index:: Surrogate pair
-.. _Surrogate pair:
+.. _surrogates:
 
 UTF-16 surrogate pairs
 ''''''''''''''''''''''

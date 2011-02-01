@@ -55,9 +55,9 @@ Byte string API (char*)
 
 .. c:type:: char*
 
-   :c:type:`char*` is a character string (a byte string for multibyte encodings). This type
-   is used in many places in the C standard library. For example, :c:func:`fopen` uses :c:type:`char*`
-   for the filename.
+   :c:type:`char*` is a a :ref:`byte string <byte string>`. This type is used
+   in many places in the C standard library. For example, :c:func:`fopen` uses
+   :c:type:`char*` for the filename.
 
    ``<string.h>`` is the (byte) string library. Most functions starts with "str"
    (string) prefix: :c:func:`strlen`, :c:func:`strcat`, etc. ``<stdio.h>`` contains useful string
@@ -100,10 +100,11 @@ Character string API (wchar_t*)
 
 .. c:type:: wchar_t*
 
-   :c:type:`wchar_t*` is a character string. The standard library ``<wchar.h>`` contains
-   character string functions like :c:func:`wcslen` or :c:func:`wprintf`, and constants
-   like WCHAR_MAX. If :c:type:`wchar_t` is 16 bits long, :ref:`non-BMP <bmp>` characters are encoded
-   to :ref:`UTF-16 <utf16>` using surrogate pairs (see :ref:`Surrogate pair`).
+   :c:type:`wchar_t*` is a :ref:`character string <character string>`. The
+   standard library ``<wchar.h>`` contains character string functions like
+   :c:func:`wcslen` or :c:func:`wprintf`, and constants like WCHAR_MAX. If
+   :c:type:`wchar_t` is 16 bits long, :ref:`non-BMP <bmp>` characters are
+   encoded to :ref:`UTF-16 <utf16>` using :ref:`surrogate pairs <surrogates>`.
 
    A literal character strings is written between quotes with the ``L``
    prefix, eg. ``L"Hello World!\n"``. As character literals, it supports also control
@@ -157,16 +158,17 @@ string arguments.
 C++
 ---
 
- * ``std::wstring``: character string using the :c:type:`wchar_t` type, unicode
-   version of ``std::string``
+ * ``std::wstring``: :ref:`character string <character string>` using the
+   :c:type:`wchar_t` type, unicode version of ``std::string`` (:ref:`byte
+   string <byte string>`)
  * ``std::wcin``, ``std::wcout`` and ``std::wcerr``: standard input, output
    and error output; unicode version of ``std::cin``, ``std::cout`` and
    ``std::cerr``
  * ``std::wostringstream``: character stream buffer; unicode version of
    ``std::ostringstream``.
 
-To initialize the locales (see :ref:`Locales`), equivalent to ``setlocale(LC_ALL,
-"")``, use: ::
+To initialize the locales (see :ref:`Locales <locales>`), equivalent to
+``setlocale(LC_ALL, "")``, use: ::
 
     #include <locale>
     std::locale::global(std::locale(""));
@@ -208,8 +210,8 @@ See also the :ref:`Python Unicode HOWTO <http://docs.python.org/howto/unicode.ht
 Python 2
 ''''''''
 
-``str`` is the type of byte strings and ``unicode`` is the type of character
-(Unicode) strings. Literal byte strings are written ``b'abc'`` (syntax
+``str`` is the type of :ref:`byte strings <byte string>` and ``unicode`` is the
+type of :ref:`character (Unicode) strings <character string>`. Literal byte strings are written ``b'abc'`` (syntax
 compatible with Python 3) or ``'abc'`` (legacy syntax), ``\xHH`` can be used to
 write a byte by its hexadecimal value (eg. ``b'\x80'`` for 128). Literal
 Unicode strings are written with the prefix ``u``: ``u'abc'``. Code points can
@@ -241,8 +243,8 @@ ASCII.
 Python 3
 ''''''''
 
-``bytes`` is the type of byte strings and ``str`` is the type of character
-(Unicode) strings. Literal byte strings are written with the prefix ``b``:
+``bytes`` is the type of :ref:`byte strings <byte string>` and ``str`` is the
+type of :ref:`character (Unicode) strings <character string>`. Literal byte strings are written with the prefix ``b``:
 ``b'abc'`` (syntax compatible with Python 2), ``\xHH`` can be used to write a
 byte by its hexadecimal value (eg. ``b'\x80'`` for 128). Literal Unicode strings are
 written ``u'abc'``. Code points can be used directly in hexadecimal: ``\xHH``
@@ -365,7 +367,7 @@ Modules
    a buffered file. Don't use it directly to open a text file: use ``open()``
    instead.
 
-``locale`` module (see :ref:`Locales`):
+``locale`` module (see :ref:`Locales <locales>`):
 
  * ``getlocale(category)``: get the value of a locale category as the tuple
    (language code, encoding)
@@ -393,7 +395,7 @@ Modules
 PHP
 ---
 
-In PHP 5, a literal string (eg. ``"abc"``) is a byte string. PHP has no Unicode type,
+In PHP 5, a literal string (eg. ``"abc"``) is a :ref:`byte string <byte string>`. PHP has no Unicode type,
 only a "string" type which is a byte string.  But PHP have "multibyte"
 functions to manipulate character strings. These functions have an optional
 encoding argument. If the encoding is not specified, PHP uses the default
@@ -447,8 +449,8 @@ character (U+0000—U+10FFFF). ``Character`` methods:
    according to Java
  * ``.toUpperCase(ch)``: convert to uppercase
 
-``String`` is a character strings implemented using a ``char`` array, :ref:`UTF-16 <utf16>`
-characters. ``String`` methods:
+``String`` is a :ref:`character string <character string>` implemented using a
+``char`` array, :ref:`UTF-16 <utf16>` characters. ``String`` methods:
 
  * ``String(bytes, encoding)``: decode a byte string from the specified
    encoding, throw a ``CharsetDecoder`` exception if a byte sequence cannot be
@@ -458,7 +460,7 @@ characters. ``String`` methods:
  * ``.length()``: length in UTF-16 characters.
 
 As :ref:`Python` compiled in narrow mode, :ref:`non-BMP <bmp>` characters are stored as :ref:`UTF-16
-surrogate pairs <Surrogate pair>` and the length of a string is the number of UTF-16
+surrogate pairs <surrogates>` and the length of a string is the number of UTF-16
 characters, not the length in Unicode characters.
 
 Java uses a variant of :ref:`UTF-8` which encodes the nul character (U+0000) as the
