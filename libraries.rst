@@ -69,35 +69,48 @@ Classes: ``QFile``, ``QFileInfo``, ``QAbstractFileEngineHandler``, ``QFSFileEngi
 Gtk+ and glib libraries
 -----------------------
 
-:ref:`Gtk+` is a :ref:`C <c>` toolkit to create graphic interfaces, based on the glib library.
+`Gtk+ <http://www.gtk.org/>`_ is a :ref:`C <c>` toolkit to create graphic interfaces, based on the glib library.
 Both projects are distributed under the `GNU LGPL license`_ (version 2.1). The
 glib library uses the :ref:`UTF-8` encoding as internal encoding to store character
 strings using :c:type:`gchar*` :ref:`C <c>` type. There is also :c:type:`gunichar` C type to store a
 single code point able to store any Unicode 6.0 character (U+0000—U+10FFFF).
 
-Functions:
+Codec functions:
 
- * :c:func:`g_get_charset`: chraset of the current locale
+ * :c:func:`g_convert`: decode from an encoding and encode to another encoding
+   with the :ref:`iconv library <iconv>`. Use :c:func:`g_convert_with_fallback`
+   to choose how to handle undecodable bytes and unencodable characters.
+ * :c:func:`g_locale_from_utf8` / :c:func:`g_locale_to_utf8`: encode to/decode from the locale
+   encoding.
+ * :c:func:`g_get_charset`: get the charset of the :ref:`current locale <locale
+   encoding>`
 
-   * Windows: :ref:`ANSI code page <Code pages>` (CPxxxx)
-   * OS/2: read the code page from :c:func:`DosQueryCp`
+   * Windows: current :ref:`ANSI code page <codepage>`
+   * OS/2: current code page (call :c:func:`DosQueryCp`)
    * other: try ``nl_langinfo(CODESET)``, or ``LC_ALL``, ``LC_CTYPE`` or ``LANG`` environment
      variables
 
- * :c:func:`g_get_filename_charsets`: list of charsets
- * :c:func:`g_filename_display_name`
- * ``G_FILENAME_ENCODING`` environment variable
  * :c:func:`g_utf8_get_char`: get the first character of an UTF-8 string as
    :c:type:`gunichar`
- * :c:func:`g_convert`: decode from an encoding and encode to another encoding. Use
-   :c:func:`g_convert_with_fallback` to choose how to replace unencodable characters.
- * :c:func:`g_filename_from_utf8` / :c:func:`g_filename_to_utf8`: encode to/decode from a
-   filename.
- * :c:func:`g_locale_from_utf8` / :c:func:`g_locale_to_utf8`: encode to/decode from the locale
-   encoding.
- * :c:func:`g_convert`: Converts a string from one character set to another (use iconv library)
 
-.. _Gtk+: http://www.gtk.org/
+Filename functions:
+
+ * :c:func:`g_filename_from_utf8` / :c:func:`g_filename_to_utf8`: encode/decode
+   a filename
+ * :c:func:`g_filename_display_name`: human readable version of a filename. Try
+   to decode the filename from each encoding of
+   :c:func:`g_get_filename_charsets` encoding list. If all decoding failed,
+   decode the filename from UTF-8 and escape undecodable bytes.
+ * :c:func:`g_get_filename_charsets`: get the list of charsets used to decode
+   and encode filenames. :c:func:`g_filename_display_name` tries each encoding
+   of this list, other functions just use the first encoding. Use UTF-8 on
+   Windows. On other operating systems, use:
+
+   * ``G_FILENAME_ENCODING`` environment variable (if set): comma-separated
+     list of character set names, the special token ``"@locale"`` is taken to mean
+     the :ref:`locale encoding <locale encoding>`
+   * or UTF-8 if ``G_BROKEN_FILENAMES`` environment variable is set
+   * or call :c:func:`g_get_charset` (:ref:`locale encoding <locale encoding>`)
 
 
 .. _icu:
@@ -115,4 +128,14 @@ source library distributed under the `MIT license`_.
 .. _International Components for Unicode: http://site.icu-project.org/
 .. _GNU LGPL license: http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License
 .. _MIT license: http://en.wikipedia.org/wiki/MIT_License
+
+
+.. _iconv:
+
+iconv library
+-------------
+
+`libiconv <http://www.gnu.org/software/libiconv/>`_ is a library to encode and
+decode text in different encodings. It is distributed under the `GNU LGPL
+license`_. It supports a lot of encodings including rare and old encodings.
 

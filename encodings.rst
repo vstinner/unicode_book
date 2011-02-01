@@ -465,7 +465,8 @@ Other charsets and encodings
 ----------------------------
 
 There are much more charsets and encodings, but it is not useful to know them.
-The knowledge of a good conversion library, like iconv, is enough.
+The knowledge of a good conversion library, like :ref:`iconv <iconv>`, is
+enough.
 
 
 .. _Guess encoding:
