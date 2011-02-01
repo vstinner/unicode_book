@@ -12,8 +12,8 @@ character range supported by a byte string depends on its encoding. For
 example, an :ref:`ASCII <ascii>` (byte) string can only store characters in
 U+0000—U+007F (128 code points).
 
-Concatenate two byte strings leads to mojibake if the strings use different
-encodings. Unicode strings don't have this issue.
+Concatenate two byte strings leads to :ref:`mojibake <mojibake>` if the strings
+use different encodings. Unicode strings don't have this issue.
 
 A :ref:`UTF-8 <utf8>` encoded byte string is a particular case, because this
 encoding is able to encode all Unicode characters. An UTF-8 encoded string can
@@ -27,7 +27,7 @@ complexity of O(n).
 .. _character string:
 
 Definition of a character string
-------------------------------
+--------------------------------
 
 A "character string", or "Unicode string", is a string where each character can
 be, depending on the implementation, any Unicode character or :ref:`BMP-only

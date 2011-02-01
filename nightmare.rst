@@ -14,9 +14,7 @@ Today with the Internet and the globalization, we all read and exchange
 documents from everywhere around the world (even if we don't understand
 everything). The problem is that documents rarely indicate their language
 (encoding), and displaying a document with the wrong encoding leads to a well
-known problem: mojibake (display of strange characters or squares).
-
-.. todo:: add a screenshot of mojibake
+known problem: :ref:`mojibake <mojibake>`.
 
 It is difficult to get, or worse, guess the encoding of a document. Except for
 modern encodings such as those in the UTF family (coming from the Unicode standard), there
@@ -30,7 +28,7 @@ system manages Unicode differently. For example, :ref:`Windows` stores filenames
 whereas UNIX and BSD operating systems use bytes.
 
 Mixing documents stored as bytes is possible, even if they use different
-encodings, but leads to mojibake. Because libraries and programs do also ignore
+encodings, but leads to :ref:`mojibake <mojibake>`. Because libraries and programs do also ignore
 encode and decode warnings or errors, write a single character with a diacritic
 (any non :ref:`ASCII` character) is sometimes enough to get an error.
 

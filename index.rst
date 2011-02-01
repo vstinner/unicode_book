@@ -14,6 +14,7 @@ Programming with Unicode
    encodings.rst
    unicode.rst
    good_practices.rst
+   issues.rst
    operating_systems.rst
    programming_languages.rst
    libraries.rst
