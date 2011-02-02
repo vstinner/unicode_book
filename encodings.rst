@@ -43,6 +43,8 @@ This book only present most popular encodings:
  * :ref:`UTF-16 <utf16>`
  * :ref:`UTF-32 <utf32>`
 
+.. todo:: add statistics about encodings popularity
+
 
 Historical charsets and encodings
 ---------------------------------

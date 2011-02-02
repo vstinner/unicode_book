@@ -53,6 +53,8 @@ Byte API (char)
 Byte string API (char*)
 '''''''''''''''''''''''
 
+.. todo:: :c:type:`char*` points to char, not char*
+
 .. c:type:: char*
 
    :c:type:`char*` is a a :ref:`byte string <byte string>`. This type is used
