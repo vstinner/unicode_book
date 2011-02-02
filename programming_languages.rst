@@ -229,7 +229,7 @@ Unicode: Python 3 was relased in december 2008.
 Narrow mode of Python 2 has a partial support of :ref:`non-BMP <bmp>` characters. unichr()
 function raise an error for code bigger than U+FFFF, whereas literal strings
 support non-BMP characters (eg. ``'\U00010000'``). Non-BMP characters are
-encoded as surrogate pairs (see :ref:`UTF-16 surrogate pairs`). The disavantage is
+encoded as :ref:`surrogate pairs <surrogates>`. The disavantage is
 that ``len(u'\U00010000')`` is 2, and ``u'\U00010000'[0]`` is ``u'\uDC80'``
 (lone surrogate character).
 
@@ -253,9 +253,9 @@ written ``u'abc'``. Code points can be used directly in hexadecimal: ``\xHH``
 an integer in range 0—255: ``b'abc'[0]`` gives 97; whereas ``'abc'[0]`` gives
 ``'a'``.
 
-Python 3 has a full support of :ref:`non-BMP <bmp>` characters, in narrow and wide modes.
-But as Python 2, chr(0x10FFFF) creates a string of 2 characters (a UTF-16
-surrogate pair, see :ref:`UTF-16 surrogate pairs`) in a narrow mode. ``chr()`` and
+Python 3 has a full support of :ref:`non-BMP <bmp>` characters, in narrow and
+wide modes.  But as Python 2, chr(0x10FFFF) creates a string of 2 characters (a
+:ref:`UTF-16 surrogate pair <surrogates>`) in a narrow mode. ``chr()`` and
 ``ord()`` supports non-BMP characters in both modes.
 
 Python 3 uses U+DC80—U+DCFF character range to store undecodable bytes with the
