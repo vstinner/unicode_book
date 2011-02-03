@@ -24,12 +24,12 @@ Notations used in this book
 
  * ``0bBBBBBBBB``: 8 bit unsigned number written in binary, first digit is the most
    significant. For example, ``0b10000000`` is 128.
- * 0xHHHH: number written in hexadecimal, eg. 0xFFFF is 65535.
- * ``0xHH 0xHH ...``: byte sequence with bytes written in hexadecimal, eg.
+ * 0xHHHH: number written in hexadecimal, e.g. 0xFFFF is 65535.
+ * ``0xHH 0xHH ...``: byte sequence with bytes written in hexadecimal, e.g.
    ``0xC3 0xA9`` (2 bytes) is the character é (U+00E9) encoded to UTF-8.
  * U+HHHH: Unicode code point with code written in hexadecimal. For example, U+20AC is
    the code point 8364 (euro sign). Big code point are written with more than 4
-   hexadecimal digits, eg. U+10FFFF is the biggest (unallocated) code point of
+   hexadecimal digits, e.g. U+10FFFF is the biggest (unallocated) code point of
    Unicode 6.0: 1114111.
  * A—B: range including start and end. Examples:
 

@@ -1,5 +1,6 @@
 .. index:: BMP, Unicode
 .. _bmp:
+.. _unicode charset:
 
 Unicode
 =======
@@ -100,11 +101,11 @@ private use (Co) and surrogate (Cs) categories:
 Normalization
 -------------
 
-Unicode standard explains how to decompose a character, eg. the precomposed
+Unicode standard explains how to decompose a character, e.g. the precomposed
 character ç (U+00C7, Latin capital letter C with cedilla) can be written as the
 sequence ¸̧ (U+0327, Combining cedilla) c (U+0043, Latin capital letter C), two
 characters. This decomposition can be useful to search a substring in a text,
-eg. remove diacritic is pratical for the user. The decomposed form is called
+e.g. remove diacritic is pratical for the user. The decomposed form is called
 Normal Form D (NFD) and the precomposed form is called Normal Form C (NFC).
 
 +------+--------+----------------+

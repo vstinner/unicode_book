@@ -12,7 +12,7 @@ Unicode. It is usually used as the first "layer" between the kernel and
 applications, higher level libraries and other programming languages. This
 first layer uses the same type than the kernel: except :ref:`Windows`, all
 kernels use byte strings. The C standard library is a first layer for system
-calls (eg.  open a file).
+calls (e.g.  open a file).
 
 There are higher level libraries, like :ref:`glib <glib>` or :ref:`Qt <qt>`,
 offering a Unicode API, even if the underlying kernel use byte strings. Such
@@ -41,10 +41,10 @@ Byte API (char)
     defines :c:macro:`__CHAR_UNSIGNED__` if :c:type:`char` type is unsigned. You can use :c:macro:`CHAR_MAX`
     constant from ``<limits.h>`` to check if :c:type:`char` is signed or not.
 
-    A literal character is written between apostrophes, eg. ``'a'``. Some control
-    characters can be written with an backslash plus a letter (eg. ``'\n'`` = 10).
-    It's also possible to write the value in octal (eg. ``'\033'`` = 27) or
-    hexadecimal (eg. ``'\x20'`` = 32). An apostrophe can be written ``'\''`` or
+    A literal character is written between apostrophes, e.g. ``'a'``. Some control
+    characters can be written with an backslash plus a letter (e.g. ``'\n'`` = 10).
+    It's also possible to write the value in octal (e.g. ``'\033'`` = 27) or
+    hexadecimal (e.g. ``'\x20'`` = 32). An apostrophe can be written ``'\''`` or
     ``'\x27'``. A backslash is written ``'\\'``.
 
     ``<ctype.h>`` contains functions to manipulate characters, like :c:func:`toupper` or
@@ -66,16 +66,16 @@ Byte string API (char*)
    functions like :c:func:`snprintf` to format a message.
 
    The length of a string is stored as a nul byte at the end of the string. This
-   is a problem with encodings using nul bytes (eg. :ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>`): :c:func:`strlen()`
+   is a problem with encodings using nul bytes (e.g. :ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>`): :c:func:`strlen()`
    cannot be used to get the length of the string, whereas most C functions
    suppose that :c:func:`strlen` gives the length of the string. To support such
-   encodings, the length should be stored differently (eg. in another variable or
+   encodings, the length should be stored differently (e.g. in another variable or
    function argument) and :c:func:`str*` functions should be replaced by :c:type:`mem*`
-   functions (eg. replace ``strcmp(a, b) == 0`` by ``memcmp(a, b) == 0``).
+   functions (e.g. replace ``strcmp(a, b) == 0`` by ``memcmp(a, b) == 0``).
 
-   A literal byte strings is written between quotes, eg. ``"Hello World!"``. As byte
+   A literal byte strings is written between quotes, e.g. ``"Hello World!"``. As byte
    literal, it's possible to add control characters and characters in octal or
-   hexadecimal, eg. ``"Hello World!\n"``.
+   hexadecimal, e.g. ``"Hello World!\n"``.
 
 Character API (wchar_t)
 '''''''''''''''''''''''
@@ -90,7 +90,7 @@ Character API (wchar_t)
    bits signed integer. Mac OS X uses 32 bits integer. Windows uses 16 bits
    integer.
 
-   A literal character is written between apostrophes with the ``L`` prefix, eg.
+   A literal character is written between apostrophes with the ``L`` prefix, e.g.
    ``L'a'``. As byte literal, it's possible to write control character with an
    backslash and a character with its value in octal or hexadecimal. For codes
    bigger than 255, ``'\uHHHH'`` syntax can be used. For codes bigger than 65535,
@@ -109,7 +109,7 @@ Character string API (wchar_t*)
    encoded to :ref:`UTF-16 <utf16>` using :ref:`surrogate pairs <surrogates>`.
 
    A literal character strings is written between quotes with the ``L``
-   prefix, eg. ``L"Hello World!\n"``. As character literals, it supports also control
+   prefix, e.g. ``L"Hello World!\n"``. As character literals, it supports also control
    character, codes written in octal, hexadecimal, ``L"\uHHHH"`` and ``L"\UHHHHHHHH"``.
 
 
@@ -177,7 +177,7 @@ To initialize the locales (see :ref:`Locales <locales>`), equivalent to
     #include <locale>
     std::locale::global(std::locale(""));
 
-If you use also C functions (eg. :c:func:`printf`) to access the stdio streams, you
+If you use also C functions (e.g. :c:func:`printf`) to access the stdio streams, you
 may have issues with non-ASCII characters. To avoid these issues, you can
 disable the automatic synchronization between C (``std*``) and C++
 (``std::c*``) streams using: ::
@@ -217,10 +217,10 @@ Python 2
 ``str`` is the type of :ref:`byte strings <byte string>` and ``unicode`` is the
 type of :ref:`character (Unicode) strings <character string>`. Literal byte strings are written ``b'abc'`` (syntax
 compatible with Python 3) or ``'abc'`` (legacy syntax), ``\xHH`` can be used to
-write a byte by its hexadecimal value (eg. ``b'\x80'`` for 128). Literal
+write a byte by its hexadecimal value (e.g. ``b'\x80'`` for 128). Literal
 Unicode strings are written with the prefix ``u``: ``u'abc'``. Code points can
 be used directly in hexadecimal: ``\xHH`` (U+0000—U+00FF), ``\uHHHH``
-(U+0100—U+FFFF) or ``\UHHHHHHHH`` (U+10000—U+10FFFF), eg. ``'euro
+(U+0100—U+FFFF) or ``\UHHHHHHHH`` (U+10000—U+10FFFF), e.g. ``'euro
 sign:\u20AC'``.
 
 In Python 2, ``str + unicode`` gives ``unicode``: the byte string is
@@ -232,7 +232,7 @@ Unicode: Python 3 was relased in december 2008.
 
 Narrow mode of Python 2 has a partial support of :ref:`non-BMP <bmp>` characters. unichr()
 function raise an error for code bigger than U+FFFF, whereas literal strings
-support non-BMP characters (eg. ``'\U00010000'``). Non-BMP characters are
+support non-BMP characters (e.g. ``'\U00010000'``). Non-BMP characters are
 encoded as :ref:`surrogate pairs <surrogates>`. The disavantage is
 that ``len(u'\U00010000')`` is 2, and ``u'\U00010000'[0]`` is ``u'\uDC80'``
 (lone surrogate character).
@@ -250,10 +250,10 @@ Python 3
 ``bytes`` is the type of :ref:`byte strings <byte string>` and ``str`` is the
 type of :ref:`character (Unicode) strings <character string>`. Literal byte strings are written with the prefix ``b``:
 ``b'abc'`` (syntax compatible with Python 2), ``\xHH`` can be used to write a
-byte by its hexadecimal value (eg. ``b'\x80'`` for 128). Literal Unicode strings are
+byte by its hexadecimal value (e.g. ``b'\x80'`` for 128). Literal Unicode strings are
 written ``u'abc'``. Code points can be used directly in hexadecimal: ``\xHH``
 (U+0000—U+00FF), ``\uHHHH`` (U+0100—U+FFFF) or ``\UHHHHHHHH``
-(U+10000—U+10FFFF), eg. ``'euro sign:\u20AC'``. Each byte of a byte string is
+(U+10000—U+10FFFF), e.g. ``'euro sign:\u20AC'``. Each byte of a byte string is
 an integer in range 0—255: ``b'abc'[0]`` gives 97; whereas ``'abc'[0]`` gives
 ``'a'``.
 
@@ -356,7 +356,7 @@ Modules
 
  * ``BOM_UTF8``, ``BOM_UTF16_BE``, ``BOM_UTF32_LE``, ...: UTF :ref:`BOM <bom>` constants
  * ``lookup(name)``: get a Python codec. ``lookup(name).name`` gets the Python
-   normalized name of a codec, eg. ``codecs.lookup('ANSI_X3.4-1968').name``
+   normalized name of a codec, e.g. ``codecs.lookup('ANSI_X3.4-1968').name``
    gives ``'ascii'``.
  * ``open(filename, mode='rb', encoding=None, errors='strict', ...)``: legacy
    API to open a text file in Unicode mode, use ``io.open()`` instead
@@ -382,7 +382,7 @@ Modules
 
 ``sys`` module:
 
- * ``getdefaultencoding()``: get the default encoding, eg. used by
+ * ``getdefaultencoding()``: get the default encoding, e.g. used by
    ``'abc'.encode()``. In Python 3, the default encoding is fixed to
    ``'utf-8'``, in Python 2, it's ``'ascii'`` by default.
  * ``maxunicode``: biggest Unicode code point storable in a single Python
@@ -400,7 +400,7 @@ Modules
 PHP
 ---
 
-In PHP 5, a literal string (eg. ``"abc"``) is a :ref:`byte string <byte string>`. PHP has no Unicode type,
+In PHP 5, a literal string (e.g. ``"abc"``) is a :ref:`byte string <byte string>`. PHP has no Unicode type,
 only a "string" type which is a byte string.  But PHP have "multibyte"
 functions to manipulate character strings. These functions have an optional
 encoding argument. If the encoding is not specified, PHP uses the default
@@ -411,8 +411,8 @@ encoding (called "internal encoding"). Some multibyte functions:
    characters <unencodable>`:
 
    * ``"none"``: ignore unencodable characters
-   * ``"long"``: escape as hexadecimal value, eg. ``"U+E9"`` or ``"JIS+7E7E"``
-   * ``"entity"``: escape as HTML entity, eg. ``"&#xE9;"``
+   * ``"long"``: escape as hexadecimal value, e.g. ``"U+E9"`` or ``"JIS+7E7E"``
+   * ``"entity"``: escape as HTML entity, e.g. ``"&#xE9;"``
 
  * ``mb_convert_encoding()``: decode from an encoding and encode to another
    encoding

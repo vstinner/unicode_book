@@ -36,9 +36,9 @@ Full Unicode support is complex because the Unicode charset is bigger than any
 other charset. For example, :ref:`ISO-8859-1` contains 256 codes including 191
 characters, whereas Unicode (version 6.0) contains approximatively 245,000
 assigned codes (see :ref:`Statistics`). The Unicode standard is larger than just a
-charset: it explains also how to display characters (eg. left-to-right for
+charset: it explains also how to display characters (e.g. left-to-right for
 English and right-to-left for persian), how to normalize a character string
-(eg. precomposed characters versus the decomposed form), etc.
+(e.g. precomposed characters versus the decomposed form), etc.
 
 This book explains how to sympathize with Unicode, and how you should modify
 your program to avoid most, or all, issues related to encodings and Unicode.

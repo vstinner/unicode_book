@@ -1,6 +1,7 @@
 Good practices
 ==============
 
+.. _bytes:
 .. _byte string:
 
 Definition of a byte string
@@ -24,6 +25,7 @@ character: O(n) for the byte string and O(1) for the Unicode string. There is
 one exception: if the Unicode string is implemented using UTF-16: it has also a
 complexity of O(n).
 
+.. _str:
 .. _character string:
 
 Definition of a character string
@@ -59,21 +61,25 @@ To limit or avoid issues with Unicode, try to follow these rules:
    characters <bmp>`), has no endian issue, and is well support by most
    programs.
 
+
+.. _support:
+
 Unicode support levels
 ----------------------
 
 There are different levels of Unicode support:
 
- * 0 - no Unicode support: only work correctly if all inputs and outputs are
+ * **0 - no** Unicode support: only work correctly if all inputs and outputs are
    encoded to the same encoding, usually the :ref:`locale encoding <locale
-   encoding>`, use byte strings.
- * 1 - basic Unicode support: decode inputs and encode outputs using the
+   encoding>`, use :ref:`byte strings <bytes>`.
+ * **1 - basic** Unicode support: decode inputs and encode outputs using the
    correct encodings, usually only support :ref:`BMP <bmp>`
-   characters. Use Unicode strings, or byte strings with the locale
-   encoding or, better, an encoding of the UTF family (eg.  :ref:`UTF-8`).
- * 2 - full Unicode support: have access to the Unicode database,
-   normalize text, render correctly bidirectional texts and characters with
-   diacritics (not required for a server or command line programs).
+   characters. Use :ref:`Unicode strings <str>`, or :ref:`byte strings <bytes>`
+   with the locale encoding or, better, an encoding of the UTF family (e.g.
+   :ref:`UTF-8`).
+ * **2 - full** Unicode support: have access to the Unicode database,
+   :ref:`normalize text <normalization>`, render correctly bidirectional texts
+   and characters with diacritics.
 
 These levels should help you to estimate the status of the Unicode support of
 your project. Level 0 is enough if all of your users speak the same language or
@@ -89,7 +95,7 @@ By default, the :ref:`Python 2 <python2>` language is at level 0. You can reach
 level 1 if you store text into the ``unicode`` type and take care of input and
 output encodings. For :ref:`Python 3 <python3>`, the situation is different: it
 gives you directly the level 1 by using the wide character API on Windows and by
-taking care of input and output encodings for you (eg. decode command line
+taking care of input and output encodings for you (e.g. decode command line
 arguments and environment variables). The ``unicodedata`` module is a first
 step for a partial support of the level 2.
 
@@ -98,7 +104,7 @@ OpenOffice.org office suite are at the level 2. Slowly, more and more programs
 are coming to the level 1.
 
 Don't expect to reach directly the level 2: it requires a lot of work. Your
-project may be fully Unicode compliant for a specific task (eg. filenames), but
+project may be fully Unicode compliant for a specific task (e.g. filenames), but
 only have a basic Unicode support for the other parts of the project.
 
 
@@ -107,10 +113,10 @@ Test the Unicode support of a program
 
 Tests to evaluate the Unicode support of a program:
 
- * Write non-ASCII characters (eg. é, U+00E9) in all input fields: if the
+ * Write non-ASCII characters (e.g. é, U+00E9) in all input fields: if the
    program fails with an error, it has no Unicode support.
  * Write characters not encodable to the :ref:`locale encoding <locale
-   encoding>` (eg. Ł, U+0141) in all input fields: if the program fails with an
+   encoding>` (e.g. Ł, U+0141) in all input fields: if the program fails with an
    error, it has probably a basic Unicode program.
  * To test if a program is fully Unicode compliant, write text mixing different
    languages in different directions and characters with diacritics, especially
@@ -145,7 +151,7 @@ Files:
  * XML: the encoding can be specified in the ``<?xml ...?>`` header, use UTF-8
    if the encoding is not specified.  For example, ``<?xml version="1.0"
    encoding="iso-8859-1"?>``.
- * HTML: the encoding can be specified in a "Content type" HTTP header, eg.
+ * HTML: the encoding can be specified in a "Content type" HTTP header, e.g.
    ``<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">``.
    If it is not, you have to guess the encoding.
 

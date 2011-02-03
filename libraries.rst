@@ -26,7 +26,7 @@ Qt decodes string literals using the QLatin1String class. It is a thin wrapper
 to const char* strings. QLatin1String stores a character as a single byte. It
 is possible because it only supports characters in range U+0000—U+00FF.
 QLatin1String are smaller than ``QString`` because they cannot be used to
-manipulate text, eg. it is not possible to concatenate two QLatin1String
+manipulate text, e.g. it is not possible to concatenate two QLatin1String
 strings.
 
 ``QChar`` is a 16 bits Unicode character. Interesting ``QChar`` methods:

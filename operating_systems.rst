@@ -14,7 +14,7 @@ Code pages
 
 An application has two encodings, called code pages (abbreviated "cp"): the
 ANSI code page (:c:macro:`CP_ACP`) used for the ANSI version of the Windows API to decode a byte
-string to a character string, and the OEM code page (:c:macro:`CP_OEMCP`), eg. used for the console.
+string to a character string, and the OEM code page (:c:macro:`CP_OEMCP`), e.g. used for the console.
 Example of a French setup: :ref:`cp1252` for ANSI and cp850 for OEM.
 
 OEM code pages, or "IBM PC" code pages, have a number between 437 and 874 and
@@ -123,20 +123,22 @@ Console functions.
 
    Get the code page of the standard output (stdout and stderr) of the console.
 
+.. c:function:: WriteConsoleW()
+
+   Write a :ref:`character string <character string>` into the console.
+
+To improve the :ref:`Unicode support <support>` of the console, set the console
+font to a TrueType font (e.g. "Lucida Console") and use the wide character API
+
+If the console is unable to render a character, it tries to use a
+:ref:`character with a similar glyph <replace>`. For example, with OEM
+:ref:`code page <codepage>` 850, Ł (U+0141) is replaced by L (U+0041). If no
+replacment character can be found, "?" (U+003F) is displayed instead.
+
 In a console (``cmd.exe``), ``chcp`` command can be used to display or to
 change the :ref:`OEM code page <Code pages>` (and console code page). Change the console code page is not a
 good idea because the ANSI API of the console still expect characters encoded
 to the previous console code page.
-
-If the console is unable to render a character, it tries to use a character
-with a similar glyph: eg. Ł (U+0141) is replaced by L (U+0041). If no
-replacment character can be found, "?" (U+003F) is displayed instead.
-
-To improve the support of Unicode in a console:
-
- * Set the code page to cp65001 using the ``chcp`` command
- * Set the console font to "Lucida Console"
- * Use the Unicode version of the API
 
 :c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the encoding of a
 file (especially of stdin, stdout and stderr):
@@ -145,11 +147,17 @@ file (especially of stdin, stdout and stderr):
  * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
  * :c:macro:`_O_WTEXT`: UTF-16 with BOM
 
-See also `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?`_
-(Michael S. Kaplan, 2008).
+See also `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?
+<http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx>`_ (Michael S.
+Kaplan, 2008) and the Python bug report #1602: `windows console doesn't print
+or input Unicode <http://bugs.python.org/issue1602>`_.
 
-.. _Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?:
-   http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx
+.. note::
+
+   Set the console :ref:`code page <codepage>` to cp65001 (:ref:`UTF-8`)
+   doesn't improve Unicode support, it is the opposite: non-ASCII are not
+   rendered correctly and type non-ASCII characters (e.g. using the keyboard)
+   doesn't work correctly, especially using raster fonts.
 
 
 MS-DOS
@@ -170,16 +178,13 @@ specified: ``PRN`` (printer), ``LPT1``, ``LPT2`` or ``LPT3``.
 Mac OS X
 --------
 
-Mac OS X uses :ref:`UTF-8` for the filenames. If a filename is an invalid UTF-8 byte
-string, Mac OS raises an error. The filenames are decomposed using an
-(incompatible) variant of the Normal Form D: `Technical Q&A QA1173`_ (see
-:ref:`Normalization`).
-
-"For example, HFS Plus uses a variant of Normal Form D in which U+2000 through
-U+2FFF, U+F900 through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
-
-.. _Technical Q&A QA1173:
-   http://developer.apple.com/mac/library/qa/qa2001/qa1173.html
+Mac OS X uses :ref:`UTF-8` for the filenames. If a filename is an invalid UTF-8
+byte string, Mac OS raises an error. The filenames are :ref:`decomposed
+<normalization>`) using an (incompatible) variant of the Normal Form D,
+`Technical Q&A QA1173
+<http://developer.apple.com/mac/library/qa/qa2001/qa1173.html>`_: "For example,
+HFS Plus uses a variant of Normal Form D in which U+2000 through U+2FFF, U+F900
+through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
 
 .. todo:: Document %3A pattern for undecodable filename
 
@@ -204,7 +209,7 @@ Locale categories:
    :ref:`ASCII` (not always, see below)
  * :c:macro:`LC_MESSAGES`: language of messages (gettext), "C" locale means English
  * :c:macro:`LC_MONETARY`: monetary formatting
- * :c:macro:`LC_NUMERIC`: number formatting (eg. thousands separator)
+ * :c:macro:`LC_NUMERIC`: number formatting (e.g. thousands separator)
  * :c:macro:`LC_TIME`: time and date formatting
 
 :c:macro:`LC_ALL` is a special category: if you set a locale using this category, it sets
@@ -212,7 +217,7 @@ the locale for all categories.
 
 Each category has its own environment variable with the same name. For example,
 ``LC_MESSAGES=C`` displays error messages in English. To get the value of a locale
-category, ``LC_ALL``, ``LC_xxx`` (eg. ``LC_CTYPE``) or ``LANG`` environment variables are
+category, ``LC_ALL``, ``LC_xxx`` (e.g. ``LC_CTYPE``) or ``LANG`` environment variables are
 checked: use the first non empty variable. If all variables are unset,
 fallback to the C locale.
 
@@ -229,8 +234,8 @@ For Unicode, the most important locale category is ``LC_CTYPE``: it is used to s
 the "locale encoding".
 
 For the C locale, ``nl_langinfo(CODESET)`` returns :ref:`ASCII`, or an alias to
-this encoding (eg. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
-OS X <osx>`, codec functions (eg. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`
+this encoding (e.g. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
+OS X <osx>`, codec functions (e.g. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`
 even if ``nl_langinfo(CODESET)`` announces ASCII encoding.
 
 

@@ -49,7 +49,7 @@ Non-strict UTF-8 decoder
 An UTF-8 decoder have to reject invalid byte sequences for security reasons:
 ``0xC0 0x80`` byte sequence must raise an error (and not be decoded as U+0000).
 If the decoder accepts invalid byte sequence, an attacker can use it to bypass
-security checks (eg. reject string containing nul bytes, ``0x00``). Surrogates
+security checks (e.g. reject string containing nul bytes, ``0x00``). Surrogates
 characters are also invalid in UTF-8: characters in U+D800—U+DFFF have to be
 rejected.
 

@@ -10,42 +10,54 @@ decode bytes to characters (code points). 7 and 8 bits charsets don't need any
 encoding: a code point is stored in a single byte (unsigned 8 bits number).
 Because of these charsets, many people confuse charsets and encodings.
 Bigger charsets need multibyte encodings like :ref:`UTF-8` or :ref:`GBK <gbk>`. A multibyte
-encoding can encode all code points into byte sequences of the same size (eg. :ref:`UCS-2 <ucs>`), or byte
-sequence with a variable length (eg. :ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower
+encoding can encode all code points into byte sequences of the same size (e.g. :ref:`UCS-2 <ucs>`), or byte
+sequence with a variable length (e.g. :ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower
 than 128 use a single byte, whereas higher code points take between 2 and 4 bytes.
 
 There are many encodings around the world. Before Unicode, each manufacturer
 invented its own encoding to fit its client market and its usage. Most
-encodings are incompatible on at least one code, except some exceptions (eg. a
-document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or UTF-8, because ASCII
-is a subset of ISO-8859-1 and UTF-8) The most common encodings are, in
-chronological order of their creation: ASCII (1968), ISO-8859-1 (1987) and
-UTF-8 (1996). Each encoding can have multiple aliases, for example:
+encodings are incompatible on at least one code, except some exceptions (e.g. a
+document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or UTF-8,
+because ISO-8859-1 and UTF-8 are supersets of ASCII). Each encoding can have
+multiple aliases, for example:
 
  * ASCII: US-ASCII, ISO 646, ANSI_X3.4-1968, …
  * ISO-8859-1: Latin-1, iso88591, …
  * UTF-8: utf8, UTF_8, …
 
-:ref:`Unicode` is a charset and it requires a encoding. Only encodings of the UTF
-family are able to encode and decode all Unicode code points. Other encodings
-only support a subset of Unicode codespace. For example, ISO-8859-1 are the
-first 256 Unicode code points (U+0000—U+00FF).
+:ref:`Unicode <unicode charset>` is a charset and it requires a encoding. Only
+encodings of the UTF family are able to encode and decode all Unicode code
+points. Other encodings only support a subset of Unicode codespace. For
+example, ISO-8859-1 are the first 256 Unicode code points (U+0000—U+00FF).
 
-This book only present most popular encodings:
+This book present the following encodings: :ref:`ASCII`, :ref:`cp1252`,
+:ref:`GBK <gbk>`, :ref:`ISO-8859-1`, :ref:`ISO-8859-15`, :ref:`JIS <jis>`,
+:ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>` and
+:ref:`UTF-32 <utf32>`.
 
- * :ref:`ASCII`
- * :ref:`cp1252`
- * :ref:`GBK <gbk>`
- * :ref:`ISO-8859-1`
- * :ref:`ISO-8859-15`
- * :ref:`JIS <jis>`
- * :ref:`UCS-2 <ucs>`
- * :ref:`UCS-4 <ucs>`
- * :ref:`UTF-8`
- * :ref:`UTF-16 <utf16>`
- * :ref:`UTF-32 <utf32>`
+Popularity
+----------
 
-.. todo:: add statistics about encodings popularity
+The three most common encodings are, in chronological order of their creation:
+:ref:`ASCII` (1968), :ref:`ISO-8859-1` (1987) and :ref:`UTF-8` (1996).
+
+Google posted an interesting graph of the usage of different encodings on the
+web: `Unicode nearing 50% of the web
+<http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html>`_ (Mark
+Davis, january 2010). Because Google craws an huge part of the web, these
+numbers should be reliable. In 2001, the most used encodings were:
+
+ * 1st (56%): :ref:`ASCII`
+ * 2nd (23%): Western Europe encodings (:ref:`ISO-8859-1`, :ref:`ISO-8859-15`
+   and :ref:`cp1252`)
+ * 3rd (8%): Chinese encodings (:ref:`GB2312 <gbk>`, ...)
+ * and then come Korean (EUC-KR), Cyrillic (cp1251, KOI8-R, ...), East Europe
+   (cp1250, ISO-8859-2), Arabic (cp1256, ISO-8859-6), etc.
+ * (UTF-8 was not used in 2001)
+
+In december 2007, for the first time: :ref:`UTF-8` is the most used encoding
+(near 25%). In january 2010, UTF-8 was close to 50%, and ASCII and Western
+Europe encodings near 20%. The usage of the other encodings don't change.
 
 
 Historical charsets and encodings
@@ -55,7 +67,7 @@ Between 1950 and 2000, each manufacturer and each operating system created its
 own 8 bits encoding. The problem was that 8 bits (256 code points) are not
 enough to store any character, and so the encoding tries to fit the user's
 language. Most 8 bits encodings are able to encode multiple languages, usually
-geograpically close (eg. ISO-8859-1 is intented for Western Europe).
+geograpically close (e.g. ISO-8859-1 is intented for Western Europe).
 
 It was difficult to exchange documents of different languages, because if a
 document was encoded to an encoding different than the user encoding, it leaded
@@ -76,8 +88,8 @@ instead of a backslash (U+005C, \\). ASCII is
 the smallest encoding, it only contains 128 codes including 95 printable
 characters (letters, digits, punctuation signs and some other various
 characters) and 33 control codes. Control codes are used to control the
-terminal, eg. 10, the "line feed", written ``"\n"`` is most programming
-languages, marks the end of a line. There are some special control code, eg. 7,
+terminal, e.g. 10, the "line feed", written ``"\n"`` is most programming
+languages, marks the end of a line. There are some special control code, e.g. 7,
 known as "bell" and written ``"\b"``, sent to ring a bell. ASCII code points
 are the first 128 code points of Unicode (U+0000—U+007F).
 
@@ -310,7 +322,7 @@ is that it is a multibyte encoding: you cannot access a character by its
 character index directly, you have to compute the byte index. If getting a character by
 its index is a common operation in your program, use a real character type
 like :c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C <c>` bytes
-functions are compatible with UTF-8 encoded strings (eg. :c:func:`strcat` or :c:func:`printf`), whereas they fail with UTF-16
+functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or :c:func:`printf`), whereas they fail with UTF-16
 and UTF-32 encoded strings because these encodings encode small codes with nul bytes.
 
 See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
@@ -443,7 +455,7 @@ Complexity of getting the n-th character in a string, and of
 getting the length in character of a string:
 
  * O(1) for 7 and 8 bit encodings (ASCII, ISO-8859, ...), UCS-2 and UCS-4
- * O(n) for variable length encodings (eg. the UTF family)
+ * O(n) for variable length encodings (e.g. the UTF family)
 
 .. todo:: Perf of the codec
 
@@ -542,7 +554,7 @@ where HHH...H is the code point formatted in hexadecimal. PHP "long" error
 handler uses ``U+HH``, ``U+HHHH`` or ``encoding+HHHH`` (e.g. ``JIS+7E7E``).
 
 PHP "entity" and Python "xmlcharrefreplace" error handlers escape the
-code point as an HTML/XML entity (eg. PHP: ``&#xE9;``, Python: ``&#233;``).
+code point as an HTML/XML entity (e.g. PHP: ``&#xE9;``, Python: ``&#233;``).
 
 
 Other charsets and encodings
@@ -672,7 +684,7 @@ reliable algorithm to check if a function is encoded to UTF-8.
 .. highlight:: c
 
 Example of a strict :ref:`C <c>` function to check if a string is encoded to UTF-8. It
-rejects overlong sequences (eg.  ``0xC0 0x80``) and surrogate characters (eg.
+rejects overlong sequences (e.g.  ``0xC0 0x80``) and surrogate characters (e.g.
 ``0xED 0xB2 0x80``, U+DC80). ::
 
     #include <stdint.h>
