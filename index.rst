@@ -2,8 +2,6 @@
 Programming with Unicode
 ++++++++++++++++++++++++
 
-.. todolist::
-
 .. toctree::
    :maxdepth: 2
    :numbered:
