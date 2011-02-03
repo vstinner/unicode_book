@@ -401,9 +401,9 @@ In PHP 5, a literal string (eg. ``"abc"``) is a :ref:`byte string <byte string>`
 only a "string" type which is a byte string.  But PHP have "multibyte"
 functions to manipulate character strings. These functions have an optional
 encoding argument. If the encoding is not specified, PHP uses the default
-encoding (called "internal encoding"). mb_internal_encoding() function can be
-used to get or set the internal encoding. mb_substitute_character() can be used
-to change how to encode unencodable characters:
+encoding (called "internal encoding"). ``mb_internal_encoding()`` function can
+be used to get or set the internal encoding. ``mb_substitute_character()`` can
+be used to change how to encode unencodable characters:
 
  * ``"none"``: ignore unencodable characters
  * ``"long"``: escape as hexadecimal value, eg. ``"U+E9"`` or ``"JIS+7E7E"``
@@ -415,7 +415,19 @@ Some multibyte functions:
    encoding
  * ``mb_ereg()``: search a pattern using a regular expression
  * ``mb_strlen()``: length of a character string
+ * ``mb_detect_encoding()``: detect the encoding of a byte string
 
+Perl compatible regular expressions (PCRE) have an ``u`` flag ("PCRE8") to
+process byte strings as UTF-8 encoded strings.
+
+PHP includes also a binding of the :ref:`iconv <iconv>` library. Some
+interesting functions:
+
+ * ``iconv()``: decode a byte string from an encoding and encode to another
+   encoding
+ * ``iconv_mime_decode()``: decode a MIME header field
+
+.. todo:: Document utf8_encode() and utf8_decode() functions?
 .. todo:: Howto get $_POST and $_GET encoding
 .. todo:: Howto get uri encoding
 

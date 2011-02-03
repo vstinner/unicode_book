@@ -139,3 +139,9 @@ iconv library
 decode text in different encodings. It is distributed under the `GNU LGPL
 license`_. It supports a lot of encodings including rare and old encodings.
 
+By default, libiconv is :ref:`strict <strict>`: an :ref:`unencodable character
+<unencodable character>` raise an error. You can :ref:`ignore <ignore>` these
+characters by add ``//IGNORE`` suffix to the encoding. There is also the
+``//TRANSLIT`` suffix to  :ref:`replace unencodable characters <replace>` by
+similarly looking characters.
+

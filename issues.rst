@@ -59,6 +59,10 @@ one.
 The libxml2 library had such vulnerability until january 2008: `CVE-2007-6284
 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6284>`_.
 
+Some PHP functions use a strict UTF-8 decoder (e.g. ``mb_convert_encoding()``),
+some other don't. For example, ``utf8_decode()`` and ``mb_strlen()`` accept
+``0xC0 0x80`` in PHP 5.3.2.
+
 
 Check byte strings but use Unicode strings
 ''''''''''''''''''''''''''''''''''''''''''

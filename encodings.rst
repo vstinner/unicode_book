@@ -464,6 +464,85 @@ Examples
 +------------+-------------------------+-------------------------+
 
 
+Handle undecodable bytes and unencodable characters
+---------------------------------------------------
+
+.. _undecodable byte:
+
+Undecodable byte sequences
+''''''''''''''''''''''''''
+
+When a byte string is decoded from an encoding, the decoder may fail to decode
+a specific byte sequence. For example, ``0x61 0x62 0x63 0xFF`` is not
+decodable from :ref:`ASCII` nor :ref:`UTF-8`, but it is decodable from
+:ref:`ISO-8859-1`.
+
+Some encodings are able to decode any byte sequences. All encodings of the
+ISO-8859 family have this property, because all of the 256 code points of these
+8 bits encodings are assigned.
+
+
+.. _unencodable character:
+
+Unencodable characters
+''''''''''''''''''''''
+
+When a character string is encoded to an encoding smaller than Unicode, a
+character may not be encodable. For example, € (U+20AC) is not encodable to
+:ref:`ISO-8859-1`, but it is encodable to :ref:`ISO-8859-15` and :ref:`UTF-8`.
+
+
+.. _strict:
+.. _ignore:
+
+Error handlers
+''''''''''''''
+
+There are different choices to handle undecodable byte sequences and
+unencodable characters:
+
+ * strict: raise an error
+ * ignore
+ * replace by ? (U+003F) or � (U+FFFD)
+ * replace by a similar glyph
+ * escape: format its code point (e.g. replace "é" by "U+00E9")
+ * etc.
+
+.. _replace:
+
+Replace unencodable characters by a similar glyph
+'''''''''''''''''''''''''''''''''''''''''''''''''
+
+By default, :c:func:`WideCharToMultiByte` replaces unencodable characters by
+similarly looking characters. The :ref:`normalization <normalization>` to NFKC
+and NFKD does also such operation. Examples:
+
++--------------------------------------------------------+------------------------------------------+
+| Character                                              | Replaced by                              |
++============================================+===========+=========+================================+
+| U+0141, latin capital letter l with stroke | Ł         | L       | U+004C, latin capital letter l |
++--------------------------------------------+-----------+---------+--------------------------------+
+| U+0133, latin small ligature ij            | ĳ         | ij      | U+0069, U+006A                 |
++--------------------------------------------+-----------+---------+--------------------------------+
+| U+00B5, micro sign                         | µ         | μ       | U+03BC, greek small letter mu  |
++--------------------------------------------+-----------+---------+--------------------------------+
+| U+20AC, euro sign                          | €         | EUR     | U+0045, U+0055, U+0052         |
++--------------------------------------------+-----------+---------+--------------------------------+
+| U+221E, infinity                           | ∞         | 8       | U+0038, digit eight            |
++--------------------------------------------+-----------+---------+--------------------------------+
+
+
+Escape the character
+''''''''''''''''''''
+
+Python "replace" error handler uses ``\xHH``, ``\uHHHH`` or ``\UHHHHHHHH``
+where HHH...H is the code point formatted in hexadecimal. PHP "long" error
+handler uses ``U+HH``, ``U+HHHH`` or ``encoding+HHHH`` (e.g. ``JIS+7E7E``).
+
+PHP "entity" and Python "xmlcharrefreplace" error handlers escape the
+code point as an HTML/XML entity (eg. PHP: ``&#xE9;``, Python: ``&#233;``).
+
+
 Other charsets and encodings
 ----------------------------
 
