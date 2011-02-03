@@ -75,19 +75,21 @@ Encode and decode functions of ``<windows.h>``.
 
 .. c:function:: MultiByteToWideChar()
 
-   Decode a byte string to a character string (similar to
-   :c:func:`mbstowcs`). It supports the :ref:`ANSI code page <Code pages>` and :ref:`OEM code page <Code pages>`, UTF-7 and :ref:`UTF-8`. By default,
-   it ignores undecodable bytes. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to raise an
-   error on an invalid byte sequence.
+   Decode a byte string to a character string (similar to :c:func:`mbstowcs`).
+   It supports the :ref:`ANSI code page <Code pages>` and :ref:`OEM code page
+   <Code pages>`, UTF-7 and :ref:`UTF-8`. By default, it ignores undecodable
+   bytes. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to raise an error on an
+   invalid byte sequence.
 
 .. c:function:: WideCharToMultiByte()
 
-   Encode a character string to a byte string (similar to
-   :c:func:`wcstombs`). As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI code page <Code pages>` and the :ref:`OEM code page <Code pages>`,
-   UTF-7 and :ref:`UTF-8`. By default, if a character cannot be encoded, it is
-   replaced by a character with a similar glyph. For example, with :ref:`cp1252`, Ł (U+0141) is replaced
-   by L (U+004C). Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to raise an error on
-   unencodable character.
+   Encode a character string to a byte string (similar to :c:func:`wcstombs`).
+   As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI code page <Code
+   pages>` and the :ref:`OEM code page <Code pages>`, UTF-7 and :ref:`UTF-8`.
+   By default, if a character cannot be encoded, it is replaced by a character
+   with a similar glyph. For example, with :ref:`cp1252`, Ł (U+0141) is
+   replaced by L (U+004C). Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to raise an
+   error on :ref:`unencodable character <unencodable>`.
 
 
 Filenames
@@ -184,8 +186,8 @@ U+2FFF, U+F900 through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
 
 .. _locales:
 
-Locales (UNIX and BSD)
-----------------------
+Locales
+-------
 
 To support different languages and encodings, UNIX and BSD operating systems
 have "locales". Locales are process-wide: if a thread or a library change
@@ -231,6 +233,10 @@ this encoding (eg. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
 OS X <osx>`, codec functions (eg. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`
 even if ``nl_langinfo(CODESET)`` announces ASCII encoding.
 
+
+Locale functions
+''''''''''''''''
+
 ``<locale.h>`` functions.
 
 .. c:function:: char* setlocale(category, NULL)
@@ -251,15 +257,15 @@ even if ``nl_langinfo(CODESET)`` announces ASCII encoding.
 
 .. c:function:: size_t mbstowcs(wchar_t *dest, const char *src, size_t n)
 
-   Decode a byte string from the locale encoding to a character string.  Raise
-   an error on undecodable byte sequence. If available, always prefer the
-   reentrant version: :c:func:`mbsrtowcs`.
+   Decode a byte string from the locale encoding to a character string. Return
+   an error on :ref:`undecodable byte sequence <undecodable>`. If available,
+   always prefer the reentrant version: :c:func:`mbsrtowcs`.
 
 .. c:function:: size_t wcstombs(char *dest, const wchar_t *src, size_t n)
 
-   Encode a character string to a byte string in the locale encoding. Raise an
-   error if a character cannot by encoded. If available, always prefer the
-   reentrant version: :c:func:`wcsrtombs`.
+   Encode a character string to a byte string in the locale encoding. Return an
+   error if :ref:`a character cannot by encoded <unencodable>`. If available,
+   always prefer the reentrant version: :c:func:`wcsrtombs`.
 
 .. note::
 

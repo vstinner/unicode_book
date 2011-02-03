@@ -140,9 +140,10 @@ truncated string "Latin capital letter L with stroke: [" if ``0xC5 0x81``
 
     wprintf(L"Latin capital letter L with stroke): [%s]\n", "\xC5\x81");
 
-``wprintf("%ls")`` replaces unencodable characters by "?" (U+003F). For example,
-the following example print "Latin capital letter L with stroke: [?]"
-if U+0141 (Ł) cannot be encoded to the locale encoding: ::
+``wprintf("%ls")`` :ref:`replaces <replace>` :ref:`unencodable characters
+<unencodable>` by "?" (U+003F). For example, the following example print "Latin
+capital letter L with stroke: [?]" if U+0141 (Ł) cannot be encoded to the
+locale encoding: ::
 
     wprintf(L"Latin capital letter L with stroke: [%s]\n", L"\u0141");
 
@@ -260,7 +261,7 @@ wide modes.  But as Python 2, chr(0x10FFFF) creates a string of 2 characters (a
 :ref:`UTF-16 surrogate pair <surrogates>`) in a narrow mode. ``chr()`` and
 ``ord()`` supports non-BMP characters in both modes.
 
-Python 3 uses U+DC80—U+DCFF character range to store undecodable bytes with the
+Python 3 uses U+DC80—U+DCFF character range to store :ref:`undecodable bytes <undecodable>` with the
 ``surrogateescape`` error handler, described in the `PEP 383`_ (*Non-decodable
 Bytes in System Character Interfaces*). It is used for filenames and
 environment variables on UNIX and BSD systems. Example:
@@ -297,7 +298,8 @@ whereas ``UTF-8-SIG``, ``UTF-16`` and ``UTF-32`` use BOM. ``mbcs`` is the :ref:`
 code page <Code pages>` and so is only available on Windows.
 
 Python provides also many error handlers used to specify how to handle
-undecodable bytes / unencodable characters:
+:ref:`undecodable bytes <undecodable>` / :ref:`unencodable characters
+<unencodable>`:
 
  * ``strict`` (default): raise ``UnicodeDecodeError`` / ``UnicodeEncodeError``
  * ``replace`` replace undecodable bytes by � (U+FFFD) and unencodable
@@ -401,15 +403,15 @@ In PHP 5, a literal string (eg. ``"abc"``) is a :ref:`byte string <byte string>`
 only a "string" type which is a byte string.  But PHP have "multibyte"
 functions to manipulate character strings. These functions have an optional
 encoding argument. If the encoding is not specified, PHP uses the default
-encoding (called "internal encoding"). ``mb_internal_encoding()`` function can
-be used to get or set the internal encoding. ``mb_substitute_character()`` can
-be used to change how to encode unencodable characters:
+encoding (called "internal encoding"). Some multibyte functions:
 
- * ``"none"``: ignore unencodable characters
- * ``"long"``: escape as hexadecimal value, eg. ``"U+E9"`` or ``"JIS+7E7E"``
- * ``"entity"``: escape as HTML entity, eg. ``"&#xE9;"``
+ * ``mb_internal_encoding()``: get or set the internal encoding
+ * ``mb_substitute_character()``: change how to handle :ref:`unencodable
+   characters <unencodable>`:
 
-Some multibyte functions:
+   * ``"none"``: ignore unencodable characters
+   * ``"long"``: escape as hexadecimal value, eg. ``"U+E9"`` or ``"JIS+7E7E"``
+   * ``"entity"``: escape as HTML entity, eg. ``"&#xE9;"``
 
  * ``mb_convert_encoding()``: decode from an encoding and encode to another
    encoding

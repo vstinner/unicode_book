@@ -467,7 +467,7 @@ Examples
 Handle undecodable bytes and unencodable characters
 ---------------------------------------------------
 
-.. _undecodable byte:
+.. _undecodable:
 
 Undecodable byte sequences
 ''''''''''''''''''''''''''
@@ -482,7 +482,7 @@ ISO-8859 family have this property, because all of the 256 code points of these
 8 bits encodings are assigned.
 
 
-.. _unencodable character:
+.. _unencodable:
 
 Unencodable characters
 ''''''''''''''''''''''

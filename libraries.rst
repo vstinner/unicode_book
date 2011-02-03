@@ -79,7 +79,8 @@ Codec functions:
 
  * :c:func:`g_convert`: decode from an encoding and encode to another encoding
    with the :ref:`iconv library <iconv>`. Use :c:func:`g_convert_with_fallback`
-   to choose how to handle undecodable bytes and unencodable characters.
+   to choose how to handle :ref:`undecodable bytes <undecodable>` and
+   :ref:`unencodable characters <unencodable>`.
  * :c:func:`g_locale_from_utf8` / :c:func:`g_locale_to_utf8`: encode to/decode from the locale
    encoding.
  * :c:func:`g_get_charset`: get the charset of the :ref:`current locale <locale
@@ -100,7 +101,8 @@ Filename functions:
  * :c:func:`g_filename_display_name`: human readable version of a filename. Try
    to decode the filename from each encoding of
    :c:func:`g_get_filename_charsets` encoding list. If all decoding failed,
-   decode the filename from UTF-8 and escape undecodable bytes.
+   decode the filename from UTF-8 and escape :ref:`undecodable bytes
+   <undecodable>`.
  * :c:func:`g_get_filename_charsets`: get the list of charsets used to decode
    and encode filenames. :c:func:`g_filename_display_name` tries each encoding
    of this list, other functions just use the first encoding. Use UTF-8 on
@@ -140,8 +142,8 @@ decode text in different encodings. It is distributed under the `GNU LGPL
 license`_. It supports a lot of encodings including rare and old encodings.
 
 By default, libiconv is :ref:`strict <strict>`: an :ref:`unencodable character
-<unencodable character>` raise an error. You can :ref:`ignore <ignore>` these
-characters by add ``//IGNORE`` suffix to the encoding. There is also the
-``//TRANSLIT`` suffix to  :ref:`replace unencodable characters <replace>` by
-similarly looking characters.
+<unencodable>` raise an error. You can :ref:`ignore <ignore>` these characters
+by add ``//IGNORE`` suffix to the encoding. There is also the ``//TRANSLIT``
+suffix to  :ref:`replace unencodable characters <replace>` by similarly looking
+characters.
 
