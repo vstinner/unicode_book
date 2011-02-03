@@ -506,14 +506,15 @@ character may not be encodable. For example, € (U+20AC) is not encodable to
 :ref:`ISO-8859-1`, but it is encodable to :ref:`ISO-8859-15` and :ref:`UTF-8`.
 
 
+.. _errors:
 .. _strict:
 .. _ignore:
 
 Error handlers
 ''''''''''''''
 
-There are different choices to handle undecodable byte sequences and
-unencodable characters:
+There are different choices to handle :ref:`undecodable byte sequences
+<undecodable>` and :ref:`unencodable characters <unencodable>`:
 
  * strict: raise an error
  * ignore
@@ -521,6 +522,24 @@ unencodable characters:
  * replace by a similar glyph
  * escape: format its code point (e.g. replace "é" by "U+00E9")
  * etc.
+
+Example, encode "abcdé" to ASCII (é, U+00E9, is not encodable to ASCII):
+
++----------------------------+------------------+
+| Error handler              | Output           |
++============================+==================+
+| strict                     | *raise an error* |
++----------------------------+------------------+
+| ignore                     | ``"abcd"``       |
++----------------------------+------------------+
+| replace by ?               | ``"abcd?"``      |
++----------------------------+------------------+
+| replace by a similar glyph | ``"abcde"``      |
++----------------------------+------------------+
+| escape as hexadecimal      | ``"abcd\xe9"``   |
++----------------------------+------------------+
+| escape as XML entities     | ``"abcd&#233;"`` |
++----------------------------+------------------+
 
 .. _replace:
 

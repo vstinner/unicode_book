@@ -24,6 +24,9 @@ character: O(n) for the byte string and O(1) for the Unicode string. There is
 one exception: if the Unicode string is implemented using UTF-16: it has also a
 complexity of O(n).
 
+:ref:`PHP5 <php>` only supports byte strings.
+
+
 .. _str:
 
 Definition of a character string
@@ -39,9 +42,21 @@ be, depending on the implementation, any Unicode character or :ref:`BMP-only
  * array of 16 bits unsigned integers with :ref:`surrogate pairs
    <surrogates>`, :ref:`UTF-16 <utf16>`: full Unicode range
 
-The later has the disavantage of having a complexity of O(n) on some
-operations like getting the nth character, whereas UCS-2 and UCS-4 strings
-have a complexity of O(1).
+UCS-4 strings use two times more memory than UCS-2 strings, but there are able
+to store non-BMP character. UTF-16 is a compromise between UCS-2 and UCS-4, but
+it has disadvantages.
+
+UTF-16 strings are not exactly character strings, because their length is the
+number of UTF-16 words, and not the number of characters. For :ref:`BMP <bmp>`
+characters, the length is the same, but not for non-BMP characters.  For
+example, U+10FFFF is one character, but it is encoded as 2 UTF-16 words: U+DBFF
+and U+DFFF (a :ref:`surrogate pair <surrogates>`). Getting the nth character in
+such string has a complexity of O(n), whereas it has a complexity of O(1) for
+UCS-2 and UCS-4 strings.
+
+:ref:`Java` and :ref:`Python` (compiled in narrow mode) languages use UTF-16
+strings. The :ref:`C language <c>` use also UTF-16 strings if the
+:c:type:`wchar_t` type is 16 bits long.
 
 
 Rules

@@ -225,6 +225,13 @@ The "C" locale is a special locale. It is also known as "POSIX". It is used if
 ``LC_ALL``, ``LC_xxx`` and ``LANG`` environment variables are not set. As English is used
 as the default language, use C locale means that programs speak English.
 
+.. note::
+
+   The gettext library reads ``LANGUAGE``, ``LC_ALL`` and ``LANG`` environment
+   variables (and some others) to get the user language. The ``LANGUAGE``
+   variable is specific to gettext and is not related to locales.
+
+
 .. _locale encoding:
 
 Locale encoding
@@ -272,10 +279,13 @@ Locale functions
    error if :ref:`a character cannot by encoded <unencodable>`. If available,
    always prefer the reentrant version: :c:func:`wcsrtombs`.
 
+mbstowcs() and wcstombs() are :ref:`strict <strict>` and don't support
+:ref:`error handlers <errors>`.
+
 .. note::
 
-   "mbs" means "multibyte string" (byte string) and "wcs" means "wide character
-   string".
+   "mbs" stands for "multibyte string" (byte string) and "wcs" stands for "wide
+   character string".
 
 On Windows, the "locale encoding" are the :ref:`ANSI and OEM code pages
 <codepage>`.
