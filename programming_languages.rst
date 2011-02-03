@@ -126,17 +126,18 @@ Formats of string arguments for the printf functions:
  * ``"%s"``: literal byte string (:c:type:`char*`)
  * ``"%ls"``: literal character string (:c:type:`wchar_t*`)
 
-:c:func:`printf` stops immediatly if a character cannot be encoded to the locale
-encoding. For example, the following code prints the truncated string "Latin
-capital letter L with stroke: [" if U+0141 (Ł) cannot be encoded to the locale
-encoding. ::
+:c:func:`printf` stops immediatly if :ref:`a character cannot be encoded
+<unencodable>` to the :ref:`locale encoding <locale encoding>`. For example,
+the following code prints the truncated string "Latin capital letter L with
+stroke: [" if U+0141 (Ł) cannot be encoded to the locale encoding. ::
 
     printf("Latin capital letter L with stroke: [%ls]\n", L"\u0141");
 
-:c:func:`wprintf` function stops immediatly if a byte string argument cannot be decoded
-from the current locale encoding. For example, the following code prints the
-truncated string "Latin capital letter L with stroke: [" if ``0xC5 0x81``
-(U+0141 encoded to UTF-8) cannot be decoded from the locale encoding. ::
+:c:func:`wprintf` function stops immediatly if :ref:`a byte string argument
+cannot be decoded <undecodable>` from the :ref:`locale encoding <locale
+encoding>`. For example, the following code prints the truncated string "Latin
+capital letter L with stroke: [" if ``0xC5 0x81`` (U+0141 encoded to UTF-8)
+cannot be decoded from the locale encoding. ::
 
     wprintf(L"Latin capital letter L with stroke): [%s]\n", "\xC5\x81");
 

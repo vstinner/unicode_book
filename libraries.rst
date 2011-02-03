@@ -125,8 +125,6 @@ ICU library
 Unicode and Globalization support for software applications. ICU is a open
 source library distributed under the `MIT license`_.
 
-.. todo:: complete this section
-
 .. _International Components for Unicode: http://site.icu-project.org/
 .. _GNU LGPL license: http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License
 .. _MIT license: http://en.wikipedia.org/wiki/MIT_License
