@@ -431,8 +431,6 @@ interesting functions:
  * ``iconv_mime_decode()``: decode a MIME header field
 
 .. todo:: Document utf8_encode() and utf8_decode() functions?
-.. todo:: Howto get $_POST and $_GET encoding
-.. todo:: Howto get uri encoding
 
 PHP 6 was a project to improve Unicode support of Unicode. This project died at
 the beginning of 2010. Read `The Death of PHP 6/The Future of PHP 6 <http://blog.dmcinsights.com/2010/05/25/the-death-of-php-6the-future-of-php-6/>`_ (May 25,
