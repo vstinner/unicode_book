@@ -115,8 +115,6 @@ Normal Form D (NFD) and the precomposed form is called Normal Form C (NFC).
 | NFD  | ,c     | U+0327, U+0043 |
 +------+--------+----------------+
 
-.. todo:: rst doesn't accept diacritics (U+0327) in a table cell: | NFD | ¸̧c | U+0327, U+0043 |
-
 Unicode database contains also a compatibility layer: if a character cannot be
 rendered (no font contain the requested character) or encoded to a specific
 encoding, Unicode proposes a replacment character sequence which looks like the
