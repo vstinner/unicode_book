@@ -2,7 +2,6 @@ Good practices
 ==============
 
 .. _bytes:
-.. _byte string:
 
 Definition of a byte string
 ---------------------------
@@ -26,7 +25,6 @@ one exception: if the Unicode string is implemented using UTF-16: it has also a
 complexity of O(n).
 
 .. _str:
-.. _character string:
 
 Definition of a character string
 --------------------------------

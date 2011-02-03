@@ -57,7 +57,7 @@ Byte string API (char*)
 
 .. c:type:: char*
 
-   :c:type:`char*` is a a :ref:`byte string <byte string>`. This type is used
+   :c:type:`char*` is a a :ref:`byte string <bytes>`. This type is used
    in many places in the C standard library. For example, :c:func:`fopen` uses
    :c:type:`char*` for the filename.
 
@@ -102,7 +102,7 @@ Character string API (wchar_t*)
 
 .. c:type:: wchar_t*
 
-   :c:type:`wchar_t*` is a :ref:`character string <character string>`. The
+   :c:type:`wchar_t*` is a :ref:`character string <str>`. The
    standard library ``<wchar.h>`` contains character string functions like
    :c:func:`wcslen` or :c:func:`wprintf`, and constants like WCHAR_MAX. If
    :c:type:`wchar_t` is 16 bits long, :ref:`non-BMP <bmp>` characters are
@@ -162,9 +162,9 @@ string arguments.
 C++
 ---
 
- * ``std::wstring``: :ref:`character string <character string>` using the
+ * ``std::wstring``: :ref:`character string <str>` using the
    :c:type:`wchar_t` type, unicode version of ``std::string`` (:ref:`byte
-   string <byte string>`)
+   string <bytes>`)
  * ``std::wcin``, ``std::wcout`` and ``std::wcerr``: standard input, output
    and error output; unicode version of ``std::cin``, ``std::cout`` and
    ``std::cerr``
@@ -214,8 +214,8 @@ See also the `Python Unicode HOWTO <http://docs.python.org/howto/unicode.html>`_
 Python 2
 ''''''''
 
-``str`` is the type of :ref:`byte strings <byte string>` and ``unicode`` is the
-type of :ref:`character (Unicode) strings <character string>`. Literal byte strings are written ``b'abc'`` (syntax
+``str`` is the type of :ref:`byte strings <bytes>` and ``unicode`` is the
+type of :ref:`character (Unicode) strings <str>`. Literal byte strings are written ``b'abc'`` (syntax
 compatible with Python 3) or ``'abc'`` (legacy syntax), ``\xHH`` can be used to
 write a byte by its hexadecimal value (e.g. ``b'\x80'`` for 128). Literal
 Unicode strings are written with the prefix ``u``: ``u'abc'``. Code points can
@@ -247,8 +247,8 @@ ASCII.
 Python 3
 ''''''''
 
-``bytes`` is the type of :ref:`byte strings <byte string>` and ``str`` is the
-type of :ref:`character (Unicode) strings <character string>`. Literal byte strings are written with the prefix ``b``:
+``bytes`` is the type of :ref:`byte strings <bytes>` and ``str`` is the
+type of :ref:`character (Unicode) strings <str>`. Literal byte strings are written with the prefix ``b``:
 ``b'abc'`` (syntax compatible with Python 2), ``\xHH`` can be used to write a
 byte by its hexadecimal value (e.g. ``b'\x80'`` for 128). Literal Unicode strings are
 written ``u'abc'``. Code points can be used directly in hexadecimal: ``\xHH``
@@ -400,7 +400,7 @@ Modules
 PHP
 ---
 
-In PHP 5, a literal string (e.g. ``"abc"``) is a :ref:`byte string <byte string>`. PHP has no Unicode type,
+In PHP 5, a literal string (e.g. ``"abc"``) is a :ref:`byte string <bytes>`. PHP has no Unicode type,
 only a "string" type which is a byte string.  But PHP have "multibyte"
 functions to manipulate character strings. These functions have an optional
 encoding argument. If the encoding is not specified, PHP uses the default
@@ -464,7 +464,7 @@ character (U+0000—U+10FFFF). ``Character`` methods:
    according to Java
  * ``.toUpperCase(ch)``: convert to uppercase
 
-``String`` is a :ref:`character string <character string>` implemented using a
+``String`` is a :ref:`character string <str>` implemented using a
 ``char`` array, :ref:`UTF-16 <utf16>` characters. ``String`` methods:
 
  * ``String(bytes, encoding)``: decode a byte string from the specified

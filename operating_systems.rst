@@ -125,7 +125,7 @@ Console functions.
 
 .. c:function:: WriteConsoleW()
 
-   Write a :ref:`character string <character string>` into the console.
+   Write a :ref:`character string <str>` into the console.
 
 To improve the :ref:`Unicode support <support>` of the console, set the console
 font to a TrueType font (e.g. "Lucida Console") and use the wide character API

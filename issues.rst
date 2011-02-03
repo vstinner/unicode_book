@@ -6,7 +6,7 @@ Unicode issues
 Mojibake
 --------
 
-When a :ref:`byte strings <byte string>` is decoded from the wrong encoding
+When a :ref:`byte strings <bytes>` is decoded from the wrong encoding
 (see :ref:`Guess encoding`), or when two byte strings encoded to different
 encodings are concatenated, a program will display **mojibake**.
 
@@ -67,8 +67,8 @@ some other don't. For example, ``utf8_decode()`` and ``mb_strlen()`` accept
 Check byte strings but use Unicode strings
 ''''''''''''''''''''''''''''''''''''''''''
 
-Some applications check user inputs as :ref:`byte strings <byte string>`, but
-then process them as :ref:`Unicode strings <character string>`.
+Some applications check user inputs as :ref:`byte strings <bytes>`, but
+then process them as :ref:`Unicode strings <str>`.
 
 The WordPress blog tool had such issue with :ref:`PHP5 <php>` and MySQL. If
 PHP "magic quotes" feature is enabled, ``0x27`` is replaced by ``0x5C 0x27`` in
