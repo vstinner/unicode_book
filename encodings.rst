@@ -343,8 +343,8 @@ encodings are practical because the length in words is the number of
 characters.
 
 UTF-16 and UTF-32 encodings use, respectivelly, 16 and 32 bits words. UTF-16
-encodes code points bigger than U+FFFF using two words (see :ref:`Surrogate
-pair`). UCS-2 can be decoded from UTF-16. UTF-32 is also supposed to use more than one
+encodes code points bigger than U+FFFF using two words: a :ref:`surrogate
+pair <surrogates>`. UCS-2 can be decoded from UTF-16. UTF-32 is also supposed to use more than one
 word for big code points, but in practical, it only requires one word to store
 all code points of Unicode 6.0. That's why UTF-32 and UCS-4 are the same
 encoding.
@@ -584,7 +584,7 @@ The knowledge of a good conversion library, like :ref:`iconv <iconv>`, is
 enough.
 
 
-.. _Guess encoding:
+.. _guess:
 
 How to guess the encoding of a document?
 ----------------------------------------

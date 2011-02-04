@@ -6,13 +6,15 @@ Unicode issues
 Mojibake
 --------
 
-When a :ref:`byte strings <bytes>` is decoded from the wrong encoding
-(see :ref:`Guess encoding`), or when two byte strings encoded to different
-encodings are concatenated, a program will display **mojibake**.
+When a :ref:`byte strings <bytes>` is decoded from the wrong encoding, or when
+two byte strings encoded to different encodings are concatenated, a program
+will display **mojibake**.
 
 The classical example is a latin string (with diacritics) encoded to UTF-8 but
 decoded from ISO-8859-1. It displays Ã© (U+00C3, U+00A9) for the é (U+00E9)
 letter, because é is encoded to ``0xC3 0xA9`` in UTF-8.
+
+See also the :ref:`guess` section.
 
 .. todo:: add a screenshot of mojibake
 

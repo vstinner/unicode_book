@@ -11,6 +11,9 @@ U+10FFFF). Unicode 1.0 was limited to 65,536 code points (the last code point
 was U+FFFF), the range U+0000—U+FFFF called **BMP** (*Basic Multilingual Plane*). I
 call the range U+10000—U+10FFFF as **non-BMP** characters.
 
+
+.. _unicode categories:
+
 Categories
 ----------
 
@@ -82,11 +85,14 @@ count of Unicode 6.0:
      U+100000—U+10FFFD (65534); total = 137,468
    * surrogate (Cs): U+D800—U+DFFF (2048)
 
+
+.. _unicode stats:
+
 Statistics
 ----------
 
-77.6% of all codes are not assigned. Statistics excluding not assigned (Cn),
-private use (Co) and surrogate (Cs) categories:
+Only 248,966 code points are assigned: 77.6% are not assigned. Statistics
+excluding not assigned (Cn), private use (Co) and surrogate (Cs) categories:
 
  * Letter: 100,520 (91.8%)
  * Symbol: 5,508 (5.0%)

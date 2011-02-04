@@ -240,6 +240,15 @@ Locale encoding
 For Unicode, the most important locale category is ``LC_CTYPE``: it is used to set
 the "locale encoding".
 
+To get the locale encoding:
+
+ * Get a copy of the current locale with ``setlocale(LC_CTYPE, NULL)``
+ * Set the current locale encoding: ``setlocale(LC_CTYPE, "")``
+ * Use ``nl_langinfo(CODESET)`` if available
+ * or ``setlocale(LC_CTYPE, "")``
+
+.. todo:: write a full example in C
+
 For the C locale, ``nl_langinfo(CODESET)`` returns :ref:`ASCII`, or an alias to
 this encoding (e.g. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
 OS X <osx>`, codec functions (e.g. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`

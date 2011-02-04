@@ -20,7 +20,7 @@ Interesting ``QString`` methods:
  * ``toAscii()``, ``fromAscii()``: encode to/decode from :ref:`ASCII`
  * ``toLatin1()``, ``fromLatin1()``: encode to/decode from :ref:`ISO-8859-1`
  * ``utf16()``, ``fromUtf16()``: encode to/decode to :ref:`UTF-16 <utf16>`
- * ``normalized()``: normalize to NFC, NFD, NFKC or NFKD (see :ref:`Normalization`)
+ * ``normalized()``: :ref:`normalize <normalization>` to NFC, NFD, NFKC or NFKD
 
 Qt decodes string literals using the QLatin1String class. It is a thin wrapper
 to const char* strings. QLatin1String stores a character as a single byte. It
@@ -31,7 +31,8 @@ strings.
 
 ``QChar`` is a 16 bits Unicode character. Interesting ``QChar`` methods:
 
- * ``isSpace()``: True if the character category is separator
+ * ``isSpace()``: True if the :ref:`character category <unicode categories>` is
+   separator (Zl, Zp or Zs)
  * ``toUpper()``: convert to upper case
 
 Codec

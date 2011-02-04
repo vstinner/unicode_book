@@ -146,35 +146,28 @@ browser`_.
 Get the encoding of your inputs
 -------------------------------
 
-Locale encoding (OSes different than Windows):
-
- * Get a copy of the current locale with ``setlocale(LC_CTYPE, NULL)``
- * Set the current locale encoding: ``setlocale(LC_CTYPE, "")``
- * Use ``nl_langinfo(CODESET)`` if available
- * or ``setlocale(LC_CTYPE, "")``
-
 Console:
 
  * Windows: :c:func:`GetConsoleCP` for stdin and :c:func:`GetConsoleOutputCP` for
    stdout and stderr
- * Other OSes: use the locale encoding
+ * Other OSes: use the :ref:`locale encoding <locale encoding>`
 
-Files:
+File formats:
 
- * XML: the encoding can be specified in the ``<?xml ...?>`` header, use UTF-8
-   if the encoding is not specified.  For example, ``<?xml version="1.0"
-   encoding="iso-8859-1"?>``.
+ * XML: the encoding can be specified in the ``<?xml ...?>`` header, use
+   :ref:`UTF-8` if the encoding is not specified.  For example, ``<?xml
+   version="1.0" encoding="iso-8859-1"?>``.
  * HTML: the encoding can be specified in a "Content type" HTTP header, e.g.
    ``<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">``.
    If it is not, you have to guess the encoding.
 
-Filenames (filesystem):
+Filesystem (filenames):
 
- * Windows stores filenames as Unicode. It provides a bytes compatibily layer
+ * :ref:`Windows` stores filenames as Unicode. It provides a bytes compatibily layer
    using the :ref:`ANSI code page` for applications using bytes strings.
- * Mac OS X encodes filenames to :ref:`UTF-8` and normalize see to a variant of the
-   Normal Form D (see :ref:`Mac OS X`).
- * Other OSes: use the locale encoding
+ * :ref:`Mac OS X <osx>` encodes filenames to :ref:`UTF-8` and normalize see to a
+   variant of the Normal Form D.
+ * Other OSes: use the :ref:`locale encoding <locale encoding>`
 
-See also :ref:`Guess encoding` section.
+See also :ref:`guess` section.
 

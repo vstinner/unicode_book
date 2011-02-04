@@ -34,8 +34,8 @@ encode and decode warnings or errors, write a single character with a diacritic
 
 Full Unicode support is complex because the Unicode charset is bigger than any
 other charset. For example, :ref:`ISO-8859-1` contains 256 codes including 191
-characters, whereas Unicode (version 6.0) contains approximatively 245,000
-assigned codes (see :ref:`Statistics`). The Unicode standard is larger than just a
+characters, whereas Unicode (version 6.0) contains approximatively :ref:`245,000
+assigned codes <unicode stats>`. The Unicode standard is larger than just a
 charset: it explains also how to display characters (e.g. left-to-right for
 English and right-to-left for persian), how to normalize a character string
 (e.g. precomposed characters versus the decomposed form), etc.

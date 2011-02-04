@@ -171,8 +171,8 @@ C++
  * ``std::wostringstream``: character stream buffer; unicode version of
    ``std::ostringstream``.
 
-To initialize the locales (see :ref:`Locales <locales>`), equivalent to
-``setlocale(LC_ALL, "")``, use: ::
+To initialize the :ref:`locales <locales>`, equivalent to ``setlocale(LC_ALL,
+"")``, use: ::
 
     #include <locale>
     std::locale::global(std::locale(""));
@@ -343,9 +343,10 @@ Character string (``unicode`` / ``str``) methods:
 
  * ``.encode(encoding, errors='strict')``: encode to the specified encoding
    and (optional) error handler
- * ``.isprintable()``: ``False`` if the character category is other (Cc, Cf, Cn, Co, Cs)
-   or separator (Zl, Zp, Zs), ``True`` otherwise. There is an exception: even if
-   U+0020 is a separator, ``' '.isprintable()`` gives ``True``.
+ * ``.isprintable()``: ``False`` if the :ref:`character category <unicode
+   categories>` is other (Cc, Cf, Cn, Co, Cs) or separator (Zl, Zp, Zs),
+   ``True`` otherwise. There is an exception: even if U+0020 is a separator,
+   ``' '.isprintable()`` gives ``True``.
  * ``.toupper()``: convert to uppercase
 
 
@@ -390,7 +391,8 @@ Modules
 
 ``unicodedata`` module:
 
- * ``category(char)``: get the category of a character
+ * ``category(char)``: get the :ref:`category <unicode categories>` of a
+   character
  * ``name(char)``: get the name of a character
  * ``normalize(string)``: normalize a string to the NFC, NFD, NFKC or NFKD form
 
@@ -458,7 +460,7 @@ Java
 (U+0000—U+FFFF), whereas ``Character`` is a character able to store any Unicode
 character (U+0000—U+10FFFF). ``Character`` methods:
 
- * ``.getType(ch)``: get the Unicode category (see :ref:`Categories`) of a
+ * ``.getType(ch)``: get the :ref:`Unicode category <unicode categories>` of a
    character
  * ``.isWhitespace(ch)``: test if a character is a whitespace
    according to Java
