@@ -3,6 +3,7 @@ Programming with Unicode
 ++++++++++++++++++++++++
 
 .. todo:: uppercase/lowercase
+.. todo:: MySQL and PostgreSQL
 
 .. toctree::
    :maxdepth: 2

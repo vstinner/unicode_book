@@ -147,10 +147,12 @@ file (especially of stdin, stdout and stderr):
  * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
  * :c:macro:`_O_WTEXT`: UTF-16 with BOM
 
-See also `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?
-<http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx>`_ (Michael S.
-Kaplan, 2008) and the Python bug report #1602: `windows console doesn't print
-or input Unicode <http://bugs.python.org/issue1602>`_.
+.. seealso::
+
+   `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?
+   <http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx>`_ (Michael
+   S.  Kaplan, 2008) and the Python bug report #1602: `windows console doesn't
+   print or input Unicode <http://bugs.python.org/issue1602>`_.
 
 .. note::
 

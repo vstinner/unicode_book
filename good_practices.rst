@@ -136,11 +136,10 @@ Tests to evaluate the Unicode support of a program:
    in Persian characters. Try also :ref:`decomposed characters
    <normalization>`, for example: {e, U+0301} (decomposed form of é, U+00E9).
 
-See also the Wikipedia article to `test the Unicode support of your web
-browser`_.
+.. seealso::
 
-.. _test the Unicode support of your web browser:
-   http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test
+   Wikipedia article to `test the Unicode support of your web browser
+   <http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test>`_.
 
 
 Get the encoding of your inputs
@@ -169,5 +168,5 @@ Filesystem (filenames):
    variant of the Normal Form D.
  * Other OSes: use the :ref:`locale encoding <locale encoding>`
 
-See also :ref:`guess` section.
+.. seealso:: :ref:`guess`.
 

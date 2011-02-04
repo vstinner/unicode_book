@@ -210,7 +210,9 @@ Python is compiled in narrow mode on Windows, because :c:type:`wchar_t` is also 
 on Windows and so it is possible to use Python Unicode strings as :c:type:`wchar_t*`
 strings without any (expensive) conversion.
 
-See also the `Python Unicode HOWTO <http://docs.python.org/howto/unicode.html>`_.
+.. seealso::
+
+   `Python Unicode HOWTO <http://docs.python.org/howto/unicode.html>`_.
 
 
 .. _python2:
