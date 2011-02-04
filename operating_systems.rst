@@ -131,7 +131,7 @@ To improve the :ref:`Unicode support <support>` of the console, set the console
 font to a TrueType font (e.g. "Lucida Console") and use the wide character API
 
 If the console is unable to render a character, it tries to use a
-:ref:`character with a similar glyph <replace>`. For example, with OEM
+:ref:`character with a similar glyph <translit>`. For example, with OEM
 :ref:`code page <codepage>` 850, Ł (U+0141) is replaced by L (U+0041). If no
 replacment character can be found, "?" (U+003F) is displayed instead.
 

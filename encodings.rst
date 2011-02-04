@@ -508,6 +508,7 @@ character may not be encodable. For example, € (U+20AC) is not encodable to
 
 .. _errors:
 .. _strict:
+.. _replace:
 .. _ignore:
 
 Error handlers
@@ -541,7 +542,7 @@ Example, encode "abcdé" to ASCII (é, U+00E9, is not encodable to ASCII):
 | escape as XML entities     | ``"abcd&#233;"`` |
 +----------------------------+------------------+
 
-.. _replace:
+.. _translit:
 
 Replace unencodable characters by a similar glyph
 '''''''''''''''''''''''''''''''''''''''''''''''''
@@ -564,6 +565,8 @@ and NFKD does also such operation. Examples:
 | U+221E, infinity                           | ∞         | 8       | U+0038, digit eight            |
 +--------------------------------------------+-----------+---------+--------------------------------+
 
+
+.. _escape:
 
 Escape the character
 ''''''''''''''''''''
