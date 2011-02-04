@@ -334,15 +334,15 @@ Examples with Python 3:
 String methods
 ''''''''''''''
 
-Byte string (``str`` / ``bytes``) methods:
+:ref:`Byte string <bytes>` (``str`` / ``bytes``) methods:
 
  * ``.decode(encoding, errors='strict')``: decode from the specified encoding
-   and (optional) error handler.
+   and (optional) :ref:`error handler <errors>`.
 
-Character string (``unicode`` / ``str``) methods:
+:ref:`Character string <str>` (``unicode`` / ``str``) methods:
 
  * ``.encode(encoding, errors='strict')``: encode to the specified encoding
-   and (optional) error handler
+   and (optional) :ref:`error handler <errors>`
  * ``.isprintable()``: ``False`` if the :ref:`character category <unicode
    categories>` is other (Cc, Cf, Cn, Co, Cs) or separator (Zl, Zp, Zs),
    ``True`` otherwise. There is an exception: even if U+0020 is a separator,
@@ -366,26 +366,27 @@ Modules
 
  * ``open(name, mode='r', buffering=-1, encoding=None, errors=None, ...)``:
    open a binary or text file in read and/or write mode. For text file,
-   ``encoding`` and ``errors`` can be used to specify the encoding. Otherwise,
-   Python uses the locale encoding in strict mode.
+   ``encoding`` and ``errors`` can be used to specify the encoding and the
+   :ref:`error handler <errors>`. By default, it uses the :ref:`locale encoding
+   <locale encoding>` in :ref:`strict <strict>` mode.
  * ``TextIOWrapper()``: wrapper to read and/write text files, encode from/decode to
-   the specified encoding (and error handler) and normalize newlines. It requires
-   a buffered file. Don't use it directly to open a text file: use ``open()``
-   instead.
+   the specified encoding (and :ref:`error handler <errors>`) and normalize
+   newlines. It requires a buffered file. Don't use it directly to open a text
+   file: use ``open()`` instead.
 
-``locale`` module (see :ref:`Locales <locales>`):
+``locale`` module (:ref:`locales <locales>`):
 
- * ``getlocale(category)``: get the value of a locale category as the tuple
-   (language code, encoding)
- * ``getpreferredencoding()``: get the locale encoding
- * ``LC_ALL``, ``LC_CTYPE``, ...: :ref:`locale categories`
+ * ``getlocale(category)``: get the value of a :ref:`locale category <locale
+   categories>` as the tuple (language code, encoding)
+ * ``getpreferredencoding()``: get the :ref:`locale encoding <locale encoding>`
+ * ``LC_ALL``, ``LC_CTYPE``, ...: :ref:`locale categories <locale categories>`
  * ``setlocale(category, value)``: set the value of a locale category
 
 ``sys`` module:
 
  * ``getdefaultencoding()``: get the default encoding, e.g. used by
    ``'abc'.encode()``. In Python 3, the default encoding is fixed to
-   ``'utf-8'``, in Python 2, it's ``'ascii'`` by default.
+   ``'utf-8'``, in Python 2, it is ``'ascii'`` by default.
  * ``maxunicode``: biggest Unicode code point storable in a single Python
    Unicode character, 0xFFFF in narrow mode or 0x10FFFF in wide mode.
 
@@ -394,7 +395,8 @@ Modules
  * ``category(char)``: get the :ref:`category <unicode categories>` of a
    character
  * ``name(char)``: get the name of a character
- * ``normalize(string)``: normalize a string to the NFC, NFD, NFKC or NFKD form
+ * ``normalize(string)``: :ref:`normalize <normalization>` a string to the NFC,
+   NFD, NFKC or NFKD form
 
 
 .. _php:
@@ -409,18 +411,20 @@ encoding argument. If the encoding is not specified, PHP uses the default
 encoding (called "internal encoding"). Some multibyte functions:
 
  * ``mb_internal_encoding()``: get or set the internal encoding
- * ``mb_substitute_character()``: change how to handle :ref:`unencodable
+ * ``mb_substitute_character()``: change how to :ref:`handle <errors>` :ref:`unencodable
    characters <unencodable>`:
 
-   * ``"none"``: ignore unencodable characters
-   * ``"long"``: escape as hexadecimal value, e.g. ``"U+E9"`` or ``"JIS+7E7E"``
-   * ``"entity"``: escape as HTML entity, e.g. ``"&#xE9;"``
+   * ``"none"``: :ref:`ignore <ignore>` unencodable characters
+   * ``"long"``: :ref:`escape as hexadecimal <escape>` value, e.g. ``"U+E9"``
+     or ``"JIS+7E7E"``
+   * ``"entity"``: :ref:`escape as HTML entities <escape>`, e.g. ``"&#xE9;"``
 
  * ``mb_convert_encoding()``: decode from an encoding and encode to another
    encoding
  * ``mb_ereg()``: search a pattern using a regular expression
- * ``mb_strlen()``: length of a character string
- * ``mb_detect_encoding()``: detect the encoding of a byte string
+ * ``mb_strlen()``: length of a :ref:`character string <str>`
+ * ``mb_detect_encoding()``: :ref:`detect the encoding <guess>` of a :ref:`byte
+   string <bytes>`
 
 Perl compatible regular expressions (PCRE) have an ``u`` flag ("PCRE8") to
 process byte strings as UTF-8 encoded strings.
@@ -429,7 +433,8 @@ PHP includes also a binding of the :ref:`iconv <iconv>` library. Some
 interesting functions:
 
  * ``iconv()``: decode a byte string from an encoding and encode to another
-   encoding
+   encoding, you can use ``//IGNORE`` or ``//TRANSLIT`` suffix to choose the
+   :ref:`error handler <errors>`
  * ``iconv_mime_decode()``: decode a MIME header field
 
 .. todo:: Document utf8_encode() and utf8_decode() functions?
@@ -443,12 +448,13 @@ for more information.
 Perl
 ----
 
- * Perl 5.6 (2000): initial Unicode support, store strings as characters
+ * Perl 5.6 (2000): initial Unicode support, support :ref:`character strings
+   <str>`
  * Perl 5.8 (2002): regex supports Unicode
- * use "``use utf-8;``" pragma to specify that your Perl script is encoded in
+ * use "``use utf-8;``" pragma to specify that your Perl script is encoded to
    :ref:`UTF-8`
 
-Read perluniintro, perlunicode and perlunifaq manuals.
+Read ``perluniintro``, ``perlunicode`` and ``perlunifaq`` manuals.
 
 
 .. _java:
@@ -476,13 +482,15 @@ character (U+0000—U+10FFFF). ``Character`` methods:
    ``CharsetEncoder`` exception if a character cannot be encoded.
  * ``.length()``: length in UTF-16 characters.
 
-As :ref:`Python` compiled in narrow mode, :ref:`non-BMP <bmp>` characters are stored as :ref:`UTF-16
-surrogate pairs <surrogates>` and the length of a string is the number of UTF-16
-characters, not the length in Unicode characters.
+As :ref:`Python` compiled in narrow mode, :ref:`non-BMP <bmp>` characters are
+stored as :ref:`UTF-16 surrogate pairs <surrogates>` and the length of a string
+is the number of UTF-16 words, not the number of Unicode characters.
 
-Java uses a variant of :ref:`UTF-8` which encodes the nul character (U+0000) as the
-overlong byte sequence ``0xC0 0x80``, instead of ``0x00``. This is be able to
-use :ref:`C <c>` functions like :c:func:`strlen`. The Tcl language uses the same encoding.
+Java, as the Tcl language, uses a variant of :ref:`UTF-8` which encodes the nul
+character (U+0000) as the :ref:`overlong byte sequence <strict utf8 decoder>`
+``0xC0 0x80``, instead of ``0x00``. So it is possible to use :ref:`C <c>`
+functions like :c:func:`strlen` on :ref:`byte string <bytes>` with embeded nul
+characters.
 
 
 Go and D

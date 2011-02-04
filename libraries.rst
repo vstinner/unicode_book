@@ -146,3 +146,5 @@ by add ``//IGNORE`` suffix to the encoding. There is also the ``//TRANSLIT``
 suffix to  :ref:`replace unencodable characters <replace>` by similarly looking
 characters.
 
+:ref:`PHP <php>` has a builtin binding of iconv.
+

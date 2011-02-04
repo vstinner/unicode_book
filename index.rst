@@ -2,6 +2,8 @@
 Programming with Unicode
 ++++++++++++++++++++++++
 
+.. todo:: uppercase/lowercase
+
 .. toctree::
    :maxdepth: 2
    :numbered:

@@ -568,11 +568,11 @@ and NFKD does also such operation. Examples:
 Escape the character
 ''''''''''''''''''''
 
-Python "replace" error handler uses ``\xHH``, ``\uHHHH`` or ``\UHHHHHHHH``
+:ref:`Python <python>` "replace" error handler uses ``\xHH``, ``\uHHHH`` or ``\UHHHHHHHH``
 where HHH...H is the code point formatted in hexadecimal. PHP "long" error
 handler uses ``U+HH``, ``U+HHHH`` or ``encoding+HHHH`` (e.g. ``JIS+7E7E``).
 
-PHP "entity" and Python "xmlcharrefreplace" error handlers escape the
+:ref:`PHP <php>` "entity" and Python "xmlcharrefreplace" error handlers escape the
 code point as an HTML/XML entity (e.g. PHP: ``&#xE9;``, Python: ``&#233;``).
 
 
@@ -808,6 +808,9 @@ in Python 2, use the following strict function: ::
 
 Libraries
 '''''''''
+
+:ref:`PHP <php>` has a builtin function to detect the encoding of a :ref:`byte
+string <bytes>`: ``mb_detect_encoding()``.
 
  * chardet_: :ref:`Python` version of the "chardet" algorithm implemented in Mozilla
  * UTRAC_: command line program (written in :ref:`C <c>`) to recognize the encoding of

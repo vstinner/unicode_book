@@ -65,6 +65,12 @@ Some PHP functions use a strict UTF-8 decoder (e.g. ``mb_convert_encoding()``),
 some other don't. For example, ``utf8_decode()`` and ``mb_strlen()`` accept
 ``0xC0 0x80`` in PHP 5.3.2.
 
+.. note::
+
+   The :ref:`Java <java>` and Tcl languages uses a variant of :ref:`UTF-8`
+   which encodes the nul character (U+0000) as the overlong byte sequence
+   ``0xC0 0x80``, instead of ``0x00``.
+
 
 Check byte strings but use Unicode strings
 ''''''''''''''''''''''''''''''''''''''''''

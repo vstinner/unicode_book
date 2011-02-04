@@ -199,6 +199,8 @@ have "locales". Locales are process-wide: if a thread or a library change
 the locale, the whole process is impacted.
 
 
+.. _locale categories:
+
 Locale categories
 '''''''''''''''''
 
