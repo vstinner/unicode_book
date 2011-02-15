@@ -57,15 +57,32 @@ ANSI and Unicode versions of each function
 ''''''''''''''''''''''''''''''''''''''''''
 
 Windows has two versions of each function of its API : the ANSI version using
-byte strings (function name ending with "A") and the :ref:`ANSI code page <codepage>`, and the wide character version
-(name ending with "W"). There are also functions without suffix using
-:c:type:`TCHAR*` strings: if the :ref:`C <c>` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
-:c:type:`wchar_t` and it use the Unicode functions; otherwise :c:type:`TCHAR` is char
-and it uses the ANSI functions. Example:
+byte strings (``A`` suffix) and the :ref:`ANSI code page <codepage>`, and the
+wide character version (``W`` suffix). There are also functions without suffix
+using :c:type:`TCHAR*` strings: if the :ref:`C <c>` define :c:macro:`_UNICODE`
+is defined, :c:type:`TCHAR` is :c:type:`wchar_t` and it use the Unicode
+functions; otherwise :c:type:`TCHAR` is :c:type:`char` and it uses the ANSI
+functions. Example:
 
- * :c:func:`CreateFileA()`: bytes version, use byte strings encoded to the ANSI code page
- * :c:func:`CreateFileW()`: Unicode version, use wide character strings
- * :c:func:`CreateFile()`: :c:type:`TCHAR` version depending on the :c:macro:`_UNICODE` define
+ * :c:func:`CreateFileA()`: bytes version, use :ref:`byte strings <bytes>`
+   encoded to the ANSI code page
+ * :c:func:`CreateFileW()`: Unicode version, use :ref:`wide character strings
+   <str>`
+ * :c:func:`CreateFile()`: :c:type:`TCHAR` version depending on the
+   :c:macro:`_UNICODE` define
+
+Always prefer the Unicode version to avoid encoding/decoding errors, and use
+directly the ``W`` suffix to avoid compiling issues.
+
+
+Windows string types
+''''''''''''''''''''
+
+ * LPSTR (LPCSTR): :ref:`byte string <bytes>`, :c:type:`char*` (:c:type:`const char*`)
+ * LPWSTR (LPCWSTR): :ref:`wide character string <str>`, :c:type:`wchar_t*`
+   (:c:type:`const wchar_t*`)
+ * LPTSTR (LPCTSTR): byte or wide character string depending of ``_UNICODE``
+   define, :c:type:`TCHAR*` (:c:type:`const TCHAR*`)
 
 
 Encode and decode functions
@@ -75,21 +92,27 @@ Encode and decode functions of ``<windows.h>``.
 
 .. c:function:: MultiByteToWideChar()
 
-   Decode a byte string to a character string (similar to :c:func:`mbstowcs`).
-   It supports the :ref:`ANSI code page <codepage>` and :ref:`OEM code page
-   <codepage>`, UTF-7 and :ref:`UTF-8`. By default, it ignores undecodable
-   bytes. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to raise an error on an
-   invalid byte sequence.
+   Decode a :ref:`byte string <bytes>` to a :ref:`character string <str>`. It
+   supports the :ref:`ANSI <codepage>` and :ref:`OEM <codepage>` code pages,
+   UTF-7 and :ref:`UTF-8`. By default, it :ref:`ignores <ignore>`
+   :ref:`undecodable bytes <undecodable>`. Use :c:macro:`MB_ERR_INVALID_CHARS`
+   flag to :ref:`raise an error <strict>` on an undecodable byte sequence.
 
 .. c:function:: WideCharToMultiByte()
 
-   Encode a character string to a byte string (similar to :c:func:`wcstombs`).
-   As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI code page <Code
-   pages>` and the :ref:`OEM code page <codepage>`, UTF-7 and :ref:`UTF-8`.
-   By default, if a character cannot be encoded, it is replaced by a character
-   with a similar glyph. For example, with :ref:`cp1252`, Ł (U+0141) is
-   replaced by L (U+004C). Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to raise an
-   error on :ref:`unencodable character <unencodable>`.
+   Encode a :ref:`character string <str>` to a :ref:`byte string <bytes>`. As
+   :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI <codepage>` and the
+   :ref:`OEM <codepage>` code pages, UTF-7 and :ref:`UTF-8`. By default, if
+   :ref:`a character cannot be encoded <unencodable>`, it is :ref:`replaced by
+   a character with a similar glyph <translit>`. For example, with
+   :ref:`cp1252`, Ł (U+0141) is replaced by L (U+004C). Use
+   :c:macro:`WC_NO_BEST_FIT_CHARS` flag to :ref:`raise an error <strict>` on
+   :ref:`unencodable character <unencodable>`.
+
+.. note::
+
+   :c:func:`MultiByteToWideChar` and :c:func:`WideCharToMultiByte` are similar
+   to :c:func:`mbstowcs` and :c:func:`wcstombs`.
 
 
 Filenames
@@ -284,15 +307,17 @@ Locale functions
 
 .. c:function:: size_t mbstowcs(wchar_t *dest, const char *src, size_t n)
 
-   Decode a byte string from the locale encoding to a character string. Return
-   an error on :ref:`undecodable byte sequence <undecodable>`. If available,
+   Decode a :ref:`byte string <bytes>` from the :ref:`locale encoding <locale
+   encoding>` to a :ref:`character string <str>`. Return an :ref:`error
+   <strict>` on :ref:`undecodable byte sequence <undecodable>`. If available,
    always prefer the reentrant version: :c:func:`mbsrtowcs`.
 
 .. c:function:: size_t wcstombs(char *dest, const wchar_t *src, size_t n)
 
-   Encode a character string to a byte string in the locale encoding. Return an
-   error if :ref:`a character cannot by encoded <unencodable>`. If available,
-   always prefer the reentrant version: :c:func:`wcsrtombs`.
+   Encode a :ref:`character string <str>` to a :ref:`byte string <bytes>` in
+   the :ref:`locale encoding <locale encoding>`. Return an :ref:`error
+   <strict>` if :ref:`a character cannot by encoded <unencodable>`.  If
+   available, always prefer the reentrant version: :c:func:`wcsrtombs`.
 
 mbstowcs() and wcstombs() are :ref:`strict <strict>` and don't support
 :ref:`error handlers <errors>`.

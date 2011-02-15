@@ -583,6 +583,8 @@ and NFKD does also such operation. Examples:
 | U+221E, infinity                           | ∞         | 8       | U+0038, digit eight            |
 +--------------------------------------------+-----------+---------+--------------------------------+
 
+.. todo:: define "glyph"
+
 
 .. _escape:
 
