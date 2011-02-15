@@ -411,15 +411,29 @@ In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FF
 are stored as a single 16 bits word. :ref:`Non-BMP <bmp>` characters (range
 U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits words: the first
 word in the range U+D800—U+DBFF and the second word in the range U+DC00—U+DFFF.
+A lone surrogate character is invalid in UTF-16, surrogate characters are
+always written as pairs.
 
-.. note::
+Examples of surrogate pairs:
 
-   An UTF-8 encoder should not encode surrogate characters (U+D800—U+DFFF).
++-----------+------------+-------------+
+| Character | First word | Second word |
++===========+============+=============+
+|   U+10000 |   U+D800   |    U+DC00   |
++-----------+------------+-------------+
+|   U+10E6D |   U+D803   |    U+DE6D   |
++-----------+------------+-------------+
+|   U+1D11E |   U+D834   |    U+DD1E   |
++-----------+------------+-------------+
+|  U+10FFFF |   U+DBFF   |    U+DFFF   |
++-----------+------------+-------------+
 
 .. highlight:: c
 
-Example in :ref:`C <c>` to encode/decode a non-BMP character to/from UTF-16 (using
-surrogate pairs): ::
+:ref:`C <c>` functions to encode and decode a non-BMP character to/from UTF-16
+(using surrogate pairs): ::
+
+    #include <stdint.h>
 
     void
     encode_utf16_pair(uint32_t character,
@@ -444,8 +458,10 @@ surrogate pairs): ::
         return code;
     }
 
-A lone surrogate character is invalid in UTF-16, surrogate characters are
-always written as pairs.
+.. note::
+
+   An :ref:`UTF-8` encoder should not encode surrogate characters
+   (U+D800—U+DFFF).
 
 
 Encodings performances
@@ -463,19 +479,21 @@ getting the length in character of a string:
 Examples
 --------
 
-+------------+-------------------------+-------------------------+-------------------------+
-| Encoding   |       é (U+00E9)        |       € (U+20AC)        |        U+10FFFF         |
-+============+=========================+=========================+=========================+
-| ASCII      |                         |                         |                         |
-+------------+-------------------------+-------------------------+-------------------------+
-| ISO-8859-1 | ``0xE9``                |                         |                         |
-+------------+-------------------------+-------------------------+-------------------------+
-| UTF-8      | ``0xC3 0xA9``           | ``0xE2 0x82 0xAC``      | ``0xF4 0x8F 0xBF 0xBF`` |
-+------------+-------------------------+-------------------------+-------------------------+
-| UTF-16-LE  | ``0xE9 0x00``           | ``0xAC 0x20``           | ``0xFF 0xDB 0xFF 0xDF`` |
-+------------+-------------------------+-------------------------+-------------------------+
-| UTF-32-BE  | ``0x00 0x00 0x00 0xE9`` | ``0x00 0x00 0x20 0xAC`` | ``0x00 0x10 0xFF 0xFF`` |
-+------------+-------------------------+-------------------------+-------------------------+
++------------+-------------------------+-------------------------+-------------------------+-------------------------+
+| Encoding   |       A (U+0041)        |       é (U+00E9)        |       € (U+20AC)        |        U+10FFFF         |
++============+=========================+=========================+=========================+=========================+
+| ASCII      | ``0x41``                | —                       | —                       | —                       |
++------------+-------------------------+-------------------------+-------------------------+-------------------------+
+| ISO-8859-1 | ``0x41``                | ``0xE9``                | —                       | —                       |
++------------+-------------------------+-------------------------+-------------------------+-------------------------+
+| UTF-8      | ``0x41``                | ``0xC3 0xA9``           | ``0xE2 0x82 0xAC``      | ``0xF4 0x8F 0xBF 0xBF`` |
++------------+-------------------------+-------------------------+-------------------------+-------------------------+
+| UTF-16-LE  | ``0x41 0x00``           | ``0xE9 0x00``           | ``0xAC 0x20``           | ``0xFF 0xDB 0xFF 0xDF`` |
++------------+-------------------------+-------------------------+-------------------------+-------------------------+
+| UTF-32-BE  | ``0x00 0x00 0x00 0x41`` | ``0x00 0x00 0x00 0xE9`` | ``0x00 0x00 0x20 0xAC`` | ``0x00 0x10 0xFF 0xFF`` |
++------------+-------------------------+-------------------------+-------------------------+-------------------------+
+
+— indicates that the character cannot be encoded.
 
 
 Handle undecodable bytes and unencodable characters

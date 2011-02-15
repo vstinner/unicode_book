@@ -22,8 +22,10 @@ Character and string classes
    separator (Zl, Zp or Zs)
  * ``toUpper()``: convert to upper case
 
-``QString`` is a :ref:`UTF-16 <utf16>` :ref:`character string <str>`: each
-character is stored as a ``QChar``. Interesting ``QString`` methods:
+``QString`` is a :ref:`UTF-16 <utf16>` :ref:`character string <str>`: it is a
+string of ``QChar``. A :ref:`Non-BMP character <bmp>` are stored as a
+:ref:`surrogate pairs <surrogates>`, as two ``QChar``. Interesting ``QString``
+methods:
 
  * ``toAscii()``, ``fromAscii()``: encode to/decode from :ref:`ASCII`
  * ``toLatin1()``, ``fromLatin1()``: encode to/decode from :ref:`ISO-8859-1`

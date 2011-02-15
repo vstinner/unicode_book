@@ -54,9 +54,10 @@ and U+DFFF (a :ref:`surrogate pair <surrogates>`). Getting the nth character in
 such string has a complexity of O(n), whereas it has a complexity of O(1) for
 UCS-2 and UCS-4 strings.
 
-:ref:`Java` and :ref:`Python` (compiled in narrow mode) languages use UTF-16
-strings. The :ref:`C language <c>` use also UTF-16 strings if the
-:c:type:`wchar_t` type is 16 bits long.
+:ref:`Java` language and the :ref:`Qt <qt>` library use UTF-16 strings. The
+:ref:`C <c>` and :ref:`Python <python>` languages use UTF-16 or UCS-4 depending
+on: the size of the :c:type:`wchar_t` type (16 or 32 bits) for C, and the
+compilation mode (narrow or wide) for Python.
 
 
 Rules
