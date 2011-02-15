@@ -182,7 +182,7 @@ this table). See the ASCII table for U+0000—U+001F and U+007F control codes.
 cp1252
 ''''''
 
-Windows :ref:`code page <Code pages>` 1252, best known as cp1252, is a variant of :ref:`ISO-8859-1`. It is
+Windows :ref:`code page <codepage>` 1252, best known as cp1252, is a variant of :ref:`ISO-8859-1`. It is
 the default encoding of all English and western europe Windows setups.
 It is used as a fallback by web browsers
 if the webpage doesn't provide any encoding information (not in HTML, nor in
@@ -336,13 +336,13 @@ See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 UCS-2, UCS-4, UTF-16 and UTF-32
 '''''''''''''''''''''''''''''''
 
-UCS-2 and UCS-4 encodings encode each code point to exactly one word of,
+**UCS-2** and **UCS-4** encodings encode each code point to exactly one word of,
 respectivelly, 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0 code
 points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
 encodings are practical because the length in words is the number of
 characters.
 
-UTF-16 and UTF-32 encodings use, respectivelly, 16 and 32 bits words. UTF-16
+**UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits words. UTF-16
 encodes code points bigger than U+FFFF using two words: a :ref:`surrogate
 pair <surrogates>`. UCS-2 can be decoded from UTF-16. UTF-32 is also supposed to use more than one
 word for big code points, but in practical, it only requires one word to store

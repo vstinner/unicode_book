@@ -200,9 +200,9 @@ disable the automatic synchronization between C (``std*``) and C++
 Python
 ------
 
-Python supports Unicode since its version 2.0 released in october 2000. Byte
-and Unicode strings store their length, so it's possible to embed nul
-byte/character.
+Python supports Unicode since its version 2.0 released in october 2000.
+:ref:`Byte <bytes>` and :ref:`Unicode <str>` strings store their length, so
+it's possible to embed nul byte/character.
 
 Python can be compiled in two modes: narrow (:ref:`UTF-16 <utf16>`) and wide (:ref:`UCS-4 <ucs>`).
 ``sys.maxunicode`` constant is 0xFFFF in narrow mode, and 0x10FFFF in wide mode.
@@ -302,7 +302,7 @@ encodings, some examples: ``ASCII``, ``ISO-8859-1``, ``UTF-8``, ``UTF-16-LE``,
 ``ShiftJIS``, ``Big5``, ``cp037``, ``cp950``, ``EUC_JP``, etc. ``UTF-8``,
 ``UTF-16-LE``, ``UTF-16-BE``, ``UTF-32-LE`` and ``UTF-32-BE`` don't use :ref:`BOM <bom>`,
 whereas ``UTF-8-SIG``, ``UTF-16`` and ``UTF-32`` use BOM. ``mbcs`` is the :ref:`ANSI
-code page <Code pages>` and so is only available on Windows.
+code page <codepage>` and so is only available on Windows.
 
 Python provides also many error handlers used to specify how to handle
 :ref:`undecodable bytes <undecodable>` / :ref:`unencodable characters
@@ -393,6 +393,8 @@ Modules
  * ``getdefaultencoding()``: get the default encoding, e.g. used by
    ``'abc'.encode()``. In Python 3, the default encoding is fixed to
    ``'utf-8'``, in Python 2, it is ``'ascii'`` by default.
+ * ``getfilesystemencoding()``: get the filesystem encoding used to decode
+   and encode filenames
  * ``maxunicode``: biggest Unicode code point storable in a single Python
    Unicode character, 0xFFFF in narrow mode or 0x10FFFF in wide mode.
 
@@ -403,6 +405,27 @@ Modules
  * ``name(char)``: get the name of a character
  * ``normalize(string)``: :ref:`normalize <normalization>` a string to the NFC,
    NFD, NFKC or NFKD form
+
+
+Filesystem
+''''''''''
+
+Python decodes bytes filenames and encodes Unicode filenames using the
+filesystem encoding, ``sys.getfilesystemencoding()``:
+
+ * ``mbcs`` (:ref:`ANSI code page <codepage>`) on :ref:`Windows`
+ * ``UTF-8`` on :ref:`Mac OS X <osx>`
+ * :ref:`locale encoding <locale encoding>` otherwise
+
+Python uses the ``strict`` :ref:`error handler <errors>` in Python 2, and
+``surrogateescape`` (PEP 383) in Python 3. In Python 2, if ``os.listdir(u'.')``
+cannot decode a filename, it keeps the bytes filename unchanged. Thanks to
+``surrogateescape``, decode a filename does never fail in Python 3. But
+encoding a filename can fail in Python 2 and 3 depending on the filesystem
+encoding. For example, on Linux with the C locale, the Unicode filename
+``"h\xe9.py"`` cannot be encoded because the filesystem encoding is ASCII.
+
+In Python 2, use ``os.getcwdu()`` to get the current directory as Unicode.
 
 
 .. _php:

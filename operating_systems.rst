@@ -57,7 +57,7 @@ ANSI and Unicode versions of each function
 ''''''''''''''''''''''''''''''''''''''''''
 
 Windows has two versions of each function of its API : the ANSI version using
-byte strings (function name ending with "A") and the :ref:`ANSI code page <Code pages>`, and the wide character version
+byte strings (function name ending with "A") and the :ref:`ANSI code page <codepage>`, and the wide character version
 (name ending with "W"). There are also functions without suffix using
 :c:type:`TCHAR*` strings: if the :ref:`C <c>` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
 :c:type:`wchar_t` and it use the Unicode functions; otherwise :c:type:`TCHAR` is char
@@ -76,8 +76,8 @@ Encode and decode functions of ``<windows.h>``.
 .. c:function:: MultiByteToWideChar()
 
    Decode a byte string to a character string (similar to :c:func:`mbstowcs`).
-   It supports the :ref:`ANSI code page <Code pages>` and :ref:`OEM code page
-   <Code pages>`, UTF-7 and :ref:`UTF-8`. By default, it ignores undecodable
+   It supports the :ref:`ANSI code page <codepage>` and :ref:`OEM code page
+   <codepage>`, UTF-7 and :ref:`UTF-8`. By default, it ignores undecodable
    bytes. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to raise an error on an
    invalid byte sequence.
 
@@ -85,7 +85,7 @@ Encode and decode functions of ``<windows.h>``.
 
    Encode a character string to a byte string (similar to :c:func:`wcstombs`).
    As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI code page <Code
-   pages>` and the :ref:`OEM code page <Code pages>`, UTF-7 and :ref:`UTF-8`.
+   pages>` and the :ref:`OEM code page <codepage>`, UTF-7 and :ref:`UTF-8`.
    By default, if a character cannot be encoded, it is replaced by a character
    with a similar glyph. For example, with :ref:`cp1252`, Ł (U+0141) is
    replaced by L (U+004C). Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to raise an
@@ -106,7 +106,7 @@ character POSIX-like API:
 
    Unicode version of :c:func:`fopen`.
 
-POSIX functions, like :c:func:`fopen()`, use the :ref:`ANSI code page <Code pages>` to encode/decode
+POSIX functions, like :c:func:`fopen()`, use the :ref:`ANSI code page <codepage>` to encode/decode
 strings.
 
 
@@ -136,7 +136,7 @@ If the console is unable to render a character, it tries to use a
 replacment character can be found, "?" (U+003F) is displayed instead.
 
 In a console (``cmd.exe``), ``chcp`` command can be used to display or to
-change the :ref:`OEM code page <Code pages>` (and console code page). Change the console code page is not a
+change the :ref:`OEM code page <codepage>` (and console code page). Change the console code page is not a
 good idea because the ANSI API of the console still expect characters encoded
 to the previous console code page.
 
@@ -256,7 +256,9 @@ To get the locale encoding:
 For the C locale, ``nl_langinfo(CODESET)`` returns :ref:`ASCII`, or an alias to
 this encoding (e.g. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
 OS X <osx>`, codec functions (e.g. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`
-even if ``nl_langinfo(CODESET)`` announces ASCII encoding.
+even if ``nl_langinfo(CODESET)`` announces ASCII encoding. AIX uses
+:ref:`ISO-8859-1` for the C locale (and ``nl_langinfo(CODESET)`` returns
+``"ISO8859-1"``).
 
 
 Locale functions
