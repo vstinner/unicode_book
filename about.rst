@@ -36,3 +36,5 @@ Notations used in this book
    * ``0x00``\ —\ ``0x7F`` is a range of 128 bytes (0 through 127)
    * U+0000—U+00FF is a range of 256 characters (0 through 255)
 
+.. todo:: document {U+HHHH, U+HHHH} syntax and check for its usage
+

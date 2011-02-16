@@ -17,73 +17,62 @@ call the range U+10000—U+10FFFF as **non-BMP** characters.
 Categories
 ----------
 
-Unicode has 7 character categories. Categories with examples and character
-count of Unicode 6.0:
+Unicode 6.0 has 7 character categories:
 
  * Letter (L)
 
-   * lowercase (Ll): U+0264 (ɤ), U+0441 (с), U+1D07 (ᴇ),
-     U+1D5FF (𝗿), U+1D68A (𝚊), … (1,759)
-   * modifier (Lm): U+1D2D (ᴭ), U+1D44 (ᵄ), U+1D9B (ᶛ),
-     U+1DB0 (ᶰ), … (210)
-   * titlecase (Lt): U+01C5 (ǅ), U+1F8C (ᾌ), U+1F8F (ᾏ),
-     U+1F9C (ᾜ), U+1FAB (ᾫ), … (31)
-   * uppercase (Lu): U+0051 (Q), U+1F1A (Ἒ), U+1D469 (𝑩),
-     U+1D4AB (𝒫), U+1D57B (𝕻), … (1,436)
-   * other (Lo): U+8E96 (躖), U+B585 (떅), U+B92E (뤮), … (97,084)
+   * lowercase (Ll)
+   * modifier (Lm)
+   * titlecase (Lt)
+   * uppercase (Lu)
+   * other (Lo)
 
  * Mark (M)
 
-   * spacing combining (Mc): U+09C0 (ী), U+0B4C (ୌ), U+0DDE (ෞ),
-     … (287)
-   * enclosing (Me): U+20DD (⃝), U+20E0 (⃠), U+20E4 (⃤), … (12)
-   * non-spacing (Mn): U+0357, U+0B3C, U+1A5E, U+1D180, U+E017D,
-     … (1,199)
+   * spacing combining (Mc)
+   * enclosing (Me)
+   * non-spacing (Mn)
 
  * Number (N)
 
-   * decimal digit (Nd): U+0666 (٦), U+0AEA (૪), … (420)
-   * letter (Nl): U+216E (Ⅾ), U+2171 (ⅱ), … (224)
-   * other (No): U+2490 (⒐), U+325E (㉞), U+32B9 (㊹), … (456)
+   * decimal digit (Nd)
+   * letter (Nl)
+   * other (No)
 
  * Punctuation (P)
 
-   * connector (Pc): U+2040 (⁀), U+2054 (⁔), U+FE34 (︴), U+FE4D (﹍),
-     U+FF3F (＿), … (10)
-   * dash (Pd): U+2010 (‐), U+2011 (‑), U+FE63 (﹣), … (21)
-   * initial quote (Pi): U+2018 (‘), U+201B (‛), … (12)
-   * final quote (Pf): U+00BB (»), U+2019 (’), U+203A (›), … (10)
-   * open (Ps): U+27E8 (⟨), U+2993 (⦓), U+2995 (⦕), U+301D (〝),
-     U+FE41 (﹁), … (72)
-   * close (Pe): U+276F (❯), U+300B (》), U+FE36 (︶), U+FE5C (﹜),
-     U+FF5D (｝), … (71)
-   * other (Po): U+0F06 (༆), U+2047 (⁇), U+FF3C (＼), … (402)
+   * connector (Pc)
+   * dash (Pd)
+   * initial quote (Pi)
+   * final quote (Pf)
+   * open (Ps)
+   * close (Pe)
+   * other (Po)
 
  * Symbol (S)
 
-   * currency (Sc): U+0AF1 (૱), U+20A6 (₦), U+20B3 (₳), U+20B4 (₴),
-     … (47)
-   * modifier (Sk): U+00AF (¯), U+02D4 (˔), U+02E9 (˩), U+02F7 (˷),
-     U+A70D (꜍), … (115)
-   * math (Sm): U+2211 (∑), U+27D1 (⟑), U+293F (⤿), U+2AF0 (⫰),
-     U+2AF4 (⫴), … (948)
-   * other (So): U+0FC4 (࿄), U+2542 (╂), … (4398)
+   * currency (Sc)
+   * modifier (Sk)
+   * math (Sm)
+   * other (So)
 
- * Separator (Z: 20)
+ * Separator (Z)
 
-   * line (Zl): U+2028
-   * paragraph (Zp): U+2029
-   * space (Zs): U+00A0, U+2003, U+2004, U+2007, U+2009, … (18)
+   * line (Zl)
+   * paragraph (Zp)
+   * space (Zs)
 
  * Other (C)
 
-   * control (Cc): U+0007, U+000A, U+0090, U+009E, … (65)
-   * format (Cf): U+200B, U+2062, U+E0043, U+E004A, U+E0063, … (140)
-   * not assigned (Cn): U+4D67A, U+51797, U+A63FB, U+D0F5B, U+D9791,
-     … (865,146)
-   * private use (Co): U+E000—U+F8FF (6400), U+F0000—U+FFFFD (65534),
-     U+100000—U+10FFFD (65534); total = 137,468
-   * surrogate (Cs): U+D800—U+DFFF (2048)
+   * control (Cc)
+   * format (Cf)
+   * not assigned (Cn)
+   * private use (Co)
+   * surrogate (Cs)
+
+There are 3 ranges reserved for private use: U+E000—U+F8FF (6,400 code
+points), U+F0000—U+FFFFD (65,534) and U+100000—U+10FFFD (65,534). Surrogates
+use the range U+D800—U+DFFF (2,048 code points).
 
 
 .. _unicode stats:
@@ -91,8 +80,9 @@ count of Unicode 6.0:
 Statistics
 ----------
 
-Only 248,966 code points are assigned: 77.6% are not assigned. Statistics
-excluding not assigned (Cn), private use (Co) and surrogate (Cs) categories:
+On a total of 1,114,112 possible code points, only 248,966 code points are
+assigned: 77.6% are not assigned. Statistics excluding not assigned (Cn),
+private use (Co) and surrogate (Cs) categories:
 
  * Letter: 100,520 (91.8%)
  * Symbol: 5,508 (5.0%)
@@ -102,6 +92,24 @@ excluding not assigned (Cn), private use (Co) and surrogate (Cs) categories:
  * Other: 205 (0.2%)
  * Separator: 20 (0.0%)
 
+On a total of 106,028 letters and symbols, 101,482 are in "other"
+subcategories: only 4.3% have well defined subcategories:
+
+ * Letter (L)
+
+   * lowercase (Ll): 1,759
+   * modifier (Lm): 210
+   * titlecase (Lt): 31
+   * uppercase (Lu): 1,436
+
+ * Symbol (S)
+
+   * currency (Sc): 47
+   * modifier (Sk): 115
+   * math (Sm): 948
+
+
+.. index:: NFC, NFD, NFKC, NFKD
 .. _Normalization:
 
 Normalization
@@ -112,7 +120,7 @@ character ç (U+00C7, Latin capital letter C with cedilla) can be written as the
 sequence ¸̧ (U+0327, Combining cedilla) c (U+0043, Latin capital letter C), two
 characters. This decomposition can be useful to search a substring in a text,
 e.g. remove diacritic is pratical for the user. The decomposed form is called
-Normal Form D (NFD) and the precomposed form is called Normal Form C (NFC).
+Normal Form D (**NFD**) and the precomposed form is called Normal Form C (**NFC**).
 
 +------+--------+----------------+
 | Form | String | Unicode        |
@@ -124,12 +132,16 @@ Normal Form D (NFD) and the precomposed form is called Normal Form C (NFC).
 
 Unicode database contains also a compatibility layer: if a character cannot be
 rendered (no font contain the requested character) or encoded to a specific
-encoding, Unicode proposes a replacment character sequence which looks like the
-character, but may have a different meaning. For example, ĳ (U+0133, Latin small
-ligature ij) is replaced by i (U+0069, Latin small letter I) j (U+006A, Latin
-small letter J), two characters. ĳ character cannot be encoded to :ref:`ISO-8859-1`,
-whereas ij characters can. Two extra normal forms use this compatibility layer:
-NFKD (decomposed) and NFKC (precomposed).
+encoding, Unicode proposes a :ref:`replacment character sequence which looks
+like the character <translit>`, but may have a different meaning.
+
+For example, ĳ (U+0133, Latin small ligature ij) is replaced by {i (U+0069,
+Latin small letter I), j (U+006A, Latin small letter J)}, two characters. ĳ
+character :ref:`cannot be encoded <unencodable>` to :ref:`ISO-8859-1`, whereas
+ij characters can.
+
+Two extra normal forms use this compatibility layer: **NFKD**
+(decomposed) and **NFKC** (precomposed).
 
 .. note::
 
