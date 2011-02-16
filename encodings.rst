@@ -263,7 +263,7 @@ GBK encoding family (Chinese)
 GBK is a family of Chinese charsets / multibyte encodings:
 
  * GB 2312 (1980): includes 6,763 Chinese characters
- * GBK (1993) (cp936)
+ * GBK (1993) (:ref:`code page <codepage>` 936)
  * GB 18030 (2005, last revision in 2006)
  * HZ (1989) (HG-GZ-2312)
 
@@ -285,7 +285,7 @@ JIS is a family of Japanese charsets/encodings:
  * JIS X 0213 (first version in 2000, last revision in 2004: EUC JIS X 2004), EUC JIS X 0213
  * Shift JIS
  * EUC JP
- * Windows code page 932 (cp932)
+ * Windows :ref:`code page <codepage>` 932 (cp932)
 
    * U+F8F1 (``0xFD``)
    * U+F8F2 (``0xFE``)
@@ -363,7 +363,7 @@ encoding.
 | UTF-32   |  32 bits  | Full            |
 +----------+-----------+-----------------+
 
-Windows 95 uses UCS-2, whereas Windows 2000 uses UTF-16.
+:ref:`Windows 95 <win>` uses UCS-2, whereas Windows 2000 uses UTF-16.
 
 .. note::
 

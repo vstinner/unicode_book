@@ -112,6 +112,8 @@ Character string API (wchar_t*)
    prefix, e.g. ``L"Hello World!\n"``. As character literals, it supports also control
    character, codes written in octal, hexadecimal, ``L"\uHHHH"`` and ``L"\UHHHHHHHH"``.
 
+:ref:`Windows` uses (:ref:`UTF-16 <utf16>`) wchar_t* strings in its Unicode API.
+
 
 printf functions family
 '''''''''''''''''''''''

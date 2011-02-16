@@ -91,6 +91,8 @@ character (U+0000—U+10FFFF).
 The glib library implements :ref:`character strings <str>` as :c:type:`gchar*`
 :ref:`byte strings <bytes>` encoded to :ref:`UTF-8`.
 
+.. todo:: glib manipulates byte or unicode strings?
+
 
 Codec functions
 '''''''''''''''

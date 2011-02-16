@@ -1,10 +1,23 @@
 Operating systems
 =================
 
+.. _win:
 .. _Windows:
 
 Windows
 -------
+
+Since Windows 2000, Windows offers a nice Unicode API and supports
+:ref:`non-BMP characters <bmp>`. It uses :ref:`Unicode strings <str>`
+implemented as :c:type:`wchar_t*` strings. :c:type:`wchar_t` is 16 bits long on
+Windows and so it uses :ref:`UTF-16 <utf16>`: :ref:`non-BMP <bmp>` characters
+are stored as two :c:type:`wchar_t` (a :ref:`surrogate pair <surrogates>`), and
+the length of a string is the number of UTF-16 words and not the number of
+characters.
+
+Windows 95 and 98 had also Unicode strings, but were limited to :ref:`BMP
+characters <bmp>`: they used :ref:`UCS-2 <ucs>` instead of UTF-16.
+
 
 .. index: Code page
 .. _codepage:

@@ -4,6 +4,7 @@ Programming with Unicode
 
 .. todo:: uppercase/lowercase
 .. todo:: MySQL and PostgreSQL
+.. todo:: Filesystems (ext2 vs VFAT)
 
 .. toctree::
    :maxdepth: 2
