@@ -44,14 +44,14 @@ be, depending on the implementation, any Unicode character or :ref:`BMP-only
  * array of 16 bits unsigned integers with :ref:`surrogate pairs
    <surrogates>`, :ref:`UTF-16 <utf16>`: full Unicode range
 
-UCS-4 strings use two times more memory than UCS-2 strings, but there are able
+UCS-4 strings use twice as much memory than UCS-2 strings, but are able
 to store non-BMP character. UTF-16 is a compromise between UCS-2 and UCS-4, but
-it has disadvantages.
+has its disadvantages.
 
 UTF-16 strings are not exactly character strings, because their length is the
 number of UTF-16 words, and not the number of characters. For :ref:`BMP <bmp>`
 characters, the length is the same, but not for non-BMP characters.  For
-example, U+10FFFF is one character, but it is encoded as 2 UTF-16 words: U+DBFF
+example, U+10FFFF is one character, but it is encoded as two UTF-16 words: U+DBFF
 and U+DFFF (a :ref:`surrogate pair <surrogates>`). Getting the nth character in
 such string has a complexity of :math:`O(n)`, whereas it has a complexity of :math:`O(1)` for
 UCS-2 and UCS-4 strings.

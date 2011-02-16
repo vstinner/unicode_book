@@ -17,6 +17,7 @@ Reviewers:
  * Alexander Belopolsky
  * Antoine Pitrou
  * Feth Arezki
+ * Nelle Varoquaux
 
 
 Notations used in this book
