@@ -472,8 +472,8 @@ Encodings performances
 Complexity of getting the n-th character in a string, and of
 getting the length in character of a string:
 
- * O(1) for 7 and 8 bit encodings (ASCII, ISO-8859, ...), UCS-2 and UCS-4
- * O(n) for variable length encodings (e.g. the UTF family)
+ * :math:`O(1)` for 7 and 8 bit encodings (ASCII, ISO-8859, ...), UCS-2 and UCS-4
+ * :math:`O(n)` for variable length encodings (e.g. the UTF family)
 
 .. todo:: Perf of the codec
 

@@ -12,17 +12,19 @@ character range supported by a byte string depends on its encoding. For
 example, an :ref:`ASCII <ascii>` (byte) string can only store characters in
 U+0000—U+007F (128 code points).
 
-Concatenate two byte strings leads to :ref:`mojibake <mojibake>` if the strings
-use different encodings. Unicode strings don't have this issue.
+.. todo:: "A "byte string" is a string encoded to an encoding." doesn't mean anything
+
+Concatenate two byte strings leads of different encodings leads to
+:ref:`mojibake <mojibake>`. Unicode strings don't have this issue.
 
 A :ref:`UTF-8 <utf8>` encoded byte string is a particular case, because this
 encoding is able to encode all Unicode characters. An UTF-8 encoded string can
 be seen as an Unicode string, but it is called "byte string" in this book to
 avoid the confusion with "native" Unicode string. The main difference between
 an UTF-8 byte string and a Unicode string is the complexity of getting the nth
-character: O(n) for the byte string and O(1) for the Unicode string. There is
+character: :math:`O(n)` for the byte string and :math:`O(1)` for the Unicode string. There is
 one exception: if the Unicode string is implemented using UTF-16: it has also a
-complexity of O(n).
+complexity of :math:`O(n)`.
 
 :ref:`PHP5 <php>` only supports byte strings.
 
@@ -51,7 +53,7 @@ number of UTF-16 words, and not the number of characters. For :ref:`BMP <bmp>`
 characters, the length is the same, but not for non-BMP characters.  For
 example, U+10FFFF is one character, but it is encoded as 2 UTF-16 words: U+DBFF
 and U+DFFF (a :ref:`surrogate pair <surrogates>`). Getting the nth character in
-such string has a complexity of O(n), whereas it has a complexity of O(1) for
+such string has a complexity of :math:`O(n)`, whereas it has a complexity of :math:`O(1)` for
 UCS-2 and UCS-4 strings.
 
 :ref:`Java` language, the :ref:`Qt <qt>` library and :ref:`Windows 2000 <win>` implement

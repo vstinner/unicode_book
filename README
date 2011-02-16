@@ -7,6 +7,7 @@ Dependencies
 ------------
 
  * Sphinx: http://sphinx.pocoo.org/ -- sudo pip install sphinx
+ * for pngpath: dvipng
  * (optional) LaTeX: sudo apt-get install texlive-latex-base
  * (optional) rst2pdf
 
