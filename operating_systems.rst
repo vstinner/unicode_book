@@ -343,3 +343,50 @@ mbstowcs() and wcstombs() are :ref:`strict <strict>` and don't support
 On Windows, the "locale encoding" are the :ref:`ANSI and OEM code pages
 <codepage>`.
 
+
+Filesystems (filenames)
+-----------------------
+
+CD-ROM and DVD
+''''''''''''''
+
+CD-ROM uses ISO 9660 filesystem which doesn't support Unicode filenames. This
+filesystem is very restrictive: only A-Z, 0-9, _ and "." are allowed. Microsoft
+has developped has extension to the ISO 9660 filesystem: Joliet. This extension
+stores filenames as Unicode, up to 64 characters (BMP only, stored as
+:ref:`UCS-2 <ucs>`). It was first supported by Windows 95, Today, all
+operationg systems are able to read it.
+
+UDF (Universal Disk Format) is the filesystem of DVD: it stores filenames as
+Unicode.
+
+
+Microsoft
+'''''''''
+
+On MS-DOS, filenames are :ref:`byte strings <bytes>`, were displayed
+differently depending on the :ref:`code page <codepage>` and were limited to
+8+3 caracters (8 characters for the name, 3 for the filename extension).
+Microsoft extended its FAT filesystem in Windows 95 to add "long filenames":
+filenames up to 255 :ref:`UCS-2 <ucs>` characters. Starting at Windows 2000,
+non-BMP can be used: filenames are now 255 :ref:`UTF-16 <utf16>` characters.
+
+The NTFS filesystem stores also filenames at Unicode.
+
+Apple
+'''''
+
+HFS uses bytes filenames.
+
+HFS+ uses UTF-16 for filenames: the maximum length is 255 UTF-16 characters.
+
+
+Others
+''''''
+
+JFS and ZFS also use Unicode.
+
+The ext family (ext2, ext3, ext4) use bytes.
+
+.. todo:: Network fileystems like NFS (NFS4 supports Unicode?)
+
