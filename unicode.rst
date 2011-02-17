@@ -19,56 +19,16 @@ Categories
 
 Unicode 6.0 has 7 character categories:
 
- * Letter (L)
-
-   * lowercase (Ll)
-   * modifier (Lm)
-   * titlecase (Lt)
-   * uppercase (Lu)
-   * other (Lo)
-
- * Mark (M)
-
-   * spacing combining (Mc)
-   * enclosing (Me)
-   * non-spacing (Mn)
-
- * Number (N)
-
-   * decimal digit (Nd)
-   * letter (Nl)
-   * other (No)
-
- * Punctuation (P)
-
-   * connector (Pc)
-   * dash (Pd)
-   * initial quote (Pi)
-   * final quote (Pf)
-   * open (Ps)
-   * close (Pe)
-   * other (Po)
-
- * Symbol (S)
-
-   * currency (Sc)
-   * modifier (Sk)
-   * math (Sm)
-   * other (So)
-
- * Separator (Z)
-
-   * line (Zl)
-   * paragraph (Zp)
-   * space (Zs)
-
- * Other (C)
-
-   * control (Cc)
-   * format (Cf)
-   * not assigned (Cn)
-   * private use (Co)
-   * surrogate (Cs)
+ * Letter (L): lowercase (Ll), modifier (Lm), titlecase (Lt), uppercase (Lu),
+   other (Lo)
+ * Mark (M): spacing combining (Mc), enclosing (Me), non-spacing (Mn)
+ * Number (N): decimal digit (Nd), letter (Nl), other (No)
+ * Punctuation (P): connector (Pc), dash (Pd), initial quote (Pi), final quote
+   (Pf), open (Ps), close (Pe), other (Po)
+ * Symbol (S): currency (Sc), modifier (Sk), math (Sm), other (So)
+ * Separator (Z): line (Zl),  paragraph (Zp), space (Zs)
+ * Other (C): control (Cc), format (Cf), not assigned (Cn), private use (Co),
+   surrogate (Cs)
 
 There are 3 ranges reserved for private use: U+E000—U+F8FF (6,400 code
 points), U+F0000—U+FFFFD (65,534) and U+100000—U+10FFFD (65,534). Surrogates
@@ -95,18 +55,13 @@ private use (Co) and surrogate (Cs) categories:
 On a total of 106,028 letters and symbols, 101,482 are in "other"
 subcategories: only 4.3% have well defined subcategories:
 
- * Letter (L)
-
-   * lowercase (Ll): 1,759
-   * modifier (Lm): 210
-   * titlecase (Lt): 31
-   * uppercase (Lu): 1,436
-
- * Symbol (S)
-
-   * currency (Sc): 47
-   * modifier (Sk): 115
-   * math (Sm): 948
+ * Letter, lowercase (Ll): 1,759
+ * Letter, uppercase (Lu): 1,436
+ * Symbol, math (Sm): 948
+ * Letter, modifier (Lm): 210
+ * Symbol, modifier (Sk): 115
+ * Letter, titlecase (Lt): 31
+ * Symbol, currency (Sc): 47
 
 
 .. index:: NFC, NFD, NFKC, NFKD
