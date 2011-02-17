@@ -11,8 +11,22 @@ two byte strings encoded to different encodings are concatenated, a program
 will display **mojibake**.
 
 The classical example is a latin string (with diacritics) encoded to UTF-8 but
-decoded from ISO-8859-1. It displays Ã© (U+00C3, U+00A9) for the é (U+00E9)
+decoded from ISO-8859-1. It displays Ã© {U+00C3, U+00A9} for the é (U+00E9)
 letter, because é is encoded to ``0xC3 0xA9`` in UTF-8.
+
+Other examples:
+
+========== ========== ============ ===================
+Text       Encoded to Decoded from Result
+========== ========== ============ ===================
+Noël          UTF-8    ISO-8859-1  NoÃ«l
+Русский       KOI-8    ISO-8859-1  òÕÓÓËÉÊ
+========== ========== ============ ===================
+
+.. note::
+
+   "Mojibake" is japanese word meaning literally "unintelligible sequence of
+   characters". This issue is called "Кракозя́бры" (krakozyabry) in russian.
 
 .. seealso:: :ref:`guess`.
 
