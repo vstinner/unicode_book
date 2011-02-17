@@ -3,6 +3,8 @@ About this book
 
 .. todolist::
 
+The book is written in `reStructuredText <http://sphinx.pocoo.org/rest.html>`_
+(reST) syntax and compiled by `Sphinx <http://sphinx.pocoo.org/>`_.
 
 License
 -------
