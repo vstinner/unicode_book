@@ -1,3 +1,5 @@
+.. _oses:
+
 Operating systems
 =================
 
@@ -343,6 +345,8 @@ mbstowcs() and wcstombs() are :ref:`strict <strict>` and don't support
 On Windows, the "locale encoding" are the :ref:`ANSI and OEM code pages
 <codepage>`.
 
+
+.. _filename:
 
 Filesystems (filenames)
 -----------------------

@@ -298,6 +298,10 @@ backslash is encoded to ``0x81 0x5F``.
 
 To encode Japanese, there is also the ISO/IEC 2022 encoding family.
 
+.. todo:: Korean (EUC-KR)
+.. todo:: Cyrillic (cp1251, KOI8-R, ...)
+.. todo:: Arabic (cp1256, ISO-8859-6)
+
 
 Unicode encodings
 -----------------
@@ -500,6 +504,8 @@ Examples
 
 Handle undecodable bytes and unencodable characters
 ---------------------------------------------------
+
+.. todo:: Encode and decode sections?
 
 .. _undecodable:
 
