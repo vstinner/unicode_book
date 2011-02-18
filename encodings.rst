@@ -10,18 +10,19 @@ A charset, character set, is a mapping between code points and characters. An
 encoding describes how to encode characters (code points) to bytes and howto
 decode bytes to characters (code points). 7 and 8 bits charsets don't need any
 encoding: a code point is stored in a single byte (unsigned 8 bits number).
-Because of these charsets, many people confuse charsets and encodings.
-Bigger charsets need multibyte encodings like :ref:`UTF-8` or :ref:`GBK <gbk>`. A multibyte
-encoding can encode all code points into byte sequences of the same size (e.g. :ref:`UCS-2 <ucs>`), or byte
-sequence with a variable length (e.g. :ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower
-than 128 use a single byte, whereas higher code points take between 2 and 4 bytes.
+Because of these charsets, many people confuse charsets and encodings. Bigger
+charsets need multibyte encodings like :ref:`UTF-8` or :ref:`GBK <gbk>`. A
+multibyte encoding can encode all code points into byte sequences of the same
+size (e.g. :ref:`UCS-2 <ucs>`), or byte sequence with a variable length (e.g.
+:ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower than
+128 use a single byte, whereas higher code points take between 2 and 4 bytes.
 
 There are many encodings around the world. Before Unicode, each manufacturer
 invented its own encoding to fit its client market and its usage. Most
-encodings are incompatible on at least one code, except some exceptions (e.g. a
-document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or UTF-8,
-because ISO-8859-1 and UTF-8 are supersets of ASCII). Each encoding can have
-multiple aliases, for example:
+encodings are incompatible on at least one code, except some exceptions (e.g.
+a document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or
+UTF-8, because ISO-8859-1 and UTF-8 are supersets of ASCII). Each encoding can
+have multiple aliases, for example:
 
  * ASCII: US-ASCII, ISO 646, ANSI_X3.4-1968, …
  * ISO-8859-1: Latin-1, iso88591, …
@@ -34,8 +35,8 @@ example, ISO-8859-1 are the first 256 Unicode code points (U+0000—U+00FF).
 
 This book present the following encodings: :ref:`ASCII`, :ref:`cp1252`,
 :ref:`GBK <gbk>`, :ref:`ISO-8859-1`, :ref:`ISO-8859-15`, :ref:`JIS <jis>`,
-:ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>` and
-:ref:`UTF-32 <utf32>`.
+:ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>`
+and :ref:`UTF-32 <utf32>`.
 
 Popularity
 ----------
@@ -45,9 +46,9 @@ The three most common encodings are, in chronological order of their creation:
 
 Google posted an interesting graph of the usage of different encodings on the
 web: `Unicode nearing 50% of the web
-<http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html>`_ (Mark
-Davis, january 2010). Because Google craws an huge part of the web, these
-numbers should be reliable. In 2001, the most used encodings were:
+<http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html>`_
+(Mark Davis, january 2010). Because Google craws an huge part of the web,
+these numbers should be reliable. In 2001, the most used encodings were:
 
  * 1st (56%): :ref:`ASCII`
  * 2nd (23%): Western Europe encodings (:ref:`ISO-8859-1`, :ref:`ISO-8859-15`
@@ -72,8 +73,8 @@ language. Most 8 bits encodings are able to encode multiple languages, usually
 geograpically close (e.g. ISO-8859-1 is intented for Western Europe).
 
 It was difficult to exchange documents of different languages, because if a
-document was encoded to an encoding different than the user encoding, it leaded
-to :ref:`mojibake <mojibake>`.
+document was encoded to an encoding different than the user encoding, it
+leaded to :ref:`mojibake <mojibake>`.
 
 
 .. index:: ASCII
@@ -85,15 +86,15 @@ ASCII
 ASCII encoding is supported by all applications. A document encoded in ASCII
 can be read decoded by any other encoding. This is explained by the fact that
 all 7 and 8 bits encodings are based on ASCII (to be compatible with ASCII,
-except :ref:`JIS X 0201 <jis>` encoding: ``0x5C`` is decoded to the yen sign (U+00A5, ¥)
-instead of a backslash (U+005C, \\). ASCII is
-the smallest encoding, it only contains 128 codes including 95 printable
-characters (letters, digits, punctuation signs and some other various
-characters) and 33 control codes. Control codes are used to control the
-terminal, e.g. 10, the "line feed", written ``"\n"`` is most programming
-languages, marks the end of a line. There are some special control code, e.g. 7,
-known as "bell" and written ``"\b"``, sent to ring a bell. ASCII code points
-are the first 128 code points of Unicode (U+0000—U+007F).
+except :ref:`JIS X 0201 <jis>` encoding: ``0x5C`` is decoded to the yen sign
+(U+00A5, ¥) instead of a backslash (U+005C, \\). ASCII is the smallest
+encoding, it only contains 128 codes including 95 printable characters
+(letters, digits, punctuation signs and some other various characters) and 33
+control codes. Control codes are used to control the terminal, e.g. 10, the
+"line feed", written ``"\n"`` is most programming languages, marks the end of
+a line. There are some special control code, e.g. 7, known as "bell" and
+written ``"\b"``, sent to ring a bell. ASCII code points are the first 128
+code points of Unicode (U+0000—U+007F).
 
 +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 |    |  -0 |  -1 |  -2 |  -3 |  -4 |  -5 |  -6 |  -7 |  -8 |  -9 |  -a |  -b |  -c |  -d |  -e |  -f |
@@ -132,9 +133,9 @@ U+0000—U+001F and U+007F are control codes:
 ISO-8859-1
 ''''''''''
 
-ISO-8859-1 is a superset of :ref:`ASCII` and adds 128 codes, mostly latin letters with diacritics, and
-is used in the USA and Europe. ISO-8859-1 are the 256 first code points of
-Unicode (U+0000—U+00FF).
+ISO-8859-1 is a superset of :ref:`ASCII` and adds 128 codes, mostly latin
+letters with diacritics, and is used in the USA and Europe. ISO-8859-1 are the
+256 first code points of Unicode (U+0000—U+00FF).
 
 +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 |    |  -0 |  -1 |  -2 |  -3 |  -4 |  -5 |  -6 |  -7 |  -8 |  -9 |  -a |  -b |  -c |  -d |  -e |  -f |
@@ -184,11 +185,10 @@ this table). See the ASCII table for U+0000—U+001F and U+007F control codes.
 cp1252
 ''''''
 
-Windows :ref:`code page <codepage>` 1252, best known as cp1252, is a variant of :ref:`ISO-8859-1`. It is
-the default encoding of all English and western europe Windows setups.
-It is used as a fallback by web browsers
-if the webpage doesn't provide any encoding information (not in HTML, nor in
-HTTP).
+Windows :ref:`code page <codepage>` 1252, best known as cp1252, is a variant
+of :ref:`ISO-8859-1`. It is the default encoding of all English and western
+europe Windows setups. It is used as a fallback by web browsers if the webpage
+doesn't provide any encoding information (not in HTML, nor in HTTP).
 
 cp1252 shares 224 code points with ISO-8859-1, the range ``0x80``\ —\ ``0x9F`` (32
 characters, including 5 not assigned codes) are different. In ISO-8859-1, this
@@ -320,18 +320,19 @@ encoding. An encoded character takes between 1 and 4 bytes. UTF-8 encoding
 supports longer byte sequences, up to 6 bytes, but the biggest code point of
 Unicode 6.0 (U+10FFFF) only takes 4 bytes.
 
-It is possible to be sure that a byte string
-is encoded by UTF-8, because UTF-8 adds markers to each byte. For the first
-byte of a multibyte character, bit 7 and bit 6 are set (``0b11xxxxxx``); the next
-bytes have bit 7 set and bit 6 unset (``0b10xxxxxx``). Another cool feature of UTF-8
-is that it has no endianness (it can be read in big or little endian order, it does
-not matter). The problem with UTF-8, if you compare it to ASCII or ISO-8859-1,
-is that it is a multibyte encoding: you cannot access a character by its
-character index directly, you have to compute the byte index. If getting a character by
-its index is a common operation in your program, use a real character type
-like :c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C <c>` bytes
-functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or :c:func:`printf`), whereas they fail with UTF-16
-and UTF-32 encoded strings because these encodings encode small codes with nul bytes.
+It is possible to be sure that a byte string is encoded by UTF-8, because
+UTF-8 adds markers to each byte. For the first byte of a multibyte character,
+bit 7 and bit 6 are set (``0b11xxxxxx``); the next bytes have bit 7 set and
+bit 6 unset (``0b10xxxxxx``). Another cool feature of UTF-8 is that it has no
+endianness (it can be read in big or little endian order, it does not matter).
+The problem with UTF-8, if you compare it to ASCII or ISO-8859-1, is that it
+is a multibyte encoding: you cannot access a character by its character index
+directly, you have to compute the byte index. If getting a character by its
+index is a common operation in your program, use a real character type like
+:c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C <c>` bytes
+functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or
+:c:func:`printf`), whereas they fail with UTF-16 and UTF-32 encoded strings
+because these encodings encode small codes with nul bytes.
 
 See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 
@@ -344,18 +345,18 @@ See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 UCS-2, UCS-4, UTF-16 and UTF-32
 '''''''''''''''''''''''''''''''
 
-**UCS-2** and **UCS-4** encodings encode each code point to exactly one word of,
-respectivelly, 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0 code
-points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
+**UCS-2** and **UCS-4** encodings encode each code point to exactly one word
+of, respectivelly, 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0
+code points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
 encodings are practical because the length in words is the number of
 characters.
 
-**UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits words. UTF-16
-encodes code points bigger than U+FFFF using two words: a :ref:`surrogate
-pair <surrogates>`. UCS-2 can be decoded from UTF-16. UTF-32 is also supposed to use more than one
-word for big code points, but in practical, it only requires one word to store
-all code points of Unicode 6.0. That's why UTF-32 and UCS-4 are the same
-encoding.
+**UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits words.
+UTF-16 encodes code points bigger than U+FFFF using two words: a
+:ref:`surrogate pair <surrogates>`. UCS-2 can be decoded from UTF-16. UTF-32
+is also supposed to use more than one word for big code points, but in
+practical, it only requires one word to store all code points of Unicode 6.0.
+That's why UTF-32 and UCS-4 are the same encoding.
 
 +----------+-----------+-----------------+
 | Encoding | Word size | Unicode support |
@@ -383,11 +384,11 @@ encoding.
 Byte order marks (BOM)
 ''''''''''''''''''''''
 
-:ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>` use words bigger than 8 bits, and so hit endian issue. A
-single word can be stored in the big endian (most significant bits first) or
-little endian (less significant bits first). BOM are short byte sequences to
-indicate the encoding and the endian. It's the U+FEFF code point encoded to
-the UTF encodings.
+:ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>` use words bigger than 8 bits,
+and so hit endian issue. A single word can be stored in the big endian (most
+significant bits first) or little endian (less significant bits first). BOM
+are short byte sequences to indicate the encoding and the endian. It's the
+U+FEFF code point encoded to the UTF encodings.
 
 Unicode defines 6 different BOM:
 
@@ -400,9 +401,10 @@ Unicode defines 6 different BOM:
 
 UTF-32-LE BOMs starts with UTF-16-LE BOM.
 
-"UTF-16" and "UTF-32" encoding names are imprecise: depending of the context, format or
-protocol, it means UTF-16 and UTF-32 with BOM markers, or UTF-16 and UTF-32 in
-the host endian without BOM. On Windows, "UTF-16" usually means UTF-16-LE.
+"UTF-16" and "UTF-32" encoding names are imprecise: depending of the context,
+format or protocol, it means UTF-16 and UTF-32 with BOM markers, or UTF-16 and
+UTF-32 in the host endian without BOM. On Windows, "UTF-16" usually means
+UTF-16-LE.
 
 Some Windows applications, like notepad.exe, use UTF-8 BOM, whereas many
 applications are unable to detect the BOM, and so the BOM causes troubles.
@@ -421,10 +423,10 @@ points): it is also the :ref:`Unicode category <unicode categories>`
 
 In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD
 are stored as a single 16 bits word. :ref:`Non-BMP <bmp>` characters (range
-U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits words: the first
-word in the range U+D800—U+DBFF and the second word in the range U+DC00—U+DFFF.
-A lone surrogate character is invalid in UTF-16, surrogate characters are
-always written as pairs.
+U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits words: the
+first word in the range U+D800—U+DBFF and the second word in the range
+U+DC00—U+DFFF. A lone surrogate character is invalid in UTF-16, surrogate
+characters are always written as pairs.
 
 Examples of surrogate pairs:
 
@@ -524,8 +526,8 @@ is not decodable from :ref:`ASCII` nor :ref:`UTF-8`, but it is decodable from
 :ref:`ISO-8859-1`.
 
 Some encodings are able to decode any byte sequences. All encodings of the
-ISO-8859 family have this property, because all of the 256 code points of these
-8 bits encodings are assigned.
+ISO-8859 family have this property, because all of the 256 code points of
+these 8 bits encodings are assigned.
 
 
 .. _unencodable:
@@ -534,8 +536,8 @@ Unencodable characters
 ''''''''''''''''''''''
 
 When a :ref:`character string <str>` is encoded to a :ref:`charset <charset>`
-smaller than Unicode, a character may not be encodable. For example, € (U+20AC)
-is not encodable to :ref:`ISO-8859-1`, but it is encodable to
+smaller than Unicode, a character may not be encodable. For example, €
+(U+20AC) is not encodable to :ref:`ISO-8859-1`, but it is encodable to
 :ref:`ISO-8859-15` and :ref:`UTF-8`.
 
 
@@ -609,12 +611,14 @@ characters are different meanings.
 Escape the character
 ''''''''''''''''''''
 
-:ref:`Python <python>` "replace" error handler uses ``\xHH``, ``\uHHHH`` or ``\UHHHHHHHH``
-where HHH...H is the code point formatted in hexadecimal. PHP "long" error
-handler uses ``U+HH``, ``U+HHHH`` or ``encoding+HHHH`` (e.g. ``JIS+7E7E``).
+:ref:`Python <python>` "replace" error handler uses ``\xHH``, ``\uHHHH`` or
+``\UHHHHHHHH`` where HHH...H is the code point formatted in hexadecimal. PHP
+"long" error handler uses ``U+HH``, ``U+HHHH`` or ``encoding+HHHH`` (e.g.
+``JIS+7E7E``).
 
-:ref:`PHP <php>` "entity" and Python "xmlcharrefreplace" error handlers escape the
-code point as an HTML/XML entity (e.g. PHP: ``&#xE9;``, Python: ``&#233;``).
+:ref:`PHP <php>` "entity" and Python "xmlcharrefreplace" error handlers escape
+the code point as an HTML/XML entity (e.g. PHP: ``&#xE9;``, Python:
+``&#233;``).
 
 
 Other charsets and encodings
@@ -630,10 +634,10 @@ enough.
 How to guess the encoding of a document?
 ----------------------------------------
 
-Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM <bom>` (UTF-7 with
-BOM, UTF-8 with BOM, :ref:`UTF-16 <utf16>`, and :ref:`UTF-32 <utf32>`) have
-reliable algorithms to get the encoding of a document. For all other encodings,
-you have to trust heuristics based on statistics.
+Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM <bom>` (UTF-7
+with BOM, UTF-8 with BOM, :ref:`UTF-16 <utf16>`, and :ref:`UTF-32 <utf32>`)
+have reliable algorithms to get the encoding of a document. For all other
+encodings, you have to trust heuristics based on statistics.
 
 
 Is ASCII?
@@ -743,9 +747,9 @@ reliable algorithm to check if a function is encoded to UTF-8.
 
 .. highlight:: c
 
-Example of a strict :ref:`C <c>` function to check if a string is encoded to UTF-8. It
-rejects overlong sequences (e.g.  ``0xC0 0x80``) and surrogate characters (e.g.
-``0xED 0xB2 0x80``, U+DC80). ::
+Example of a strict :ref:`C <c>` function to check if a string is encoded to
+UTF-8. It rejects overlong sequences (e.g.  ``0xC0 0x80``) and surrogate
+characters (e.g. ``0xED 0xB2 0x80``, U+DC80). ::
 
     #include <stdint.h>
 
@@ -829,11 +833,12 @@ In :ref:`Python`, the UTF-8 decoder can be used: ::
         else:
             return True
 
-In :ref:`Python 2 <python2>`, this function is more tolerant than the C function, because the
-UTF-8 decoder of Python 2 accepts surrogate characters (U+D800—U+DFFF). For example,
-``isUTF8(b'\xED\xB2\x80')`` returns ``True``. With :ref:`Python 3 <python3>`, the Python function is
-equivalent to the C function. If you would like to reject surrogate characters
-in Python 2, use the following strict function: ::
+In :ref:`Python 2 <python2>`, this function is more tolerant than the C
+function, because the UTF-8 decoder of Python 2 accepts surrogate characters
+(U+D800—U+DFFF). For example, ``isUTF8(b'\xED\xB2\x80')`` returns ``True``.
+With :ref:`Python 3 <python3>`, the Python function is equivalent to the C
+function. If you would like to reject surrogate characters in Python 2, use
+the following strict function: ::
 
     def isUTF8Strict(data):
         try:
