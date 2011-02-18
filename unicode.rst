@@ -77,6 +77,8 @@ characters. This decomposition can be useful to search a substring in a text,
 e.g. remove diacritic is pratical for the user. The decomposed form is called
 Normal Form D (**NFD**) and the precomposed form is called Normal Form C (**NFC**).
 
+.. todo:: LaTeX doesn't accept ¸̧ (U+0327, Combining cedilla)
+
 +------+--------+----------------+
 | Form | String | Unicode        |
 +======+========+================+
