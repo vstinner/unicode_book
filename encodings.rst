@@ -17,6 +17,21 @@ size (e.g. :ref:`UCS-2 <ucs>`), or byte sequence with a variable length (e.g.
 :ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower than
 128 use a single byte, whereas higher code points take between 2 and 4 bytes.
 
+.. TODO:: NELLE : je ne m'y connais pas trop en encodage, mais il me semble
+  que ce que tu affirmes dans le paragraphe précédent n'est pas tout à fait
+  correct: un encodage associe un character/glyphe/symbole avec quelque chose
+  d'autre, comme une série d'entier, d'octet ou n'importe quoi (en fait plus
+  exactement, pour moi de l'encodage, c'est une maniere d'associer X à Y, avec
+  la possibilité de décoder de Y vers X). Si tu prends l'article de wikipédia
+  sur le sujet (http://en.wikipedia.org/wiki/Character_encoding), il mentionne
+  le code morse. Le pire dans tout ça, c'est qu'il me semble qu'il existe
+  différent type de code morse pour différent language. Entre, la chine.
+
+  Bref, tout ça pour dire que je ne suis pas d'accord sur le fait que : "7 and
+  8 bits don't need any encoding". Tu associes une série de booléen à un
+  caractère, donc par définition, il y a encodage. Cependant, je suppose que
+  c'est un encodage "standard"
+
 There are many encodings around the world. Before Unicode, each manufacturer
 invented its own encoding to fit its client market and its usage. Most
 encodings are incompatible on at least one code, except some exceptions (e.g.
@@ -72,10 +87,18 @@ enough to store any character, and so the encoding tries to fit the user's
 language. Most 8 bits encodings are able to encode multiple languages, usually
 geograpically close (e.g. ISO-8859-1 is intented for Western Europe).
 
+.. TODO:: NELLE : "the problem was" & "The problem is" est plus une expression
+  francaise traduite: ce n'est pas faux grammaticallement en anglais, mais ne
+  sonne pas juste:
+
+  8 bits (256 code points) are not enought so store all (Unicode?) characters
+
 It was difficult to exchange documents of different languages, because if a
 document was encoded to an encoding different than the user encoding, it
 leaded to :ref:`mojibake <mojibake>`.
 
+
+.. TODO:: NELLE : un exemple serait le bienvenu
 
 .. index:: ASCII
 .. _ASCII:
@@ -333,6 +356,13 @@ index is a common operation in your program, use a real character type like
 functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or
 :c:func:`printf`), whereas they fail with UTF-16 and UTF-32 encoded strings
 because these encodings encode small codes with nul bytes.
+
+.. TODO:: NELLE la première phrase ne me semble pas "correcte" d'un point de
+  vue grammatical : 
+  
+  "It is possible to be sure that a byte string is encoded by UTF-8, because
+  UTF-8 adds markers to each byte." => "Thanks to markers placed at each byte,
+  it is possible to make sure a byte string is encoded in UTF-8"
 
 See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 
