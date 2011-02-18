@@ -33,6 +33,8 @@ be, depending on the implementation, any Unicode character or :ref:`BMP-only
  * array of 16 bits unsigned integers with :ref:`surrogate pairs
    <surrogates>`, :ref:`UTF-16 <utf16>`: full Unicode range
 
+.. todo:: NELLE - I think you should define BMP *before* using the term
+
 UCS-4 strings use twice as much memory than UCS-2 strings, but are able
 to store non-BMP character. UTF-16 is a compromise between UCS-2 and UCS-4, but
 has its disadvantages.
@@ -55,16 +57,24 @@ Python. Windows 95 uses UCS-2 strings.
 Differences between byte and character strings
 ----------------------------------------------
 
+.. TODO:: Nelle : what is a character strings ? In any case strings is plural
+  and byte singular. ISn't that a bit strange ?
+
 The most important difference between byte and character strings is that a byte
 string has an encoding. The encoding is usually not stored in the string, the
 developer have to take care of the encoding of all strings. Concatenate two
 byte strings of different encodings leads to :ref:`mojibake <mojibake>`,
 whereas Unicode strings don't have this issue.
 
+.. TODO:: Nelle : the developer **has**
+
 A :ref:`UTF-8 <utf8>` string is a particular case, because UTF-8 is able to
 encode all Unicode characters [1]_ . But a UTF-8 string is not a Unicode string
 because the string unit is byte and not character: you can get an individual
 byte of a multibyte character.
+
+.. TODO:: Nelle : un exemple de ce dernier cas serais, je pense, le bienvenue
+  ici 
 
 Another difference between UTF-8 strings and Unicode strings is the complexity
 of getting the nth character: :math:`O(n)` for the byte string and :math:`O(1)`
@@ -79,6 +89,8 @@ implemented using UTF-16: it has also a complexity of :math:`O(n)`.
 Rules
 -----
 
+.. TODO:: NELLE : I'd probably replace rules per tips
+
 To limit or avoid issues with Unicode, try to follow these rules:
 
  * decode all bytes data as early as possible: keyboard strokes, files, data
@@ -91,6 +103,7 @@ To limit or avoid issues with Unicode, try to follow these rules:
    characters <bmp>`), has no endian issue, is well support by most
    programs, and is good compromise is size.
 
+.. TODO:: problem grammatical dans la dernière phrase du dernier point
 
 .. _support:
 
@@ -132,6 +145,12 @@ step for a full Unicode support.
 Most UNIX and Windows programs don't support Unicode. Firefox web browser and
 OpenOffice.org office suite have a full Unicode support. Slowly, more and more programs
 have a basic Unicode support.
+
+.. NELLE : juste en anecdote: OOo supporte complétement l'unicode, mais les
+  branches OOo4Kids et OOoLight ont désactivées ce support par défaut parce
+  que ça compliquait la compilation à mort :p
+
+  Je pense qu'elle va être remise un jour ou un autre dans ces branches.
 
 Don't expect to have directly a full Unicode support: it requires a lot of work. Your
 project may be fully Unicode compliant for a specific task (e.g. :ref:`filenames <filename>`), but
