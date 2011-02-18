@@ -12,9 +12,9 @@ Programming with Unicode
 
    about.rst
    nightmare.rst
-   good_practices.rst
-   encodings.rst
    unicode.rst
+   encodings.rst
+   good_practices.rst
    operating_systems.rst
    programming_languages.rst
    libraries.rst

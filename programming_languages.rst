@@ -98,6 +98,8 @@ Character API (wchar_t)
    bigger than 255, ``'\uHHHH'`` syntax can be used. For codes bigger than 65535,
    ``'\UHHHHHHHH'`` syntax can be used with 32 bits :c:type:`wchar_t`.
 
+.. todo:: can wchar_t be signed?
+
 
 Character string API (wchar_t*)
 '''''''''''''''''''''''''''''''

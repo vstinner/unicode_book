@@ -16,16 +16,12 @@ This book is distributed under the `CC BY-NC-SA 3.0 license <http://creativecomm
 Thanks to
 ---------
 
-Reviewers:
-
- * Alexander Belopolsky
- * Antoine Pitrou
- * Feth Arezki
- * Nelle Varoquaux
+Reviewers: Alexander Belopolsky, Antoine Pitrou, Feth Arezki and Nelle
+Varoquaux.
 
 
-Notations used in this book
----------------------------
+Notations
+---------
 
  * ``0bBBBBBBBB``: 8 bit unsigned number written in binary, first digit is the most
    significant. For example, ``0b10000000`` is 128.
@@ -42,4 +38,5 @@ Notations used in this book
    * U+0000—U+00FF is a range of 256 characters (0 through 255)
 
 .. todo:: document {U+HHHH, U+HHHH} syntax and check for its usage
+.. todo:: document �?
 
