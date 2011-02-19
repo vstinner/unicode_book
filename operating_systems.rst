@@ -11,11 +11,11 @@ Windows
 
 Since Windows 2000, Windows offers a nice Unicode API and supports
 :ref:`non-BMP characters <bmp>`. It uses :ref:`Unicode strings <str>`
-implemented as :c:type:`wchar_t*` strings. :c:type:`wchar_t` is 16 bits long on
-Windows and so it uses :ref:`UTF-16 <utf16>`: :ref:`non-BMP <bmp>` characters
-are stored as two :c:type:`wchar_t` (a :ref:`surrogate pair <surrogates>`), and
-the length of a string is the number of UTF-16 words and not the number of
-characters.
+implemented as :c:type:`wchar_t*` strings. :c:type:`wchar_t` is 16 bits long
+on Windows and so it uses :ref:`UTF-16 <utf16>`: :ref:`non-BMP <bmp>`
+characters are stored as two :c:type:`wchar_t` (a :ref:`surrogate pair
+<surrogates>`), and the length of a string is the number of UTF-16 words and
+not the number of characters.
 
 Windows 95 and 98 had also Unicode strings, but were limited to :ref:`BMP
 characters <bmp>`: they used :ref:`UCS-2 <ucs>` instead of UTF-16.
@@ -28,14 +28,15 @@ Code pages
 ''''''''''
 
 An application has two encodings, called code pages (abbreviated "cp"): the
-ANSI code page (:c:macro:`CP_ACP`) used for the ANSI version of the Windows API to decode a byte
-string to a character string, and the OEM code page (:c:macro:`CP_OEMCP`), e.g. used for the console.
-Example of a French setup: :ref:`cp1252` for ANSI and cp850 for OEM.
+ANSI code page (:c:macro:`CP_ACP`) used for the ANSI version of the Windows
+API to decode a byte string to a character string, and the OEM code page
+(:c:macro:`CP_OEMCP`), e.g. used for the console. Example of a French setup:
+:ref:`cp1252` for ANSI and cp850 for OEM.
 
 OEM code pages, or "IBM PC" code pages, have a number between 437 and 874 and
-come from MS-DOS. They contain graphical glyphs to create text interfaces (draw
-boxes). ANSI code pages have numbers between 874 and 1258. There are some
-special code pages like 65001 (Microsoft version of :ref:`UTF-8`).
+come from MS-DOS. They contain graphical glyphs to create text interfaces
+(draw boxes). ANSI code pages have numbers between 874 and 1258. There are
+some special code pages like 65001 (Microsoft version of :ref:`UTF-8`).
 
 Get code pages.
 
@@ -144,8 +145,8 @@ character POSIX-like API:
 
    Unicode version of :c:func:`fopen`.
 
-POSIX functions, like :c:func:`fopen()`, use the :ref:`ANSI code page <codepage>` to encode/decode
-strings.
+POSIX functions, like :c:func:`fopen()`, use the :ref:`ANSI code page
+<codepage>` to encode/decode strings.
 
 
 Windows console
@@ -165,8 +166,9 @@ Console functions.
 
    Write a :ref:`character string <str>` into the console.
 
-To improve the :ref:`Unicode support <support>` of the console, set the console
-font to a TrueType font (e.g. "Lucida Console") and use the wide character API
+To improve the :ref:`Unicode support <support>` of the console, set the
+console font to a TrueType font (e.g. "Lucida Console") and use the wide
+character API
 
 If the console is unable to render a character, it tries to use a
 :ref:`character with a similar glyph <translit>`. For example, with OEM
@@ -174,12 +176,12 @@ If the console is unable to render a character, it tries to use a
 replacment character can be found, "?" (U+003F) is displayed instead.
 
 In a console (``cmd.exe``), ``chcp`` command can be used to display or to
-change the :ref:`OEM code page <codepage>` (and console code page). Change the console code page is not a
-good idea because the ANSI API of the console still expect characters encoded
-to the previous console code page.
+change the :ref:`OEM code page <codepage>` (and console code page). Change the
+console code page is not a good idea because the ANSI API of the console still
+expect characters encoded to the previous console code page.
 
-:c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the encoding of a
-file (especially of stdin, stdout and stderr):
+:c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the
+encoding of a file (especially of stdin, stdout and stderr):
 
  * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM <bom>`
  * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
@@ -218,13 +220,14 @@ specified: ``PRN`` (printer), ``LPT1``, ``LPT2`` or ``LPT3``.
 Mac OS X
 --------
 
-Mac OS X uses :ref:`UTF-8` for the filenames. If a filename is an invalid UTF-8
-byte string, Mac OS raises an error. The filenames are :ref:`decomposed
+Mac OS X uses :ref:`UTF-8` for the filenames. If a filename is an invalid
+UTF-8 byte string, Mac OS raises an error. The filenames are :ref:`decomposed
 <normalization>`) using an (incompatible) variant of the Normal Form D,
 `Technical Q&A QA1173
-<http://developer.apple.com/mac/library/qa/qa2001/qa1173.html>`_: "For example,
-HFS Plus uses a variant of Normal Form D in which U+2000 through U+2FFF, U+F900
-through U+FAFF, and U+2F800 through U+2FAFF are not decomposed."
+<http://developer.apple.com/mac/library/qa/qa2001/qa1173.html>`_: "For
+example, HFS Plus uses a variant of Normal Form D in which U+2000 through
+U+2FFF, U+F900 through U+FAFF, and U+2F800 through U+2FAFF are not
+decomposed."
 
 .. todo:: Document %3A pattern for undecodable filename
 
@@ -235,8 +238,8 @@ Locales
 -------
 
 To support different languages and encodings, UNIX and BSD operating systems
-have "locales". Locales are process-wide: if a thread or a library change
-the locale, the whole process is impacted.
+have "locales". Locales are process-wide: if a thread or a library change the
+locale, the whole process is impacted.
 
 
 .. _locale categories:
@@ -254,18 +257,19 @@ Locale categories:
  * :c:macro:`LC_NUMERIC`: number formatting (e.g. thousands separator)
  * :c:macro:`LC_TIME`: time and date formatting
 
-:c:macro:`LC_ALL` is a special category: if you set a locale using this category, it sets
-the locale for all categories.
+:c:macro:`LC_ALL` is a special category: if you set a locale using this
+category, it sets the locale for all categories.
 
-Each category has its own environment variable with the same name. For example,
-``LC_MESSAGES=C`` displays error messages in English. To get the value of a locale
-category, ``LC_ALL``, ``LC_xxx`` (e.g. ``LC_CTYPE``) or ``LANG`` environment variables are
-checked: use the first non empty variable. If all variables are unset,
-fallback to the C locale.
+Each category has its own environment variable with the same name. For
+example, ``LC_MESSAGES=C`` displays error messages in English. To get the
+value of a locale category, ``LC_ALL``, ``LC_xxx`` (e.g. ``LC_CTYPE``) or
+``LANG`` environment variables are checked: use the first non empty variable.
+If all variables are unset, fallback to the C locale.
 
 The "C" locale is a special locale. It is also known as "POSIX". It is used if
-``LC_ALL``, ``LC_xxx`` and ``LANG`` environment variables are not set. As English is used
-as the default language, use C locale means that programs speak English.
+``LC_ALL``, ``LC_xxx`` and ``LANG`` environment variables are not set. As
+English is used as the default language, use C locale means that programs
+speak English.
 
 .. note::
 
@@ -279,8 +283,8 @@ as the default language, use C locale means that programs speak English.
 Locale encoding
 '''''''''''''''
 
-For Unicode, the most important locale category is ``LC_CTYPE``: it is used to set
-the "locale encoding".
+For Unicode, the most important locale category is ``LC_CTYPE``: it is used to
+set the "locale encoding".
 
 To get the locale encoding:
 
@@ -291,12 +295,12 @@ To get the locale encoding:
 
 .. todo:: write a full example in C
 
-For the C locale, ``nl_langinfo(CODESET)`` returns :ref:`ASCII`, or an alias to
-this encoding (e.g. "US-ASCII" or "646"). But on FreeBSD, Solaris and :ref:`Mac
-OS X <osx>`, codec functions (e.g. :c:func:`mbstowcs`) use :ref:`ISO-8859-1`
-even if ``nl_langinfo(CODESET)`` announces ASCII encoding. AIX uses
-:ref:`ISO-8859-1` for the C locale (and ``nl_langinfo(CODESET)`` returns
-``"ISO8859-1"``).
+For the C locale, ``nl_langinfo(CODESET)`` returns :ref:`ASCII`, or an alias
+to this encoding (e.g. "US-ASCII" or "646"). But on FreeBSD, Solaris and
+:ref:`Mac OS X <osx>`, codec functions (e.g. :c:func:`mbstowcs`) use
+:ref:`ISO-8859-1` even if ``nl_langinfo(CODESET)`` announces ASCII encoding.
+AIX uses :ref:`ISO-8859-1` for the C locale (and ``nl_langinfo(CODESET)``
+returns ``"ISO8859-1"``).
 
 
 Locale functions
@@ -355,11 +359,11 @@ CD-ROM and DVD
 ''''''''''''''
 
 CD-ROM uses ISO 9660 filesystem which doesn't support Unicode filenames. This
-filesystem is very restrictive: only A-Z, 0-9, _ and "." are allowed. Microsoft
-has developped has extension to the ISO 9660 filesystem: Joliet. This extension
-stores filenames as Unicode, up to 64 characters (BMP only, stored as
-:ref:`UCS-2 <ucs>`). It was first supported by Windows 95, Today, all
-operationg systems are able to read it.
+filesystem is very restrictive: only A-Z, 0-9, _ and "." are allowed.
+Microsoft has developped has extension to the ISO 9660 filesystem: Joliet.
+This extension stores filenames as Unicode, up to 64 characters (BMP only,
+stored as :ref:`UCS-2 <ucs>`). It was first supported by Windows 95, Today,
+all operationg systems are able to read it.
 
 UDF (Universal Disk Format) is the filesystem of DVD: it stores filenames as
 Unicode.
