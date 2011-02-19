@@ -343,6 +343,9 @@ encoding. An encoded character takes between 1 and 4 bytes. UTF-8 encoding
 supports longer byte sequences, up to 6 bytes, but the biggest code point of
 Unicode 6.0 (U+10FFFF) only takes 4 bytes.
 
+.. TODO:: NELLE - I don't understand. Why would UTF-8 support longer 5 bytes
+  sequences if it is useless ?
+
 It is possible to be sure that a byte string is encoded by UTF-8, because
 UTF-8 adds markers to each byte. For the first byte of a multibyte character,
 bit 7 and bit 6 are set (``0b11xxxxxx``); the next bytes have bit 7 set and
@@ -363,6 +366,13 @@ because these encodings encode small codes with nul bytes.
   "It is possible to be sure that a byte string is encoded by UTF-8, because
   UTF-8 adds markers to each byte." => "Thanks to markers placed at each byte,
   it is possible to make sure a byte string is encoded in UTF-8"
+
+.. TODO:: NELLE - "The problem with" 
+
+.. TODO:: NELLE - Il me semble que tu utilises endianness, sans avoir
+  expliquer avant ce que c'était. Considères tu que le lecteur connaît ?
+
+.. TODO:: NELLE - "If getting" a partir de là, je ne comprends plus bien
 
 See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 
@@ -555,6 +565,8 @@ fail to decode a specific byte sequence. For example, ``0x61 0x62 0x63 0xE9``
 is not decodable from :ref:`ASCII` nor :ref:`UTF-8`, but it is decodable from
 :ref:`ISO-8859-1`.
 
+.. TODO:: NELLE "is decoded from an encoding" => "is decoded"
+
 Some encodings are able to decode any byte sequences. All encodings of the
 ISO-8859 family have this property, because all of the 256 code points of
 these 8 bits encodings are assigned.
@@ -675,6 +687,8 @@ Is ASCII?
 
 Check if a document is encoded to :ref:`ASCII` is simple: test if the bit 7 of
 each byte is unset (``0b0xxxxxxx``).
+
+.. TODO:: NELLE - test if the bit 7 of all byte is unset
 
 .. highlight:: c
 
