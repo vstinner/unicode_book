@@ -30,6 +30,9 @@ Unicode 6.0 has 7 character categories:
  * Other (C): control (Cc), format (Cf), not assigned (Cn), private use (Co),
    surrogate (Cs)
 
+.. TODO:: NELLE - exemples ? Il y a beaucoup de catégories/sous catégories que
+  je ne comprends pas 
+
 There are 3 ranges reserved for private use: U+E000—U+F8FF (6,400 code
 points), U+F0000—U+FFFFD (65,534) and U+100000—U+10FFFD (65,534). Surrogates
 use the range U+D800—U+DFFF (2,048 code points).
@@ -51,6 +54,9 @@ private use (Co) and surrogate (Cs) categories:
  * Punctuation: 598 (0.5%)
  * Other: 205 (0.2%)
  * Separator: 20 (0.0%)
+
+.. TODO:: NELLE - Je pense que ça vaut le coup de faire un graphique pour les
+  stats. C'est un peu chiant à faire, mais ça change la vie du lecteur !
 
 On a total of 106,028 letters and symbols, 101,482 are in "other"
 subcategories: only 4.3% have well defined subcategories:
@@ -92,6 +98,8 @@ Unicode database contains also a compatibility layer: if a character cannot be
 rendered (no font contain the requested character) or encoded to a specific
 encoding, Unicode proposes a :ref:`replacment character sequence which looks
 like the character <translit>`, but may have a different meaning.
+
+.. TODO:: NELLE - typo "replacment"
 
 For example, ĳ (U+0133, Latin small ligature ij) is replaced by {i (U+0069,
 Latin small letter I), j (U+006A, Latin small letter J)}, two characters. ĳ
