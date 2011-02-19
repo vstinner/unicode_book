@@ -8,8 +8,8 @@ Unicode
 Unicode is a character set. It is a superset of all the other character sets.
 In the version 6.0, Unicode has 1,114,112 code points (the last code point is
 U+10FFFF). Unicode 1.0 was limited to 65,536 code points (the last code point
-was U+FFFF), the range U+0000—U+FFFF called **BMP** (*Basic Multilingual Plane*). I
-call the range U+10000—U+10FFFF as **non-BMP** characters.
+was U+FFFF), the range U+0000—U+FFFF called **BMP** (*Basic Multilingual
+Plane*). I call the range U+10000—U+10FFFF as **non-BMP** characters.
 
 
 .. _unicode categories:
@@ -71,11 +71,12 @@ Normalization
 -------------
 
 Unicode standard explains how to decompose a character, e.g. the precomposed
-character ç (U+00C7, Latin capital letter C with cedilla) can be written as the
-sequence ¸̧ (U+0327, Combining cedilla) c (U+0043, Latin capital letter C), two
-characters. This decomposition can be useful to search a substring in a text,
-e.g. remove diacritic is pratical for the user. The decomposed form is called
-Normal Form D (**NFD**) and the precomposed form is called Normal Form C (**NFC**).
+character ç (U+00C7, Latin capital letter C with cedilla) can be written as
+the sequence ¸̧ (U+0327, Combining cedilla) c (U+0043, Latin capital letter C),
+two characters. This decomposition can be useful to search a substring in a
+text, e.g. remove diacritic is pratical for the user. The decomposed form is
+called Normal Form D (**NFD**) and the precomposed form is called Normal Form
+C (**NFC**).
 
 .. todo:: LaTeX doesn't accept ¸̧ (U+0327, Combining cedilla)
 
