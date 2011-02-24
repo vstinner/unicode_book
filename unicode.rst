@@ -31,7 +31,7 @@ Unicode 6.0 has 7 character categories:
    surrogate (Cs)
 
 .. TODO:: NELLE - exemples ? Il y a beaucoup de catégories/sous catégories que
-  je ne comprends pas 
+  je ne comprends pas
 
 There are 3 ranges reserved for private use: U+E000—U+F8FF (6,400 code
 points), U+F0000—U+FFFFD (65,534) and U+100000—U+10FFFD (65,534). Surrogates
@@ -78,13 +78,13 @@ Normalization
 
 Unicode standard explains how to decompose a character, e.g. the precomposed
 character ç (U+00C7, Latin capital letter C with cedilla) can be written as
-the sequence ¸̧ (U+0327, Combining cedilla) c (U+0043, Latin capital letter C),
+the sequence  ̧ (U+0327, Combining cedilla) c (U+0043, Latin capital letter C),
 two characters. This decomposition can be useful to search a substring in a
 text, e.g. remove diacritic is pratical for the user. The decomposed form is
 called Normal Form D (**NFD**) and the precomposed form is called Normal Form
 C (**NFC**).
 
-.. todo:: LaTeX doesn't accept ¸̧ (U+0327, Combining cedilla)
+.. todo:: LaTeX doesn't accept  ̧ (U+0327, Combining cedilla)
 
 +------+--------+----------------+
 | Form | String | Unicode        |
