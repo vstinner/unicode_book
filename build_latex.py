@@ -40,7 +40,7 @@ if rebuild:
         sys.exit(ret)
 
 os.chdir(path)
-with io.open("index.tex", encoding="utf-8") as fp:
+with io.open("programming_with_unicode.tex", encoding="utf-8") as fp:
     content = fp.read()
 
 DUlineblock = os.linesep.join((
@@ -65,10 +65,10 @@ REPLACE = (
 for before, after in REPLACE:
     content = content.replace(before, after)
 
-with io.open("index.tex", "w", encoding="utf-8") as fp:
+with io.open("programming_with_unicode.tex", "w", encoding="utf-8") as fp:
     fp.write(content)
 
-ret = subprocess.call(("make", "all-pdf"))
+ret = subprocess.call(("make", "all-pdf", "clean"))
 if ret != 0:
     sys.exit(ret)
 
