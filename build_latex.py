@@ -14,6 +14,7 @@ if rebuild:
     if os.path.exists(path):
         shutil.rmtree(path)
 
+    # TODO: encodings:: column or row spanning cells are not yet implemented.
     tableBefore = os.linesep.join((
         u"+--------------------------------------------------------+------------------------------------------+",
         u"| Character                                              | Replaced by                              |",
@@ -52,11 +53,20 @@ DUlineblock = os.linesep.join((
 REPLACE = (
     (u"\\usepackage[T1]{fontenc}", u"\\usepackage[T1,T2A]{fontenc}"),
     (u"\\usepackage{babel}", u"\\usepackage[english,russian]{babel}"),
+    # TODO: ! Package inputenc Error: Unicode char \u8:� not set up for use with LaTeX.
+    # TODO: ! Package textcomp Error: Symbol \textcurrency not provided by
+    #       (textcomp)                font family ptm in TS1 encoding.
+    #       (textcomp)                Default family used instead.
+    # Try: \usepackage[force,almostfull]{textcomp}
     (u"�", u"<?>"),
     (u"¤", u"<X>"),
     (u" \u0327", u","),
     (DUlineblock, u"|"),
     (u"я\u0301", u"я"),
+    # TODO: ! LaTeX Error: Command \DH unavailable in encoding T2A.
+    # TODO: ! LaTeX Error: Command \TH unavailable in encoding T2A.
+    # TODO: ! LaTeX Error: Command \dh unavailable in encoding T2A.
+    # TODO: ! LaTeX Error: Command \th unavailable in encoding T2A.
     (u"Ð", u"D"),
     (u"ð", u"d"),
     (u"Þ", u"P"),
