@@ -199,6 +199,6 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-todo_include_todos = True
+todo_include_todos = False
 
 
