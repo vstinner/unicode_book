@@ -52,7 +52,7 @@ DUlineblock = os.linesep.join((
 
 REPLACE = (
     (u"\\usepackage[T1]{fontenc}", u"\\usepackage[T1,T2A]{fontenc}"),
-    (u"\\usepackage{babel}", u"\\usepackage[english,russian]{babel}"),
+    (u"\\usepackage{babel}", u"\\usepackage[english]{babel}"),
     # TODO: ! Package inputenc Error: Unicode char \u8:� not set up for use with LaTeX.
     # TODO: ! Package textcomp Error: Symbol \textcurrency not provided by
     #       (textcomp)                font family ptm in TS1 encoding.
@@ -62,7 +62,11 @@ REPLACE = (
     (u"¤", u"<X>"),
     (u" \u0327", u","),
     (DUlineblock, u"|"),
-    (u"я\u0301", u"я"),
+    (u"Русский",
+     u"\\foreignlanguage{russian}{Русский}"),
+    # TODO: u"я\u0301" => u"я"
+    (u"``Кракозя\u0301бры'' (krakozyabry)",
+     u"\\foreignlanguage{russian}{``Кракозябры'' (krakozyabry)}"),
     # TODO: ! LaTeX Error: Command \DH unavailable in encoding T2A.
     # TODO: ! LaTeX Error: Command \TH unavailable in encoding T2A.
     # TODO: ! LaTeX Error: Command \dh unavailable in encoding T2A.
