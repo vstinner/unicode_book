@@ -18,5 +18,6 @@ Dependencies
 
  * make latex:
 
-   * sudo apt-get install texlive-latex-base
+   * sudo apt-get install texlive-latex-base texlive-lang-cyrillic
+   * texlive-lang-cyrillic: Cyrillic (mojibake section)
 
