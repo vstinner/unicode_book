@@ -2,7 +2,7 @@ Unicode nightmare
 =================
 
 :ref:`Unicode` is the nightmare of many developers (and users) for different, and
-sometimes good, reasons.
+sometimes good reasons.
 
 In the 1980's, only few people read documents in languages other their mother
 tongue and English. A computer supported only a small number of
