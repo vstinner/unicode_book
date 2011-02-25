@@ -12,6 +12,7 @@ Programming with Unicode
 
    about.rst
    nightmare.rst
+   definitions.rst
    unicode.rst
    encodings.rst
    good_practices.rst

@@ -1,91 +1,6 @@
 Good practices
 ==============
 
-.. _bytes:
-
-Definition of a byte string
----------------------------
-
-A "byte string" is an array of 8 bits unsigned integers. The
-character range supported by a byte string depends on its encoding. For
-example, an :ref:`ASCII <ascii>` string can only store characters in
-U+0000—U+007F (128 code points).
-
-.. todo:: explain why byte strings are still used (backward compatibility)
-.. todo:: Define "ASCII-encoded string", "ASCII string", "ASCII byte string"
-
-:ref:`PHP5 <php>` only supports byte strings. In the :ref:`C language <c>`, a
-byte string uses the :c:type:`char*` type (or :c:type:`const char*`).
-
-
-.. _str:
-
-Definition of a character string
---------------------------------
-
-A "character string", or "Unicode string", is a string where each character can
-be, depending on the implementation, any Unicode character or :ref:`BMP-only
-<bmp>` characters. There are 3 different implementations:
-
- * array of 32 bits unsigned integers, :ref:`UCS-4 <ucs>`: full Unicode
-   range
- * array of 16 bits unsigned integers, :ref:`UCS-2 <ucs>`: BMP only
- * array of 16 bits unsigned integers with :ref:`surrogate pairs
-   <surrogates>`, :ref:`UTF-16 <utf16>`: full Unicode range
-
-.. todo:: NELLE - I think you should define BMP *before* using the term
-
-UCS-4 strings use twice as much memory than UCS-2 strings, but are able
-to store non-BMP character. UTF-16 is a compromise between UCS-2 and UCS-4, but
-has its disadvantages.
-
-UTF-16 strings are not strictly character strings, because their length is the
-number of UTF-16 units, and not the number of characters. For :ref:`BMP <bmp>`
-characters, the length is the same, but not for non-BMP characters.  For
-example, U+10FFFF is one character, but it is encoded as two UTF-16 units: {U+DBFF,
-U+DFFF} (a :ref:`surrogate pair <surrogates>`). Getting the nth character in
-such string has a complexity of :math:`O(n)`, whereas it has a complexity of :math:`O(1)` for
-UCS-2 and UCS-4 strings.
-
-:ref:`Java` language, the :ref:`Qt <qt>` library and :ref:`Windows 2000 <win>` implement
-Unicode strings with UTF-16. The :ref:`C <c>` and :ref:`Python <python>`
-languages use UTF-16 or UCS-4 depending on: the size of the :c:type:`wchar_t`
-type (16 or 32 bits) for C, and the compilation mode (narrow or wide) for
-Python. Windows 95 uses UCS-2 strings.
-
-
-Differences between byte and character strings
-----------------------------------------------
-
-.. TODO:: Nelle : what is a character strings ? In any case strings is plural
-  and byte singular. ISn't that a bit strange ?
-
-The most important difference between byte and character strings is that a byte
-string has an encoding. The encoding is usually not stored in the string, the
-developer have to take care of the encoding of all strings. Concatenate two
-byte strings of different encodings leads to :ref:`mojibake <mojibake>`,
-whereas Unicode strings don't have this issue.
-
-.. TODO:: Nelle : the developer **has**
-
-A :ref:`UTF-8 <utf8>` string is a particular case, because UTF-8 is able to
-encode all Unicode characters [1]_ . But a UTF-8 string is not a Unicode string
-because the string unit is byte and not character: you can get an individual
-byte of a multibyte character.
-
-.. TODO:: Nelle : un exemple de ce dernier cas serais, je pense, le bienvenue
-  ici 
-
-Another difference between UTF-8 strings and Unicode strings is the complexity
-of getting the nth character: :math:`O(n)` for the byte string and :math:`O(1)`
-for the Unicode string. There is one exception: if the Unicode string is
-implemented using UTF-16: it has also a complexity of :math:`O(n)`.
-
-.. todo:: explain how to switch from byte to unicode strings: Python 2=>3, Windows A=>W, PHP 5=>6
-
-.. [1] A UTF-8 encoder :ref:`should not encode <strict utf8 decoder>` :ref:`surrogate characters <surrogates>` (U+D800—U+DFFF).
-
-
 Rules
 -----
 
@@ -205,4 +120,14 @@ Filesystem (filenames):
  * Other OSes: use the :ref:`locale encoding <locale encoding>`
 
 .. seealso:: :ref:`guess`.
+
+
+Switch from byte strings to character strings
+---------------------------------------------
+
+Use character strings, instead of byte strings, to avoid :ref:`mojibake issues
+<mojibake>`.
+
+.. todo:: explain why byte strings are still used (backward compatibility)
+.. todo:: explain how to switch from byte to unicode strings: Python 2=>3, Windows A=>W, PHP 5=>6
 
