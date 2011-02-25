@@ -34,15 +34,17 @@ Notations
  * 0xHHHH: number written in hexadecimal, e.g. 0xFFFF is 65535.
  * ``0xHH 0xHH ...``: byte sequence with bytes written in hexadecimal, e.g.
    ``0xC3 0xA9`` (2 bytes) is the character é (U+00E9) encoded to UTF-8.
- * U+HHHH: Unicode code point with code written in hexadecimal. For example, U+20AC is
-   the code point 8364 (euro sign). Big code point are written with more than 4
+ * U+HHHH: Unicode character with its code point written in hexadecimal. For example, U+20AC is
+   the "euro sign" character, code point 8,364. Big code point are written with more than 4
    hexadecimal digits, e.g. U+10FFFF is the biggest (unallocated) code point of
-   Unicode 6.0: 1114111.
+   Unicode 6.0: 1,114,111.
  * A—B: range including start and end. Examples:
 
-   * ``0x00``\ —\ ``0x7F`` is a range of 128 bytes (0 through 127)
-   * U+0000—U+00FF is a range of 256 characters (0 through 255)
+   * ``0x00``\ —\ ``0x7F`` is the range 0 through 127 (128 bytes)
+   * U+0000—U+00FF is the range 0 through 255 (256 characters)
 
-.. todo:: document {U+HHHH, U+HHHH} syntax and check for its usage
+ * {U+HHHH, U+HHHH, ...}: a :ref:`character string <str>`. For example,
+   {U+0041, U+0042, U+0043} is the string "abc" (3 characters).
+
 .. todo:: document �?
 
