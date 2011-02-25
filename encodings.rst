@@ -3,34 +3,8 @@ Charsets and encodings
 
 .. _charset:
 
-What are charsets and encodings?
---------------------------------
-
-A charset, character set, is a mapping between code points and characters. An
-encoding describes how to encode characters (code points) to bytes and howto
-decode bytes to characters (code points). 7 and 8 bits charsets don't need any
-encoding: a code point is stored in a single byte (unsigned 8 bits number).
-Because of these charsets, many people confuse charsets and encodings. Bigger
-charsets need multibyte encodings like :ref:`UTF-8` or :ref:`GBK <gbk>`. A
-multibyte encoding can encode all code points into byte sequences of the same
-size (e.g. :ref:`UCS-2 <ucs>`), or byte sequence with a variable length (e.g.
-:ref:`UTF-16 <utf16>`). UTF-8 uses a variable length: code points lower than
-128 use a single byte, whereas higher code points take between 2 and 4 bytes.
-
-.. TODO:: NELLE : je ne m'y connais pas trop en encodage, mais il me semble
-  que ce que tu affirmes dans le paragraphe précédent n'est pas tout à fait
-  correct: un encodage associe un character/glyphe/symbole avec quelque chose
-  d'autre, comme une série d'entier, d'octet ou n'importe quoi (en fait plus
-  exactement, pour moi de l'encodage, c'est une maniere d'associer X à Y, avec
-  la possibilité de décoder de Y vers X). Si tu prends l'article de wikipédia
-  sur le sujet (http://en.wikipedia.org/wiki/Character_encoding), il mentionne
-  le code morse. Le pire dans tout ça, c'est qu'il me semble qu'il existe
-  différent type de code morse pour différent language. Entre, la chine.
-
-  Bref, tout ça pour dire que je ne suis pas d'accord sur le fait que : "7 and
-  8 bits don't need any encoding". Tu associes une série de booléen à un
-  caractère, donc par définition, il y a encodage. Cependant, je suppose que
-  c'est un encodage "standard"
+Encodings
+---------
 
 There are many encodings around the world. Before Unicode, each manufacturer
 invented its own encoding to fit its client market and its usage. Most
@@ -52,6 +26,10 @@ This book present the following encodings: :ref:`ASCII`, :ref:`cp1252`,
 :ref:`GBK <gbk>`, :ref:`ISO-8859-1`, :ref:`ISO-8859-15`, :ref:`JIS <jis>`,
 :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>`
 and :ref:`UTF-32 <utf32>`.
+
+.. see also: Definitions of a :ref:`charset <charset>` and of a :ref:`encoding
+   <encoding>`.
+
 
 Popularity
 ----------
@@ -361,13 +339,13 @@ functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or
 because these encodings encode small codes with nul bytes.
 
 .. TODO:: NELLE la première phrase ne me semble pas "correcte" d'un point de
-  vue grammatical : 
-  
+  vue grammatical :
+
   "It is possible to be sure that a byte string is encoded by UTF-8, because
   UTF-8 adds markers to each byte." => "Thanks to markers placed at each byte,
   it is possible to make sure a byte string is encoded in UTF-8"
 
-.. TODO:: NELLE - "The problem with" 
+.. TODO:: NELLE - "The problem with"
 
 .. TODO:: NELLE - Il me semble que tu utilises endianness, sans avoir
   expliquer avant ce que c'était. Considères tu que le lecteur connaît ?

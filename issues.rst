@@ -2,6 +2,7 @@ Unicode issues
 ==============
 
 .. index:: Mojibake
+.. _mojibake:
 
 Mojibake
 --------
