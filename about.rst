@@ -23,7 +23,7 @@ Thanks to
 ---------
 
 Reviewers: Alexander Belopolsky, Antoine Pitrou, Feth Arezki and Nelle
-Varoquaux.
+Varoquaux, Natal Ngétal.
 
 
 Notations
