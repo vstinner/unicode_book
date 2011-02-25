@@ -13,11 +13,13 @@ Dependencies
 
  * make pdf:
 
-   * rst2pdf?
+   * sudo apt-get install rst2pdf
    * sudo apt-get install python-matplotlib
+   * make pdf
 
  * make latex:
 
    * sudo apt-get install texlive-latex-base texlive-lang-cyrillic
    * texlive-lang-cyrillic: Cyrillic (mojibake section)
+   * For make LaTeX ./build_latex.py 
 
