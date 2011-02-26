@@ -170,7 +170,7 @@ Charsets with more than 256 entries cannot encode all code points into a single
 byte. The encoding encode all code points into byte sequences of the same
 length or of variable length. For example, :ref:`UTF-8` is a variable length
 encoding: code points lower than 128 use a single byte, whereas higher code
-points take between 2 and 4 bytes. The :ref:`UCS-2 <ucs>` encoding encodes all
+points take 2, 3 or 4 bytes. The :ref:`UCS-2 <ucs>` encoding encodes all
 code points into sequences of two bytes (16 bits).
 
 .. TODO:: NELLE : je ne m'y connais pas trop en encodage, mais il me semble
@@ -198,4 +198,7 @@ Unicode: an Universal Character Set (UCS)
 
    :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8 <utf8>`, :ref:`UTF-16
    <utf16>`, and :ref:`UTF-32 <utf32>` encodings.
+
+
+.. todo:: add maybe Encode and Decode sections?
 

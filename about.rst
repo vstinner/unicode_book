@@ -46,5 +46,3 @@ Notations
  * {U+HHHH, U+HHHH, ...}: a :ref:`character string <str>`. For example,
    {U+0041, U+0042, U+0043} is the string "abc" (3 characters).
 
-.. todo:: document �?
-

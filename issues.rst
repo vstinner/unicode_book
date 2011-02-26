@@ -119,3 +119,6 @@ connection charset.
    `CVE-2006-2753 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2753>`_ (MySQL, may 2006) and
    `CVE-2008-2384 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-2384>`_ (libapache2-mod-auth-mysql, january 2009).
 
+
+.. todo:: "special" chars like surrogates (U+D800-U+DFFF)
+

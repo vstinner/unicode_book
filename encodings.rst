@@ -1,6 +1,8 @@
 Charsets and encodings
 ======================
 
+.. todo:: write an introduction
+
 .. _charset:
 
 Encodings
@@ -8,10 +10,10 @@ Encodings
 
 There are many encodings around the world. Before Unicode, each manufacturer
 invented its own encoding to fit its client market and its usage. Most
-encodings are incompatible on at least one code, except some exceptions (e.g.
-a document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or
-UTF-8, because ISO-8859-1 and UTF-8 are supersets of ASCII). Each encoding can
-have multiple aliases, for example:
+encodings are incompatible on at least one code, except some exceptions.
+A document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or
+UTF-8, because ISO-8859-1 and UTF-8 are supersets of ASCII. Each encoding can
+have multiple aliases, examples:
 
  * ASCII: US-ASCII, ISO 646, ANSI_X3.4-1968, …
  * ISO-8859-1: Latin-1, iso88591, …
@@ -22,7 +24,7 @@ encodings of the UTF family are able to encode and decode all Unicode code
 points. Other encodings only support a subset of Unicode codespace. For
 example, ISO-8859-1 are the first 256 Unicode code points (U+0000—U+00FF).
 
-This book present the following encodings: :ref:`ASCII`, :ref:`cp1252`,
+This book presents the following encodings: :ref:`ASCII`, :ref:`cp1252`,
 :ref:`GBK <gbk>`, :ref:`ISO-8859-1`, :ref:`ISO-8859-15`, :ref:`JIS <jis>`,
 :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>`
 and :ref:`UTF-32 <utf32>`.
@@ -49,11 +51,15 @@ these numbers should be reliable. In 2001, the most used encodings were:
  * 3rd (8%): Chinese encodings (:ref:`GB2312 <gbk>`, ...)
  * and then come Korean (EUC-KR), Cyrillic (cp1251, KOI8-R, ...), East Europe
    (cp1250, ISO-8859-2), Arabic (cp1256, ISO-8859-6), etc.
- * (UTF-8 was not used in 2001)
+ * (UTF-8 was not used on the web in 2001)
 
-In december 2007, for the first time: :ref:`UTF-8` is the most used encoding
+.. todo:: 4th: 13%?
+
+In december 2007, for the first time: :ref:`UTF-8` becomes the most used encoding
 (near 25%). In january 2010, UTF-8 was close to 50%, and ASCII and Western
 Europe encodings near 20%. The usage of the other encodings don't change.
+
+.. todo:: add an explicit list of top3 in 2010
 
 
 Historical charsets and encodings
@@ -86,16 +92,16 @@ ASCII
 
 ASCII encoding is supported by all applications. A document encoded in ASCII
 can be read decoded by any other encoding. This is explained by the fact that
-all 7 and 8 bits encodings are based on ASCII (to be compatible with ASCII,
-except :ref:`JIS X 0201 <jis>` encoding: ``0x5C`` is decoded to the yen sign
-(U+00A5, ¥) instead of a backslash (U+005C, \\). ASCII is the smallest
-encoding, it only contains 128 codes including 95 printable characters
-(letters, digits, punctuation signs and some other various characters) and 33
-control codes. Control codes are used to control the terminal, e.g. 10, the
-"line feed", written ``"\n"`` is most programming languages, marks the end of
-a line. There are some special control code, e.g. 7, known as "bell" and
-written ``"\b"``, sent to ring a bell. ASCII code points are the first 128
-code points of Unicode (U+0000—U+007F).
+all 7 and 8 bits encodings are superset of ASCII, to be compatible with ASCII.
+Except :ref:`JIS X 0201 <jis>` encoding: ``0x5C`` is decoded to the yen sign
+(U+00A5, ¥) instead of a backslash (U+005C, \\).
+
+ASCII is the smallest encoding, it only contains 128 codes including 95
+printable characters (letters, digits, punctuation signs and some other various
+characters) and 33 control codes. Control codes are used to control the
+terminal. For example, the "line feed" (code point 10, usually written
+``"\n"``) marks the end of a line. There are some special control code. For
+example, the "bell" (code point 7, written ``"\b"``) sent to ring a bell.
 
 +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 |    |  -0 |  -1 |  -2 |  -3 |  -4 |  -5 |  -6 |  -7 |  -8 |  -9 |  -a |  -b |  -c |  -d |  -e |  -f |
@@ -117,15 +123,23 @@ code points of Unicode (U+0000—U+007F).
 | 7- |  p  |  q  |  r  |  s  |  t  |  u  |  v  |  w  |  x  |  y  |  z  |  {  | \|  |  }  |  ~  | DEL |
 +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 
-U+0000—U+001F and U+007F are control codes:
+0x00—0x1F and 0x7F are control codes:
 
- * "NUL": nul character (U+0000, ``"\0"``)
- * "BEL": sent to ring a bell (U+0007, ``"\b"``)
- * "TAB": horizontal tabulation (U+0009, ``"\t"``)
- * "LF": line feed (U+000A, ``"\n"``)
- * "ESC": escape (U+001B)
- * "DEL": delete (U+007F)
+ * NUL (0x00): nul character (U+0000, ``"\0"``)
+ * BEL (0x07): sent to ring a bell (U+0007, ``"\b"``)
+ * TAB (0x09): horizontal tabulation (U+0009, ``"\t"``)
+ * LF (0x0A): line feed (U+000A, ``"\n"``)
+ * CR (0x0D): carriage return (U+000D, ``"\r"``)
+ * ESC (0x1B): escape (U+001B)
+ * DEL (0x7F): delete (U+007F)
  * other control codes are displayed as � in this table
+
+0x20 is a space.
+
+.. note::
+
+   The first 128 code points of the Unicode charset (U+0000—U+007F) are the
+   ASCII charset: Unicode is a superset of ASCII.
 
 
 .. index:: ISO-8859-1
@@ -134,9 +148,9 @@ U+0000—U+001F and U+007F are control codes:
 ISO-8859-1
 ''''''''''
 
-ISO-8859-1 is a superset of :ref:`ASCII` and adds 128 codes, mostly latin
-letters with diacritics, and is used in the USA and Europe. ISO-8859-1 are the
-256 first code points of Unicode (U+0000—U+00FF).
+ISO-8859-1, also known as "Latin-1", is a superset of :ref:`ASCII`: it adds 128
+code points, mostly latin letters with diacritics and 32 control codes. It is
+used in the USA and in Western Europe.
 
 +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 |    |  -0 |  -1 |  -2 |  -3 |  -4 |  -5 |  -6 |  -7 |  -8 |  -9 |  -a |  -b |  -c |  -d |  -e |  -f |
@@ -179,6 +193,11 @@ this table). See the ASCII table for U+0000—U+001F and U+007F control codes.
 
 "NBSP" (U+00A0) is a non breaking space and "SHY" (U+00AD) is a soft hyphen.
 
+.. note::
+
+   The 256 first code points of the Unicode charset (U+0000—U+00FF) are the
+   ISO-8859-1 charset: Unicode is a superset of ISO-8859-1.
+
 
 .. index:: cp1252
 .. _cp1252:
@@ -191,7 +210,7 @@ of :ref:`ISO-8859-1`. It is the default encoding of all English and western
 europe Windows setups. It is used as a fallback by web browsers if the webpage
 doesn't provide any encoding information (not in HTML, nor in HTTP).
 
-cp1252 shares 224 code points with ISO-8859-1, the range ``0x80``\ —\ ``0x9F`` (32
+cp1252 shares 224 code points with ISO-8859-1, the range 0x80—0x9F (32
 characters, including 5 not assigned codes) are different. In ISO-8859-1, this
 range are 32 control codes (not printable).
 
@@ -260,10 +279,10 @@ are identicals, 8 are different:
 .. _gbk:
 .. _big5:
 
-GBK encoding family (Chinese)
-'''''''''''''''''''''''''''''
+Chinese encodings
+'''''''''''''''''
 
-GBK is a family of Chinese charsets / multibyte encodings:
+GBK is a family of Chinese charsets using multibyte encodings:
 
  * GB 2312 (1980): includes 6,763 Chinese characters
  * GBK (1993) (:ref:`code page <codepage>` 936)
@@ -294,7 +313,9 @@ JIS is a family of Japanese charsets/encodings:
    * U+F8F2 (``0xFE``)
    * U+F8F3 (``0xFF``)
 
-The JIS family causes troubles on MS-DOS and Microsoft Windows because the yen
+.. todo:: which JIS encodings use multibyte?
+
+The JIS family causes :ref:`mojibake` on MS-DOS and Microsoft Windows because the yen
 sign (U+00A5, ¥) is encoded to ``0x5C`` which is a backslash (U+005C, \\) in
 ASCII. For example, "C:\\Windows\\win.ini" is displayed "C:¥Windows¥win.ini". The
 backslash is encoded to ``0x81 0x5F``.
@@ -304,6 +325,10 @@ To encode Japanese, there is also the ISO/IEC 2022 encoding family.
 .. todo:: Korean (EUC-KR)
 .. todo:: Cyrillic (cp1251, KOI8-R, ...)
 .. todo:: Arabic (cp1256, ISO-8859-6)
+.. todo:: ISO 8859 family
+.. todo:: ISO 646
+.. todo:: ISO 2022
+.. todo:: ISO 10646
 
 
 Unicode encodings
@@ -316,27 +341,32 @@ Unicode encodings
 UTF-8
 '''''
 
-UTF-8 is a multibyte encoding able to encode the whole Unicode character
-encoding. An encoded character takes between 1 and 4 bytes. UTF-8 encoding
-supports longer byte sequences, up to 6 bytes, but the biggest code point of
-Unicode 6.0 (U+10FFFF) only takes 4 bytes.
+UTF-8 is a multibyte encoding able to encode the whole Unicode charset. An
+encoded character takes between 1 and 4 bytes. UTF-8 encoding supports longer
+byte sequences, up to 6 bytes, but the biggest code point of Unicode 6.0
+(U+10FFFF) only takes 4 bytes.
 
 .. TODO:: NELLE - I don't understand. Why would UTF-8 support longer 5 bytes
   sequences if it is useless ?
 
-It is possible to be sure that a byte string is encoded by UTF-8, because
+It is possible to be sure that a :ref:`byte string <bytes>` is encoded to UTF-8, because
 UTF-8 adds markers to each byte. For the first byte of a multibyte character,
 bit 7 and bit 6 are set (``0b11xxxxxx``); the next bytes have bit 7 set and
 bit 6 unset (``0b10xxxxxx``). Another cool feature of UTF-8 is that it has no
 endianness (it can be read in big or little endian order, it does not matter).
-The problem with UTF-8, if you compare it to ASCII or ISO-8859-1, is that it
-is a multibyte encoding: you cannot access a character by its character index
-directly, you have to compute the byte index. If getting a character by its
-index is a common operation in your program, use a real character type like
-:c:type:`wchar_t`. Another advantage of UTF-8 is that most :ref:`C <c>` bytes
+Another advantage of UTF-8 is that most :ref:`C <c>` bytes
 functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or
 :c:func:`printf`), whereas they fail with UTF-16 and UTF-32 encoded strings
 because these encodings encode small codes with nul bytes.
+
+.. todo:: write a section: handle NUL byte/character
+
+The problem with UTF-8, if you compare it to :ref:`ASCII` or :ref:`ISO-8859-1`, is that it is
+a multibyte encoding: you cannot access a character by its character index
+directly, you have to iterate on each character because each character may have
+a different length in bytes. If getting a character by its index is a common
+operation in your program, use a :ref:`character string <str>` instead of a
+:ref:`UTF-8 encoded string <bytes>`.
 
 .. TODO:: NELLE la première phrase ne me semble pas "correcte" d'un point de
   vue grammatical :
@@ -352,7 +382,9 @@ because these encodings encode small codes with nul bytes.
 
 .. TODO:: NELLE - "If getting" a partir de là, je ne comprends plus bien
 
-See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
+.. seealso::
+
+   :ref:`strict utf8 decoder`.
 
 
 .. index:: UCS-2, UCS-4, UTF-16, UTF-32
@@ -363,17 +395,17 @@ See :ref:`strict utf8 decoder` for security issues with non-strict decoders.
 UCS-2, UCS-4, UTF-16 and UTF-32
 '''''''''''''''''''''''''''''''
 
-**UCS-2** and **UCS-4** encodings encode each code point to exactly one word
+**UCS-2** and **UCS-4** encodings encode each code point to exactly one unit
 of, respectivelly, 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0
 code points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
-encodings are practical because the length in words is the number of
+encodings are practical because the length in units is the number of
 characters.
 
-**UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits words.
-UTF-16 encodes code points bigger than U+FFFF using two words: a
+**UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits units.
+UTF-16 encodes code points bigger than U+FFFF using two units: a
 :ref:`surrogate pair <surrogates>`. UCS-2 can be decoded from UTF-16. UTF-32
-is also supposed to use more than one word for big code points, but in
-practical, it only requires one word to store all code points of Unicode 6.0.
+is also supposed to use more than one unit for big code points, but in
+practical, it only requires one unit to store all code points of Unicode 6.0.
 That's why UTF-32 and UCS-4 are the same encoding.
 
 +----------+-----------+-----------------+
@@ -402,8 +434,8 @@ That's why UTF-32 and UCS-4 are the same encoding.
 Byte order marks (BOM)
 ''''''''''''''''''''''
 
-:ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>` use words bigger than 8 bits,
-and so hit endian issue. A single word can be stored in the big endian (most
+:ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>` use units bigger than 8 bits,
+and so hit endian issue. A single unit can be stored in the big endian (most
 significant bits first) or little endian (less significant bits first). BOM
 are short byte sequences to indicate the encoding and the endian. It's the
 U+FEFF code point encoded to the UTF encodings.
@@ -412,10 +444,10 @@ Unicode defines 6 different BOM:
 
  * ``0x2B 0x2F 0x76 0x38 0x2D`` (5 bytes): UTF-7 (endianless)
  * ``0xEF 0xBB 0xBF`` (3): :ref:`UTF-8` (endianless)
- * ``0xFF 0xFE`` (2): :ref:`UTF-16-LE <utf16>` (LE: little endian)
- * ``0xFE 0xFF`` (2): :ref:`UTF-16-BE <utf16>` (BE: big endian)
- * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE <utf32>`
- * ``0x00 0x00 0xFE 0xFF`` (4): :ref:`UTF-32-BE <utf32>`
+ * ``0xFF 0xFE`` (2): :ref:`UTF-16-LE <utf16>` (little endian)
+ * ``0xFE 0xFF`` (2): :ref:`UTF-16-BE <utf16>` (big endian)
+ * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE <utf32>` (little endian)
+ * ``0x00 0x00 0xFE 0xFF`` (4): :ref:`UTF-32-BE <utf32>` (big endian)
 
 UTF-32-LE BOMs starts with UTF-16-LE BOM.
 
@@ -427,6 +459,8 @@ UTF-16-LE.
 Some Windows applications, like notepad.exe, use UTF-8 BOM, whereas many
 applications are unable to detect the BOM, and so the BOM causes troubles.
 UTF-8 BOM should not be used for better interoperability.
+
+.. todo:: which troubles?
 
 
 .. index:: Surrogate pair
@@ -440,25 +474,27 @@ points): it is also the :ref:`Unicode category <unicode categories>`
 "surrogate" (Cs).
 
 In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD
-are stored as a single 16 bits word. :ref:`Non-BMP <bmp>` characters (range
-U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits words: the
-first word in the range U+D800—U+DBFF and the second word in the range
+are stored as a single 16 bits unit. :ref:`Non-BMP <bmp>` characters (range
+U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits units: the
+first unit in the range U+D800—U+DBFF and the second unit in the range
 U+DC00—U+DFFF. A lone surrogate character is invalid in UTF-16, surrogate
 characters are always written as pairs.
 
+.. todo:: can a UTF-16 encoder encode characters in U+D800-U+DFFF?
+
 Examples of surrogate pairs:
 
-+-----------+------------+-------------+
-| Character | First word | Second word |
-+===========+============+=============+
-|   U+10000 |   U+D800   |    U+DC00   |
-+-----------+------------+-------------+
-|   U+10E6D |   U+D803   |    U+DE6D   |
-+-----------+------------+-------------+
-|   U+1D11E |   U+D834   |    U+DD1E   |
-+-----------+------------+-------------+
-|  U+10FFFF |   U+DBFF   |    U+DFFF   |
-+-----------+------------+-------------+
++-----------+------------------+
+| Character | Surrogate pair   |
++===========+==================+
+|   U+10000 | {U+D800, U+DC00} |
++-----------+------------------+
+|   U+10E6D | {U+D803, U+DE6D} |
++-----------+------------------+
+|   U+1D11E | {U+D834, U+DD1E} |
++-----------+------------------+
+|  U+10FFFF | {U+DBFF, U+DFFF} |
++-----------+------------------+
 
 .. highlight:: c
 
@@ -469,24 +505,24 @@ Examples of surrogate pairs:
 
     void
     encode_utf16_pair(uint32_t character,
-                      uint16_t *words)
+                      uint16_t *units)
     {
         unsigned int code;
         assert(character >= 0x10000);
         code = (character - 0x10000);
-        words[0] = 0xD800 | (code >> 10);
-        words[1] = 0xDC00 | (code & 0x3FF);
+        units[0] = 0xD800 | (code >> 10);
+        units[1] = 0xDC00 | (code & 0x3FF);
     }
 
     uint32_t
-    decode_utf16_pair(uint16_t *words)
+    decode_utf16_pair(uint16_t *units)
     {
         uint32_t code;
-        assert(0xD800 <= words[0] && words[0] <= 0xDBFF);
-        assert(0xDC00 <= words[1] && words[1] <= 0xDFFF);
+        assert(0xD800 <= units[0] && units[0] <= 0xDBFF);
+        assert(0xDC00 <= units[1] && units[1] <= 0xDFFF);
         code = 0x10000;
-        code += (words[0] & 0x03FF) << 10;
-        code += (words[1] & 0x03FF);
+        code += (units[0] & 0x03FF) << 10;
+        code += (units[1] & 0x03FF);
         return code;
     }
 
@@ -499,7 +535,7 @@ Examples of surrogate pairs:
 Encodings performances
 ----------------------
 
-Complexity of getting the n-th character in a string, and of
+Complexity of getting the n :sup:`th` character in a string, and of
 getting the length in character of a string:
 
  * :math:`O(1)` for 7 and 8 bit encodings (ASCII, ISO-8859, ...), UCS-2 and UCS-4

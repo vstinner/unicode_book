@@ -81,7 +81,7 @@ Tests to evaluate the Unicode support of a program:
    program fails with an error, it has no Unicode support.
  * Write characters not encodable to the :ref:`locale encoding <locale
    encoding>` (e.g. Ł, U+0141) in all input fields: if the program fails with an
-   error, it has probably a basic Unicode program.
+   error, it has probably a basic Unicode support.
  * To test if a program is fully Unicode compliant, write text mixing different
    languages in different directions and characters with diacritics, especially
    in Persian characters. Try also :ref:`decomposed characters
@@ -114,12 +114,12 @@ File formats:
 Filesystem (filenames):
 
  * :ref:`Windows` stores filenames as Unicode. It provides a bytes compatibily layer
-   using the :ref:`ANSI code page` for applications using bytes strings.
- * :ref:`Mac OS X <osx>` encodes filenames to :ref:`UTF-8` and normalize see to a
-   variant of the Normal Form D.
+   using the :ref:`ANSI code page` for applications using :ref:`byte strings <bytes>`.
+ * :ref:`Mac OS X <osx>` encodes filenames to :ref:`UTF-8` and :ref:`normalize
+   <normalization>` see to a variant of the Normal Form D.
  * Other OSes: use the :ref:`locale encoding <locale encoding>`
 
-.. seealso:: :ref:`guess`.
+.. seealso:: :ref:`guess`
 
 
 Switch from byte strings to character strings

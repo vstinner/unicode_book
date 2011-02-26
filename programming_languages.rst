@@ -519,7 +519,7 @@ character (U+0000—U+10FFFF). ``Character`` methods:
 
 As :ref:`Python` compiled in narrow mode, :ref:`non-BMP <bmp>` characters are
 stored as :ref:`UTF-16 surrogate pairs <surrogates>` and the length of a string
-is the number of UTF-16 words, not the number of Unicode characters.
+is the number of UTF-16 units, not the number of Unicode characters.
 
 Java, as the Tcl language, uses a variant of :ref:`UTF-8` which encodes the nul
 character (U+0000) as the :ref:`overlong byte sequence <strict utf8 decoder>`
