@@ -59,14 +59,12 @@ REPLACE = (
     #       (textcomp)                Default family used instead.
     # Try: \usepackage[force,almostfull]{textcomp}
     (u"�", u"<?>"),
-    (u"¤", u"<X>"),
     (u" \u0327", u","),
     (DUlineblock, u"|"),
     (u"Русский",
      u"\\foreignlanguage{russian}{Русский}"),
-    # TODO: u"я\u0301" => u"я"
     (u"``Кракозя\u0301бры'' (krakozyabry)",
-     u"\\foreignlanguage{russian}{``Кракозябры'' (krakozyabry)}"),
+     u"\\foreignlanguage{russian}{``Кракоз\\'{я}бры'' (krakozyabry)}"),
     # TODO: ! LaTeX Error: Command \DH unavailable in encoding T2A.
     # TODO: ! LaTeX Error: Command \TH unavailable in encoding T2A.
     # TODO: ! LaTeX Error: Command \dh unavailable in encoding T2A.
