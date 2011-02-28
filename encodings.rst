@@ -295,8 +295,8 @@ To encode Chinese, there is also the Big5 encoding family and cp950.
 .. index:: JIS
 .. _jis:
 
-JIS encoding family (Japanese)
-''''''''''''''''''''''''''''''
+Japanese encodings
+''''''''''''''''''
 
 JIS is a family of Japanese charsets/encodings:
 
@@ -315,7 +315,7 @@ JIS is a family of Japanese charsets/encodings:
 
 .. todo:: which JIS encodings use multibyte?
 
-The JIS family causes :ref:`mojibake` on MS-DOS and Microsoft Windows because the yen
+The JIS family causes :ref:`mojibake <mojibake>` on MS-DOS and Microsoft Windows because the yen
 sign (U+00A5, ¥) is encoded to ``0x5C`` which is a backslash (U+005C, \\) in
 ASCII. For example, "C:\\Windows\\win.ini" is displayed "C:¥Windows¥win.ini". The
 backslash is encoded to ``0x81 0x5F``.
@@ -504,8 +504,7 @@ Examples of surrogate pairs:
     #include <stdint.h>
 
     void
-    encode_utf16_pair(uint32_t character,
-                      uint16_t *units)
+    encode_utf16_pair(uint32_t character, uint16_t *units)
     {
         unsigned int code;
         assert(character >= 0x10000);
@@ -538,7 +537,8 @@ Encodings performances
 Complexity of getting the n :sup:`th` character in a string, and of
 getting the length in character of a string:
 
- * :math:`O(1)` for 7 and 8 bit encodings (ASCII, ISO-8859, ...), UCS-2 and UCS-4
+ * :math:`O(1)` for 7 and 8 bit encodings (ASCII, ISO 8859 family, ...), UCS-2
+   and UCS-4
  * :math:`O(n)` for variable length encodings (e.g. the UTF family)
 
 .. todo:: Perf of the codec
@@ -592,7 +592,7 @@ Unencodable characters
 ''''''''''''''''''''''
 
 When a :ref:`character string <str>` is encoded to a :ref:`charset <charset>`
-smaller than Unicode, a character may not be encodable. For example, €
+smaller than the Unicode charset, a character may not be encodable. For example, €
 (U+20AC) is not encodable to :ref:`ISO-8859-1`, but it is encodable to
 :ref:`ISO-8859-15` and :ref:`UTF-8`.
 
@@ -612,10 +612,11 @@ There are different choices to handle :ref:`undecodable byte sequences
  * ignore
  * replace by ? (U+003F) or � (U+FFFD)
  * replace by a similar glyph
- * escape: format its code point (e.g. replace "é" by "U+00E9")
+ * escape: format its code point
  * etc.
 
-Example, encode "abcdé" to ASCII (é, U+00E9, is not encodable to ASCII):
+Example of the "abcdé" string encoded to ASCII, é (U+00E9) is not encodable to
+ASCII:
 
 +----------------------------+------------------+
 | Error handler              | Output           |
@@ -673,8 +674,8 @@ Escape the character
 ``JIS+7E7E``).
 
 :ref:`PHP <php>` "entity" and Python "xmlcharrefreplace" error handlers escape
-the code point as an HTML/XML entity (e.g. PHP: ``&#xE9;``, Python:
-``&#233;``).
+the code point as an HTML/XML entity. For example, when U+00E9 is convertd to
+ASCII: it is replaced by ``&#xE9;`` in PHP and ``&#233;`` in Python.
 
 
 Other charsets and encodings
@@ -683,6 +684,8 @@ Other charsets and encodings
 There are much more charsets and encodings, but it is not useful to know them.
 The knowledge of a good conversion library, like :ref:`iconv <iconv>`, is
 enough.
+
+.. todo:: VISCII, EDBIC
 
 
 .. _guess:
@@ -710,7 +713,7 @@ Example in :ref:`C <c>`: ::
 
     int isASCII(const char *data, size_t size)
     {
-        const unsigned char *str = (unsigned char*)data;
+        const unsigned char *str = (const unsigned char*)data;
         const unsigned char *end = str + size;
         for (; str != end; str++) {
             if (*str & 0x80)
@@ -731,6 +734,12 @@ In :ref:`Python`, the ASCII decoder can be used: ::
         else:
             return True
 
+.. note::
+
+   Only use the Python function on short strings because it decodes the whole
+   string into memory.  For long strings, it is better to use the algorithm of
+   the C function because it doesn't allocate any memory.
+
 
 Check for BOM markers
 '''''''''''''''''''''
@@ -745,11 +754,11 @@ Example of a function written in :ref:`C <c>` to check if a BOM is present: ::
 
     #include <string.h>   /* memcmp() */
 
-    const char UTF_16_BE_BOM[] = "\xFE\xFF";
-    const char UTF_16_LE_BOM[] = "\xFF\xFE";
-    const char UTF_8_BOM[] = "\xEF\xBB\xBF";
-    const char UTF_32_BE_BOM[] = "\x00\x00\xFE\xFF";
-    const char UTF_32_LE_BOM[] = "\xFF\xFE\x00\x00";
+    const char *UTF_16_BE_BOM = "\xFE\xFF";
+    const char *UTF_16_LE_BOM = "\xFF\xFE";
+    const char *UTF_8_BOM = "\xEF\xBB\xBF";
+    const char *UTF_32_BE_BOM = "\x00\x00\xFE\xFF";
+    const char *UTF_32_LE_BOM = "\xFF\xFE\x00\x00";
 
     char* check_bom(const char *data, size_t size)
     {
@@ -806,8 +815,9 @@ reliable algorithm to check if a function is encoded to UTF-8.
 .. highlight:: c
 
 Example of a strict :ref:`C <c>` function to check if a string is encoded to
-UTF-8. It rejects overlong sequences (e.g.  ``0xC0 0x80``) and surrogate
-characters (e.g. ``0xED 0xB2 0x80``, U+DC80). ::
+UTF-8. It rejects :ref:`overlong sequences <strict utf8 decoder>` (e.g.  ``0xC0
+0x80``) and :ref:`surrogate characters <surrogates>` (e.g. ``0xED 0xB2 0x80``,
+U+DC80). ::
 
     #include <stdint.h>
 
@@ -848,23 +858,24 @@ characters (e.g. ``0xED 0xB2 0x80``, U+DC80). ::
             /* Check continuation bytes: bit 7 should be set, bit 6 should be
              * unset (b10xxxxxx). */
             for (i=1; i < code_length; i++) {
-                if ((str[i] & 0xc0) != 0x80)
+                if ((str[i] & 0xC0) != 0x80)
                     return 0;
             }
 
             if (code_length == 2) {
                 /* 2 bytes sequence: U+0080..U+07FF */
                 ch = ((str[0] & 0x1f) << 6) + (str[1] & 0x3f);
-                if ((ch < 0x0080) || (0x07FF < ch))
+                /* ch cannot be greater than 0x07FF */
+                if (ch < 0x0080)
                     return 0;
             } else if (code_length == 3) {
                 /* 3 bytes sequence: U+0800..U+FFFF */
                 ch = ((str[0] & 0x0f) << 12) + ((str[1] & 0x3f) << 6) +
                       (str[2] & 0x3f);
-                if ((ch < 0x0800) || (0xFFFF < ch))
+                /* ch cannot be greater than 0xFFFF */
+                if (ch < 0x0800)
                     return 0;
-                /* 3 bytes sequence: U+0800-U+FFFF... excluding U+D800-U+DFFF:
-                 * surrogates are invalid in UTF-8 */
+                /* surrogates (U+D800-U+DFFF) are invalid in UTF-8 */
                 if ((0xD800 <= ch) && (ch <= 0xDFFF))
                     return 0;
             } else if (code_length == 4) {
