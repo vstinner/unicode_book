@@ -4,12 +4,10 @@ About this book
 .. todolist::
 
 .. todo:: Render text, fonts, RTL, LTR
-.. todo:: LaTeX doesn't support �: \replacecharacter{} ???
-.. todo:: LaTeX issue with table cell spans
-.. todo:: LaTeX issue with table: \\begin{DUlineblock}{0em}
 .. \begin{DUlineblock}{0em}
 .. \item[]
 ..  \end{DUlineblock}
+.. todo:: LaTeX: 'abc' doesn't use the right glyph for '
 
 The book is written in `reStructuredText <http://sphinx.pocoo.org/rest.html>`_
 (reST) syntax and compiled by `Sphinx <http://sphinx.pocoo.org/>`_.
