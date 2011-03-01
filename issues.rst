@@ -34,14 +34,14 @@ Noël          UTF-8    ISO-8859-1  NoÃ«l
 .. todo:: add a screenshot of mojibake
 
 
-Security
---------
+Security vulnerabilities
+------------------------
 
 Special characters
 ''''''''''''''''''
 
 Fullwidth (U+FF01—U+FF60) and halfwidth (U+FF61—U+FFEE) characters has been
-used to bypass security checks. Examples with :ref:`Unicode normalization
+used in 2007 to bypass security checks. Examples with :ref:`Unicode normalization
 <normalization>`:
 
  * U+FF0E is normalized to . (U+002E) in NFKC
@@ -60,15 +60,14 @@ IDS/IPS/WAF Bypass Vulnerability
 
 .. _strict utf8 decoder:
 
-Non-strict UTF-8 decoder
-''''''''''''''''''''''''
+Non-strict UTF-8 decoder: overlong byte sequences and surrogates
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-An UTF-8 decoder have to reject overlong
-byte sequences for security reasons. For example, ``0xC0 0x80`` byte sequence
-must raise an error (and not be decoded as U+0000). If the decoder accepts
-overlong byte sequence, an attacker can use it to bypass security checks (e.g.
-reject string containing nul bytes, ``0x00``). For example, "." (U+002E) can be
-encoded to ``0xC0 0xAE`` (two bytes instead of one).
+An UTF-8 decoder have to reject overlong byte sequences, or an attacker can use
+them to bypass security checks (e.g. check rejecting string containing nul bytes,
+``0x00``). For example, ``0xC0 0x80`` byte sequence must raise an error and
+not be decoded as U+0000, and "." (U+002E) can be encoded to ``0xC0 0xAE`` (two
+bytes instead of one) to bypass directory traversal checks.
 
 :ref:`Surrogates characters <surrogates>` are also invalid in UTF-8: characters in U+D800—U+DFFF
 have to be rejected. See the table 3-7 in the `Conformance chapiter of the
@@ -91,27 +90,30 @@ some other don't. For example, ``utf8_decode()`` and ``mb_strlen()`` accept
    ``0xC0 0x80``, instead of ``0x00``, for practical reasons.
 
 
-Check byte strings but use character strings
-''''''''''''''''''''''''''''''''''''''''''''
+Check byte strings before decoding them to character strings
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-Some applications check user inputs as :ref:`byte strings <bytes>`, but
-then process them as :ref:`character strings <str>`.
+Some applications check user inputs as :ref:`byte strings <bytes>`, but then
+process them as :ref:`character strings <str>`. This vulnerability can be used
+to bypass security checks.
 
 The WordPress blog tool had such issue with :ref:`PHP5 <php>` and MySQL:
 `WordPress Charset SQL Injection Vulnerability
 <http://www.abelcheung.org/advisory/20071210-wordpress-charset.txt>`_ (Abel
-Cheung, december 2007). WordPress uses ``addslashes()`` on the input byte
-strings which replaces ``0x27`` byte by ``0x5C 0x27`` (it does also add
-``0x5C`` prefix to ``0x22``, ``0x5C`` and ``0x00`` bytes). If a input string is
-encoded to :ref:`ISO-8859-1`, this operation escapes a quote: ``'`` (U+0027)
-becomes ``\'`` (U+005C, U+0027).  The problem is that ``addslashes()`` process
-byte strings, whereas the result is used by MySQL which process character
-strings.  Example with :ref:`Big5 <big5>` encoding: ``0xB5 0x27`` cannot be
-decoded from Big5, but escaped, it becomes ``0xB5 0x5C 0x27`` which is decoded
-as {U+8A31, U+0027}.  The ``0x5C`` byte is no more a back slash: it is part of
-a multibyte character (U+8A31). The solution is to use
-``mysql_real_escape_string()`` which process character strings using the MySQL
-connection charset.
+Cheung, december 2007). WordPress used the PHP function ``addslashes()`` on the
+input byte strings. This function adds ``0x5C`` prefix to ``0x00``, ``0x22``,
+``0x27`` and ``0x5C`` bytes. If a input string is encoded to :ref:`ISO-8859-1`,
+this operation escapes a quote: ``'`` (U+0027) becomes ``\'`` ({U+005C,
+U+0027}).
+
+The problem is that ``addslashes()`` process byte strings, whereas the result
+is used by MySQL which process character strings.  Example with :ref:`Big5
+<big5>` encoding: ``0xB5 0x27`` cannot be decoded from Big5, but escaped it
+becomes ``0xB5 0x5C 0x27`` which is decoded to {U+8A31, U+0027}. The ``0x5C``
+byte is no more a backslash: it is part of the multibyte character U+8A31
+encoded to ``0xB5 0x5C``. The solution is to use ``mysql_real_escape_string()``
+function, instead of ``addslashes()``, which process inputs as character
+strings using the MySQL connection encoding.
 
 .. seealso::
 
