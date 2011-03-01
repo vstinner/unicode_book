@@ -7,7 +7,7 @@ Programming with Unicode
 .. todo:: Filesystems (ext2 vs VFAT)
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :numbered:
 
    about.rst
