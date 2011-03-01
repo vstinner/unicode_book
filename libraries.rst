@@ -3,6 +3,9 @@
 Libraries
 =========
 
+Programming languages have no or basic support of Unicode. Libraries are
+required to get a full support of Unicode on all platforms.
+
 .. _qt:
 
 
@@ -24,30 +27,31 @@ Character and string classes
    separator (Zl, Zp or Zs)
  * ``toUpper()``: convert to upper case
 
-``QString`` is a :ref:`UTF-16 <utf16>` :ref:`character string <str>`: it is a
-string of ``QChar``. A :ref:`Non-BMP character <bmp>` are stored as a
-:ref:`surrogate pairs <surrogates>`, as two ``QChar``. Interesting ``QString``
-methods:
+``QString`` is a :ref:`character string <str>` implemented as an array of
+``QChar`` using :ref:`UTF-16 <utf16>`. A :ref:`Non-BMP character <bmp>` is
+stored as two ``QChar`` (a :ref:`surrogate pair <surrogates>`). Interesting
+``QString`` methods:
 
  * ``toAscii()``, ``fromAscii()``: encode to/decode from :ref:`ASCII`
  * ``toLatin1()``, ``fromLatin1()``: encode to/decode from :ref:`ISO-8859-1`
- * ``utf16()``, ``fromUtf16()``: encode to/decode to :ref:`UTF-16 <utf16>`
+ * ``utf16()``, ``fromUtf16()``: encode to/decode to :ref:`UTF-16 <utf16>` (in
+   the host endian)
  * ``normalized()``: :ref:`normalize <normalization>` to NFC, NFD, NFKC or NFKD
 
-Qt decodes literal strings using the QLatin1String class. It is a thin wrapper
-to :c:type:`char*` :ref:`byte strings <bytes>`. QLatin1String stores a
-character as a single byte.  It is possible because it only supports characters
-in range U+0000—U+00FF. QLatin1String API is smaller than ``QString`` API,
-because QLatin1String cannot be used to manipulate text. For example, it is not
-possible to concatenate two QLatin1String strings.
+Qt decodes literal byte strings from :ref:`ISO-8859-1` using the
+``QLatin1String`` class, a thin wrapper to :c:type:`char*`. ``QLatin1String``
+is a character string storing each character as a single byte.  It is possible
+because it only supports characters in U+0000—U+00FF range. ``QLatin1String``
+cannot be used to manipulate text, it has a smaller API than ``QString``.  For
+example, it is not possible to concatenate two ``QLatin1String`` strings.
 
 Codec
 '''''
 
-``QTextCodec.codecForLocale()`` gets the locale codec. The locale codec is:
+``QTextCodec.codecForLocale()`` gets the locale encoding codec:
 
  * Windows: :ref:`ANSI code page <codepage>`
- * The :ref:`locale encoding <locale encoding>` otherwise: try
+ * Otherwise: the :ref:`locale encoding <locale encoding>`. Try
    ``nl_langinfo(CODESET)``, or ``LC_ALL``, ``LC_CTYPE``, ``LANG`` environment
    variables. If no one gives any useful information, fallback to
    :ref:`ISO-8859-1`.
@@ -66,23 +70,25 @@ Filesystem
 
 ``QFile.decodeName()`` is the reverse operation.
 
+.. todo:: what about undecodable filenames?
+
 Qt has two implementations of its ``QFSFileEngine``:
 
  * Windows: use Windows native API
- * Unix: use POSIX API. Examples: ``fopen()``, ``getcwd()`` or ``get_current_dir_name()``,
+ * UNIX: use POSIX API. Examples: ``fopen()``, ``getcwd()`` or ``get_current_dir_name()``,
    ``mkdir()``, etc.
 
-Classes: ``QFile``, ``QFileInfo``, ``QAbstractFileEngineHandler``, ``QFSFileEngine``.
+Related classes: ``QFile``, ``QFileInfo``, ``QAbstractFileEngineHandler``,
+``QFSFileEngine``.
 
 
 .. _glib:
 
-Gtk+ and glib libraries
------------------------
+The glib library
+----------------
 
-`Gtk+ <http://www.gtk.org/>`_ is a :ref:`C <c>` toolkit to create graphic
-interfaces. It is based on the glib library.  Both projects are distributed
-under the `GNU LGPL license`_ (version 2.1).
+The `glib library <http://www.gtk.org/>`_ is a great :ref:`C <c>` library
+distributed under the `GNU LGPL license`_ (version 2.1).
 
 Character strings
 '''''''''''''''''
@@ -90,22 +96,20 @@ Character strings
 The :c:type:`gunichar` type is a character. It is able to store any Unicode 6.0
 character (U+0000—U+10FFFF).
 
-The glib library implements :ref:`character strings <str>` as :c:type:`gchar*`
-:ref:`byte strings <bytes>` encoded to :ref:`UTF-8`.
-
-.. todo:: glib manipulates byte or unicode strings?
-
+The glib library has no :ref:`character string <str>` type. It uses :ref:`byte
+strings <bytes>` using the :c:type:`gchar*` type, but most functions use
+:ref:`UTF-8` encoded strings.
 
 Codec functions
 '''''''''''''''
 
  * :c:func:`g_convert`: decode from an encoding and encode to another encoding
    with the :ref:`iconv library <iconv>`. Use :c:func:`g_convert_with_fallback`
-   to choose how to :ref:`handle <errors>` :ref:`undecodable bytes
+   to choose :ref:`how to handle <errors>` :ref:`undecodable bytes
    <undecodable>` and :ref:`unencodable characters <unencodable>`.
  * :c:func:`g_locale_from_utf8` / :c:func:`g_locale_to_utf8`: encode to/decode
    from the :ref:`locale encoding <locale encoding>`.
- * :c:func:`g_get_charset`: get the charset of the current locale
+ * :c:func:`g_get_charset`: get the locale encoding
 
    * Windows: current :ref:`ANSI code page <codepage>`
    * OS/2: current code page (call :c:func:`DosQueryCp`)
@@ -120,7 +124,7 @@ Filename functions
 ''''''''''''''''''
 
  * :c:func:`g_filename_from_utf8` / :c:func:`g_filename_to_utf8`: encode/decode
-   a filename
+   a filename to/from UTF-8
  * :c:func:`g_filename_display_name`: human readable version of a filename. Try
    to decode the filename from each encoding of
    :c:func:`g_get_filename_charsets` encoding list. If all decoding failed,
@@ -135,7 +139,7 @@ Filename functions
      list of character set names, the special token ``"@locale"`` is taken to mean
      the :ref:`locale encoding <locale encoding>`
    * or UTF-8 if ``G_BROKEN_FILENAMES`` environment variable is set
-   * or call :c:func:`g_get_charset` (:ref:`locale encoding <locale encoding>`)
+   * or call :c:func:`g_get_charset` (the :ref:`locale encoding <locale encoding>`)
 
 
 .. _iconv:
@@ -149,7 +153,7 @@ license`_. It supports a lot of encodings including rare and old encodings.
 
 By default, libiconv is :ref:`strict <strict>`: an :ref:`unencodable character
 <unencodable>` raise an error. You can :ref:`ignore <ignore>` these characters
-by add ``//IGNORE`` suffix to the encoding. There is also the ``//TRANSLIT``
+by adding the ``//IGNORE`` suffix to the encoding name. There is also the ``//TRANSLIT``
 suffix to  :ref:`replace unencodable characters <translit>` by similarly looking
 characters.
 
@@ -162,9 +166,9 @@ ICU libraries
 -------------
 
 `International Components for Unicode <http://site.icu-project.org/>`_ (ICU) is
-a mature, widely used set of :ref:`C <c>`/:ref:`C++ <cpp>` and :ref:`Java
+a mature, widely used set of :ref:`C <c>`, :ref:`C++ <cpp>` and :ref:`Java
 <java>` libraries providing Unicode and Globalization support for software
-applications. ICU is an open source library distributed under the `MIT
+applications. ICU is an open source project distributed under the `MIT
 license`_.
 
 .. _GNU LGPL license: http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License
