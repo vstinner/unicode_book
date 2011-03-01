@@ -119,4 +119,5 @@ Two extra normal forms use this compatibility layer: **NFKD**
 .. todo:: CJK and Han issues
 .. todo:: is printable?
 .. todo:: lower/upper case
+.. todo:: character properties: name, category, number, RTL
 
