@@ -90,7 +90,9 @@ Tests to evaluate the Unicode support of a program:
 .. seealso::
 
    Wikipedia article to `test the Unicode support of your web browser
-   <http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test>`_.
+   <http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test>`_. `UTF-8 encoded
+   sample plain-text file <http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt>`_
+   (Markus Kuhn, 2002).
 
 
 Get the encoding of your inputs
