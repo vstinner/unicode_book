@@ -31,8 +31,6 @@ Noël          UTF-8    ISO-8859-1  NoÃ«l
 
 .. seealso:: :ref:`guess`.
 
-.. todo:: add a screenshot of mojibake
-
 
 Security vulnerabilities
 ------------------------
