@@ -40,12 +40,6 @@ used for the :ref:`Windows console <win_console>`, contains glyphs to create
 text interfaces (draw boxes) and has a number between 437 and 874. Example of a
 French setup: ANSI is :ref:`cp1252` and OEM is cp850.
 
-Example of text boxes using characters of OEM code pages: ::
-
-  ╔══════════════╗  ╭─────────────╮
-  ║ double lines ║  │ single line │
-  ╚══════════════╝  ╰─────────────╯
-
 There are some special code pages like cp65001 (Microsoft version of
 :ref:`UTF-8`).
 
