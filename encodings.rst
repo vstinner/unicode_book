@@ -296,16 +296,19 @@ To encode Chinese, there is also the Big5 encoding family and cp950.
 Japanese encodings
 ''''''''''''''''''
 
-JIS is a family of Japanese charsets/encodings:
+JIS is a family of Japanese encodings:
 
- * JIS X 0201 (1969)
- * JIS X 0208 (first version in 1978: "JIS C 6226", last revision in 1997)
+ * JIS X 0201 (1969): all code points are encoded to 1 byte
+ * JIS X 0208 (first version in 1978: "JIS C 6226", last revision in 1997):
+   code points are encoded to 1 or 2 bytes
  * JIS X 0211 (1994), based on ISO/IEC 6429
- * JIS X 0212 (1990), extends JIS X 0208
- * JIS X 0213 (first version in 2000, last revision in 2004: EUC JIS X 2004), EUC JIS X 0213
+ * JIS X 0212 (1990), extends JIS X 0208 charset: it is only a charset. Use
+   EUC-JP or ISO 2022 to encode it.
+ * JIS X 0213 (first version in 2000, last revision in 2004: EUC JIS X 2004),
+   EUC JIS X 0213: it is only a charset, use EUC-JP, ISO 2022 or ShiftJIS 2004
+   to encode it.
  * Shift JIS
- * EUC JP
- * Windows :ref:`code page <codepage>` 932 (cp932)
+ * Windows :ref:`code page <codepage>` 932 (cp932): extension of Shift JIS
 
    * U+F8F1 (``0xFD``)
    * U+F8F2 (``0xFE``)
@@ -326,6 +329,7 @@ To encode Japanese, there is also the ISO/IEC 2022 encoding family.
 .. todo:: ISO 8859 family
 .. todo:: ISO 646
 .. todo:: ISO 2022
+.. todo:: Extended Unix Code (EUC), EUC JP
 .. todo:: ISO 10646
 
 
