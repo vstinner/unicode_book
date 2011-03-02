@@ -59,7 +59,8 @@ REPLACE = (
     #       (textcomp)                Default family used instead.
     # Try: \usepackage[force,almostfull]{textcomp}
     (u"�", u"<?>"),
-    (u" \u0327", u","),
+    # U+00B8 or U+0327: cedilla
+    (u"\xB8", u"\\c{ }"),
     (DUlineblock, u"|"),
     (u"Русский",
      u"\\foreignlanguage{russian}{Русский}"),
