@@ -15,7 +15,7 @@ The book is written in `reStructuredText <http://sphinx.pocoo.org/rest.html>`_
 License
 -------
 
-This book is distributed under the `CC BY-NC-SA 3.0 license <http://creativecommons.org/licenses/by-nc-sa/3.0/>`_.
+This book is distributed under the `CC BY-SA 3.0 license <http://creativecommons.org/licenses/by-sa/3.0/>`_.
 
 Thanks to
 ---------
