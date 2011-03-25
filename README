@@ -6,7 +6,9 @@ About
 Dependencies
 ------------
 
- * Sphinx: http://sphinx.pocoo.org/ -- sudo pip install sphinx
+ * Sphinx 1.0 or more recent: sudo pip install sphinx
+   http://sphinx.pocoo.org/
+
  * make html:
 
    * sudo apt-get install dvipng (for pngmath)
@@ -21,5 +23,5 @@ Dependencies
 
    * sudo apt-get install texlive-latex-base texlive-lang-cyrillic
    * texlive-lang-cyrillic: Cyrillic (mojibake section)
-   * For make LaTeX ./build_latex.py 
+   * For make LaTeX ./build_latex.py
 
