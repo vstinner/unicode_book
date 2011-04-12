@@ -174,3 +174,11 @@ license`_.
 .. _GNU LGPL license: http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License
 .. _MIT license: http://en.wikipedia.org/wiki/MIT_License
 
+
+libunistring
+------------
+
+`libunistring <http://www.gnu.org/software/libunistring/>`_ provides functions
+for manipulating Unicode strings and for manipulating C strings according to
+the Unicode standard.
+
