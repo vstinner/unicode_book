@@ -180,5 +180,6 @@ libunistring
 
 `libunistring <http://www.gnu.org/software/libunistring/>`_ provides functions
 for manipulating Unicode strings and for manipulating C strings according to
-the Unicode standard.
+the Unicode standard. It is distributed under the `GNU LGPL license`_ version
+3.
 
