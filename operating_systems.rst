@@ -159,6 +159,10 @@ character POSIX-like API:
 
    Unicode version of :c:func:`fopen`.
 
+.. c:function:: int _wopen(const wchar_t *filename, int oflag[, int pmode])
+
+   Unicode version of :c:func:`open`.
+
 POSIX functions, like :c:func:`fopen()`, use the :ref:`ANSI code page
 <codepage>` to encode/decode strings.
 
