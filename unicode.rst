@@ -30,7 +30,7 @@ Unicode 6.0 has 7 character categories, and each category has subcategories:
  * Symbol (S): currency (Sc), modifier (Sk), math (Sm), other (So)
  * Separator (Z): line (Zl),  paragraph (Zp), space (Zs)
  * Other (C): control (Cc), format (Cf), not assigned (Cn), private use (Co),
-   surrogate (Cs)
+   :ref:`surrogate <surrogates>` (Cs)
 
 .. TODO:: NELLE - exemples ? Il y a beaucoup de catégories/sous catégories que
   je ne comprends pas
@@ -47,7 +47,7 @@ Statistics
 
 On a total of 1,114,112 possible code points, only 248,966 code points are
 assigned: 77.6% are not assigned. Statistics excluding not assigned (Cn),
-private use (Co) and surrogate (Cs) subcategories:
+private use (Co) and :ref:`surrogate <surrogates>` (Cs) subcategories:
 
  * Letter: 100,520 (91.8%)
  * Symbol: 5,508 (5.0%)
