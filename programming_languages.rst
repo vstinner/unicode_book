@@ -180,6 +180,8 @@ string arguments.
    There is also ``"%S"`` format which is a deprecated alias to the ``"%ls"``
    format, don't use it.
 
+.. todo:: locale encoding should be initialized.
+
 
 .. _cpp:
 
