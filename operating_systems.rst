@@ -202,15 +202,6 @@ change the :ref:`OEM code page <codepage>` (and console code page). Change the
 console code page is not a good idea because the ANSI API of the console still
 expect characters encoded to the previous console code page.
 
-:c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the
-encoding of a file (especially of stdin, stdout and stderr):
-
- * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM <bom>`
- * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
- * :c:macro:`_O_WTEXT`: UTF-16 with BOM
-
-.. todo:: Consequences on TTY and pipes?
-
 .. seealso::
 
    `Conventional wisdom is retarded, aka What the @#%&* is _O_U16TEXT?
@@ -224,6 +215,25 @@ encoding of a file (especially of stdin, stdout and stderr):
    doesn't improve Unicode support, it is the opposite: non-ASCII are not
    rendered correctly and type non-ASCII characters (e.g. using the keyboard)
    doesn't work correctly, especially using raster fonts.
+
+
+File mode
+'''''''''
+
+:c:func:`_setmode` and :c:func:`_wsopen` are special functions to set the
+encoding of a file:
+
+ * :c:macro:`_O_U8TEXT`: :ref:`UTF-8` without :ref:`BOM <bom>`
+ * :c:macro:`_O_U16TEXT`: :ref:`UTF-16 <utf16>` without BOM
+ * :c:macro:`_O_WTEXT`: UTF-16 with BOM
+
+:c:func:`fopen` can use these modes using ``ccs=`` in the file mode:
+
+ * ``ccs=UNICODE``: :c:macro:`_O_WTEXT`
+ * ``ccs=UTF-8``: :c:macro:`_O_UTF8`
+ * ``ccs=UTF-16LE``: :c:macro:`_O_UTF16`
+
+.. todo:: Consequences on TTY and pipes?
 
 
 .. _osx:
