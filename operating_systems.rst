@@ -89,13 +89,14 @@ Conversion.
 Windows API: ANSI and wide versions
 '''''''''''''''''''''''''''''''''''
 
-Windows has two versions of each function of its API : the ANSI version using
-:ref:`byte strings <bytes>` (``A`` suffix) and the :ref:`ANSI code page <codepage>`, and the
-wide version (``W`` suffix) using :ref:`character strings <str>`. There are also functions without suffix
-using :c:type:`TCHAR*` strings: if the :ref:`C <c>` define :c:macro:`_UNICODE`
-is defined, :c:type:`TCHAR` is :c:type:`wchar_t` and it use the Unicode
-functions; otherwise :c:type:`TCHAR` is :c:type:`char` and it uses the ANSI
-functions. Example:
+Windows has two versions of each function of its API: the ANSI version using
+:ref:`byte strings <bytes>` (``A`` suffix) and the :ref:`ANSI code page
+<codepage>`, and the wide version (``W`` suffix) using :ref:`character strings
+<str>`. There are also functions without suffix using :c:type:`TCHAR*` strings:
+if the :ref:`C <c>` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
+replaced by :c:type:`wchar_t` and the Unicode functions are used; otherwise
+:c:type:`TCHAR` is replaced by :c:type:`char` and the ANSI functions are used.
+Example:
 
  * :c:func:`CreateFileA()`: bytes version, use :ref:`byte strings <bytes>`
    encoded to the ANSI code page
@@ -106,6 +107,15 @@ functions. Example:
 
 Always prefer the Unicode version to avoid encoding/decoding errors, and use
 directly the ``W`` suffix to avoid compiling issues.
+
+.. note::
+
+   There is a third version of the API: the MBCS API (multibyte character
+   string). Use the TCHAR functions and define :c:macro:`_MBCS` to use the MBCS
+   functions.  For example, :c:func:`_tcsrev` is replaced by :c:func:`_mbsrev`
+   if :c:macro:`_MBCS` is defined, by :c:func:`_wcsrev` if :c:macro:`_UNICODE`
+   is defined, or by :c:func:`_strrev` otherwise.
+
 
 
 Windows string types
