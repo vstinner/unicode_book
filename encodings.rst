@@ -310,16 +310,18 @@ JIS is a family of Japanese encodings:
  * Shift JIS
  * Windows :ref:`code page <codepage>` 932 (cp932): extension of Shift JIS
 
-   * U+F8F1 (``0xFD``)
-   * U+F8F2 (``0xFE``)
-   * U+F8F3 (``0xFF``)
+In strict mode (flags=MB_ERR_INVALID_CHARS), cp932 cannot decode bytes in
+``0x81``\ —\ ``0xA0`` and ``0xE0``\ —\ ``0xFF`` ranges. By default (flags=0),
+``0x81``\ —\ ``0x9F`` and ``0xE0``\ —\ ``0xFC`` are decoded as U+30FB (Katakana
+middle dot), ``0xA0`` as U+F8F0, ``0xFD`` as U+F8F1, ``0xFE`` as U+F8F2 and
+``0xFF`` as U+F8F3 (U+E000—U+F8FF is for private usage).
 
 .. todo:: which JIS encodings use multibyte?
 
-The JIS family causes :ref:`mojibake <mojibake>` on MS-DOS and Microsoft Windows because the yen
-sign (U+00A5, ¥) is encoded to ``0x5C`` which is a backslash (U+005C, \\) in
-ASCII. For example, "C:\\Windows\\win.ini" is displayed "C:¥Windows¥win.ini". The
-backslash is encoded to ``0x81 0x5F``.
+The JIS family causes :ref:`mojibake <mojibake>` on MS-DOS and Microsoft
+Windows because the yen sign (U+00A5, ¥) is encoded to ``0x5C`` which is a
+backslash (U+005C, \\) in ASCII. For example, "C:\\Windows\\win.ini" is
+displayed "C:¥Windows¥win.ini". The backslash is encoded to ``0x81 0x5F``.
 
 To encode Japanese, there is also the ISO/IEC 2022 encoding family.
 
@@ -676,7 +678,7 @@ Escape the character
 ``JIS+7E7E``).
 
 :ref:`PHP <php>` "entity" and Python "xmlcharrefreplace" error handlers escape
-the code point as an HTML/XML entity. For example, when U+00E9 is convertd to
+the code point as an HTML/XML entity. For example, when U+00E9 is encoded to
 ASCII: it is replaced by ``&#xE9;`` in PHP and ``&#233;`` in Python.
 
 
