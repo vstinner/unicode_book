@@ -220,11 +220,11 @@ range are 32 control codes (not printable).
 .. index:: ISO-8859-15
 .. _ISO-8859-15:
 
-ISO-8859-15
+ISO 8859-15
 '''''''''''
 
-ISO-8859-15, also known as Latin-9, is a variant of :ref:`ISO-8859-1`. 248 code points
-are identicals, 8 are different:
+ISO/CEI 8859-15, also known as Latin-9 or ISO-8859-15, is a variant of
+:ref:`ISO-8859-1`. 248 code points are identicals, 8 are different:
 
 +------------+------------+-------------+------------+------------+-------------+
 | Code point | ISO-8859-1 | ISO-8859-15 | Code point | ISO-8859-1 | ISO-8859-15 |
@@ -255,9 +255,7 @@ GBK is a family of Chinese charsets using multibyte encodings:
  * GB 18030 (2005, last revision in 2006)
  * HZ (1989) (HG-GZ-2312)
 
-Big5 (大五碼, Big Five Encoding) invented in 1984.
-
-Other encodings: cp950.
+Other encodings: Big5 (大五碼, Big Five Encoding, 1984), cp950.
 
 
 .. index:: JIS

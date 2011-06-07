@@ -200,8 +200,8 @@ encoding. For example, encode "Hé" to :ref:`UTF-8 <utf8>` gives ``0x48 0xC3
 0xA9``.
 
 By default, most libraries are :ref:`strict <strict>`: raise an error at the
-first unencodable character. Some libraries allow to choose :ref:`how to handle
-them <errors>`.
+first :ref:`unencodable character <unencodable>`. Some libraries allow to
+choose :ref:`how to handle them <errors>`.
 
 Most encodings are stateless, but some encoding requires a stateful encoder.
 For example, the :ref:`UTF-16 <utf16>` encoding starts by generating a
@@ -213,9 +213,9 @@ For example, the :ref:`UTF-16 <utf16>` encoding starts by generating a
 Decode a byte string
 --------------------
 
-Decode a :ref:`byte string <bytes>` to a :ref:`character string <str>`, from an
-encoding. For example, decode ``0x48 0xC3 0xA9`` from :ref:`UTF-8 <utf8>` gives
-"Hé".
+Decode a :ref:`byte string <bytes>` from an encoding to a :ref:`character
+string <str>`. For example, decode ``0x48 0xC3 0xA9`` from :ref:`UTF-8 <utf8>`
+gives "Hé".
 
 By default, most libraries raise an error if :ref:`a byte sequence cannot be
 decoded <undecodable>`. Some libraries allow to choose :ref:`how to handle them
