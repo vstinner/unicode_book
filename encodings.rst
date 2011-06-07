@@ -399,7 +399,7 @@ operation in your program, use a :ref:`character string <str>` instead of a
 UCS-2, UCS-4, UTF-16 and UTF-32
 '''''''''''''''''''''''''''''''
 
-**UCS-2** and **UCS-4** encodings encode each code point to exactly one unit
+**UCS-2** and **UCS-4** encodings :ref:`encode <encode>` each code point to exactly one unit
 of, respectivelly, 16 and 32 bits. UCS-4 is able to encode all Unicode 6.0
 code points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
 encodings are practical because the length in units is the number of
@@ -407,7 +407,7 @@ characters.
 
 **UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits units.
 UTF-16 encodes code points bigger than U+FFFF using two units: a
-:ref:`surrogate pair <surrogates>`. UCS-2 can be decoded from UTF-16. UTF-32
+:ref:`surrogate pair <surrogates>`. UCS-2 can be :ref:`decoded <decode>` from UTF-16. UTF-32
 is also supposed to use more than one unit for big code points, but in
 practical, it only requires one unit to store all code points of Unicode 6.0.
 That's why UTF-32 and UCS-4 are the same encoding.
@@ -502,8 +502,8 @@ Examples of surrogate pairs:
 
 .. highlight:: c
 
-:ref:`C <c>` functions to encode and decode a non-BMP character to/from UTF-16
-(using surrogate pairs): ::
+:ref:`C <c>` functions to :ref:`encode <encode>` and :ref:`decode <decode>` a
+non-BMP character to/from UTF-16 (using surrogate pairs): ::
 
     #include <stdint.h>
 
@@ -571,14 +571,12 @@ Examples
 Handle undecodable bytes and unencodable characters
 ---------------------------------------------------
 
-.. todo:: Encode and decode sections?
-
 .. _undecodable:
 
 Undecodable byte sequences
 ''''''''''''''''''''''''''
 
-When a :ref:`byte string <bytes>` is decoded from an encoding, the decoder may
+When a :ref:`byte string <bytes>` is :ref:`decoded <decode>` from an encoding, the decoder may
 fail to decode a specific byte sequence. For example, ``0x61 0x62 0x63 0xE9``
 is not decodable from :ref:`ASCII` nor :ref:`UTF-8`, but it is decodable from
 :ref:`ISO-8859-1`.
@@ -595,7 +593,7 @@ these 8 bits encodings are assigned.
 Unencodable characters
 ''''''''''''''''''''''
 
-When a :ref:`character string <str>` is encoded to a :ref:`charset <charset>`
+When a :ref:`character string <str>` is :ref:`encoded <encode>` to a :ref:`charset <charset>`
 smaller than the Unicode charset, a character may not be encodable. For example, €
 (U+20AC) is not encodable to :ref:`ISO-8859-1`, but it is encodable to
 :ref:`ISO-8859-15` and :ref:`UTF-8`.
@@ -787,7 +785,7 @@ Example of a function written in :ref:`C <c>` to check if a BOM is present: ::
 
 For the UTF-16-LE/UTF-32-LE BOM conflict: this function returns ``"UTF-32-LE"``
 if the string begins with ``"\xFF\xFE\x00\x00"``, even if this string can be
-decoded from UTF-16-LE.
+:ref:`decoded <decode>` from UTF-16-LE.
 
 .. highlight:: python
 

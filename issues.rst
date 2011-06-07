@@ -7,9 +7,9 @@ Unicode issues
 Mojibake
 --------
 
-When a :ref:`byte strings <bytes>` is decoded from the wrong encoding, or when
-two byte strings encoded to different encodings are concatenated, a program
-will display **mojibake**.
+When a :ref:`byte strings <bytes>` is :ref:`decoded <decode>` from the wrong
+encoding, or when two byte strings encoded to different encodings are
+concatenated, a program will display **mojibake**.
 
 The classical example is a latin string (with diacritics) encoded to UTF-8 but
 decoded from ISO-8859-1. It displays Ã© {U+00C3, U+00A9} for the é (U+00E9)
@@ -106,7 +106,7 @@ U+0027}).
 
 The problem is that ``addslashes()`` process byte strings, whereas the result
 is used by MySQL which process character strings.  Example with :ref:`Big5
-<big5>` encoding: ``0xB5 0x27`` cannot be decoded from Big5, but escaped it
+<big5>` encoding: ``0xB5 0x27`` :ref:`cannot be decoded <undecodable>` from Big5, but escaped it
 becomes ``0xB5 0x5C 0x27`` which is decoded to {U+8A31, U+0027}. The ``0x5C``
 byte is no more a backslash: it is part of the multibyte character U+8A31
 encoded to ``0xB5 0x5C``. The solution is to use ``mysql_real_escape_string()``

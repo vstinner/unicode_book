@@ -17,9 +17,9 @@ kernel: except :ref:`Windows`, all kernels use :ref:`byte strings <bytes>`.
 
 There are higher level libraries, like :ref:`glib <glib>` or :ref:`Qt <qt>`,
 offering a Unicode API, even if the underlying kernel use byte strings. Such
-libraries use a codec to encode data to the kernel and to decode data from the
-kernel. The codec is usually the current :ref:`locale encoding <locale
-encoding>`.
+libraries use a codec to :ref:`encode <encode>` data to the kernel and to
+:ref:`decode <decode>` data from the kernel. The codec is usually the current
+:ref:`locale encoding <locale encoding>`.
 
 Because there is no Unicode standard library, most third-party libraries chose
 the simple solution: use :ref:`byte strings <str>`. For example, the OpenSSL library, an
@@ -258,7 +258,7 @@ be written as hexadecimal: ``\xHH`` (U+0000—U+00FF), ``\uHHHH``
 sign:\u20AC'``.
 
 In Python 2, ``str + unicode`` gives ``unicode``: the byte string is
-decoded from the default encoding (:ref:`ASCII`). This coercion was a bad design idea
+:ref:`decoded <decode>` from the default encoding (:ref:`ASCII`). This coercion was a bad design idea
 because it was the source of a lot of confusion. At the same time, it was not
 possible to switch completly to Unicode in 2000: computers were slower and
 there were fewer Python core developers. It took 8 years to switch completly to
@@ -313,7 +313,7 @@ from the default encoding, :ref:`ASCII`) and it raises a ``TypeError`` in Python
 Python 3, comparing ``bytes`` and ``str`` gives ``False``, emits a ``BytesWarning`` warning or
 raises a ``BytesWarning`` exception depending of the bytes warning flag (``-b``
 or ``-bb`` option passed to the Python program). In Python 2, the byte string
-is decoded from the default encoding (ASCII) to Unicode before being compared.
+is :ref:`decoded <decode>` from the default encoding (ASCII) to Unicode before being compared.
 
 :ref:`UTF-8` decoder of Python 2 accept :ref:`surrogate characters
 <surrogates>`, even if there are invalid, to keep backward compatibility with
@@ -380,13 +380,13 @@ String methods
 
 :ref:`Byte string <bytes>` (``str`` in Python 2, ``bytes`` in Python 3) methods:
 
- * ``.decode(encoding, errors='strict')``: decode from the specified encoding
+ * ``.decode(encoding, errors='strict')``: :ref:`decode <decode>` from the specified encoding
    and (optional) :ref:`error handler <errors>`.
 
 :ref:`Character string <str>` (``unicode`` in Python 2, ``str`` in Python 3) methods:
 
- * ``.encode(encoding, errors='strict')``: encode to the specified encoding
-   and (optional) :ref:`error handler <errors>`
+ * ``.encode(encoding, errors='strict')``: :ref:`encode <encode>` to the
+   specified encoding with an (optional) :ref:`error handler <errors>`
  * ``.isprintable()``: ``False`` if the :ref:`character category <unicode
    categories>` is other (Cc, Cf, Cn, Co, Cs) or separator (Zl, Zp, Zs),
    ``True`` otherwise. There is an exception: even if U+0020 is a separator,
@@ -494,8 +494,8 @@ multibyte functions:
      or ``"JIS+7E7E"``
    * ``"entity"``: :ref:`escape as HTML entities <escape>`, e.g. ``"&#xE9;"``
 
- * ``mb_convert_encoding()``: decode from an encoding and encode to another
-   encoding
+ * ``mb_convert_encoding()``: :ref:`decode <decode>` from an encoding and
+   :ref:`encode <encode>` to another encoding
  * ``mb_ereg()``: search a pattern using a regular expression
  * ``mb_strlen()``: get the length in characters
  * ``mb_detect_encoding()``: :ref:`detect the encoding <guess>` of a :ref:`byte
@@ -508,9 +508,10 @@ process byte strings as UTF-8 encoded strings.
 
 PHP includes also a binding of the :ref:`iconv <iconv>` library.
 
- * ``iconv()``: decode a byte string from an encoding and encode to another
-   encoding, you can use ``//IGNORE`` or ``//TRANSLIT`` suffix to choose the
-   :ref:`error handler <errors>`
+ * ``iconv()``: :ref:`decode <decode>` a :ref:`byte string <bytes>` from an
+   encoding and :ref:`encode <encode>` to another encoding, you can use
+   ``//IGNORE`` or ``//TRANSLIT`` suffix to choose the :ref:`error handler
+   <errors>`
  * ``iconv_mime_decode()``: decode a MIME header field
 
 .. todo:: Document utf8_encode() and utf8_decode() functions?
@@ -555,12 +556,13 @@ character (U+0000—U+10FFFF). ``Character`` methods:
 ``String`` is a :ref:`character string <str>` implemented using a
 ``char`` array and :ref:`UTF-16 <utf16>`. ``String`` methods:
 
- * ``String(bytes, encoding)``: decode a :ref:`byte string <bytes>` from the
-   specified encoding. The decoder is :ref:`strict <strict>`: throw a
-   ``CharsetDecoder`` exception if a :ref:`byte sequence cannot be decoded
+ * ``String(bytes, encoding)``: :ref:`decode <decode>` a :ref:`byte string
+   <bytes>` from the specified encoding. The decoder is :ref:`strict <strict>`:
+   throw a ``CharsetDecoder`` exception if a :ref:`byte sequence cannot be
+   decoded <undecodable>`.
+ * ``.getBytes(encoding)``: :ref:`encode <encode>` to the specified encoding,
+   throw a ``CharsetEncoder`` exception if a character :ref:`cannot be encoded
    <undecodable>`.
- * ``.getBytes(encoding)``: encode to the specified encoding, throw a
-   ``CharsetEncoder`` exception if a character cannot be encoded.
  * ``.length()``: get the length in UTF-16 units.
 
 As :ref:`Python` compiled in narrow mode, :ref:`non-BMP <bmp>` characters are

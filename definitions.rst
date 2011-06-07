@@ -72,7 +72,7 @@ also the main disadvantage of this kind of character string.
 
 The length of a character string implemented using UTF-16 is the number of
 UTF-16 units, and not the number of characters, which is confusing. For
-example, the U+10FFFF character is encoded as two UTF-16 units: {U+DBFF,
+example, the U+10FFFF character is :ref:`encoded <encode>` as two UTF-16 units: {U+DBFF,
 U+DFFF}. If the character string only contains characters of the BMP range, the
 length is the number of characters. Getting the n\ :sup:`th` character or the
 length in characters using UTF-16 has a complexity of :math:`O(n)`, whereas
@@ -95,7 +95,7 @@ or wide) for Python. Windows 95 uses UCS-2 strings.
 Byte string
 -----------
 
-A **byte string** is a :ref:`character string <str>` encoded to an
+A **byte string** is a :ref:`character string <str>` :ref:`encoded <encode>` to an
 :ref:`encoding <encoding>`. It is implemented as an array of 8 bits unsigned
 integers. It can be called by its encoding. For example, a byte string encoded
 to :ref:`ASCII <ascii>` is called an "ASCII encoded string", or simply an
@@ -107,7 +107,7 @@ store characters in the range U+0000—U+007F.
 
 The encoding is not stored explicitly in a byte string. If the encoding is not
 documented or attached to the byte string, :ref:`the encoding have to be
-guessed <guess>`, which is a difficult task. If a byte string is decoded from
+guessed <guess>`, which is a difficult task. If a byte string is :ref:`decoded <decode>` from
 the wrong encoding, it will not be displayed correctly, leading to a well known
 issue: :ref:`mojibake <mojibake>`.
 
@@ -150,12 +150,13 @@ implemented using UTF-16: it has also a complexity of :math:`O(n)`.
 Encoding
 --------
 
-An **encoding** describes how to encode :ref:`code points <code point>` to bytes
-and how to decode bytes to code points.
+An **encoding** describes how to :ref:`encode <encode>` :ref:`code points <code
+point>` to bytes and how to :ref:`decode <decode>` :ref:`bytes <bytes>` to code
+points.
 
 An encoding is always associated to a :ref:`charset <charset>`. For example,
-the UTF-8 encoding is associated to the Unicode charset. So we can say  that an
-encoding encodes characters to bytes and decode bytes to characters, or more
+the UTF-8 encoding is associated to the Unicode charset. So we can say that an
+encoding :ref:`encodes <encode>` characters to bytes and decode bytes to characters, or more
 generally, it encodes a :ref:`character string <str>` to a :ref:`byte string
 <bytes>` and decodes a byte string to a character string.
 
@@ -189,6 +190,42 @@ code points into sequences of two bytes (16 bits).
   c'est un encodage "standard"
 
 
+.. _encode:
+
+Encode a character string
+-------------------------
+
+Encode a :ref:`character string <str>` to a :ref:`byte string <bytes>`, to an
+encoding. For example, encode "Hé" to :ref:`UTF-8 <utf8>` gives ``0x48 0xC3
+0xA9``.
+
+By default, most libraries are :ref:`strict <strict>`: raise an error at the
+first unencodable character. Some libraries allow to choose :ref:`how to handle
+them <errors>`.
+
+Most encodings are stateless, but some encoding requires a stateful encoder.
+For example, the :ref:`UTF-16 <utf16>` encoding starts by generating a
+:ref:`BOM <bom>`, ``0xFF 0xFE`` or ``0xFE 0xFF`` depending on the endian.
+
+
+.. _decode:
+
+Decode a byte string
+--------------------
+
+Decode a :ref:`byte string <bytes>` to a :ref:`character string <str>`, from an
+encoding. For example, decode ``0x48 0xC3 0xA9`` from :ref:`UTF-8 <utf8>` gives
+"Hé".
+
+By default, most libraries raise an error if :ref:`a byte sequence cannot be
+decoded <undecodable>`. Some libraries allow to choose :ref:`how to handle them
+<errors>`.
+
+Most encodings are stateless, but some encoding requires a stateful decoder.
+For example, the :ref:`UTF-16 <utf16>` encoding decodes the two first bytes as
+a :ref:`BOM <bom>` to read the endian (use UTF-16-LE or UTF-16-BE).
+
+
 Unicode: an Universal Character Set (UCS)
 -----------------------------------------
 
@@ -198,7 +235,4 @@ Unicode: an Universal Character Set (UCS)
 
    :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8 <utf8>`, :ref:`UTF-16
    <utf16>`, and :ref:`UTF-32 <utf32>` encodings.
-
-
-.. todo:: add maybe Encode and Decode sections?
 

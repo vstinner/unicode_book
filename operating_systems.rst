@@ -61,19 +61,20 @@ Conversion.
 
 .. c:function:: BOOL OemToCharW(LPCSTR src, LPWSTR dst)
 
-   Decode a :ref:`byte string <bytes>` from the OEM code page.
+   :ref:`Decode <decode>` a :ref:`byte string <bytes>` from the OEM code page.
 
 .. c:function:: BOOL CharToOemW(LPCWSTR src, LPSTR dst)
 
-   Encode a :ref:`character string <str>` to the OEM code page.
+   :ref:`Encode <encode>` a :ref:`character string <str>` to the OEM code page.
 
 .. c:function:: BOOL AnsiToCharW(LPCSTR src, LPWSTR dst)
 
-   Decode a :ref:`byte string <bytes>` from the ANSI code page.
+   :ref:`Decode <decode>` a :ref:`byte string <bytes>` from the ANSI code page.
 
 .. c:function:: BOOL CharToAnsiW(LPCWSTR src, LPSTR dst)
 
-   Encode a :ref:`character string <str>` to the ANSI code page.
+   :ref:`Encode <encode>` a :ref:`character string <str>` to the ANSI code
+   page.
 
 .. todo:: How are undecodable/unencodable handled?
 
@@ -124,7 +125,7 @@ Encode and decode functions of ``<windows.h>``.
 
 .. c:function:: MultiByteToWideChar()
 
-   Decode a :ref:`byte string <bytes>` to a :ref:`character string <str>`. It
+   :ref:`Decode <decode>` a :ref:`byte string <bytes>` to a :ref:`character string <str>`. It
    supports :ref:`ANSI and OEM code pages <codepage>`,
    UTF-7 and :ref:`UTF-8`. By default, it :ref:`ignores <ignore>`
    :ref:`undecodable bytes <undecodable>`. Use :c:macro:`MB_ERR_INVALID_CHARS`
@@ -132,7 +133,7 @@ Encode and decode functions of ``<windows.h>``.
 
 .. c:function:: WideCharToMultiByte()
 
-   Encode a :ref:`character string <str>` to a :ref:`byte string <bytes>`. As
+   :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte string <bytes>`. As
    :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI <codepage>` and the
    :ref:`OEM <codepage>` code pages, UTF-7 and :ref:`UTF-8`. By default, if
    :ref:`a character cannot be encoded <unencodable>`, it is :ref:`replaced by
@@ -355,7 +356,7 @@ Locale functions
 
 .. c:function:: size_t mbstowcs(wchar_t *dest, const char *src, size_t n)
 
-   Decode a :ref:`byte string <bytes>` from the :ref:`locale encoding <locale
+   :ref:`Decode <decode>` a :ref:`byte string <bytes>` from the :ref:`locale encoding <locale
    encoding>` to a :ref:`character string <str>`. The decoder is :ref:`strict
    <strict>`: it returns an error on :ref:`undecodable byte sequence
    <undecodable>`. If available, prefer the reentrant version:
@@ -363,7 +364,7 @@ Locale functions
 
 .. c:function:: size_t wcstombs(char *dest, const wchar_t *src, size_t n)
 
-   Encode a :ref:`character string <str>` to a :ref:`byte string <bytes>` in
+   :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte string <bytes>` in
    the :ref:`locale encoding <locale encoding>`. The encoder is :ref:`strict
    <strict>` : it returns an error if :ref:`a character cannot by encoded
    <unencodable>`.  If available, prefer the reentrant version:

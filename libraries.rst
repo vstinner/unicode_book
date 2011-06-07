@@ -38,7 +38,7 @@ stored as two ``QChar`` (a :ref:`surrogate pair <surrogates>`). Interesting
    the host endian)
  * ``normalized()``: :ref:`normalize <normalization>` to NFC, NFD, NFKC or NFKD
 
-Qt decodes literal byte strings from :ref:`ISO-8859-1` using the
+Qt :ref:`decodes <decode>` literal byte strings from :ref:`ISO-8859-1` using the
 ``QLatin1String`` class, a thin wrapper to :c:type:`char*`. ``QLatin1String``
 is a character string storing each character as a single byte.  It is possible
 because it only supports characters in U+0000—U+00FF range. ``QLatin1String``
@@ -103,10 +103,11 @@ strings <bytes>` using the :c:type:`gchar*` type, but most functions use
 Codec functions
 '''''''''''''''
 
- * :c:func:`g_convert`: decode from an encoding and encode to another encoding
-   with the :ref:`iconv library <iconv>`. Use :c:func:`g_convert_with_fallback`
-   to choose :ref:`how to handle <errors>` :ref:`undecodable bytes
-   <undecodable>` and :ref:`unencodable characters <unencodable>`.
+ * :c:func:`g_convert`: :ref:`decode <decode>` from an encoding and
+   :ref:`encode <encode>` to another encoding with the :ref:`iconv library
+   <iconv>`. Use :c:func:`g_convert_with_fallback` to choose :ref:`how to
+   handle <errors>` :ref:`undecodable bytes <undecodable>` and
+   :ref:`unencodable characters <unencodable>`.
  * :c:func:`g_locale_from_utf8` / :c:func:`g_locale_to_utf8`: encode to/decode
    from the :ref:`locale encoding <locale encoding>`.
  * :c:func:`g_get_charset`: get the locale encoding
@@ -123,7 +124,7 @@ Codec functions
 Filename functions
 ''''''''''''''''''
 
- * :c:func:`g_filename_from_utf8` / :c:func:`g_filename_to_utf8`: encode/decode
+ * :c:func:`g_filename_from_utf8` / :c:func:`g_filename_to_utf8`: :ref:`encode <encode>`/:ref:`decode <decode>`
    a filename to/from UTF-8
  * :c:func:`g_filename_display_name`: human readable version of a filename. Try
    to decode the filename from each encoding of

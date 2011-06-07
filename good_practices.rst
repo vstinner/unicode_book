@@ -8,10 +8,10 @@ Rules
 
 To limit or avoid issues with Unicode, try to follow these rules:
 
- * decode all bytes data as early as possible: keyboard strokes, files, data
-   received from the network, ...
- * encode back Unicode to bytes as late as possible: write text to a file,
-   log a message, send data to the network, ...
+ * :ref:`decode <decode>` all bytes data as early as possible: keyboard
+   strokes, files, data received from the network, ...
+ * :ref:`encode <encode>` back Unicode to bytes as late as possible: write text
+   to a file, log a message, send data to the network, ...
  * always store and manipulate text as :ref:`character strings <str>`
  * if you have to encode text and you can choose the encoding: prefer the :ref:`UTF-8` encoding.
    It is able to encode all Unicode 6.0 characters (including :ref:`non-BMP
