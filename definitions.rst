@@ -231,6 +231,8 @@ Unicode: an Universal Character Set (UCS)
 
 .. todo:: define UCS
 
+.. todo:: ISO 10646
+
 .. seealso::
 
    :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8 <utf8>`, :ref:`UTF-16
