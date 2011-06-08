@@ -16,10 +16,12 @@ byte sequences, up to 6 bytes, but the biggest code point of Unicode 6.0
 .. TODO:: NELLE - I don't understand. Why would UTF-8 support longer 5 bytes
   sequences if it is useless ?
 
-It is possible to be sure that a :ref:`byte string <bytes>` is encoded to UTF-8, because
-UTF-8 adds markers to each byte. For the first byte of a multibyte character,
-bit 7 and bit 6 are set (``0b11xxxxxx``); the next bytes have bit 7 set and
-bit 6 unset (``0b10xxxxxx``). Another cool feature of UTF-8 is that it has no
+It is possible to be sure that a :ref:`byte string <bytes>` is encoded to
+UTF-8, because UTF-8 adds markers to each byte. For the first byte of a
+multibyte character, bit 7 and bit 6 are set (``0b11xxxxxx``); the next bytes
+have bit 7 set and bit 6 unset (``0b10xxxxxx``).
+
+Another cool feature of UTF-8 is that it has no
 endianness (it can be read in big or little endian order, it does not matter).
 Another advantage of UTF-8 is that most :ref:`C <c>` bytes
 functions are compatible with UTF-8 encoded strings (e.g. :c:func:`strcat` or
@@ -50,8 +52,8 @@ operation in your program, use a :ref:`character string <str>` instead of a
 .. TODO:: NELLE - "If getting" a partir de là, je ne comprends plus bien
 
 .. seealso::
-
-   :ref:`strict utf8 decoder`.
+   :ref:`Non-strict UTF-8 decoder <strict utf8 decoder>` and :ref:`Is UTF-8?
+   <is utf8>`.
 
 
 .. index:: UCS-2, UCS-4, UTF-16, UTF-32
@@ -195,5 +197,5 @@ non-BMP character to/from UTF-16 (using surrogate pairs): ::
 .. note::
 
    An :ref:`UTF-8` encoder should not encode surrogate characters
-   (U+D800—U+DFFF).
+   (U+D800—U+DFFF), see :ref:`Non-strict UTF-8 decoder <strict utf8 decoder>`.
 

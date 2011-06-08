@@ -101,9 +101,9 @@ integers. It can be called by its encoding. For example, a byte string encoded
 to :ref:`ASCII <ascii>` is called an "ASCII encoded string", or simply an
 "ASCII string".
 
-The character range supported by a byte string depends on its encoding, because
-an encoding is associated to a charset. For example, an ASCII string can only
-store characters in the range U+0000—U+007F.
+The :ref:`character range <charset>` supported by a byte string depends on its
+encoding, because an encoding is associated to a :ref:`charset <charset>`. For
+example, an ASCII string can only store characters in the range U+0000—U+007F.
 
 The encoding is not stored explicitly in a byte string. If the encoding is not
 documented or attached to the byte string, :ref:`the encoding have to be

@@ -27,9 +27,9 @@ Noël          UTF-8    ISO-8859-1  NoÃ«l
 .. note::
 
    "Mojibake" is japanese word meaning literally "unintelligible sequence of
-   characters". This issue is called "Кракозя́бры" (krakozyabry) in russian.
+   characters". This issue is called "Кракозя́бры" (krakozyabry) in Russian.
 
-.. seealso:: :ref:`guess`.
+.. seealso:: :ref:`How to guess the encoding of a document? <guess>`
 
 
 Security vulnerabilities
@@ -39,8 +39,8 @@ Special characters
 ''''''''''''''''''
 
 Fullwidth (U+FF01—U+FF60) and halfwidth (U+FF61—U+FFEE) characters has been
-used in 2007 to bypass security checks. Examples with :ref:`Unicode normalization
-<normalization>`:
+used in 2007 to bypass security checks. Examples with the :ref:`Unicode
+normalization <normalization>`:
 
  * U+FF0E is normalized to . (U+002E) in NFKC
  * U+FF0F is normalized to / (U+002F) in NFKC
@@ -55,13 +55,15 @@ For more information, read `GS07-01 Full-Width and Half-Width Unicode Encoding
 IDS/IPS/WAF Bypass Vulnerability
 <http://www.gamasec.net/english/gs07-01.html>`_ (GamaTEAM, april 2007).
 
+.. todo:: usage of surrogates (U+D800-U+DFFF) in security?
+
 
 .. _strict utf8 decoder:
 
 Non-strict UTF-8 decoder: overlong byte sequences and surrogates
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-An UTF-8 decoder have to reject overlong byte sequences, or an attacker can use
+An :ref:`UTF-8 <utf8>` :ref:`decoder <decode>` have to reject overlong byte sequences, or an attacker can use
 them to bypass security checks (e.g. check rejecting string containing nul bytes,
 ``0x00``). For example, ``0xC0 0x80`` byte sequence must raise an error and
 not be decoded as U+0000, and "." (U+002E) can be encoded to ``0xC0 0xAE`` (two
@@ -118,7 +120,4 @@ strings using the MySQL connection encoding.
    `CVE-2006-2314 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2314>`_ (PostgreSQL, may 2006),
    `CVE-2006-2753 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2753>`_ (MySQL, may 2006) and
    `CVE-2008-2384 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-2384>`_ (libapache2-mod-auth-mysql, january 2009).
-
-
-.. todo:: "special" chars like surrogates (U+D800-U+DFFF)
 
