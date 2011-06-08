@@ -1,3 +1,5 @@
+.. _guess:
+
 How to guess the encoding of a document?
 ========================================
 
@@ -114,11 +116,14 @@ This function is different from the C function: it returns a list. It returns
 ``['UTF-32-LE', 'UTF-16-LE']`` if the string begins with
 ``b"\xFF\xFE\x00\x00"``.
 
+.. _is utf8:
+
 Is UTF-8?
 ---------
 
-:ref:`UTF-8` encoding adds markers to each bytes and so it's possible to write a
-reliable algorithm to check if a function is encoded to UTF-8.
+:ref:`UTF-8` encoding adds markers to each bytes and so it's possible to write
+a reliable algorithm to check if a :ref:`byte string <bytes>` is encoded to
+UTF-8.
 
 .. highlight:: c
 

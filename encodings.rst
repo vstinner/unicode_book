@@ -216,6 +216,3 @@ enough.
 
 .. todo:: VISCII, EDBIC
 
-
-.. _guess:
-

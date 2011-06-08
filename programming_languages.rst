@@ -498,7 +498,7 @@ multibyte functions:
    :ref:`encode <encode>` to another encoding
  * ``mb_ereg()``: search a pattern using a regular expression
  * ``mb_strlen()``: get the length in characters
- * ``mb_detect_encoding()``: :ref:`detect the encoding <guess>` of a :ref:`byte
+ * ``mb_detect_encoding()``: :ref:`guess the encoding <guess>` of a :ref:`byte
    string <bytes>`
 
 Perl compatible regular expressions (PCRE) have an ``u`` flag ("PCRE8") to
