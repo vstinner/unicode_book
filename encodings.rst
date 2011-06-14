@@ -3,8 +3,6 @@ Charsets and encodings
 
 .. todo:: write an introduction
 
-.. _charset:
-
 Encodings
 ---------
 
