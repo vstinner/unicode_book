@@ -137,9 +137,64 @@ Encode and decode functions of ``<windows.h>``.
 
    :ref:`Decode <decode>` a :ref:`byte string <bytes>` to a :ref:`character string <str>`. It
    supports :ref:`ANSI and OEM code pages <codepage>`,
-   UTF-7 and :ref:`UTF-8`. By default, it :ref:`ignores <ignore>`
-   :ref:`undecodable bytes <undecodable>`. Use :c:macro:`MB_ERR_INVALID_CHARS`
-   flag to :ref:`return an error <strict>` on an undecodable byte sequence.
+   UTF-7 and :ref:`UTF-8`. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to
+   :ref:`return an error <strict>` on an undecodable byte sequence.
+
+   The default behaviour (flags=0) depends on the Windows version:
+
+    - Windows Vista and later: :ref:`replace <replace>` :ref:`undecodable bytes
+      <undecodable>`. For example, ``0xff`` is decoded U+FFFD from
+      :c:macro:`CP_UTF8` (cp65001) with flags=0.
+    - Windows 2000, XP and 2003: :ref:`ignore <ignore>` :ref:`undecodable bytes
+      <undecodable>`. For example, ``0x81 0x00`` is decoded {U+0000} from
+      :ref:`cp932 <cp932>` with flags=0.
+
+   In strict mode (:c:macro:`WC_ERR_INVALID_CHARS`), the :ref:`UTF-8 <utf8>`
+   decoder (:c:macro:`CP_UTF8`) returns an error on :ref:`surrogate characters
+   <surrogates>` in Windows Vista and later. On Windows XP, the :ref:`UTF-8
+   decoder is not strict <strict utf8 decoder>`: surrogates can be decoded in
+   any mode.
+
+   Examples on any version Windows version:
+
+   +------------------------+------------------+----------------------+
+   | Flags                  | default (0)      | MB_ERR_INVALID_CHARS |
+   +------------------------+------------------+----------------------+
+   | ``0xE9 0x80``, cp1252  | {U+00E9, U+20AC} | {U+00E9, U+20AC}     |
+   +------------------------+------------------+----------------------+
+   | ``0xC3 0xA9``, CP_UTF8 | {U+00E9}         | {U+00E9}             |
+   +------------------------+------------------+----------------------+
+
+
+   Examples on Windows Vista and later:
+
+   +-----------------------------+--------------------------+----------------------+
+   | Flags                       | default (0)              | MB_ERR_INVALID_CHARS |
+   +-----------------------------+--------------------------+----------------------+
+   | ``0x81 0x00``, cp932        | {U+30FB, U+0000}         | *error*              |
+   +-----------------------------+--------------------------+----------------------+
+   | ``0xFF``, cp932             |                          |                      |
+   +-----------------------------+--------------------------+----------------------+
+   | ``0xFF``, CP_UTF8           | {U+FFFD}                 | *error*              |
+   +-----------------------------+--------------------------+----------------------+
+   | ``0xED 0xB2 0x80``, CP_UTF8 | {U+FFFD, U+FFFD, U+FFFD} | *error*              |
+   +-----------------------------+--------------------------+----------------------+
+
+   Examples on Windows 2000, XP, 2003:
+
+   +-----------------------------+-------------+----------------------+
+   | Flags                       | default (0) | MB_ERR_INVALID_CHARS |
+   +-----------------------------+-------------+----------------------+
+   | ``0x81 0x00``, cp932        | {U+0000}    | *error*              |
+   +-----------------------------+-------------+----------------------+
+   | ``0xFF``, cp932             | {U+F8F3}    | *error*              |
+   +-----------------------------+-------------+----------------------+
+   | ``0xFF``, CP_UTF8           |             |                      |
+   +-----------------------------+-------------+----------------------+
+   | ``0xED 0xB2 0x80``, CP_UTF8 | {U+DC80}    | {U+DC80}             |
+   +-----------------------------+-------------+----------------------+
+
+.. todo:: fill empty cells in this table ^^
 
 .. c:function:: WideCharToMultiByte()
 
@@ -147,15 +202,39 @@ Encode and decode functions of ``<windows.h>``.
    :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI <codepage>` and the
    :ref:`OEM <codepage>` code pages, UTF-7 and :ref:`UTF-8`. By default, if
    :ref:`a character cannot be encoded <unencodable>`, it is :ref:`replaced by
-   a character with a similar glyph <translit>`. For example, with
+   a character with a similar glyph <translit>` or by "?" (U+003F). For example, with
    :ref:`cp1252`, Ł (U+0141) is replaced by L (U+004C). Use
-   :c:macro:`WC_NO_BEST_FIT_CHARS` flag to :ref:`return an error <strict>` on
+   :c:macro:`WC_ERR_INVALID_CHARS` flag to :ref:`return an error <strict>` on
    :ref:`unencodable character <unencodable>`.
+
+   Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to not replace unencodable
+   characters by characters with similar glyph. For example, Ł (U+0141) is
+   decoded as "?" (U+003F) from :ref:`cp1252` using
+   :c:macro:`WC_NO_BEST_FIT_CHARS` flag.
+
+   Examples (on any version Windows version):
+
+   +--------------------+--------------------+----------------------+----------------------+
+   | Flags              | default (0)        | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   +--------------------+--------------------+----------------------+----------------------+
+   | ÿ (U+00FF), cp932  | ``0x79`` (y)       | ``0x3F`` (?)         | *error*              |
+   +--------------------+--------------------+----------------------+----------------------+
+   | Ł (U+0141), cp1252 | ``0x4C`` (L)       | ``0x3F`` (?)         | *error*              |
+   +--------------------+--------------------+----------------------+----------------------+
+   | € (U+20AC), cp1252 | ``0x80``           | ``0x80``             | ``0x80``             |
+   +--------------------+--------------------+----------------------+----------------------+
+   | U+DC80, CP_UTF8    | ``0xED 0xB2 0x80`` |                      |                      |
+   +--------------------+--------------------+----------------------+----------------------+
+
+.. todo:: fill empty cells in this table ^^
+
+.. todo:: Document NormalizeString()
+
 
 .. note::
 
-   :c:func:`MultiByteToWideChar` and :c:func:`WideCharToMultiByte` are similar
-   to :c:func:`mbstowcs` and :c:func:`wcstombs`.
+   :c:func:`MultiByteToWideChar` and :c:func:`WideCharToMultiByte` functions
+   are similar to :c:func:`mbstowcs` and :c:func:`wcstombs` functions.
 
 .. todo:: Document the replacement character?
 
