@@ -149,7 +149,7 @@ Encode and decode functions of ``<windows.h>``.
       <undecodable>`. For example, ``0x81 0x00`` is decoded {U+0000} from
       :ref:`cp932 <cp932>` with flags=0.
 
-   In strict mode (:c:macro:`WC_ERR_INVALID_CHARS`), the :ref:`UTF-8 <utf8>`
+   In strict mode (:c:macro:`MB_ERR_INVALID_CHARS`), the :ref:`UTF-8 <utf8>`
    decoder (:c:macro:`CP_UTF8`) returns an error on :ref:`surrogate characters
    <surrogates>` in Windows Vista and later. On Windows XP, the :ref:`UTF-8
    decoder is not strict <strict utf8 decoder>`: surrogates can be decoded in
@@ -159,8 +159,12 @@ Encode and decode functions of ``<windows.h>``.
 
    +------------------------+------------------+----------------------+
    | Flags                  | default (0)      | MB_ERR_INVALID_CHARS |
+   +========================+==================+======================+
+   | ``0xFF``, cp932        | {U+F8F3}         | *error*              |
    +------------------------+------------------+----------------------+
    | ``0xE9 0x80``, cp1252  | {U+00E9, U+20AC} | {U+00E9, U+20AC}     |
+   +------------------------+------------------+----------------------+
+   | ``0xFF``, CP_UTF7      | {U+FF}           | *error*              |
    +------------------------+------------------+----------------------+
    | ``0xC3 0xA9``, CP_UTF8 | {U+00E9}         | {U+00E9}             |
    +------------------------+------------------+----------------------+
@@ -170,26 +174,20 @@ Encode and decode functions of ``<windows.h>``.
 
    +-----------------------------+--------------------------+----------------------+
    | Flags                       | default (0)              | MB_ERR_INVALID_CHARS |
-   +-----------------------------+--------------------------+----------------------+
+   +=============================+==========================+======================+
    | ``0x81 0x00``, cp932        | {U+30FB, U+0000}         | *error*              |
-   +-----------------------------+--------------------------+----------------------+
-   | ``0xFF``, cp932             |                          |                      |
    +-----------------------------+--------------------------+----------------------+
    | ``0xFF``, CP_UTF8           | {U+FFFD}                 | *error*              |
    +-----------------------------+--------------------------+----------------------+
    | ``0xED 0xB2 0x80``, CP_UTF8 | {U+FFFD, U+FFFD, U+FFFD} | *error*              |
    +-----------------------------+--------------------------+----------------------+
 
-.. todo:: fill empty cells in this table ^^
-
    Examples on Windows 2000, XP, 2003:
 
    +-----------------------------+-------------+----------------------+
    | Flags                       | default (0) | MB_ERR_INVALID_CHARS |
-   +-----------------------------+-------------+----------------------+
+   +=============================+=============+======================+
    | ``0x81 0x00``, cp932        | {U+0000}    | *error*              |
-   +-----------------------------+-------------+----------------------+
-   | ``0xFF``, cp932             | {U+F8F3}    | *error*              |
    +-----------------------------+-------------+----------------------+
    | ``0xFF``, CP_UTF8           | *error*     | *error*              |
    +-----------------------------+-------------+----------------------+
@@ -198,31 +196,54 @@ Encode and decode functions of ``<windows.h>``.
 
 .. c:function:: WideCharToMultiByte()
 
-   :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte string <bytes>`. As
-   :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI <codepage>` and the
-   :ref:`OEM <codepage>` code pages, UTF-7 and :ref:`UTF-8`. By default, if
-   :ref:`a character cannot be encoded <unencodable>`, it is :ref:`replaced by
-   a character with a similar glyph <translit>` or by "?" (U+003F). For example, with
-   :ref:`cp1252`, Ł (U+0141) is replaced by L (U+004C). Use
-   :c:macro:`WC_ERR_INVALID_CHARS` flag to :ref:`return an error <strict>` on
-   :ref:`unencodable character <unencodable>`.
+   :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte
+   string <bytes>`. As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI
+   <codepage>` and the :ref:`OEM <codepage>` code pages, UTF-7 and
+   :ref:`UTF-8`. By default, if :ref:`a character cannot be encoded
+   <unencodable>`, it is :ref:`replaced by a character with a similar glyph
+   <translit>` or by "?" (U+003F). For example, with :ref:`cp1252`, Ł (U+0141)
+   is replaced by L (U+004C). Use :c:macro:`WC_ERR_INVALID_CHARS` flag to
+   :ref:`return an error <strict>` on :ref:`unencodable character
+   <unencodable>`.
 
    Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to not replace unencodable
    characters by characters with similar glyph. For example, Ł (U+0141) is
-   decoded as "?" (U+003F) from :ref:`cp1252` using
+   decoded as "?" (U+003F) from :ref:`cp1252` using the
    :c:macro:`WC_NO_BEST_FIT_CHARS` flag.
+
+   With :c:macro:`WC_NO_BEST_FIT_CHARS` or :c:macro:`WC_ERR_INVALID_CHARS`
+   flag, the :ref:`UTF-8 <utf8>` encoder (:c:macro:`CP_UTF8`) returns an error
+   on :ref:`surrogate characters <surrogates>`. The default behaviour (flags=0)
+   depends on the Windows version: surrogates are replaced by U+FFFD on Windows
+   Vista and later, and are encoded to UTF-8 on older Windows versions.
 
    Examples (on any version Windows version):
 
+   +--------------------+--------------------------------------+----------------------+----------------------+
+   | Flags              | default (0)                          | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   +====================+======================================+======================+======================+
+   | ÿ (U+00FF), cp932  | ``0x79`` (y)                         | ``0x3F`` (?)         | *error*              |
+   +--------------------+--------------------------------------+----------------------+----------------------+
+   | Ł (U+0141), cp1252 | ``0x4C`` (L)                         | ``0x3F`` (?)         | *error*              |
+   +--------------------+--------------------------------------+----------------------+----------------------+
+   | € (U+20AC), cp1252 | ``0x80``                             | ``0x80``             | *error*              |
+   +--------------------+--------------------------------------+----------------------+----------------------+
+   | U+DC80, CP_UTF7    | ``0x2b 0x33 0x49 0x41 0x2d`` (+3IA-) | *invalid flags*      | *invalid flags*      |
+   +--------------------+--------------------------------------+----------------------+----------------------+
+
+   Examples on Windows Vista an later:
+
    +--------------------+--------------------+----------------------+----------------------+
    | Flags              | default (0)        | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   +====================+====================+======================+======================+
+   | U+DC80, CP_UTF8    | ``0xEF 0xBF 0xBD`` | *error*              | *error*              |
    +--------------------+--------------------+----------------------+----------------------+
-   | ÿ (U+00FF), cp932  | ``0x79`` (y)       | ``0x3F`` (?)         | *error*              |
+
+   Examples on Windows 2000, XP, 2003:
+
    +--------------------+--------------------+----------------------+----------------------+
-   | Ł (U+0141), cp1252 | ``0x4C`` (L)       | ``0x3F`` (?)         | *error*              |
-   +--------------------+--------------------+----------------------+----------------------+
-   | € (U+20AC), cp1252 | ``0x80``           | ``0x80``             | *error*              |
-   +--------------------+--------------------+----------------------+----------------------+
+   | Flags              | default (0)        | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   +====================+====================+======================+======================+
    | U+DC80, CP_UTF8    | ``0xED 0xB2 0x80`` | *error*              | *error*              |
    +--------------------+--------------------+----------------------+----------------------+
 
