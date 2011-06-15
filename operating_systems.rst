@@ -96,6 +96,8 @@ Encode and decode functions of ``<windows.h>``.
    decoder is not strict <strict utf8 decoder>`: surrogates can be decoded in
    any mode.
 
+   The :ref:`UTF-7 <utf7>` decoder (:c:macro:`CP_UTF7`) only supports flags=0.
+
    Examples on any version Windows version:
 
    +------------------------+------------------+----------------------+
@@ -105,11 +107,10 @@ Encode and decode functions of ``<windows.h>``.
    +------------------------+------------------+----------------------+
    | ``0xE9 0x80``, cp1252  | {U+00E9, U+20AC} | {U+00E9, U+20AC}     |
    +------------------------+------------------+----------------------+
-   | ``0xFF``, CP_UTF7      | {U+FF}           | *error*              |
+   | ``0xFF``, CP_UTF7      | {U+FF}           | *invalid flags*      |
    +------------------------+------------------+----------------------+
    | ``0xC3 0xA9``, CP_UTF8 | {U+00E9}         | {U+00E9}             |
    +------------------------+------------------+----------------------+
-
 
    Examples on Windows Vista and later:
 
