@@ -116,7 +116,7 @@ File formats:
 Filesystem (filenames):
 
  * :ref:`Windows` stores filenames as Unicode. It provides a bytes compatibily layer
-   using the :ref:`ANSI code page` for applications using :ref:`byte strings <bytes>`.
+   using the :ref:`ANSI code page <codepage>` for applications using :ref:`byte strings <bytes>`.
  * :ref:`Mac OS X <osx>` encodes filenames to :ref:`UTF-8` and :ref:`normalize
    <normalization>` see to a variant of the Normal Form D.
  * Other OSes: use the :ref:`locale encoding <locale encoding>`

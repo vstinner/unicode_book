@@ -12,7 +12,7 @@ required to get a full support of Unicode on all platforms.
 Qt library
 ----------
 
-Qt is a big :ref:`C++` library covering different topics, but it is typically used
+Qt is a big :ref:`C++ <cpp>` library covering different topics, but it is typically used
 to create graphical interfaces. It is distributed under the `GNU LGPL license`_
 (version 2.1), and is also available under a commercial license.
 
@@ -63,7 +63,7 @@ Filesystem
 ``QFile.encodeName()``:
 
  * :ref:`Windows`: encode to :ref:`UTF-16 <utf16>`
- * :ref:`Mac OS X <os>`: :ref:`normalize <normalization>` to the D form and
+ * :ref:`Mac OS X <osx>`: :ref:`normalize <normalization>` to the D form and
    then encode to :ref:`UTF-8`
  * Other (UNIX/BSD): encode to the :ref:`local encoding <locale encoding>`
    (``QTextCodec.codecForLocale()``)

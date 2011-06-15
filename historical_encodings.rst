@@ -260,6 +260,7 @@ Other encodings: Big5 (大五碼, Big Five Encoding, 1984), cp950.
 
 .. index:: JIS
 .. _jis:
+.. _cp932:
 
 Japanese encodings
 ''''''''''''''''''

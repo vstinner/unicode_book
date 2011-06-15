@@ -1,5 +1,6 @@
 .. index:: BMP, Unicode
 .. _bmp:
+.. _unicode:
 .. _unicode charset:
 
 Unicode
