@@ -3,7 +3,7 @@
 How to guess the encoding of a document?
 ========================================
 
-Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM <bom>` (UTF-7
+Only :ref:`ASCII`, :ref:`UTF-8` and encodings using a :ref:`BOM <bom>` (:ref:`UTF-7 <utf7>`
 with BOM, UTF-8 with BOM, :ref:`UTF-16 <utf16>`, and :ref:`UTF-32 <utf32>`)
 have reliable algorithms to get the encoding of a document. For all other
 encodings, you have to trust heuristics based on statistics.

@@ -97,6 +97,17 @@ That's why UTF-32 and UCS-4 are the same encoding.
    Transformation format*.
 
 
+.. index:: UTF-7
+.. _utf7:
+
+UTF-7
+-----
+
+The UTF-7 encoding is similar to the :ref:`UTF-8 encoding <utf8>`, except that
+it uses 7 bits units instead of 8 bits units. It is used for example in emails
+with server which are not "8 bits clean".
+
+
 .. index:: BOM
 .. _bom:
 
@@ -111,8 +122,8 @@ U+FEFF code point encoded to the UTF encodings.
 
 Unicode defines 6 different BOM:
 
- * ``0x2B 0x2F 0x76 0x38 0x2D`` (5 bytes): UTF-7 (endianless)
- * ``0xEF 0xBB 0xBF`` (3): :ref:`UTF-8` (endianless)
+ * ``0x2B 0x2F 0x76 0x38 0x2D`` (5 bytes): :ref:`UTF-7 <utf7>` (endianless)
+ * ``0xEF 0xBB 0xBF`` (3): :ref:`UTF-8 <utf8>` (endianless)
  * ``0xFF 0xFE`` (2): :ref:`UTF-16-LE <utf16>` (little endian)
  * ``0xFE 0xFF`` (2): :ref:`UTF-16-BE <utf16>` (big endian)
  * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE <utf32>` (little endian)
