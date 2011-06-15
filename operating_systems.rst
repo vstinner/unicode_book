@@ -40,10 +40,17 @@ used for the :ref:`Windows console <win_console>`, contains glyphs to create
 text interfaces (draw boxes) and has a number between 437 and 874. Example of a
 French setup: ANSI is :ref:`cp1252` and OEM is cp850.
 
-There are some special code pages like cp65001 (Microsoft version of
-:ref:`UTF-8`).
+There are code page constants:
 
-Get code pages.
+ * :c:macro:`CP_ACP`: Windows ANSI code page
+ * :c:macro:`CP_MACCP`: Macintosh code page
+ * :c:macro:`CP_OEMCP`: ANSI code page of the current process
+ * :c:macro:`CP_SYMBOL` (42): Symbol code page
+ * :c:macro:`CP_THREAD_ACP`: ANSI code page of the current thread
+ * :c:macro:`CP_UTF7` (65000): :ref:`UTF-7 <utf7>`
+ * :c:macro:`CP_UTF8` (65001): :ref:`UTF-8 <utf8>`
+
+Functions.
 
 .. c:function:: UINT GetACP()
 
@@ -55,77 +62,13 @@ Get code pages.
 
 .. c:function:: BOOL SetThreadLocale(LCID locale)
 
-   Set the locale.
-
-Conversion.
-
-.. c:function:: BOOL OemToCharW(LPCSTR src, LPWSTR dst)
-
-   :ref:`Decode <decode>` a :ref:`byte string <bytes>` from the OEM code page.
-
-.. c:function:: BOOL CharToOemW(LPCWSTR src, LPSTR dst)
-
-   :ref:`Encode <encode>` a :ref:`character string <str>` to the OEM code page.
-
-.. c:function:: BOOL AnsiToCharW(LPCSTR src, LPWSTR dst)
-
-   :ref:`Decode <decode>` a :ref:`byte string <bytes>` from the ANSI code page.
-
-.. c:function:: BOOL CharToAnsiW(LPCWSTR src, LPSTR dst)
-
-   :ref:`Encode <encode>` a :ref:`character string <str>` to the ANSI code
-   page.
-
-.. todo:: How are undecodable/unencodable handled?
+   Set the locale. It can be used to change the ANSI code page of current
+   thread (:c:macro:`CP_THREAD_ACP`).
 
 .. seealso::
 
    Wikipedia article:
    `Windows code page <http://en.wikipedia.org/wiki/Windows_code_page>`_.
-
-
-.. _win_api:
-
-Windows API: ANSI and wide versions
-'''''''''''''''''''''''''''''''''''
-
-Windows has two versions of each function of its API: the ANSI version using
-:ref:`byte strings <bytes>` (``A`` suffix) and the :ref:`ANSI code page
-<codepage>`, and the wide version (``W`` suffix) using :ref:`character strings
-<str>`. There are also functions without suffix using :c:type:`TCHAR*` strings:
-if the :ref:`C <c>` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
-replaced by :c:type:`wchar_t` and the Unicode functions are used; otherwise
-:c:type:`TCHAR` is replaced by :c:type:`char` and the ANSI functions are used.
-Example:
-
- * :c:func:`CreateFileA()`: bytes version, use :ref:`byte strings <bytes>`
-   encoded to the ANSI code page
- * :c:func:`CreateFileW()`: Unicode version, use :ref:`wide character strings
-   <str>`
- * :c:func:`CreateFile()`: :c:type:`TCHAR` version depending on the
-   :c:macro:`_UNICODE` define
-
-Always prefer the Unicode version to avoid encoding/decoding errors, and use
-directly the ``W`` suffix to avoid compiling issues.
-
-.. note::
-
-   There is a third version of the API: the MBCS API (multibyte character
-   string). Use the TCHAR functions and define :c:macro:`_MBCS` to use the MBCS
-   functions.  For example, :c:func:`_tcsrev` is replaced by :c:func:`_mbsrev`
-   if :c:macro:`_MBCS` is defined, by :c:func:`_wcsrev` if :c:macro:`_UNICODE`
-   is defined, or by :c:func:`_strrev` otherwise.
-
-
-
-Windows string types
-''''''''''''''''''''
-
- * LPSTR (LPCSTR): :ref:`byte string <bytes>`, :c:type:`char*` (:c:type:`const char*`)
- * LPWSTR (LPCWSTR): :ref:`wide character string <str>`, :c:type:`wchar_t*`
-   (:c:type:`const wchar_t*`)
- * LPTSTR (LPCTSTR): byte or wide character string depending of ``_UNICODE``
-   define, :c:type:`TCHAR*` (:c:type:`const TCHAR*`)
 
 
 Encode and decode functions
@@ -135,19 +78,17 @@ Encode and decode functions of ``<windows.h>``.
 
 .. c:function:: MultiByteToWideChar()
 
-   :ref:`Decode <decode>` a :ref:`byte string <bytes>` to a :ref:`character string <str>`. It
-   supports :ref:`ANSI and OEM code pages <codepage>`,
-   UTF-7 and :ref:`UTF-8`. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to
-   :ref:`return an error <strict>` on an undecodable byte sequence.
+   :ref:`Decode <decode>` a :ref:`byte string <bytes>` from a code page to a
+   :ref:`character string <str>`. Use :c:macro:`MB_ERR_INVALID_CHARS` flag to
+   :ref:`return an error <strict>` on an :ref:`undecodable byte sequence
+   <undecodable>`.
 
    The default behaviour (flags=0) depends on the Windows version:
 
     - Windows Vista and later: :ref:`replace <replace>` :ref:`undecodable bytes
-      <undecodable>`. For example, ``0xff`` is decoded U+FFFD from
-      :c:macro:`CP_UTF8` (cp65001) with flags=0.
+      <undecodable>`
     - Windows 2000, XP and 2003: :ref:`ignore <ignore>` :ref:`undecodable bytes
-      <undecodable>`. For example, ``0x81 0x00`` is decoded {U+0000} from
-      :ref:`cp932 <cp932>` with flags=0.
+      <undecodable>`
 
    In strict mode (:c:macro:`MB_ERR_INVALID_CHARS`), the :ref:`UTF-8 <utf8>`
    decoder (:c:macro:`CP_UTF8`) returns an error on :ref:`surrogate characters
@@ -197,36 +138,38 @@ Encode and decode functions of ``<windows.h>``.
 .. c:function:: WideCharToMultiByte()
 
    :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte
-   string <bytes>`. As :c:func:`MultiByteToWideChar`, it supports :ref:`ANSI
-   <codepage>` and the :ref:`OEM <codepage>` code pages, UTF-7 and
-   :ref:`UTF-8`. By default, if :ref:`a character cannot be encoded
+   string <bytes>`. Use :c:macro:`WC_ERR_INVALID_CHARS` flag to have a strict
+   encoder: :ref:`return an error <strict>` on :ref:`unencodable character
+   <unencodable>`. By default, if :ref:`a character cannot be encoded
    <unencodable>`, it is :ref:`replaced by a character with a similar glyph
    <translit>` or by "?" (U+003F). For example, with :ref:`cp1252`, Ł (U+0141)
-   is replaced by L (U+004C). Use :c:macro:`WC_ERR_INVALID_CHARS` flag to
-   :ref:`return an error <strict>` on :ref:`unencodable character
-   <unencodable>`.
+   is replaced by L (U+004C).
 
    Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to not replace unencodable
    characters by characters with similar glyph. For example, Ł (U+0141) is
    decoded as "?" (U+003F) from :ref:`cp1252` using the
    :c:macro:`WC_NO_BEST_FIT_CHARS` flag.
 
-   With :c:macro:`WC_NO_BEST_FIT_CHARS` or :c:macro:`WC_ERR_INVALID_CHARS`
-   flag, the :ref:`UTF-8 <utf8>` encoder (:c:macro:`CP_UTF8`) returns an error
-   on :ref:`surrogate characters <surrogates>`. The default behaviour (flags=0)
+   On Windows Vista or later with :c:macro:`WC_ERR_INVALID_CHARS` flag, the
+   :ref:`UTF-8 <utf8>` encoder (:c:macro:`CP_UTF8`) returns an error on
+   :ref:`surrogate characters <surrogates>`. The default behaviour (flags=0)
    depends on the Windows version: surrogates are replaced by U+FFFD on Windows
-   Vista and later, and are encoded to UTF-8 on older Windows versions.
+   Vista and later, and are encoded to UTF-8 on older Windows versions.  The
+   :c:macro:`WC_NO_BEST_FIT_CHARS` flag is not supported by the UTF-8 encoder.
+
+   The :ref:`UTF-7 <utf7>` encoder (:c:macro:`CP_UTF7`) only supports flags=0.
+   It is not strict: it encodes :ref:`surrogate characters <surrogates>`.
 
    Examples (on any version Windows version):
 
    +--------------------+--------------------------------------+----------------------+----------------------+
-   | Flags              | default (0)                          | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   | Flags              | default (0)                          | WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS |
    +====================+======================================+======================+======================+
-   | ÿ (U+00FF), cp932  | ``0x79`` (y)                         | ``0x3F`` (?)         | *error*              |
+   | ÿ (U+00FF), cp932  | ``0x79`` (y)                         | *error*              | ``0x3F`` (?)         |
    +--------------------+--------------------------------------+----------------------+----------------------+
-   | Ł (U+0141), cp1252 | ``0x4C`` (L)                         | ``0x3F`` (?)         | *error*              |
+   | Ł (U+0141), cp1252 | ``0x4C`` (L)                         | *error*              | ``0x3F`` (?)         |
    +--------------------+--------------------------------------+----------------------+----------------------+
-   | € (U+20AC), cp1252 | ``0x80``                             | ``0x80``             | *error*              |
+   | € (U+20AC), cp1252 | ``0x80``                             | *error*              | ``0x80``             |
    +--------------------+--------------------------------------+----------------------+----------------------+
    | U+DC80, CP_UTF7    | ``0x2b 0x33 0x49 0x41 0x2d`` (+3IA-) | *invalid flags*      | *invalid flags*      |
    +--------------------+--------------------------------------+----------------------+----------------------+
@@ -234,28 +177,79 @@ Encode and decode functions of ``<windows.h>``.
    Examples on Windows Vista an later:
 
    +--------------------+--------------------+----------------------+----------------------+
-   | Flags              | default (0)        | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   | Flags              | default (0)        | WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS |
    +====================+====================+======================+======================+
-   | U+DC80, CP_UTF8    | ``0xEF 0xBF 0xBD`` | *error*              | *error*              |
+   | U+DC80, CP_UTF8    | ``0xEF 0xBF 0xBD`` | *error*              | *invalid flags*      |
    +--------------------+--------------------+----------------------+----------------------+
 
    Examples on Windows 2000, XP, 2003:
 
    +--------------------+--------------------+----------------------+----------------------+
-   | Flags              | default (0)        | WC_NO_BEST_FIT_CHARS | WC_ERR_INVALID_CHARS |
+   | Flags              | default (0)        | WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS |
    +====================+====================+======================+======================+
-   | U+DC80, CP_UTF8    | ``0xED 0xB2 0x80`` | *error*              | *error*              |
+   | U+DC80, CP_UTF8    | ``0xED 0xB2 0x80`` | *invalid flags*      | *invalid flags*      |
    +--------------------+--------------------+----------------------+----------------------+
-
-.. todo:: Document NormalizeString()
-
 
 .. note::
 
    :c:func:`MultiByteToWideChar` and :c:func:`WideCharToMultiByte` functions
    are similar to :c:func:`mbstowcs` and :c:func:`wcstombs` functions.
 
+.. note::
+
+   There are also the :c:func:`OemToCharW`, :c:func:`CharToOemW`,
+   :c:func:`AnsiToCharW` and :c:func:`CharToAnsiW` codec functions to
+   encode/decode to/from OEM or ANSI code pages, but these functions doesn't
+   give control on unencodable characters/undecodable bytes, and can't be used
+   to get the size of the output buffer.
+
+.. todo:: Document NormalizeString()
+
 .. todo:: Document the replacement character?
+
+
+.. _win_api:
+
+Windows API: ANSI and wide versions
+'''''''''''''''''''''''''''''''''''
+
+Windows has two versions of each function of its API: the ANSI version using
+:ref:`byte strings <bytes>` (``A`` suffix) and the :ref:`ANSI code page
+<codepage>`, and the wide version (``W`` suffix) using :ref:`character strings
+<str>`. There are also functions without suffix using :c:type:`TCHAR*` strings:
+if the :ref:`C <c>` define :c:macro:`_UNICODE` is defined, :c:type:`TCHAR` is
+replaced by :c:type:`wchar_t` and the Unicode functions are used; otherwise
+:c:type:`TCHAR` is replaced by :c:type:`char` and the ANSI functions are used.
+Example:
+
+ * :c:func:`CreateFileA()`: bytes version, use :ref:`byte strings <bytes>`
+   encoded to the ANSI code page
+ * :c:func:`CreateFileW()`: Unicode version, use :ref:`wide character strings
+   <str>`
+ * :c:func:`CreateFile()`: :c:type:`TCHAR` version depending on the
+   :c:macro:`_UNICODE` define
+
+Always prefer the Unicode version to avoid encoding/decoding errors, and use
+directly the ``W`` suffix to avoid compiling issues.
+
+.. note::
+
+   There is a third version of the API: the MBCS API (multibyte character
+   string). Use the TCHAR functions and define :c:macro:`_MBCS` to use the MBCS
+   functions.  For example, :c:func:`_tcsrev` is replaced by :c:func:`_mbsrev`
+   if :c:macro:`_MBCS` is defined, by :c:func:`_wcsrev` if :c:macro:`_UNICODE`
+   is defined, or by :c:func:`_strrev` otherwise.
+
+
+
+Windows string types
+''''''''''''''''''''
+
+ * LPSTR (LPCSTR): :ref:`byte string <bytes>`, :c:type:`char*` (:c:type:`const char*`)
+ * LPWSTR (LPCWSTR): :ref:`wide character string <str>`, :c:type:`wchar_t*`
+   (:c:type:`const wchar_t*`)
+ * LPTSTR (LPCTSTR): byte or wide character string depending of ``_UNICODE``
+   define, :c:type:`TCHAR*` (:c:type:`const TCHAR*`)
 
 
 Filenames
