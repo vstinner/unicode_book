@@ -139,41 +139,40 @@ Encode and decode functions of ``<windows.h>``.
 .. c:function:: WideCharToMultiByte()
 
    :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte
-   string <bytes>`. Use :c:macro:`WC_ERR_INVALID_CHARS` flag to have a strict
-   encoder: :ref:`return an error <strict>` on :ref:`unencodable character
-   <unencodable>`. By default, if :ref:`a character cannot be encoded
+   string <bytes>`. Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag (or
+   :c:macro:`WC_ERR_INVALID_CHARS` flag for :c:macro:`CP_UTF8`) to have a
+   strict encoder: :ref:`return an error <strict>` on :ref:`unencodable
+   character <unencodable>`. By default, if :ref:`a character cannot be encoded
    <unencodable>`, it is :ref:`replaced by a character with a similar glyph
    <translit>` or by "?" (U+003F). For example, with :ref:`cp1252`, Ł (U+0141)
    is replaced by L (U+004C).
-
-   Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag to not replace unencodable
-   characters by characters with similar glyph. For example, Ł (U+0141) is
-   decoded as "?" (U+003F) from :ref:`cp1252` using the
-   :c:macro:`WC_NO_BEST_FIT_CHARS` flag.
 
    On Windows Vista or later with :c:macro:`WC_ERR_INVALID_CHARS` flag, the
    :ref:`UTF-8 <utf8>` encoder (:c:macro:`CP_UTF8`) returns an error on
    :ref:`surrogate characters <surrogates>`. The default behaviour (flags=0)
    depends on the Windows version: surrogates are replaced by U+FFFD on Windows
-   Vista and later, and are encoded to UTF-8 on older Windows versions.  The
+   Vista and later, and are encoded to UTF-8 on older Windows versions. The
    :c:macro:`WC_NO_BEST_FIT_CHARS` flag is not supported by the UTF-8 encoder.
+
+   The :c:macro:`WC_ERR_INVALID_CHARS` flag is only supported by
+   :c:macro:`CP_UTF8` and only on Windows Vista or later.
 
    The :ref:`UTF-7 <utf7>` encoder (:c:macro:`CP_UTF7`) only supports flags=0.
    It is not strict: it encodes :ref:`surrogate characters <surrogates>`.
 
    Examples (on any version Windows version):
 
-   +--------------------+--------------------------------------+----------------------+----------------------+
-   | Flags              | default (0)                          | WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS |
-   +====================+======================================+======================+======================+
-   | ÿ (U+00FF), cp932  | ``0x79`` (y)                         | *error*              | ``0x3F`` (?)         |
-   +--------------------+--------------------------------------+----------------------+----------------------+
-   | Ł (U+0141), cp1252 | ``0x4C`` (L)                         | *error*              | ``0x3F`` (?)         |
-   +--------------------+--------------------------------------+----------------------+----------------------+
-   | € (U+20AC), cp1252 | ``0x80``                             | *error*              | ``0x80``             |
-   +--------------------+--------------------------------------+----------------------+----------------------+
-   | U+DC80, CP_UTF7    | ``0x2b 0x33 0x49 0x41 0x2d`` (+3IA-) | *invalid flags*      | *invalid flags*      |
-   +--------------------+--------------------------------------+----------------------+----------------------+
+   +--------------------+--------------------------------------+----------------------+
+   | Flags              | default (0)                          | WC_NO_BEST_FIT_CHARS |
+   +====================+======================================+======================+
+   | ÿ (U+00FF), cp932  | ``0x79`` (y)                         | ``0x3F`` (?)         |
+   +--------------------+--------------------------------------+----------------------+
+   | Ł (U+0141), cp1252 | ``0x4C`` (L)                         | ``0x3F`` (?)         |
+   +--------------------+--------------------------------------+----------------------+
+   | € (U+20AC), cp1252 | ``0x80``                             | ``0x80``             |
+   +--------------------+--------------------------------------+----------------------+
+   | U+DC80, CP_UTF7    | ``0x2b 0x33 0x49 0x41 0x2d`` (+3IA-) | *invalid flags*      |
+   +--------------------+--------------------------------------+----------------------+
 
    Examples on Windows Vista an later:
 
@@ -195,14 +194,6 @@ Encode and decode functions of ``<windows.h>``.
 
    :c:func:`MultiByteToWideChar` and :c:func:`WideCharToMultiByte` functions
    are similar to :c:func:`mbstowcs` and :c:func:`wcstombs` functions.
-
-.. note::
-
-   There are also the :c:func:`OemToCharW`, :c:func:`CharToOemW`,
-   :c:func:`AnsiToCharW` and :c:func:`CharToAnsiW` codec functions to
-   encode/decode to/from OEM or ANSI code pages, but these functions doesn't
-   give control on unencodable characters/undecodable bytes, and can't be used
-   to get the size of the output buffer.
 
 .. todo:: Document NormalizeString()
 
