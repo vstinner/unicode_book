@@ -139,13 +139,35 @@ Encode and decode functions of ``<windows.h>``.
 .. c:function:: WideCharToMultiByte()
 
    :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte
-   string <bytes>`. Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag (or
-   :c:macro:`WC_ERR_INVALID_CHARS` flag for :c:macro:`CP_UTF8`) to have a
-   strict encoder: :ref:`return an error <strict>` on :ref:`unencodable
-   character <unencodable>`. By default, if :ref:`a character cannot be encoded
-   <unencodable>`, it is :ref:`replaced by a character with a similar glyph
-   <translit>` or by "?" (U+003F). For example, with :ref:`cp1252`, Ł (U+0141)
-   is replaced by L (U+004C).
+   string <bytes>`. The behaviour on unencodable characters depends on the code
+   page, the Windows version and the flags.
+
+   +-----------+----------------------+----------------------+------------------------------+
+   | Code page | Windows version      | Flags                | Behaviour                    |
+   +===========+======================+======================+==============================+
+   |           | 2000, XP, 2003       | 0                    | Encode surrogates            |
+   |           +----------------------+----------------------+------------------------------+
+   | CP_UTF8   |                      | 0                    | Replace surrogates by U+FFFD |
+   |           | Vista or later       +----------------------+------------------------------+
+   |           |                      | WC_ERR_INVALID_CHARS | Strict                       |
+   +-----------+----------------------+----------------------+------------------------------+
+   | CP_UTF7   | *all versions*       | 0                    | Encode surrogates            |
+   +-----------+----------------------+----------------------+------------------------------+
+   | Others    |                      | 0                    | Replace by similar glyph     |
+   |           | *all versions*       +----------------------+------------------------------+
+   |           |                      | WC_NO_BEST_FIT_CHARS | Replace by ? (1)             |
+   +-----------+----------------------+----------------------+------------------------------+
+
+   (1) : Strict if you check for pusedDefaultChar pointer.
+
+   pusedDefaultChar is not supported by CP_UTF7 or CP_UTF8.
+
+   Use :c:macro:`WC_NO_BEST_FIT_CHARS` flag (or :c:macro:`WC_ERR_INVALID_CHARS`
+   flag for :c:macro:`CP_UTF8`) to have a strict encoder: :ref:`return an error
+   <strict>` on :ref:`unencodable character <unencodable>`. By default, if
+   :ref:`a character cannot be encoded <unencodable>`, it is :ref:`replaced by
+   a character with a similar glyph <translit>` or by "?" (U+003F). For
+   example, with :ref:`cp1252`, Ł (U+0141) is replaced by L (U+004C).
 
    On Windows Vista or later with :c:macro:`WC_ERR_INVALID_CHARS` flag, the
    :ref:`UTF-8 <utf8>` encoder (:c:macro:`CP_UTF8`) returns an error on
