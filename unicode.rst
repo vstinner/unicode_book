@@ -15,6 +15,17 @@ Plane*). I call the range U+10000—U+10FFFF as **non-BMP** characters.
 .. todo:: examples of applications only supporting BMP characters?
 
 
+.. _ucs:
+
+Unicode Character Set
+---------------------
+
+The Unicode Character Set (UCS) contains 1,114,112 code points:
+U+0000—U+10FFFF. Characters and code point ranges are grouped by
+:ref:`categories <unicode categories>`. Only encodings of the UTF family are
+able to encode the UCS.
+
+
 .. _unicode categories:
 
 Categories

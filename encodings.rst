@@ -118,10 +118,11 @@ code points of these 8 bits encodings are assigned.
 Unencodable characters
 ''''''''''''''''''''''
 
-When a :ref:`character string <str>` is :ref:`encoded <encode>` to a :ref:`charset <charset>`
-smaller than the Unicode charset, a character may not be encodable. For example, €
-(U+20AC) is not encodable to :ref:`ISO-8859-1`, but it is encodable to
-:ref:`ISO-8859-15` and :ref:`UTF-8`.
+When a :ref:`character string <str>` is :ref:`encoded <encode>` to a
+:ref:`character set <charset>` smaller than the :ref:`Unicode character set
+(UCS) <UCS>`, a character may not be encodable. For example, € (U+20AC) is not
+encodable to :ref:`ISO-8859-1`, but it is encodable to :ref:`ISO-8859-15` and
+:ref:`UTF-8`.
 
 
 .. _errors:
