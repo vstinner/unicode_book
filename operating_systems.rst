@@ -92,7 +92,7 @@ Encode and decode functions of ``<windows.h>``.
 
    In strict mode (:c:macro:`MB_ERR_INVALID_CHARS`), the :ref:`UTF-8 <utf8>`
    decoder (:c:macro:`CP_UTF8`) returns an error on :ref:`surrogate characters
-   <surrogates>` in Windows Vista and later. On Windows XP, the :ref:`UTF-8
+   <surrogates>` on Windows Vista and later. On Windows XP, the :ref:`UTF-8
    decoder is not strict <strict utf8 decoder>`: surrogates can be decoded in
    any mode.
 
@@ -100,47 +100,53 @@ Encode and decode functions of ``<windows.h>``.
 
    Examples on any version Windows version:
 
-   +------------------------+------------------+----------------------+
-   | Flags                  | default (0)      | MB_ERR_INVALID_CHARS |
-   +========================+==================+======================+
-   | ``0xFF``, cp932        | {U+F8F3}         | *error*              |
-   +------------------------+------------------+----------------------+
-   | ``0xE9 0x80``, cp1252  | {U+00E9, U+20AC} | {U+00E9, U+20AC}     |
-   +------------------------+------------------+----------------------+
-   | ``0xFF``, CP_UTF7      | {U+FF}           | *invalid flags*      |
-   +------------------------+------------------+----------------------+
-   | ``0xC3 0xA9``, CP_UTF8 | {U+00E9}         | {U+00E9}             |
-   +------------------------+------------------+----------------------+
+   +------------------------+---------------------+----------------------+
+   | Flags                  | default (0)         | MB_ERR_INVALID_CHARS |
+   +========================+=====================+======================+
+   | ``0xE9 0x80``, cp1252  | é€ {U+00E9, U+20AC} | é€ {U+00E9, U+20AC}  |
+   +------------------------+---------------------+----------------------+
+   | ``0xC3 0xA9``, CP_UTF8 | é {U+00E9}          | é {U+00E9}           |
+   +------------------------+---------------------+----------------------+
+   | ``0xFF``, cp932        | {U+F8F3}            | *decoding error*     |
+   +------------------------+---------------------+----------------------+
+   | ``0xFF``, CP_UTF7      | {U+FF}              | *invalid flags*      |
+   +------------------------+---------------------+----------------------+
 
    Examples on Windows Vista and later:
 
    +-----------------------------+--------------------------+----------------------+
    | Flags                       | default (0)              | MB_ERR_INVALID_CHARS |
    +=============================+==========================+======================+
-   | ``0x81 0x00``, cp932        | {U+30FB, U+0000}         | *error*              |
+   | ``0x81 0x00``, cp932        | {U+30FB, U+0000}         | *decoding error*     |
    +-----------------------------+--------------------------+----------------------+
-   | ``0xFF``, CP_UTF8           | {U+FFFD}                 | *error*              |
+   | ``0xFF``, CP_UTF8           | {U+FFFD}                 | *decoding error*     |
    +-----------------------------+--------------------------+----------------------+
-   | ``0xED 0xB2 0x80``, CP_UTF8 | {U+FFFD, U+FFFD, U+FFFD} | *error*              |
+   | ``0xED 0xB2 0x80``, CP_UTF8 | {U+FFFD, U+FFFD, U+FFFD} | *decoding error*     |
    +-----------------------------+--------------------------+----------------------+
 
    Examples on Windows 2000, XP, 2003:
 
-   +-----------------------------+-------------+----------------------+
-   | Flags                       | default (0) | MB_ERR_INVALID_CHARS |
-   +=============================+=============+======================+
-   | ``0x81 0x00``, cp932        | {U+0000}    | *error*              |
-   +-----------------------------+-------------+----------------------+
-   | ``0xFF``, CP_UTF8           | *error*     | *error*              |
-   +-----------------------------+-------------+----------------------+
-   | ``0xED 0xB2 0x80``, CP_UTF8 | {U+DC80}    | {U+DC80}             |
-   +-----------------------------+-------------+----------------------+
+   +-----------------------------+------------------+----------------------+
+   | Flags                       | default (0)      | MB_ERR_INVALID_CHARS |
+   +=============================+==================+======================+
+   | ``0x81 0x00``, cp932        | {U+0000}         | *decoding error*     |
+   +-----------------------------+------------------+----------------------+
+   | ``0xFF``, CP_UTF8           | *decoding error* | *decoding error*     |
+   +-----------------------------+------------------+----------------------+
+   | ``0xED 0xB2 0x80``, CP_UTF8 | {U+DC80}         | {U+DC80}             |
+   +-----------------------------+------------------+----------------------+
+
+   .. note::
+
+      The U+30FB character is the Katakana middle dot (・). U+F8F3 code point
+      is part of a Unicode range reserved for private use (U+E000—U+F8FF).
+
 
 .. c:function:: WideCharToMultiByte()
 
    :ref:`Encode <encode>` a :ref:`character string <str>` to a :ref:`byte
-   string <bytes>`. The behaviour on unencodable characters depends on the code
-   page, the Windows version and the flags.
+   string <bytes>`. The behaviour on :ref:`unencodable characters
+   <unencodable>` depends on the code page, the Windows version and the flags.
 
    +-----------+----------------------+----------------------+------------------------------+
    | Code page | Windows version      | Flags                | Behaviour                    |
@@ -201,7 +207,7 @@ Encode and decode functions of ``<windows.h>``.
    +--------------------+--------------------+----------------------+----------------------+
    | Flags              | default (0)        | WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS |
    +====================+====================+======================+======================+
-   | U+DC80, CP_UTF8    | ``0xEF 0xBF 0xBD`` | *error*              | *invalid flags*      |
+   | U+DC80, CP_UTF8    | ``0xEF 0xBF 0xBD`` | *encoding error*     | *invalid flags*      |
    +--------------------+--------------------+----------------------+----------------------+
 
    Examples on Windows 2000, XP, 2003:
