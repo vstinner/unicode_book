@@ -98,7 +98,7 @@ Encode and decode functions of ``<windows.h>``.
 
    The :ref:`UTF-7 <utf7>` decoder (:c:macro:`CP_UTF7`) only supports flags=0.
 
-   Examples on any version Windows version:
+   Examples on any Windows version:
 
    +------------------------+---------------------+----------------------+
    | Flags                  | default (0)         | MB_ERR_INVALID_CHARS |
@@ -188,7 +188,7 @@ Encode and decode functions of ``<windows.h>``.
    The :ref:`UTF-7 <utf7>` encoder (:c:macro:`CP_UTF7`) only supports flags=0.
    It is not strict: it encodes :ref:`surrogate characters <surrogates>`.
 
-   Examples (on any version Windows version):
+   Examples (on any Windows version):
 
    +--------------------+--------------------------------------+----------------------+
    | Flags              | default (0)                          | WC_NO_BEST_FIT_CHARS |
@@ -515,9 +515,9 @@ CD-ROM and DVD
 
 CD-ROM uses the ISO 9660 filesystem which stores filenames as :ref:`byte
 strings <bytes>`.  This filesystem is very restrictive: only A-Z, 0-9, _ and
-"." are allowed.  Microsoft has developped the Joliet extension: store
+"." are allowed.  Microsoft has developed the Joliet extension: store
 filenames as :ref:`UCS-2 <ucs>`, up to 64 characters (:ref:`BMP <bmp>` only).
-It was first supported by Windows 95.  Today, all operationg systems are able
+It was first supported by Windows 95.  Today, all operating systems are able
 to read it.
 
 UDF (Universal Disk Format) is the filesystem of DVD: it stores filenames as

@@ -12,11 +12,11 @@ The C language is a low level language, close to the hardware. It has a builtin
 :ref:`character string <str>` type (:c:type:`wchar_t*`), but only few libraries
 support this type. It is usually used as the first "layer" between the kernel
 (system calls, e.g.  open a file) and applications, higher level libraries and
-other programming languages. This first layer uses the same type than the
+other programming languages. This first layer uses the same type as the
 kernel: except :ref:`Windows`, all kernels use :ref:`byte strings <bytes>`.
 
 There are higher level libraries, like :ref:`glib <glib>` or :ref:`Qt <qt>`,
-offering a Unicode API, even if the underlying kernel use byte strings. Such
+offering a Unicode API, even if the underlying kernel uses byte strings. Such
 libraries use a codec to :ref:`encode <encode>` data to the kernel and to
 :ref:`decode <decode>` data from the kernel. The codec is usually the current
 :ref:`locale encoding <locale encoding>`.
@@ -260,8 +260,8 @@ sign:\u20AC'``.
 In Python 2, ``str + unicode`` gives ``unicode``: the byte string is
 :ref:`decoded <decode>` from the default encoding (:ref:`ASCII`). This coercion was a bad design idea
 because it was the source of a lot of confusion. At the same time, it was not
-possible to switch completly to Unicode in 2000: computers were slower and
-there were fewer Python core developers. It took 8 years to switch completly to
+possible to switch completely to Unicode in 2000: computers were slower and
+there were fewer Python core developers. It took 8 years to switch completely to
 Unicode: Python 3 was relased in december 2008.
 
 Narrow build of Python 2 has a partial support of :ref:`non-BMP <bmp>`
