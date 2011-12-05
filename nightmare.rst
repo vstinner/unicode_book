@@ -18,7 +18,7 @@ everything). The problem is that documents rarely indicate their language
 known problem: :ref:`mojibake <mojibake>`.
 
 It is difficult to get, or worse, :ref:`guess the encoding <guess>` of a document. Except for
-encodings ooff the UTF family (coming from the Unicode standard), there
+encodings of the UTF family (coming from the Unicode standard), there
 is no reliable algorithm for that. We have to rely on statistics to guess the most
 probable encoding, which is done by most Internet browsers.
 
