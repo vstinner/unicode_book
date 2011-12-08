@@ -540,10 +540,10 @@ string using ``"\N{name}"`` syntax.  Example: ::
 
     say "\N{long s} \N{ae} \N{Omega} \N{omega} \N{UPWARDS ARROW}"
 
-Declare that ﬁlehandles opened within this lexical scope but not elsewhere are
-in UTF‐8, until and unless you say otherwise. The :std adds in STDIN, STDOUT,
+Declare that filehandles opened within this lexical scope but not elsewhere are
+in UTF-8, until and unless you say otherwise. The :std adds in STDIN, STDOUT,
 and STDERR. This critical step implicitly decodes incoming data and encodes
-outgoing data as UTF‐8: ::
+outgoing data as UTF-8: ::
 
     use open qw( :encoding(UTF-8) :std );
 
@@ -554,7 +554,7 @@ will use UTF-8:
  * stdin, stdout, stderr
 
 If you have a DATA handle, you must explicitly set its encoding. If you want
-this to be UTF‐8, then say: ::
+this to be UTF-8, then say: ::
 
     binmode(DATA, ":encoding(UTF-8)");
 
