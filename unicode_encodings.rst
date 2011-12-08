@@ -187,7 +187,7 @@ non-BMP character to/from UTF-16 (using surrogate pairs): ::
     encode_utf16_pair(uint32_t character, uint16_t *units)
     {
         unsigned int code;
-        assert(character >= 0x10000);
+        assert(0x10000 <= character && character <= 0x10FFF);
         code = (character - 0x10000);
         units[0] = 0xD800 | (code >> 10);
         units[1] = 0xDC00 | (code & 0x3FF);
