@@ -66,6 +66,12 @@ REPLACE = (
      u"\\foreignlanguage{russian}{Русский}"),
     (u"``Кракозя\u0301бры'' (krakozyabry)",
      u"\\foreignlanguage{russian}{``Кракоз\\'{я}бры'' (krakozyabry)}"),
+
+    (u'Big5 (大五碼, Big Five Encoding, 1984)',
+     u'Big5 (Big Five Encoding, 1984)'),
+    (u'Katakana middle dot (・)',
+     u'Katakana middle dot'),
+
     # TODO: ! LaTeX Error: Command \DH unavailable in encoding T2A.
     # TODO: ! LaTeX Error: Command \TH unavailable in encoding T2A.
     # TODO: ! LaTeX Error: Command \dh unavailable in encoding T2A.
