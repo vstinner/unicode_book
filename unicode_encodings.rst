@@ -151,7 +151,10 @@ UTF-16 surrogate pairs
 
 Surrogates are characters in the Unicode range U+D800—U+DFFF (2,048 code
 points): it is also the :ref:`Unicode category <unicode categories>`
-"surrogate" (Cs).
+"surrogate" (Cs). The range is composed of two parts:
+
+ * U+D800—U+DBFF (1,024 code points): high surrogates
+ * U+DC00—U+DFFF (1,024 code points): low surrogates
 
 In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD
 are stored as a single 16 bits unit. :ref:`Non-BMP <bmp>` characters (range
