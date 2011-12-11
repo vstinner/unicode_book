@@ -32,19 +32,33 @@ Character set (charset)
 A **character set**, abbreviated **charset**, is a mapping between :ref:`code
 points <code point>` and :ref:`characters <character>`. The mapping has a fixed
 size.  For example, most 7 bits encodings have 128 entries, and most 8 bits
-encodings have 256 entries. The biggest charset is Unicode 6.0 with 1,114,112
-entries.
+encodings have 256 entries. The biggest charset is the :ref:`Unicode Character
+Set <ucs>` 6.0 with 1,114,112 entries.
 
 In some charsets, code points are not all contiguous. For example, the
 :ref:`cp1252 <cp1252>` charset maps code points from 0 though 255, but it has
 only 251 entries: 0x81, 0x8D, 0x8F, 0x90 and 0x9D code points are not assigned.
 
-Examples of the :ref:`ASCII <ascii>` charset: the "5" character (U+0035) is
-assigned to the code point 0x35 (53 in decimal), and "A" (U+0041) to the code
-point 0x41 (65).
+Examples of the :ref:`ASCII <ascii>` charset: the digit five ("5", U+0035) is
+assigned to the code point 0x35 (53 in decimal), and the uppercase letter "A"
+(U+0041) to the code point 0x41 (65).
 
 The biggest code point depends on the size of the charset. For example, the
 biggest code point of the ASCII charset is 127 (:math:`2^7-1`)
+
+Charset examples:
+
++-----------------------+------------+-------------+
+|          Charset      | Code point | Character   |
++=======================+============+=============+
+|        ASCII          |   0x35     | 5 (U+0035)  |
++-----------------------+------------+-------------+
+|        ASCII          |   0x41     | A (U+0041)  |
++-----------------------+------------+-------------+
+|      ISO-8859-15      |   0xA4     | € (U+20AC)  |
++-----------------------+------------+-------------+
+| Unicode Character Set |  0x20AC    | € (U+20AC)  |
++-----------------------+------------+-------------+
 
 
 .. _str:
@@ -58,9 +72,9 @@ can be any Unicode character, or only characters in the range U+0000—U+FFFF,
 range called the :ref:`Basic Multilingual Plane (BMP) <bmp>`. There are 3
 different implementations of character strings:
 
- * array of 32 bits unsigned integers (the :ref:`UCS-4 <ucs>` encoding): full
+ * array of 32 bits unsigned integers (the :ref:`UCS-4 <ucs4>` encoding): full
    Unicode range
- * array of 16 bits unsigned integers (:ref:`UCS-2 <ucs>`): BMP only
+ * array of 16 bits unsigned integers (:ref:`UCS-2 <ucs2>`): BMP only
  * array of 16 bits unsigned integers with :ref:`surrogate pairs
    <surrogates>` (:ref:`UTF-16 <utf16>`): full Unicode range
 
@@ -86,7 +100,7 @@ or wide) for Python. Windows 95 uses UCS-2 strings.
 
 .. seealso::
 
-   :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>` and :ref:`UTF-16 <utf16>` encodings,
+   :ref:`UCS-2 <ucs2>`, :ref:`UCS-4 <ucs4>` and :ref:`UTF-16 <utf16>` encodings,
    and :ref:`surrogate pairs <surrogates>`.
 
 
@@ -171,7 +185,7 @@ Charsets with more than 256 entries cannot encode all code points into a single
 byte. The encoding encode all code points into byte sequences of the same
 length or of variable length. For example, :ref:`UTF-8` is a variable length
 encoding: code points lower than 128 use a single byte, whereas higher code
-points take 2, 3 or 4 bytes. The :ref:`UCS-2 <ucs>` encoding encodes all
+points take 2, 3 or 4 bytes. The :ref:`UCS-2 <ucs2>` encoding encodes all
 code points into sequences of two bytes (16 bits).
 
 .. TODO:: NELLE : je ne m'y connais pas trop en encodage, mais il me semble
@@ -235,6 +249,6 @@ Unicode: an Universal Character Set (UCS)
 
 .. seealso::
 
-   :ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8 <utf8>`, :ref:`UTF-16
+   :ref:`UCS-2 <ucs2>`, :ref:`UCS-4 <ucs4>`, :ref:`UTF-8 <utf8>`, :ref:`UTF-16
    <utf16>`, and :ref:`UTF-32 <utf32>` encodings.
 

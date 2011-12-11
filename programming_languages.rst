@@ -232,7 +232,7 @@ Python supports Unicode since its version 2.0 released in october 2000.
 :ref:`Byte <bytes>` and :ref:`Unicode <str>` strings store their length, so
 it's possible to embed nul byte/character.
 
-Python can be compiled in two modes: narrow (:ref:`UTF-16 <utf16>`) and wide (:ref:`UCS-4 <ucs>`).
+Python can be compiled in two modes: narrow (:ref:`UTF-16 <utf16>`) and wide (:ref:`UCS-4 <ucs2>`).
 ``sys.maxunicode`` constant is 0xFFFF in narrow build, and 0x10FFFF in wide build.
 Python is compiled in narrow mode on Windows, because :c:type:`wchar_t` is also 16 bits
 on Windows and so it is possible to use Python Unicode strings as :c:type:`wchar_t*`

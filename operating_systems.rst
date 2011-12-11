@@ -20,7 +20,7 @@ characters are stored as two :c:type:`wchar_t` (a :ref:`surrogate pair
 not the number of characters.
 
 Windows 95, 98 an Me had also Unicode strings, but were limited to :ref:`BMP
-characters <bmp>`: they used :ref:`UCS-2 <ucs>` instead of UTF-16.
+characters <bmp>`: they used :ref:`UCS-2 <ucs2>` instead of UTF-16.
 
 .. todo:: And Windows CE?
 
@@ -516,7 +516,7 @@ CD-ROM and DVD
 CD-ROM uses the ISO 9660 filesystem which stores filenames as :ref:`byte
 strings <bytes>`.  This filesystem is very restrictive: only A-Z, 0-9, _ and
 "." are allowed.  Microsoft has developed the Joliet extension: store
-filenames as :ref:`UCS-2 <ucs>`, up to 64 characters (:ref:`BMP <bmp>` only).
+filenames as :ref:`UCS-2 <ucs2>`, up to 64 characters (:ref:`BMP <bmp>` only).
 It was first supported by Windows 95.  Today, all operating systems are able
 to read it.
 
@@ -535,7 +535,7 @@ the name, 3 for the extension) and displayed differently depending on the
 :ref:`code page <codepage>` (:ref:`mojibake issue <mojibake>`).
 
 Microsoft extended its FAT filesystem in Windows 95: the Virtual FAT (VFAT)
-supports "long filenames", filenames are stored as :ref:`UCS-2 <ucs>`, up to
+supports "long filenames", filenames are stored as :ref:`UCS-2 <ucs2>`, up to
 255 characters (BMP only). Starting at Windows 2000, :ref:`non-BMP characters
 <bmp>` can be used: :ref:`UTF-16 <utf16>` replaces UCS-2 and the limit is now
 255 UTF-16 units.

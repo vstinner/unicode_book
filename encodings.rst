@@ -24,7 +24,7 @@ example, ISO-8859-1 are the first 256 Unicode code points (U+0000—U+00FF).
 
 This book presents the following encodings: :ref:`ASCII`, :ref:`cp1252`,
 :ref:`GBK <gbk>`, :ref:`ISO-8859-1`, :ref:`ISO-8859-15`, :ref:`JIS <jis>`,
-:ref:`UCS-2 <ucs>`, :ref:`UCS-4 <ucs>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>`
+:ref:`UCS-2 <ucs2>`, :ref:`UCS-4 <ucs4>`, :ref:`UTF-8`, :ref:`UTF-16 <utf16>`
 and :ref:`UTF-32 <utf32>`.
 
 .. see also: Definitions of a :ref:`charset <charset>` and of a :ref:`encoding
