@@ -25,6 +25,8 @@ U+0000—U+10FFFF. Characters and code point ranges are grouped by
 :ref:`categories <unicode categories>`. Only encodings of the UTF family are
 able to encode the UCS.
 
+.. todo:: History of the charset (number of code points)
+
 
 .. _unicode categories:
 

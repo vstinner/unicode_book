@@ -121,12 +121,21 @@ U+FEFF code point encoded to the UTF encodings.
 
 Unicode defines 6 different BOM:
 
- * ``0x2B 0x2F 0x76 0x38 0x2D`` (5 bytes): :ref:`UTF-7 <utf7>` (endianless)
- * ``0xEF 0xBB 0xBF`` (3): :ref:`UTF-8 <utf8>` (endianless)
- * ``0xFF 0xFE`` (2): :ref:`UTF-16-LE <utf16>` (little endian)
- * ``0xFE 0xFF`` (2): :ref:`UTF-16-BE <utf16>` (big endian)
- * ``0xFF 0xFE 0x00 0x00`` (4): :ref:`UTF-32-LE <utf32>` (little endian)
- * ``0x00 0x00 0xFE 0xFF`` (4): :ref:`UTF-32-BE <utf32>` (big endian)
++----------------------------------------+--------------------------+---------------+
+| BOM                                    | Encoding                 | Endian        |
++========================================+==========================+===============+
+| ``0x2B 0x2F 0x76 0x38 0x2D`` (5 bytes) | :ref:`UTF-7 <utf7>`      | *endianless*  |
++----------------------------------------+--------------------------+---------------+
+| ``0xEF 0xBB 0xBF`` (3)                 | :ref:`UTF-8 <utf8>`      | *endianless*  |
++----------------------------------------+--------------------------+---------------+
+| ``0xFF 0xFE`` (2)                      | :ref:`UTF-16-LE <utf16>` | little endian |
++----------------------------------------+--------------------------+---------------+
+| ``0xFE 0xFF`` (2)                      | :ref:`UTF-16-BE <utf16>` | big endian    |
++----------------------------------------+--------------------------+---------------+
+| ``0xFF 0xFE 0x00 0x00`` (4)            | :ref:`UTF-32-LE <utf32>` | little endian |
++----------------------------------------+--------------------------+---------------+
+| ``0x00 0x00 0xFE 0xFF`` (4)            | :ref:`UTF-32-BE <utf32>` | big endian    |
++----------------------------------------+--------------------------+---------------+
 
 UTF-32-LE BOMs starts with UTF-16-LE BOM.
 
@@ -157,12 +166,10 @@ points): it is also the :ref:`Unicode category <unicode categories>`
 
 In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD
 are stored as a single 16 bits unit. :ref:`Non-BMP <bmp>` characters (range
-U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits units: the
-first unit in the range U+D800—U+DBFF and the second unit in the range
-U+DC00—U+DFFF. A lone surrogate character is invalid in UTF-16, surrogate
-characters are always written as pairs.
-
-.. todo:: can a UTF-16 encoder encode characters in U+D800-U+DFFF?
+U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits units: an
+high surrogate (in range U+D800—U+DBFF) followed by a low surrogate (in range
+U+DC00—U+DFFF). A lone surrogate character is invalid in UTF-16, surrogate
+characters are always written as pairs (high followed by low).
 
 Examples of surrogate pairs:
 
@@ -178,10 +185,21 @@ Examples of surrogate pairs:
 |  U+10FFFF | {U+DBFF, U+DFFF} |
 +-----------+------------------+
 
+.. note::
+
+   U+10FFFF is the higgest code point encodable to UTF-16 and the higgest code
+   point of the :ref:`Unicode Character Set <ucs>` 6.0. The {U+DBFF, U+DFFF}
+   surrogate pair is the last available pair.
+
+An :ref:`UTF-8 <utf8>` or :ref:`UTF-32 <utf32>` encoder should not encode
+surrogate characters (U+D800—U+DFFF), see :ref:`Non-strict UTF-8 decoder
+<strict utf8 decoder>`.
+
+
 .. highlight:: c
 
-:ref:`C <c>` functions to :ref:`encode <encode>` and :ref:`decode <decode>` a
-non-BMP character to/from UTF-16 (using surrogate pairs): ::
+:ref:`C <c>` functions to create a surrogate pair (:ref:`encode <encode>` to
+UTF-16) and to join a surrogate pair (:ref:`decode <decode>` from UTF-16)::
 
     #include <stdint.h>
 
@@ -206,9 +224,4 @@ non-BMP character to/from UTF-16 (using surrogate pairs): ::
         code += (units[1] & 0x03FF);
         return code;
     }
-
-.. note::
-
-   An :ref:`UTF-8` encoder should not encode surrogate characters
-   (U+D800—U+DFFF), see :ref:`Non-strict UTF-8 decoder <strict utf8 decoder>`.
 

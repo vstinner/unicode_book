@@ -81,7 +81,10 @@ The libxml2 library had such vulnerability until january 2008: `CVE-2007-6284
 
 Some PHP functions use a strict UTF-8 decoder (e.g. ``mb_convert_encoding()``),
 some other don't. For example, ``utf8_decode()`` and ``mb_strlen()`` accept
-``0xC0 0x80`` in PHP 5.3.2.
+``0xC0 0x80`` in PHP 5.3.2. The UTF-8 decoder of Python 3 is strict, whereas
+the UTF-8 decoder of Python 2 accepts surrogates (to keep the backward
+compatibility). In Python 3, the error handler ``surrogatepass`` can be used
+to encode and decode surrogates.
 
 .. note::
 
