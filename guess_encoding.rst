@@ -13,9 +13,7 @@ Is ASCII?
 ---------
 
 Check if a document is encoded to :ref:`ASCII` is simple: test if the bit 7 of
-each byte is unset (``0b0xxxxxxx``).
-
-.. TODO:: NELLE - test if the bit 7 of all byte is unset
+all bytes is unset (``0b0xxxxxxx``).
 
 .. highlight:: c
 
