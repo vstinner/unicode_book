@@ -176,18 +176,20 @@ U+DC80). ::
             if (code_length == 2) {
                 /* 2 bytes sequence: U+0080..U+07FF */
                 ch = ((str[0] & 0x1f) << 6) + (str[1] & 0x3f);
-                /* ch cannot be greater than 0x07FF */
-                if (ch < 0x0080)
-                    return 0;
+                /* str[0] >= 0xC2, so ch >= 0x0080.
+                   str[0] <= 0xDF, (str[1] & 0x3f) <= 0x3f, so ch <= 0x07ff */
             } else if (code_length == 3) {
                 /* 3 bytes sequence: U+0800..U+FFFF */
                 ch = ((str[0] & 0x0f) << 12) + ((str[1] & 0x3f) << 6) +
                       (str[2] & 0x3f);
-                /* ch cannot be greater than 0xFFFF */
+                /* (0xff & 0x0f) << 12 | (0xff & 0x3f) << 6 | (0xff & 0x3f) = 0xffff,
+                   so ch <= 0xffff */
                 if (ch < 0x0800)
                     return 0;
-                /* surrogates (U+D800-U+DFFF) are invalid in UTF-8 */
-                if ((0xD800 <= ch) && (ch <= 0xDFFF))
+
+                /* surrogates (U+D800-U+DFFF) are invalid in UTF-8:
+                   test if (0xD800 <= ch && ch <= 0xDFFF) */
+                if ((ch >> 11) == 0x1b)
                     return 0;
             } else if (code_length == 4) {
                 /* 4 bytes sequence: U+10000..U+10FFFF */
