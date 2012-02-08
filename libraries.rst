@@ -109,7 +109,7 @@ Codec functions
    handle <errors>` :ref:`undecodable bytes <undecodable>` and
    :ref:`unencodable characters <unencodable>`.
  * :c:func:`g_locale_from_utf8` / :c:func:`g_locale_to_utf8`: encode to/decode
-   from the :ref:`locale encoding <locale encoding>`.
+   from the current :ref:`locale encoding <locale encoding>`.
  * :c:func:`g_get_charset`: get the locale encoding
 
    * Windows: current :ref:`ANSI code page <codepage>`
