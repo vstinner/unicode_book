@@ -22,7 +22,7 @@ Dependencies
  * make latex:
 
    * Debian: sudo apt-get install texlive-latex-base texlive-lang-cyrillic
-   * Fedora: sudo yum iistall texlive-latex
+   * Fedora: sudo yum install texlive-latex
    * texlive-lang-cyrillic: Cyrillic (mojibake section)
    * For make LaTeX ./build_latex.py
 
