@@ -26,3 +26,14 @@ Dependencies
    * texlive-lang-cyrillic: Cyrillic (mojibake section)
    * For make LaTeX ./build_latex.py
 
+
+LaTeX
+-----
+
+
+Exception occurred:
+  File "/usr/lib/python2.7/site-packages/sphinx/writers/latex.py", line 194, in __init__
+    lang = babel.get_language(babel.language_code)
+AttributeError: 'ExtBabel' object has no attribute 'language_code'
+
+=> lang = babel.get_language()

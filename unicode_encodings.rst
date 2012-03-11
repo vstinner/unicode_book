@@ -57,6 +57,8 @@ operation in your program, use a :ref:`character string <str>` instead of a
 
 
 .. index:: UCS-2, UCS-4, UTF-16, UTF-32
+.. _ucs2:
+.. _ucs4:
 .. _utf16:
 .. _utf32:
 
