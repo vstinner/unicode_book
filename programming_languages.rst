@@ -415,6 +415,18 @@ encoding. For example, on Linux with the C locale, the Unicode filename
 In Python 2, use ``os.getcwdu()`` to get the current directory as Unicode.
 
 
+Windows
+'''''''
+
+Encodings used on Windows:
+
+ * locale.getpreferredencoding(): :ref:`ANSI code page <codepage>`
+ * ``'mbcs'`` codec: :ref:`ANSI code page <codepage>`
+ * sys.stdout.encoding, sys.stderr.encoding: encoding of the
+   :ref:`Windows console <win_console>`.
+ * sys.argv, os.environ, subprocess.Popen(args): native Unicode support
+   (no encoding)
+
 Modules
 '''''''
 

@@ -303,7 +303,7 @@ Console functions.
 
 .. c:function:: GetConsoleCP()
 
-   Get the ccode page of the standard input (stdin) of the console.
+   Get the code page of the standard input (stdin) of the console.
 
 .. c:function:: GetConsoleOutputCP()
 
