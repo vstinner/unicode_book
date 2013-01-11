@@ -12,6 +12,8 @@ About this book
 The book is written in `reStructuredText <http://sphinx.pocoo.org/rest.html>`_
 (reST) syntax and compiled by `Sphinx <http://sphinx.pocoo.org/>`_.
 
+I started to write in the 25th September 2010.
+
 License
 -------
 
