@@ -160,7 +160,7 @@ code prints the truncated string "Latin capital letter L with stroke: [" if
 
     printf("Latin capital letter L with stroke: [%ls]\n", L"\u0141");
 
-``wprintf("%s")`` is also :ref:`strict <strict>`: it stops immediatly if
+``wprintf("%s")`` and ``wprintf("%.<length>s")`` are :ref:`strict <strict>`: they stop immediatly if
 :ref:`a byte string <bytes>` argument :ref:`cannot be decoded <undecodable>`
 from the :ref:`locale encoding <locale encoding>`. For example, the following
 code prints the truncated string "Latin capital letter L with stroke: [" if
@@ -168,6 +168,7 @@ code prints the truncated string "Latin capital letter L with stroke: [" if
 :ref:`locale encoding <locale encoding>`. ::
 
     wprintf(L"Latin capital letter L with stroke): [%s]\n", "\xC5\x81");
+    wprintf(L"Latin capital letter L with stroke): [%.10s]\n", "\xC5\x81");
 
 ``wprintf("%ls")`` :ref:`replaces <replace>` :ref:`unencodable <unencodable>`
 :ref:`character string <str>` arguments by ? (U+003F). For example, the
