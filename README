@@ -15,6 +15,7 @@ Dependencies
 
  * make pdf:
 
+   * edit conf.py to enable rst2pdf.pdfbuilder extension: edit extensions line
    * sudo apt-get install rst2pdf
    * sudo apt-get install python-matplotlib
    * make pdf
