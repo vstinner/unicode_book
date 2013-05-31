@@ -35,7 +35,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'programming_with_unicode'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Programming with Unicode'
@@ -173,13 +173,13 @@ htmlhelp_basename = 'ProgrammingwithUnicodedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 pdf_documents = [
-  ('programming_with_unicode', 'programming_with_unicode', u'Programming with Unicode Documentation',
+  ('index', 'index', u'Programming with Unicode Documentation',
    u'Victor Stinner', 'manual'),
 ]
 pdf_stylesheets = ['sphinx','kerning','a4']
 
 latex_documents = [
-  ('programming_with_unicode', 'programming_with_unicode.tex', u'Programming with Unicode Documentation',
+  ('index', 'index.tex', u'Programming with Unicode Documentation',
    u'Victor Stinner', 'manual'),
 ]
 
@@ -200,5 +200,5 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-todo_include_todos = True
+todo_include_todos = False
 
