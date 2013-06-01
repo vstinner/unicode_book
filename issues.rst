@@ -70,7 +70,7 @@ not be decoded as U+0000, and "." (U+002E) can be encoded to ``0xC0 0xAE`` (two
 bytes instead of one) to bypass directory traversal checks.
 
 :ref:`Surrogates characters <surrogates>` are also invalid in UTF-8: characters in U+D800—U+DFFF
-have to be rejected. See the table 3-7 in the `Conformance chapiter of the
+have to be rejected. See the table 3-7 in the `Conformance chapter of the
 Unicode standard <http://www.unicode.org/versions/Unicode5.2.0/ch03.pdf>`_
 (december 2009); and the section 3 (UTF-8 definition) of `UTF-8, a
 transformation format of ISO 10646
