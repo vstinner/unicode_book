@@ -132,7 +132,7 @@ Character string API (wchar_t*)
 
 POSIX.1-2001 has no function ignoring case to compare character strings.
 POSIX.1-2008, a recent standard, adds :c:func:`wcscasecmp`: the GNU libc has it
-has an extension (if :c:macro:`_GNU_SOURCE` is defined). Windows has the
+as an extension (if :c:macro:`_GNU_SOURCE` is defined). Windows has the
 :c:func:`_wcsnicmp` function.
 
 :ref:`Windows` uses (:ref:`UTF-16 <utf16>`) wchar_t* strings for its Unicode
