@@ -16,7 +16,7 @@ To limit or avoid issues with Unicode, try to follow these rules:
  * if you have to encode text and you can choose the encoding: prefer the :ref:`UTF-8` encoding.
    It is able to encode all Unicode 6.0 characters (including :ref:`non-BMP
    characters <bmp>`), has no endian issue, is well supported by most
-   programs, and is good compromise is size.
+   programs, and its good compromise is size.
 
 .. TODO:: problem grammatical dans la dernière phrase du dernier point
 
