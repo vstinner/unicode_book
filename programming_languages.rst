@@ -98,7 +98,7 @@ Character API (wchar_t)
    :c:func:`iswprint` to manipulate characters.
 
    :c:type:`wchar_t` is a 16 or 32 bits integer, signed or not. Linux uses 32
-   bits signed integer. Mac OS X uses 32 bits integer. Windows uses 16 bits
+   bits signed integer. Mac OS X uses 32 bits integer. Windows and AIX use 16 bits
    integer (:ref:`BMP <bmp>` only). Check if the :c:macro:`WCHAR_MAX` constant
    from ``<wchar.h>`` is equal to 0xFFFF to check if :c:type:`wchar_t` is a 16
    bits unsigned integer.
