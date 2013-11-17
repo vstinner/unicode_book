@@ -189,7 +189,7 @@ Examples of surrogate pairs:
 
 .. note::
 
-   U+10FFFF is the higgest code point encodable to UTF-16 and the higgest code
+   U+10FFFF is the highest code point encodable to UTF-16 and the highest code
    point of the :ref:`Unicode Character Set <ucs>` 6.0. The {U+DBFF, U+DFFF}
    surrogate pair is the last available pair.
 
