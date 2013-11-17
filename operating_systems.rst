@@ -540,9 +540,8 @@ supports "long filenames", filenames are stored as :ref:`UCS-2 <ucs2>`, up to
 <bmp>` can be used: :ref:`UTF-16 <utf16>` replaces UCS-2 and the limit is now
 255 UTF-16 units.
 
-The NTFS filesystem stores filenames as character strings.
+The NTFS filesystem stores filenames using `UTF-16 encoding <utf16>`_.
 
-.. todo:: NTFS encoding
 
 Apple: HFS and HFS+ filesystems
 '''''''''''''''''''''''''''''''
