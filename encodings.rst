@@ -196,7 +196,7 @@ characters are different meanings.
 Escape the character
 ''''''''''''''''''''
 
-:ref:`Python <python>` "replace" error handler uses ``\xHH``, ``\uHHHH`` or
+:ref:`Python <python>` "backslashreplace" error handler uses ``\xHH``, ``\uHHHH`` or
 ``\UHHHHHHHH`` where HHH...H is the code point formatted in hexadecimal. PHP
 "long" error handler uses ``U+HH``, ``U+HHHH`` or ``encoding+HHHH`` (e.g.
 ``JIS+7E7E``).
