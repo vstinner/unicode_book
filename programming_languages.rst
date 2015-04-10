@@ -544,9 +544,9 @@ Perl
 
 Write a character using its code point written in hexadecimal:
 
- * chr(0x1F4A9)
- * "\x{2639}"
- * "\N{U+A0}"
+ * ``chr(0x1F4A9)``
+ * ``"\x{2639}"``
+ * ``"\N{U+A0}"``
 
 Using ``use charnames qw( :full );``, you can use a Unicode character in a
 string using ``"\N{name}"`` syntax.  Example: ::
@@ -554,19 +554,19 @@ string using ``"\N{name}"`` syntax.  Example: ::
     say "\N{long s} \N{ae} \N{Omega} \N{omega} \N{UPWARDS ARROW}"
 
 Declare that filehandles opened within this lexical scope but not elsewhere are
-in UTF-8, until and unless you say otherwise. The :std adds in STDIN, STDOUT,
-and STDERR. This critical step implicitly decodes incoming data and encodes
-outgoing data as UTF-8: ::
+in UTF-8, until and unless you say otherwise. The ``:std`` adds in ``STDIN``,
+``STDOUT``, and ``STDERR``. This critical step implicitly decodes incoming data
+and encodes outgoing data as UTF-8: ::
 
     use open qw( :encoding(UTF-8) :std );
 
 If ``PERL_UNICODE`` environment variable is set to ``AS``, the following data
 will use UTF-8:
 
- * @ARGV
- * stdin, stdout, stderr
+ * ``@ARGV``
+ * ``STDIN``, ``STDOUT``, ``STDERR``
 
-If you have a DATA handle, you must explicitly set its encoding. If you want
+If you have a ``DATA`` handle, you must explicitly set its encoding. If you want
 this to be UTF-8, then say: ::
 
     binmode(DATA, ":encoding(UTF-8)");
@@ -593,7 +593,7 @@ History:
  * Perl 5.6 (2000): initial Unicode support, support :ref:`character strings
    <str>`
  * Perl 5.8 (2002): regex supports Unicode
- * use "``use utf-8;``" pragma to specify that your Perl script is encoded to
+ * use "``use utf8;``" pragma to specify that your Perl script is encoded to
    :ref:`UTF-8`
 
 Read ``perluniintro``, ``perlunicode`` and ``perlunifaq`` manuals.
