@@ -40,7 +40,7 @@ The three most common encodings are, in chronological order of their creation:
 Google posted an interesting graph of the usage of different encodings on the
 web: `Unicode nearing 50% of the web
 <http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html>`_
-(Mark Davis, january 2010). Because Google craws an huge part of the web,
+(Mark Davis, january 2010). Because Google crawls a huge part of the web,
 these numbers should be reliable. In 2001, the most used encodings were:
 
  * 1st (56%): :ref:`ASCII`
