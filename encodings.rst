@@ -55,7 +55,7 @@ these numbers should be reliable. In 2001, the most used encodings were:
 
 In december 2007, for the first time: :ref:`UTF-8` becomes the most used encoding
 (near 25%). In january 2010, UTF-8 was close to 50%, and ASCII and Western
-Europe encodings near 20%. The usage of the other encodings don't change.
+Europe encodings were near 20%. The usage of the other encodings don't change.
 
 .. todo:: add an explicit list of top3 in 2010
 
