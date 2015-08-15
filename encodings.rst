@@ -186,7 +186,7 @@ and NFKD does also such operation. Examples:
 +--------------------------------------------+-----------+---------+--------------------------------+
 
 ∞ (U+221E) replaced by 8 (U+0038) is the worst example of the method: these two
-characters are different meanings.
+characters have completely different meanings.
 
 .. todo:: define "glyph"
 
