@@ -120,7 +120,7 @@ encoding, because an encoding is associated to a :ref:`charset <charset>`. For
 example, an ASCII string can only store characters in the range U+0000—U+007F.
 
 The encoding is not stored explicitly in a byte string. If the encoding is not
-documented or attached to the byte string, :ref:`the encoding have to be
+documented or attached to the byte string, :ref:`the encoding has to be
 guessed <guess>`, which is a difficult task. If a byte string is :ref:`decoded <decode>` from
 the wrong encoding, it will not be displayed correctly, leading to a well known
 issue: :ref:`mojibake <mojibake>`.
