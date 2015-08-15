@@ -40,14 +40,14 @@ There are different levels of Unicode support:
    and characters with diacritics.
 
 These levels should help you to estimate the status of the Unicode support of
-your project. A basic support is enough if all of your users speak the same language or
-live in close countries. A basic Unicode support usually means an excellent support of Western
+your project. Basic support is enough if all of your users speak the same language or
+live in close countries. Basic Unicode support usually means excellent support of Western
 Europe languages. Full Unicode support is required to support Asian languages.
 
 By default, the :ref:`C <c>`, :ref:`C++ <cpp>` and :ref:`PHP5 <php>` languages
-have a basic Unicode support.  For the C and C++ languages, you can have a basic of full Unicode support using
+have basic Unicode support.  For the C and C++ languages, you can have basic or full Unicode support using
 a third-party library like :ref:`glib <glib>`, :ref:`Qt <qt>` or :ref:`ICU
-<icu>`. With PHP5, you can have a basic Unicode support using "``mb_``" functions.
+<icu>`. With PHP5, you can have basic Unicode support using "``mb_``" functions.
 
 By default, the :ref:`Python 2 <python2>` language doesn't support Unicode. You can have a
 basic Unicode support if you store text into the ``unicode`` type and take care of input and
