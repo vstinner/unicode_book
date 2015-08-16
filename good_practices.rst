@@ -40,26 +40,26 @@ There are different levels of Unicode support:
    and characters with diacritics.
 
 These levels should help you to estimate the status of the Unicode support of
-your project. A basic support is enough if all of your users speak the same language or
-live in close countries. A basic Unicode support usually means an excellent support of Western
+your project. Basic support is enough if all of your users speak the same language or
+live in close countries. Basic Unicode support usually means excellent support of Western
 Europe languages. Full Unicode support is required to support Asian languages.
 
 By default, the :ref:`C <c>`, :ref:`C++ <cpp>` and :ref:`PHP5 <php>` languages
-have a basic Unicode support.  For the C and C++ languages, you can have a basic of full Unicode support using
+have basic Unicode support.  For the C and C++ languages, you can have basic or full Unicode support using
 a third-party library like :ref:`glib <glib>`, :ref:`Qt <qt>` or :ref:`ICU
-<icu>`. With PHP5, you can have a basic Unicode support using "``mb_``" functions.
+<icu>`. With PHP5, you can have basic Unicode support using "``mb_``" functions.
 
-By default, the :ref:`Python 2 <python2>` language doesn't support Unicode. You can have a
+By default, the :ref:`Python 2 <python2>` language doesn't support Unicode. You can have
 basic Unicode support if you store text into the ``unicode`` type and take care of input and
 output encodings. For :ref:`Python 3 <python3>`, the situation is different: it
-has directly a basic Unicode support by using the wide character API on Windows and by
+has direct basic Unicode support by using the wide character API on Windows and by
 taking care of input and output encodings for you (e.g. decode command line
 arguments and environment variables). The ``unicodedata`` module is a first
 step for a full Unicode support.
 
 Most UNIX and Windows programs don't support Unicode. Firefox web browser and
 OpenOffice.org office suite have a full Unicode support. Slowly, more and more programs
-have a basic Unicode support.
+have basic Unicode support.
 
 .. NELLE : juste en anecdote: OOo supporte complétement l'unicode, mais les
   branches OOo4Kids et OOoLight ont désactivées ce support par défaut parce
@@ -69,7 +69,7 @@ have a basic Unicode support.
 
 Don't expect to have directly a full Unicode support: it requires a lot of work. Your
 project may be fully Unicode compliant for a specific task (e.g. :ref:`filenames <filename>`), but
-only have a basic Unicode support for the other parts of the project.
+only have basic Unicode support for the other parts of the project.
 
 
 Test the Unicode support of a program
@@ -81,7 +81,7 @@ Tests to evaluate the Unicode support of a program:
    program fails with an error, it has no Unicode support.
  * Write characters not encodable to the :ref:`locale encoding <locale
    encoding>` (e.g. Ł, U+0141) in all input fields: if the program fails with an
-   error, it has probably a basic Unicode support.
+   error, it probably has basic Unicode support.
  * To test if a program is fully Unicode compliant, write text mixing different
    languages in different directions and characters with diacritics, especially
    in Persian characters. Try also :ref:`decomposed characters

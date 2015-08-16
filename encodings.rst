@@ -40,7 +40,7 @@ The three most common encodings are, in chronological order of their creation:
 Google posted an interesting graph of the usage of different encodings on the
 web: `Unicode nearing 50% of the web
 <http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html>`_
-(Mark Davis, january 2010). Because Google craws an huge part of the web,
+(Mark Davis, january 2010). Because Google crawls a huge part of the web,
 these numbers should be reliable. In 2001, the most used encodings were:
 
  * 1st (56%): :ref:`ASCII`
@@ -55,7 +55,7 @@ these numbers should be reliable. In 2001, the most used encodings were:
 
 In december 2007, for the first time: :ref:`UTF-8` becomes the most used encoding
 (near 25%). In january 2010, UTF-8 was close to 50%, and ASCII and Western
-Europe encodings near 20%. The usage of the other encodings don't change.
+Europe encodings were near 20%. The usage of the other encodings don't change.
 
 .. todo:: add an explicit list of top3 in 2010
 
@@ -186,7 +186,7 @@ and NFKD does also such operation. Examples:
 +--------------------------------------------+-----------+---------+--------------------------------+
 
 ∞ (U+221E) replaced by 8 (U+0038) is the worst example of the method: these two
-characters are different meanings.
+characters have completely different meanings.
 
 .. todo:: define "glyph"
 

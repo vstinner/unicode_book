@@ -120,7 +120,7 @@ encoding, because an encoding is associated to a :ref:`charset <charset>`. For
 example, an ASCII string can only store characters in the range U+0000—U+007F.
 
 The encoding is not stored explicitly in a byte string. If the encoding is not
-documented or attached to the byte string, :ref:`the encoding have to be
+documented or attached to the byte string, :ref:`the encoding has to be
 guessed <guess>`, which is a difficult task. If a byte string is :ref:`decoded <decode>` from
 the wrong encoding, it will not be displayed correctly, leading to a well known
 issue: :ref:`mojibake <mojibake>`.
@@ -175,7 +175,7 @@ generally, it encodes a :ref:`character string <str>` to a :ref:`byte string
 <bytes>` and decodes a byte string to a character string.
 
 The 7 and 8 bits charsets have most simple encoding: store a code point as a
-single byte. These charsets are also called encodings, it is easy to confused
+single byte. These charsets are also called encodings, it is easy to confuse
 them. The best example is the :ref:`ISO-8859-1 encoding <ISO-8859-1>`: all of
 the 256 possible bytes are considered as 8 bit code points (0 through 255) and
 are associated to characters. For example, the character A (U+0041) has the
