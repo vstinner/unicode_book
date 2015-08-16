@@ -4,7 +4,7 @@ About
 "Programming with Unicode" is a book written by Victor Stinner.
 
 The HTML version is available on read-the-docs:
-https://unicode-book.readthedocs.org
+https://unicodebook.readthedocs.org
 
 Dependencies
 ------------
