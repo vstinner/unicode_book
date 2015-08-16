@@ -321,6 +321,8 @@ is :ref:`decoded <decode>` from the default encoding (ASCII) to Unicode before b
 Python 2.0. In Python 3, the :ref:`UTF-8 decoder is strict <strict utf8 decoder>`:
 it rejects surrogate characters.
 
+It is possible to make Python 2 behave more like Python 3 with
+`from __future__ import unicode_literals`.
 
 .. _PEP 383:
    http://www.python.org/dev/peps/pep-0383/
