@@ -21,6 +21,7 @@ Programming with Unicode
    good_practices.rst
    operating_systems.rst
    programming_languages.rst
+   database_systems.rst
    libraries.rst
    issues.rst
    see_also.rst
