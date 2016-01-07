@@ -609,14 +609,15 @@ Java
 ----
 
 ``char`` is a character able to store Unicode :ref:`BMP <bmp>` only characters
-(U+0000—U+FFFF), whereas ``Character`` is a character able to store any Unicode
-character (U+0000—U+10FFFF). ``Character`` methods:
+(U+0000—U+FFFF), whereas ``Character`` is a wrapper  of the ``char`` with static helper functions.
+``Character`` methods:
 
  * ``.getType(ch)``: get the :ref:`category <unicode categories>` of a
    character
  * ``.isWhitespace(ch)``: test if a character is a whitespace
    according to Java
  * ``.toUpperCase(ch)``: convert to uppercase
+ * ``.codePointAt(CharSequence, int)``:  return the code point at the given index of the CharSequence
 
 .. todo:: explain isWhitespace()
 
