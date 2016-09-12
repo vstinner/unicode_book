@@ -209,7 +209,7 @@ UTF-16) and to join a surrogate pair (:ref:`decode <decode>` from UTF-16)::
     encode_utf16_pair(uint32_t character, uint16_t *units)
     {
         unsigned int code;
-        assert(0x10000 <= character && character <= 0x10FFF);
+        assert(0x10000 <= character && character <= 0x10FFFF);
         code = (character - 0x10000);
         units[0] = 0xD800 | (code >> 10);
         units[1] = 0xDC00 | (code & 0x3FF);
