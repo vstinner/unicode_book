@@ -348,9 +348,9 @@ Python provides also many :ref:`error handlers <errors>` used to specify how to 
  * ``replace``: replace undecodable bytes by � (U+FFFD) and unencodable
    characters by ``?`` (U+003F)
  * ``ignore``: ignore undecodable bytes and unencodable characters
- * ``backslashreplace`` (only to decode): replace undecodable bytes by ``\xHH``
+ * ``backslashreplace`` (only encode): replace unencodable bytes by ``\xHH``
 
-Python 3 has two more error handlers:
+Python 3 has three more error handlers:
 
  * ``surrogateescape``: replace undecodable bytes (non-ASCII: ``0x80``\ —\
    ``0xFF``) by :ref:`surrogate characters <surrogates>` (in U+DC80—U+DCFF) on
@@ -360,7 +360,8 @@ Python 3 has two more error handlers:
  * ``surrogatepass``, specific to ``UTF-8`` codec: allow encoding/decoding
    surrogate characters in :ref:`UTF-8`. It is required because UTF-8 decoder of
    Python 3 rejects surrogate characters by default.
-
+ * ``backslashreplace`` (for decode): replace undecodable bytes by ``\xHH``
+   
 Decoding examples in Python 3:
 
  * ``b'abc\xff'.decode('ASCII')`` uses the ``strict`` error handler and raises
