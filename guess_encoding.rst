@@ -125,7 +125,7 @@ UTF-8.
 
 .. highlight:: c
 
-Example of a strict :ref:`C <c>` function to check if a string is encoded to
+Example of a strict :ref:`C <c>` function to check if a string is encoded with
 UTF-8. It rejects :ref:`overlong sequences <strict utf8 decoder>` (e.g.  ``0xC0
 0x80``) and :ref:`surrogate characters <surrogates>` (e.g. ``0xED 0xB2 0x80``,
 U+DC80). ::

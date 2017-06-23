@@ -229,7 +229,7 @@ synchronization between C (``std*``) and C++ (``std::c*``) streams using: ::
 Python
 ------
 
-Python supports Unicode since its version 2.0 released in october 2000.
+Python supports Unicode since its version 2.0 released in October 2000.
 :ref:`Byte <bytes>` and :ref:`Unicode <str>` strings store their length, so
 it's possible to embed nul byte/character.
 
@@ -263,7 +263,7 @@ In Python 2, ``str + unicode`` gives ``unicode``: the byte string is
 because it was the source of a lot of confusion. At the same time, it was not
 possible to switch completely to Unicode in 2000: computers were slower and
 there were fewer Python core developers. It took 8 years to switch completely to
-Unicode: Python 3 was relased in december 2008.
+Unicode: Python 3 was relased in December 2008.
 
 Narrow build of Python 2 has a partial support of :ref:`non-BMP <bmp>`
 characters. The unichr() function raises an error for code bigger than U+FFFF,
@@ -331,7 +331,7 @@ It is possible to make Python 2 behave more like Python 3 with
 Codecs
 ''''''
 
-The ``codecs`` and ``encodings`` module provide text encodings. They supports a lot of
+The ``codecs`` and ``encodings`` modules provide text encodings. They support a lot of
 encodings. Some examples: ASCII, ISO-8859-1, UTF-8, UTF-16-LE,
 ShiftJIS, Big5, cp037, cp950, EUC_JP, etc.
 
@@ -411,7 +411,7 @@ filesystem encoding, ``sys.getfilesystemencoding()``:
 Python uses the ``strict`` :ref:`error handler <errors>` in Python 2, and
 ``surrogateescape`` (PEP 383) in Python 3. In Python 2, if ``os.listdir(u'.')``
 cannot decode a filename, it keeps the bytes filename unchanged. Thanks to
-``surrogateescape``, decode a filename does never fail in Python 3. But
+``surrogateescape``, decoding a filename never fails in Python 3. But
 encoding a filename can fail in Python 2 and 3 depending on the filesystem
 encoding. For example, on Linux with the C locale, the Unicode filename
 ``"h\xe9.py"`` cannot be encoded because the filesystem encoding is ASCII.
@@ -496,7 +496,7 @@ In PHP 5, a literal string (e.g. ``"abc"``) is a :ref:`byte string <bytes>`.
 PHP has no :ref:`character string <str>` type, only a "string" type which is a
 :ref:`byte string <bytes>`.
 
-PHP have "multibyte" functions to manipulate byte strings using their encoding.
+PHP has "multibyte" functions to manipulate byte strings using their encoding.
 These functions have an optional encoding argument. If the encoding is not
 specified, PHP uses the default encoding (called "internal encoding"). Some
 multibyte functions:
@@ -522,7 +522,7 @@ process byte strings as UTF-8 encoded strings.
 
 .. todo:: u flag: instead of which encoding?
 
-PHP includes also a binding of the :ref:`iconv <iconv>` library.
+PHP also includes a binding for the :ref:`iconv <iconv>` library.
 
  * ``iconv()``: :ref:`decode <decode>` a :ref:`byte string <bytes>` from an
    encoding and :ref:`encode <encode>` to another encoding, you can use

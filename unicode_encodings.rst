@@ -71,11 +71,11 @@ code points, whereas UCS-2 is limited to :ref:`BMP <bmp>` characters. These
 encodings are practical because the length in units is the number of
 characters.
 
-**UTF-16** and **UTF-32** encodings use, respectivelly, 16 and 32 bits units.
+**UTF-16** and **UTF-32** encodings use, respectively, 16 and 32 bits units.
 UTF-16 encodes code points bigger than U+FFFF using two units: a
 :ref:`surrogate pair <surrogates>`. UCS-2 can be :ref:`decoded <decode>` from UTF-16. UTF-32
 is also supposed to use more than one unit for big code points, but in
-practical, it only requires one unit to store all code points of Unicode 6.0.
+practice, it only requires one unit to store all code points of Unicode 6.0.
 That's why UTF-32 and UCS-4 are the same encoding.
 
 +----------+-----------+-----------------+
@@ -116,10 +116,10 @@ Byte order marks (BOM)
 ----------------------
 
 :ref:`UTF-16 <utf16>` and :ref:`UTF-32 <utf32>` use units bigger than 8 bits,
-and so hit endian issue. A single unit can be stored in the big endian (most
-significant bits first) or little endian (less significant bits first). BOM
-are short byte sequences to indicate the encoding and the endian. It's the
-U+FEFF code point encoded to the UTF encodings.
+and so are sensitive to endianness. A single unit can be stored as big endian (most
+significant bits first) or little endian (less significant bits first). BOM 
+is a short byte sequence to indicate the encoding and the endian. It's the
+U+FEFF code point encoded with the given UTF encoding.
 
 Unicode defines 6 different BOM:
 
@@ -147,7 +147,7 @@ UTF-32 in the host endian without BOM. On Windows, "UTF-16" usually means
 UTF-16-LE.
 
 Some Windows applications, like notepad.exe, use UTF-8 BOM, whereas many
-applications are unable to detect the BOM, and so the BOM causes troubles.
+applications are unable to detect the BOM, and so the BOM causes trouble.
 UTF-8 BOM should not be used for better interoperability.
 
 .. todo:: which troubles?

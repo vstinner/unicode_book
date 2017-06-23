@@ -15,8 +15,8 @@ To limit or avoid issues with Unicode, try to follow these rules:
  * always store and manipulate text as :ref:`character strings <str>`
  * if you have to encode text and you can choose the encoding: prefer the :ref:`UTF-8` encoding.
    It is able to encode all Unicode 6.0 characters (including :ref:`non-BMP
-   characters <bmp>`), has no endian issue, is well supported by most
-   programs, and its good compromise is size.
+   characters <bmp>`), does not depend on endianness, is well supported by most
+   programs, and its size is a good compromise.
 
 .. TODO:: problem grammatical dans la dernière phrase du dernier point
 
@@ -58,7 +58,7 @@ arguments and environment variables). The ``unicodedata`` module is a first
 step for a full Unicode support.
 
 Most UNIX and Windows programs don't support Unicode. Firefox web browser and
-OpenOffice.org office suite have a full Unicode support. Slowly, more and more programs
+OpenOffice.org office suite have full Unicode support. Slowly, more and more programs
 have basic Unicode support.
 
 .. NELLE : juste en anecdote: OOo supporte complétement l'unicode, mais les
@@ -67,7 +67,7 @@ have basic Unicode support.
 
   Je pense qu'elle va être remise un jour ou un autre dans ces branches.
 
-Don't expect to have directly a full Unicode support: it requires a lot of work. Your
+Don't expect to have full Unicode support directly: it requires a lot of work. Your
 project may be fully Unicode compliant for a specific task (e.g. :ref:`filenames <filename>`), but
 only have basic Unicode support for the other parts of the project.
 

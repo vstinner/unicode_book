@@ -4,7 +4,7 @@ Unicode nightmare
 :ref:`Unicode <unicode>` is the nightmare of many developers (and users) for
 different, and sometimes good reasons.
 
-In the 1980's, only few people read documents in languages other their mother
+In the 1980s, only few people read documents in languages other their mother
 tongue and English. A computer supported only a small number of
 languages, the user configured his region to support languages of close
 countries. Memories and disks were expensive, all applications were written to
@@ -30,14 +30,14 @@ whereas UNIX and BSD operating systems use bytes.
 
 Mixing documents stored as bytes is possible, even if they use different
 encodings, but leads to :ref:`mojibake <mojibake>`. Because libraries and programs do also ignore
-encode and decode :ref:`warnings or errors <errors>`, write a single character with a diacritic
+encode and decode :ref:`warnings or errors <errors>`, writing a single character with a diacritic
 (any non-:ref:`ASCII` character) is sometimes enough to get an error.
 
 Full Unicode support is complex because the Unicode charset is bigger than any
 other charset. For example, :ref:`ISO-8859-1` contains 256 code points including 191
 characters, whereas Unicode version 6.0 contains :ref:`248,966
 assigned code points <unicode stats>`. The Unicode standard is larger than just a
-charset: it explains also how to display characters (e.g. left-to-right for
+charset: it also explains how to display characters (e.g. left-to-right for
 English and right-to-left for persian), how to :ref:`normalize <normalization>` a :ref:`character string <str>`
 (e.g. precomposed characters versus the decomposed form), etc.
 

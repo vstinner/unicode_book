@@ -7,7 +7,7 @@ Security vulnerabilities
 Special characters
 ''''''''''''''''''
 
-Fullwidth (U+FF01—U+FF60) and halfwidth (U+FF61—U+FFEE) characters has been
+Fullwidth (U+FF01—U+FF60) and halfwidth (U+FF61—U+FFEE) characters have been
 used in 2007 to bypass security checks. Examples with the :ref:`Unicode
 normalization <normalization>`:
 
@@ -32,7 +32,7 @@ IDS/IPS/WAF Bypass Vulnerability
 Non-strict UTF-8 decoder: overlong byte sequences and surrogates
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-An :ref:`UTF-8 <utf8>` :ref:`decoder <decode>` have to reject overlong byte sequences, or an attacker can use
+An :ref:`UTF-8 <utf8>` :ref:`decoder <decode>` has to reject overlong byte sequences, or an attacker can use
 them to bypass security checks (e.g. check rejecting string containing nul bytes,
 ``0x00``). For example, ``0xC0 0x80`` byte sequence must raise an error and
 not be decoded as U+0000, and "." (U+002E) can be encoded to ``0xC0 0xAE`` (two
@@ -57,7 +57,7 @@ to encode and decode surrogates.
 
 .. note::
 
-   The :ref:`Java <java>` and Tcl languages uses a variant of :ref:`UTF-8`
+   The :ref:`Java <java>` and Tcl languages use a variant of :ref:`UTF-8`
    which encodes the nul character (U+0000) as the overlong byte sequence
    ``0xC0 0x80``, instead of ``0x00``, for practical reasons.
 
