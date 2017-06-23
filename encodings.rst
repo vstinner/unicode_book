@@ -8,7 +8,7 @@ Encodings
 
 There are many encodings around the world. Before Unicode, each manufacturer
 invented its own encoding to fit its client market and its usage. Most
-encodings are incompatible on at least one code, except some exceptions.
+encodings are incompatible on at least one code, with some exceptions.
 A document stored in :ref:`ASCII` can be read using :ref:`ISO-8859-1` or
 UTF-8, because ISO-8859-1 and UTF-8 are supersets of ASCII. Each encoding can
 have multiple aliases, examples:
@@ -55,7 +55,7 @@ these numbers should be reliable. In 2001, the most used encodings were:
 
 In december 2007, for the first time: :ref:`UTF-8` becomes the most used encoding
 (near 25%). In january 2010, UTF-8 was close to 50%, and ASCII and Western
-Europe encodings were near 20%. The usage of the other encodings don't change.
+Europe encodings were near 20%. The usage of other encodings doesn't change.
 
 .. todo:: add an explicit list of top3 in 2010
 
@@ -101,12 +101,10 @@ Handle undecodable bytes and unencodable characters
 Undecodable byte sequences
 ''''''''''''''''''''''''''
 
-When a :ref:`byte string <bytes>` is :ref:`decoded <decode>` from an encoding, the decoder may
+When a :ref:`byte string <bytes>` is :ref:`decoded <decode>`, the decoder may
 fail to decode a specific byte sequence. For example, ``0x61 0x62 0x63 0xE9``
 is not decodable from :ref:`ASCII` nor :ref:`UTF-8`, but it is decodable from
 :ref:`ISO-8859-1`.
-
-.. TODO:: NELLE "is decoded from an encoding" => "is decoded"
 
 Some encodings are able to decode any byte sequences. All encodings of the
 :ref:`ISO-8859 family <ISO-8859>` have this property, because all of the 256

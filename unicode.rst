@@ -95,8 +95,8 @@ Normalization
 Unicode standard explains how to decompose a character. For example, the precomposed
 character ç (U+00C7, Latin capital letter C with cedilla) can be written as
 the sequence of two characters: {¸ (U+0327, Combining cedilla), c (U+0043, Latin capital letter C)}.
-This decomposition can be useful to search a substring in a
-text, e.g. remove diacritic is pratical for the user. The decomposed form is
+This decomposition can be useful when searching for a substring in a
+text, e.g. removing the diacritic is pratical for the user. The decomposed form is
 called Normal Form D (**NFD**) and the precomposed form is called Normal Form
 C (**NFC**).
 
@@ -108,7 +108,7 @@ C (**NFC**).
 | NFD  | ¸c     | {U+0327, U+0043} |
 +------+--------+------------------+
 
-Unicode database contains also a compatibility layer: if a character cannot be
+Unicode database also contains a compatibility layer: if a character cannot be
 rendered (no font contain the requested character) or encoded to a specific
 encoding, Unicode proposes a :ref:`replacment character sequence which looks
 like the character <translit>`, but may have a different meaning.

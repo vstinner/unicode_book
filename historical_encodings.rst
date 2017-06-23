@@ -5,7 +5,7 @@ Between 1950 and 2000, each manufacturer and each operating system created its
 own 8 bits encoding. The problem was that 8 bits (256 code points) are not
 enough to store any character, and so the encoding tries to fit the user's
 language. Most 8 bits encodings are able to encode multiple languages, usually
-geograpically close (e.g. ISO-8859-1 is intented for Western Europe).
+geographically close (e.g. ISO-8859-1 is intented for Western Europe).
 
 .. TODO:: NELLE : "the problem was" & "The problem is" est plus une expression
   francaise traduite: ce n'est pas faux grammaticallement en anglais, mais ne
@@ -13,10 +13,8 @@ geograpically close (e.g. ISO-8859-1 is intented for Western Europe).
 
   8 bits (256 code points) are not enought so store all (Unicode?) characters
 
-It was difficult to exchange documents of different languages, because if a
-document was encoded to an encoding different than the user encoding, it
-leaded to :ref:`mojibake <mojibake>`.
-
+It was difficult to exchange documents with different languages, because using an
+invalid encoding while loading the document leads to :ref:`mojibake <mojibake>`.
 
 .. TODO:: NELLE : un exemple serait le bienvenu
 
@@ -89,9 +87,9 @@ Year  Norm         Description                                   Variant
 1987  ISO 8859-2   Central European: Croatian, Polish, Czech, …  cp1250
 1988  ISO 8859-3   South European: Turkish and Esperanto         -
 1988  ISO 8859-4   North European        -
-1988  ISO 8859-5   Latin/Cyrillic: Macadonian, Russian, …        KOI family
+1988  ISO 8859-5   Latin/Cyrillic: Macedonian, Russian, …        KOI family
 1987  ISO 8859-6   Latin/Arabic: Arabic language characters      cp1256
-1987  ISO 8859-7   Latin/Greek: modern greek language            cp1253
+1987  ISO 8859-7   Latin/Greek: modern Greek language            cp1253
 1988  ISO 8859-8   Latin/Hebrew: modern Hebrew alphabet          cp1255
 1989  ISO 8859-9   Turkish: Largely the same as ISO 8859-1       cp1254
 1992  ISO 8859-10  Nordic: a rearrangement of Latin-4            -
@@ -172,8 +170,8 @@ cp1252
 ''''''
 
 Windows :ref:`code page <codepage>` 1252, best known as cp1252, is a variant
-of :ref:`ISO-8859-1`. It is the default encoding of all English and western
-europe Windows setups. It is used as a fallback by web browsers if the webpage
+of :ref:`ISO-8859-1`. It is the default encoding of all English and Western
+Europe Windows setups. It is used as a fallback by web browsers if the webpage
 doesn't provide any encoding information (not in HTML, nor in HTTP).
 
 cp1252 shares 224 code points with ISO-8859-1, the range 0x80—0x9F (32

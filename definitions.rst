@@ -78,8 +78,8 @@ different implementations of character strings:
  * array of 16 bits unsigned integers with :ref:`surrogate pairs
    <surrogates>` (:ref:`UTF-16 <utf16>`): full Unicode range
 
-UCS-4 use twice as much memory than UCS-2, but it supports all Unicode
-character. UTF-16 is a compromise between UCS-2 and UCS-4: characters in the
+UCS-4 uses twice as much memory than UCS-2, but it supports all Unicode
+characters. UTF-16 is a compromise between UCS-2 and UCS-4: characters in the
 BMP range use one UTF-16 unit (16 bits), characters outside this range use two
 UTF-16 units (a :ref:`surrogate pair <surrogates>`, 32 bits). This advantage is
 also the main disadvantage of this kind of character string.
@@ -116,7 +116,7 @@ to :ref:`ASCII <ascii>` is called an "ASCII encoded string", or simply an
 "ASCII string".
 
 The :ref:`character range <charset>` supported by a byte string depends on its
-encoding, because an encoding is associated to a :ref:`charset <charset>`. For
+encoding, because an encoding is associated with a :ref:`charset <charset>`. For
 example, an ASCII string can only store characters in the range U+0000—U+007F.
 
 The encoding is not stored explicitly in a byte string. If the encoding is not
@@ -168,21 +168,21 @@ An **encoding** describes how to :ref:`encode <encode>` :ref:`code points <code
 point>` to bytes and how to :ref:`decode <decode>` :ref:`bytes <bytes>` to code
 points.
 
-An encoding is always associated to a :ref:`charset <charset>`. For example,
-the UTF-8 encoding is associated to the Unicode charset. So we can say that an
+An encoding is always associated with a :ref:`charset <charset>`. For example,
+the UTF-8 encoding is associated with the Unicode charset. So we can say that an
 encoding :ref:`encodes <encode>` characters to bytes and decode bytes to characters, or more
 generally, it encodes a :ref:`character string <str>` to a :ref:`byte string
 <bytes>` and decodes a byte string to a character string.
 
-The 7 and 8 bits charsets have most simple encoding: store a code point as a
-single byte. These charsets are also called encodings, it is easy to confuse
+The 7 and 8 bits charsets have the simplest encoding: store a code point as a
+single byte. Since these charsets are also called encodings, it is easy to confuse
 them. The best example is the :ref:`ISO-8859-1 encoding <ISO-8859-1>`: all of
 the 256 possible bytes are considered as 8 bit code points (0 through 255) and
-are associated to characters. For example, the character A (U+0041) has the
+are mapped to characters. For example, the character A (U+0041) has the
 code point 65 (0x41 in hexadecimal) and is stored as the byte ``0x41``.
 
 Charsets with more than 256 entries cannot encode all code points into a single
-byte. The encoding encode all code points into byte sequences of the same
+byte. The encoding encodes all code points into byte sequences of the same
 length or of variable length. For example, :ref:`UTF-8` is a variable length
 encoding: code points lower than 128 use a single byte, whereas higher code
 points take 2, 3 or 4 bytes. The :ref:`UCS-2 <ucs2>` encoding encodes all

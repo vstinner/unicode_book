@@ -325,9 +325,9 @@ If the console is unable to render a character, it tries to use a
 replacment character can be found, "?" (U+003F) is displayed instead.
 
 In a console (``cmd.exe``), ``chcp`` command can be used to display or to
-change the :ref:`OEM code page <codepage>` (and console code page). Change the
+change the :ref:`OEM code page <codepage>` (and console code page). Changing the
 console code page is not a good idea because the ANSI API of the console still
-expect characters encoded to the previous console code page.
+expects characters encoded to the previous console code page.
 
 .. seealso::
 
