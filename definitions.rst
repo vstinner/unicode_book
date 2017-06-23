@@ -266,7 +266,7 @@ Noël          UTF-8    ISO-8859-1  NoÃ«l
 .. note::
 
    "Mojibake" is japanese word meaning literally "unintelligible sequence of
-   characters". This issue is called "Кракозя́бры" (krakozyabry) in Russian.
+   characters". This issue is called "Кракозябры" (krakozyabry) in Russian.
 
 .. seealso:: :ref:`How to guess the encoding of a document? <guess>`
 
