@@ -6,14 +6,20 @@ Definitions
 Character
 ---------
 
-.. todo:: define a character
+Generic term for a semantic symbol. Many possible interpretations exist in the context of encoding.
 
+In computing, the most important aspect is that characters can be letters, spaces or control characters which represent the end of a file or can be used to trigger a sound.
+
+.. _glyph:
 
 Glyph
 -----
 
-.. todo:: define a glyph
+One or more shapes that may be combined into a grapheme.
 
+In Latin, a glyph often has 2 variants like 'A' and 'a' and Arabic often has four. This term is context dependent and different styles or formats can be considered different glyphs.
+
+Most relevant in programming is that diacritic marks (e.g. accents like ` and ^) are also glyphs, which are sometimes represented with another at one point, like the à in ISO 8859-1 or as two separate glyphs, so an a and the combining ` (U+0300 and U+0061 combined as U+00E0).
 
 .. _code point:
 
