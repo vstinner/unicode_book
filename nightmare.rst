@@ -4,7 +4,7 @@ Unicode nightmare
 :ref:`Unicode <unicode>` is the nightmare of many developers (and users) for
 different, and sometimes good reasons.
 
-In the 1980s, only few people read documents in languages other their mother
+In the 1980s, only few people read documents in languages other than their mother
 tongue and English. A computer supported only a small number of
 languages, the user configured his region to support languages of close
 countries. Memories and disks were expensive, all applications were written to
