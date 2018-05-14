@@ -28,7 +28,12 @@ for ligne in range(16):
 stdout.write("|\n")
 stdout.write(LINE)
 
-for ligne in range(8 if ASCII else 16):
+if ASCII:
+    LINES = range(8)
+else:
+    LINES = range(16)
+
+for ligne in LINES:
     text = "%x-" % ligne
     stdout.write("| %s " % text)
     for colonne in range(16):
@@ -42,4 +47,3 @@ for ligne in range(8 if ASCII else 16):
         stdout.write("| %s " % ch.center(3).encode('utf-8'))
     stdout.write("|\n")
     stdout.write(LINE)
-
