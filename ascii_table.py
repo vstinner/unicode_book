@@ -1,5 +1,10 @@
 from sys import stdout
 
+try:
+    unichr        # Python 2
+except NameError:
+    unichr = chr  # Python 3
+
 ASCII = False
 
 NAMES = {
@@ -18,20 +23,20 @@ LINE = ("+" + "-" * HEADER_WIDTH + ("+" + "-" * WIDTH) * 16 + "+\n")
 
 stdout.write(LINE)
 stdout.write("|" + " " * HEADER_WIDTH)
-for ligne in xrange(16):
+for ligne in range(16):
     stdout.write("|  -%x " % ligne)
 stdout.write("|\n")
 stdout.write(LINE)
 
 if ASCII:
-    LIGNES = xrange(8)
+    LINES = range(8)
 else:
-    LIGNES = xrange(16)
+    LINES = range(16)
 
-for ligne in LIGNES:
+for ligne in LINES:
     text = "%x-" % ligne
     stdout.write("| %s " % text)
-    for colonne in xrange(16):
+    for colonne in range(16):
         ch = unichr(ligne*16 + colonne)
         if ord(ch) in NAMES:
             ch = NAMES[ord(ch)]
@@ -42,4 +47,3 @@ for ligne in LIGNES:
         stdout.write("| %s " % ch.center(3).encode('utf-8'))
     stdout.write("|\n")
     stdout.write(LINE)
-
