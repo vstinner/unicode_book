@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding:utf8
+# coding:utf8
 import io
 import os
 import shutil
@@ -45,9 +45,9 @@ with io.open("programming_with_unicode.tex", encoding="utf-8") as fp:
     content = fp.read()
 
 DUlineblock = os.linesep.join((
-    ur"\begin{DUlineblock}{0em}",
-    ur"\item[] ",
-    ur"\end{DUlineblock}",
+    u"\\begin{DUlineblock}{0em}",
+    u"\\item[] ",
+    u"\\end{DUlineblock}",
 ))
 
 REPLACE = (
@@ -90,4 +90,3 @@ with io.open("programming_with_unicode.tex", "w", encoding="utf-8") as fp:
 ret = subprocess.call(("make", "all-pdf", "clean"))
 if ret != 0:
     sys.exit(ret)
-
