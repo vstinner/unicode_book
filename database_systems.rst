@@ -12,7 +12,7 @@ MySQL supports two UTF-8 variants:
 Unicode 3.0 and doesn't support 4-byte characters.
 
 .. seealso::
-https://dev.mysql.com/doc/refman/5.7/en/charset-unicode.html
+   https://dev.mysql.com/doc/refman/5.7/en/charset-unicode.html
 
 In MySQL a character set is used on a per-column basis. A default characater set
 for new columns is set on a table level. And the default for tables is set on
@@ -34,7 +34,7 @@ To create a database with UTF-8 support:
 To convert a non-unicode database to UTF-8 the recommended method is a dump/restore.
 
 .. seealso::
-http://www.postgresql.org/docs/9.5/static/charset.html
+   http://www.postgresql.org/docs/9.5/static/charset.html
 
 SQLite
 ------

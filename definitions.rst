@@ -275,8 +275,19 @@ Noël          UTF-8    ISO-8859-1  NoÃ«l
    characters". This issue is called "Кракозябры" (krakozyabry) in Russian.
 
 
-.. image:: images/Letter_to_Russia_with_krokozyabry.jpg
-   :alt: Letter to Russia with krokozyabry
+.. image:: images/Letter_to_Russia_with_krakozyabry.jpg
+   :alt: Letter to Russia with krakozyabry
+
+2004. An image of a post envelope with address written in krakozyabry
+(кракозя́бры) AKA Mojibake. The envelope contained a Harry Potter book. This
+letter was sent to a Russian student by her French friend, who manually wrote
+the address that she received by e-mail. Her e-mail client, unfortunately, was
+not set up correctly to display Cyrillic characters, so they were substituted
+with diacritic symbols from the Western charset (ISO-8859-1) The original
+message was in KOI8-R.
+
+The address was deciphered by the postal employees and delivered successfully.
+Some of the correct characters (red) were written above the wrong ones (black).
 
 .. seealso:: :ref:`How to guess the encoding of a document? <guess>`
 
