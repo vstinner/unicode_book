@@ -7,6 +7,7 @@ MySQL
 -----
 
 MySQL supports two UTF-8 variants:
+
 * utf8mb4: This is the full UTF-8 character set supported since MySQL 5.5
 * utf8: Also known as utf8mb3. This only supports the Basic Multilingual Plane of
 Unicode 3.0 and doesn't support 4-byte characters.
