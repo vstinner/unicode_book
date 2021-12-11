@@ -168,7 +168,7 @@ points): it is also the :ref:`Unicode category <unicode categories>`
 
 In :ref:`UTF-16 <utf16>`, characters in ranges U+0000—U+D7FF and U+E000—U+FFFD
 are stored as a single 16 bits unit. :ref:`Non-BMP <bmp>` characters (range
-U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits units: an
+U+10000—U+10FFFF) are stored as "surrogate pairs", two 16 bits units: a
 high surrogate (in range U+D800—U+DBFF) followed by a low surrogate (in range
 U+DC00—U+DFFF). A lone surrogate character is invalid in UTF-16, surrogate
 characters are always written as pairs (high followed by low).
