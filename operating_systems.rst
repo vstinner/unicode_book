@@ -19,7 +19,7 @@ characters are stored as two :c:type:`wchar_t` (a :ref:`surrogate pair
 <surrogates>`), and the length of a string is the number of UTF-16 units and
 not the number of characters.
 
-Windows 95, 98 an Me had also Unicode strings, but were limited to :ref:`BMP
+Windows 95, 98 and Me had also Unicode strings, but were limited to :ref:`BMP
 characters <bmp>`: they used :ref:`UCS-2 <ucs2>` instead of UTF-16.
 
 .. todo:: And Windows CE?
